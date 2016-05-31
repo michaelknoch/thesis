@@ -7,7 +7,7 @@ echo "moving bachelorthesis.zip from downloads into current directory"
 mv ~/Downloads/bachelorthesis.zip ./
 if [ $? -eq 0 ]; then
     echo "unzipping into ./writing"
-    unzip -uo bachelorthesis.zip -d ./
+    unzip -o bachelorthesis.zip -d ./
 
 
     echo "moving zip into prevImports with current timestamp"

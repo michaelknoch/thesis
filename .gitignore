@@ -25,3 +25,7 @@ hs_err_pid*
 *.mp4
 
 .idea
+
+.fdb_latexmk
+.fls
+.pdf

@@ -26,6 +26,6 @@ hs_err_pid*
 
 .idea
 
-.fdb_latexmk
-.fls
-.pdf
+*.fdb_latexmk
+*.fls
+*.pdf

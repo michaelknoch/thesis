@@ -35,6 +35,12 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 \subsection{Entwicklung von Javascript}
 
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel2/javascript-timeline.png}
+ \caption{History of Javascript}\cite[28]{EssentialTS}
+\end{figure}
+
 Javascript wurde erstmals 1996 von Brendan Eich in einer Implementierung des Netscape Navigator Browsers eingeführt,
 worauf weitere Browser die Syntax und APIs ähnlich, jedoch nicht identisch nach implementierten.
 Daraufhin veröffentlichte die ECMA International einen Standard, welcher die Spezifikationen der neuen Sprache
@@ -60,50 +66,62 @@ ECMAScript6 sollte bereits 2013 veröffentlicht werden, der offizielle Releasete
 dann allerdings bis in den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert.
 \cite{js-vs-es}
 
-\begin{figure}[htb]
- \centering
- \includegraphics[width=\linewidth]{kapitel2/javascript-timeline.png}
- \caption{History of Javascript}\cite[28]{EssentialTS}
-\end{figure}
-
 \subsection{Allgemein}
 
 Typescript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von ES6, d.h. sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features, wie der statischen Typisierung.
 Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative sein. \cite[28]{EssentialTS}
-Zusammen mit ES6 erhalten wir folgende Features:
+Zusammen mit ES6 erhalten wir gegenüber ES5 folgende Features:
 
-\begin{itemize}
-\item Typen
-\item Klassen
-\item Annotationen
-\item Imports
-\end{itemize}
-\cite[156]{ng-Book-2}
-
-Die wohl größte Erungenschaft der Sprache ist das statische Typsystem.
-Typenfehler können nun schon bereits zum Zeitpunkt
-der Kompilierung erkannt werden und treten nicht erst zur Laufzeit auf.
-Zudem wird Code in einer Typescript unterstützenden IDE dank Autovervollständigung
-leichter zu schreiben und aussagekräftiger zu lesen.
-
-
-
-\begin{figure}[htb]
+\begin{figure}[ht]
  \centering
- \includegraphics[width=\linewidth]{kapitel2/typescript----es5-es6-typescript-circle-diagram.png}
+ \includegraphics[width=0.4\linewidth]{kapitel2/typescript----es5-es6-typescript-circle-diagram.png}
  \caption{Language Relationship}\cite[152]{ng-Book-2}
 \end{figure}
 
 
+\subsubsection{statische Typisierung}
+
+Die wohl größte Erungenschaft der Sprache ist das statische Typsystem.
+Typenfehler können in Typescript bereits zum Zeitpunkt
+der Kompilierung bzw. Transpilierung erkannt werden und treten nicht erst zur Laufzeit im Browser auf.
+Zudem wird Code in einer Typescript unterstützenden IDE dank Autovervollständigung
+leichter zu schreiben und aussagekräftiger zu lesen.\cite[156]{ng-Book-2}
+
+\subsubsection{Klassen}
+
+Mit ES6 Klassen wurde eine neue Syntax für das prototypische Vererbungsmodell von Javascript entwickelt.
+Dabei handelt es sich nicht um die Einführung eines neuen OOP-Modells, sondern lediglich um eine vereinfachte Syntax für Objekte und deren Schnitstellen,
+so wie die Realisierung von Abstraktionen, wie man sie aus anderen Objektorientierten sprachen wie C++, Swift oder Java bereits kennt.\cite{js-Klassen}
+
+\lstinputlisting[language=Java,label=code,caption=Klassen in ES6]{kapitel2/class.js}
+
+\subsubsection{Module}
+
+In ES5 gab es keinen Standard um Funktionen und Variablen in Namensräumen zu organisieren, oder dynamisch Code zu laden.
+Mit ES6 wurde das fehlende Feature durch exportieren und importieren von Modulen ergänzt. Dadurch wird es sehr bequem Programmcode zu organisieren und zu laden.
+Jedes ES6 Modul wird in einer eigenen Datei gespeichert. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn sie werden explizit exportiert.
+Mittels Export lassen sich also Schnittstellen für ein Modul definieren, welche mittels des Keywords Import importiert und verwendet werden können.
+In Typescript lassen sich ganze Klassendefinitionen exportieren.
+Dabei ist es möglich Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
+Public Funktionen sind dann wie man es aus anderen OO-Sprachen kennt, auch von außen nutzbar.
+
+\lstinputlisting[language=Java,label=code,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}
+
 \subsection{Transpilierung}
 
-Typescript so wie ES6 bieten Entwicklern also eine ganze Reihe von Verbesserungen gegenüber den vorgängern.
-Tolle Features bringen jedoch wenig, wenn sie im Standard zwar spezifiziert wurden,
-allerdings noch in sehr wenigen Browsern vollständig implementiert wurden.
-
-Um TS oder ES6 Code also überhaupt ausführen zu können muss er auf den ES5 oder ES3
-Standard herunter transpiliert werden um in Produktion genutzt werden zu können.
+Typescript so wie ES6 bieten Entwicklern also eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
+Spannende Features bringen jedoch wenig, wenn sie im Standard zwar spezifiziert wurden,
+allerdings noch in sehr wenigen Browsern vollständig implementiert sind.
+Um TS oder ES6 Code also überhaupt in Produktion zu nutzen, sollte er auf den ES5 oder ES3
+Standard herunter transpiliert werden.
 Ein Transpiler ist ein Compiler, welcher Sourcecode nicht in Maschinencode, sondern ebenfalls in Sourcecode,
-allerdings einer anderen Sprache oder Version der Sprache wandelt.
+allerdings einer anderen Sprache oder Version der Sprache wandelt.\cite{Introduction-to-the-Typescript-Transpiler}
+In der nachfolgenden Abbildung ist zu sehen, wie Typescript Code in funktionsfähigen ES5 Code transpiliert wird.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.8\linewidth]{kapitel2/Introduction-transpiler.png}
+ \caption{Transpilierung}\cite[27]{ng-Book-2}
+\end{figure}

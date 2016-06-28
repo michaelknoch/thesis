@@ -32,6 +32,23 @@ so wie eine solide Basis auch für komplexere Webanwendungen bieten. \cite[11-12
 \subsection{Dependency Injection}
 \subsection{Rendering und Performance}
 
+\subsection{Change Detection}
+
+
+Starten wir eine Angular2 Applikation, wird uns als Nutzer nach dem anfänglichen Bootstrap eine View gerendert.
+Das bedeutet, dass eine interne Datenstruktur per Templating auf eine Viewstruktur, den DOM abgebildet und uns als Nutzer somit mittels Text,
+Formularen, Buttns etc. visuell aufbereitet wird.
+Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
+Zugriffe auf den DOM sind ressourcenintensiv, daher sollte eine automatisierter DOM Manipulation nicht inflationär stattfinden.
+Datenänderungen können entwerder durch User Events, XMLHttpRequests oder Timer (setTimeout(), setINterval()) ausgelöst werden.
+Alle dies geschieht asynchron. Wir können also davon ausgehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt, sich womöglich Daten geändert haben und
+die View aktualisiert werden muss.
+\cite{change-detection-explained}
+
+\subsubsection{NgZone}
+
+
+
 
 \section{Ionic}
 \section{Electron}

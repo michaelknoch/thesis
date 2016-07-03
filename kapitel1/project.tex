@@ -1,0 +1,28 @@
+%!TEX root = ../thesis.tex
+
+\chapter{Projekt \projectname}
+
+In diesem Kapitel werden die Anforderungen an den praktischen Teil der Arbeit definiert.
+\projectname wird im folgenden als Arbeitstitel für die Frontend Applikationen verwendet.
+
+\section{Motivation}
+
+Monitoring Tools dienen der Übewachung und Kontrolle bestehender Softwareprodukte.
+Hierbei gibt es vielerlei Abläufe und Metriken, welche geprüft und ausgewertet werden können, um einem nutzer der Monitoring Applikation
+eine aussagekräftige Übersicht über seine Systeme zu gewähren. Speziell nach dem Release eines Projektes oder nach dem Release neuer Patches
+ist es meist unabdingbar das geupdatete System hinsichtlich Stabilität und Performance kritisch zu beobachten. Ein weiterer Aspekt, den es zu überwachen gilt,
+ist die Skalierfähigkeit eines Produktes. Steigt die Aktivität einer Applikation, beispielsweise durch steigende Nutzerzahlen,
+muss sichergestellt werden, dass steigende Antwort- und Ausfallzeiten, erkannt und richtig interpretiert werden, damit Skalierungsprobleme schnellstmöglich behoben werden können.
+Handelt es sich bei dem zu überwachendem System um ein komplexes Zusammenspiel diverser Microservices, gestaltet sich die Herausforderung der manuellen Überwachung, beispielsweise anhand
+Serverlogs, noch deutlich schwieriger.
+
+Innerhalb einer Microservice Architektur ist es nicht notwendig, dass alle Services auf dem selben Server operieren.
+Es ist möglich dass Services auf einer Vielzahl von Servern, womöglich an komplett unterschiedlichen geographischen Punkten miteinander agieren,
+oder im Problemfall eben nicht miteinander agieren können. Instanzen einzelner Services können zur Laufzeit starten, stoppen oder womöglich abstürzen
+und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind daher deutlich komplexer zu Überblicken,
+daher ist ein Monitoring Tool, um die Stabilität und Performance einer solchen Architektur zu gewährleisten, meist stark von Nöten.
+
+
+\section{Anforderungsanalyse}
+
+Im nachfolgenden werden Anforderungen an das umzusetzende System gestellt um das in Motivation beschriebene Problem zu lösen.

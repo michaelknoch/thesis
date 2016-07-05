@@ -30,15 +30,14 @@ Im nachfolgenden werden Anforderungen an das umzusetzende System gestellt um das
 \subsection{Views}
 \subsubsection{Login / Registrieren}
 
-Dieser Screen soll erscheinen, wenn die Applikation erfolgreich geladen wurde und kein Nutzer eingeloggt ist.
+Dies ist der Initiale Screen.
+Er erscheint, wenn die Applikation erfolgreich geladen wurde und der Nutzer nicht eingeloggt ist.
 Nutzer können sich mit bestehenden Accounts einloggen oder neu registrieren.
 Des weiteren sollen neue Passwörter, für Nutzer die ihr bestehendes Passwort vergessen haben, angefordert werden können.
-Rudimentäres Error Handling soll Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
-im System bereits vorhandene Mailadressen hinweisen.
+Rudimentäres Error Handling weist Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
+im System bereits vorhandene Mailadressen hin.
 
 \vspace{1cm}
-
-
 
 
 \textbf{Login Formular}
@@ -56,13 +55,13 @@ im System bereits vorhandene Mailadressen hinweisen.
 \end{itemize}
 
 
-
 \vspace{1cm}
 
 \subsubsection{System wählen / erstellen}
 
-Da ein Nutzer mehrere aktive Systeme zeitgleich monitoren kann, benötigen wir eine übersichtsseite
-um die Systeme wechseln zu können. Zusätzlich sollen neue Systeme angelegt werden können.
+Da ein Nutzer mehrere aktive Systeme zeitgleich monitoren kann, wird eine übersichtsseite
+um die Systeme wechseln zu können benötigt. Zusätzlich sollen auf dieser Übersicht
+neue Systeme angelegt werden können.
 
 \vspace{1cm}
 \textbf{System erstellen}
@@ -107,17 +106,37 @@ Zusätzlich soll auch hier der Beobachtungszeitraum definiert werden können.
 
 \subsubsection{Traces}
 
-Die Traces Sektion soll aus zwei Views bestehen. Einer Übersichtsliste der Request Einstiegspunkte,
-welche zur Trace Detaillseite überleiten soll. Im Detaill besteht ein Trace aus den Requests
-aller an einer Aktion beteiligten Services. Dabei sollen die Zeitlichen Abläufe in einem Gantt Chart dargestellt werden.
+Die Traces Sektion besteht aus zwei Views. Einer Übersichtsliste der Request Einstiegspunkte,
+welche zur Trace Detaillseite überleitet. Im Detaill besteht ein Trace aus den Requests
+aller an einer Aktion beteiligten Services. Dabei werden die Zeitlichen Abläufe in einem Gantt Chart dargestellt.
 
 \subsubsection{Settings}
 
-In den Einstellungen sollen Nutzerrelevante Parameter definiert werden können. Metadaten sollen geändert werden können.
+In den Einstellungen können Nutzerrelevante Parameter definiert werden. Metadaten können geändert werden.
 Nutzer sollen die Möglichkeit bekommen ein Profilbild einzustellen.
+
+\subsubsection{Events}
+
+Reaktiv werden Nutzer auf Fehlverhalten deren Applikationen hingewiesen. Sollten Services außerplahnmäßig terminieren oder ihre Erreichbarkeit verlieren,
+wird dies als Event, also als Notification, für den User ausgegeben.
+
+\vspace{1cm}
+\textbf{Events}
+\begin{itemize}
+\item Service Start
+\item Service Stop
+\item Service Absturz
+\item Anstieg von Request Latenzzeiten
+\end{itemize}
+\vspace{1cm}
 
 
 \subsection{Plattformen}
-\subsubsection{Web}
-\subsubsection{Desktop}
-\subsubsection{Mobile}
+
+Wie in Motivation bereits angesprochen, geht es in MIA um zwei Aspekte. Einerseits können Applikationen anhand der Diagramme und Graphen im Detail analysiert werden,
+auf der anderen Seite möchte man als Nutzer reaktiv auf dem Laufenden gehalten werden, speziell wenn Latenzprobleme, Service Ausfälle oder ähnliches reibungslose Abläufe eines Systems gefährden.
+Hierzu erhält der Nutzer Push Notifications über das Event System.
+
+Die Applikation soll daher als App für iOS und Android, so wie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.
+In anbetracht, dass das Frontend Team nur aus meiner Person besteht, stellt sich diese Anforderung, in der doch knappen Entwicklungszeit, als große Herausforderung heraus.
+Daher liegt die Entscheidung nahe, den Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.

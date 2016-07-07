@@ -39,7 +39,7 @@ Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross ko
 \subsection{Cross kompilierte Apps am beispiel von Xamarin}
 
 Xamarin Entwickler, können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
-Der resultierende Code läuft dabei als nativer Code auf den geräten.
+Der resultierende Code läuft dabei als nativer Code auf den Geräten.
 Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C, Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann.\cite{projectxamarin}
 
 \begin{figure}[ht]
@@ -52,7 +52,7 @@ Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C, Java m
 Xamarin kommt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss, aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework,
 für jede Platform indiviudell entwickelt werden. Das mag funktionieren, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
 dass abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind, jedoch ist es fragwürdig ob das Framework sich als ``Cross Plattform Frontend Framework'' bezeichnen darf,
-wenn ein Großteil der Implementierung, zumindest bei Plattform universeller \ac{UI}, nach wie vor redundant vorgenommen werden muss.\cite{7Reas20:online}
+wenn ein Großteil der Implementierung, zumindest bei Plattfor-universellem Appdesign, nach wie vor redundant vorgenommen werden muss.\cite{7Reas20:online}
 
 \begin{figure}[ht]
  \centering
@@ -91,7 +91,7 @@ vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen
 womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Schaut man sich den DOM von Patrioten des Internets wie Facebook oder Amazon an,
 wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersicht führt,
 da die Palette an HTML5 Semantic Tags nicht ausreicht, um die Funktionalitäts Vielfalt einer modernen Webanwendung abzudecken.
-Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behelfen, um Elemente überhaupt voneinander unterscheiden zu können.
+Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behelfen, um HTML Elemente überhaupt voneinander unterscheiden zu können.
 \cite{sitepoint-introduction-to-webcomponents}
 
 \subsection{Komponenten in der Softwarentwicklung}
@@ -124,10 +124,11 @@ by third parties.''
 \vspace{0.5cm}
 
 Szyperski definiert eine Komponente als eigenständiges, in sich geschlossenes Modul ohne Deployment
-Abhängigkeiten. D.h. um eine Komponente zu deployen, müssen andere Komponenten nicht ebenfalls deployed werden.
-Klar definierte Schnittstellen dienen zur Kommunikation einzelner Komponenten und repräsentieren intransparente
-Funktionalitäten. Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
-um von Dritten verwendet werden zu können.
+Abhängigkeiten. D.h. Eine Komponente kann deployed werden, ohne dass andere Bausteine der Applikation ebenfalls deployed werden müssen.
+Klar definierte Schnittstellen dienen der komponentenübergeifenden Kommunikation und repräsentieren
+möglichst transparent die Funktionalität der Komponente.
+Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
+und von Dritten verwendet werden können.
 
 
 \subsection{Web Components}

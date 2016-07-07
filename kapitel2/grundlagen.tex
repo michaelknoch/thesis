@@ -36,7 +36,7 @@ die auf diversen Platformen ausgeführt werden kann.\cite{Heitkoetter2013}
 Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden.
 \cite{Xamar84:online}
 
-\subsection{Cross kompilierte Apps}
+\subsection{Cross kompilierte Apps am beispiel von Xamarin}
 
 Xamarin Entwickler, können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
 Der resultierende Code läuft dabei als nativer Code auf den geräten.
@@ -65,10 +65,22 @@ wenn ein Großteil der Implementierung, zumindest bei Plattform universeller \ac
 
 \subsection{Web Apps (Cordova, Phonegap)}
 
+Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Apps mithilfe von Webtechnologien zu entwickeln.
+HTML, CSS und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren.\cite{Cordo26:online}
+Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
+sondern in einer nativen Webview laufen gelassen. Diese Apps werden auch als hybride Apps bezeichnet.
+Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie aufsetzen.
 
+Zugriff auf Systemschnittstellen erhält man mittels Cordova Plugins. Diese bieten
+Interfaces in Javascript für den Zugriff auf native Systemkomponenten wie Kamera, GPS, Dateisystem etc.
+Plugins bestehen daher aus Javascript und dem Plattform kompatiblen Code,
+also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 
+\vspace{1cm}
+\lstinputlisting[language=Java,label=code,caption=Cordova Kamera Example]{kapitel2/cordova-plugin-example.js}
+\vspace{1cm}
 
-
+\newpage
 \section{Web Components}
 
 
@@ -83,8 +95,39 @@ Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behe
 \cite{sitepoint-introduction-to-webcomponents}
 
 \subsection{Komponenten in der Softwarentwicklung}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+``Modern applications are increasingly
+open in terms of topology,
+platform and evolution, and so the
+need for a component-oriented
+approach to development is even
+more acute than in the past [...]  Objects provide an organizational
+paradigm for decomposing large
+applications into cooperating objects
+as well as a reuse paradigm for
+composing applications from prepackaged
+software components.''
+\cite{nierstrasz1992component}
+
+\vspace{0.5cm}
+
+Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis von dem Traum der Komponentenorientierten Softwareentwicklung.
+Dabei soll eine Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
+ganzes Set an Komponenten für die Konstruktion seiner Applikation zu verwenden.
+Hierbi soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
+
+\vspace{0.5cm}
+``A software component is a unit of composition with contractually specified interfaces and explicit
+context dependencies only. A software component can be deployed independently and is subject to composition
+by third parties.''
+\cite{Szyperski}
+\vspace{0.5cm}
+
+Szyperski definiert eine Komponente als eigenständiges, in sich geschlossenes Modul ohne Deployment
+Abhängigkeiten. D.h. um eine Komponente zu deployen, müssen andere Komponenten nicht ebenfalls deployed werden.
+Klar definierte Schnittstellen dienen zur Kommunikation einzelner Komponenten und repräsentieren intransparente
+Funktionalitäten. Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
+um von Dritten verwendet werden zu können.
 
 
 \subsection{Web Components}
@@ -94,24 +137,75 @@ reusable blocks of UI presentation and behavior entirely with client side langua
 \cite[42]{Web-Component-Architecture}
 \vspace{1cm}
 
-Standards des W3C beschreiben diverse Wege wie entkoppelte wiederverwendbare UI Elemente,
+Der W3C beschreibt diverse Wege wie entkoppelte wiederverwendbare UI Elemente,
 in Kombination von HTML, JavaScript und CSS, so genannte Web Components, geschaffen werden können.
-Der Begriff Web Components beinhaltet somit eine Sammlung von Standards,
-welche die bereits genannte Problematik der fehlenden HTML Semantic mit bestehenden Webtechnologien lösen soll.
-Web Components sollen wie wiederverwendbare Web Widgets mit klar definierten Schnittstellen funktionieren.
-Dabei sollen sie im Browser implementiert sein und ohne externe Bibliotheken nutzbar sein.
-Bestehende Web Komponenten sollen ohne Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente in das Markup,
-soll bereits Funktionalität zur Verfügung stehen.
+Der Begriff Web Components beinhaltet eine Sammlung von Standards,
+welche die bereits genannte Problematik der fehlenden HTML Semantik mit bestehenden Webtechnologien lösen kann.
+Web Components funktioniren als wiederverwendbare Web Widgets mit klar definierten Schnittstellen.
+Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar sein.
+Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
+in das Markup, soll bereits die komponenteninteren Funktionalität zur Verfügung stehen.
 \cite[42]{Web-Component-Architecture}
+Webcomponents bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
 
-\subsubsection{Features}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\subsubsection{HTML Imports}
+HTML kann in HTML Dokumente importiert und verwendet werden.
+Dabei können in dem referenziertem zu importierendem HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
+welche dementsprechend aufgelöst werden.
+Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen.
+\cite{HTMLI44:online}
+
+\vspace{1cm}
+\lstinputlisting[language=HTML,label=code,caption=HTML Imports]{kapitel2/html_import.html}
+\vspace{1cm}
+
+\subsubsection{HTML Templates}
+
+Das HTML template-Element ermöglicht, Inhalte nicht zur Laufzeit der Website zu rendern,
+sondern den Renderforgang explizit per JavaScript zu steuern. Ressourcen, wie Videos und Bilder, werden demnach
+nicht initial geladen und verlängern nicht womöglich unnötig die Ladezeit der Applikation.
+Inhalte des Template Tags werden zu Beginn auf Validität geprüft und stehen dann für die Verwendung im Dokument
+zur Verfügung.
+
+\subsubsection{Custom HTML Elements}
+
+Durch Custom HTML Elements werden Webkomponenten in Applikationen eingebunden.
+Eigene HTML Tags und Elemente können definiert werden und beinhalten in Javascript geschriebene Logik so wie CSS Styling.
+Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten:
+
+\begin{itemize}
+\item createdCallback - Element wird registriert
+\item attachedCallback - Element wird in den DOM der Applikation eingefügt
+\item detachedCallback - Element wird aus dem DOM entfernt
+\item attributeChangedCallback - Attribute werden Element hinzugefügt, verändert oder entfernt
+\end{itemize}
+
+
+\subsubsection{Shadow Dom}
+Shadow Dom ermöglicht Optik und Logik einer Komponente zu kapseln.
+Seiteneffekte, bezüglich komponentenübergreifendem Style und Logik, werden verhindert.
+Beispielsweise kann Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
+da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments, oder anderer Elemente, zugreifen kann.
+Webapplikationen lassen sich dadurch endlich paketweise organisieren und strukturieren.
 
 \subsubsection{Vorteile}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 \subsubsection{Polyfills}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Wie in Abbildung \ref{fig:platform_support} zu sehen ist, sind besagte Web Component Features nicht in
+allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
+Hier kommen Polyfills ins spiel. Diese implementieren fehlende Browserfeatures und gewährleisten nahezu Vollständigen
+Support von unter anderem Web Components. Ein weiteres Beispiel für ein Polyfill ist core-js.
+Core-JS ermöglicht die Nutzung von ES5 und ES6, auch wenn der Browser diesen Standard nicht unterstützt.
+
+\vspace{1cm}
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.8\linewidth]{kapitel2/platform_support.jpg}
+ \caption{Platform Support}\cite{WebCo43:online}
+ \label{fig:platform_support}
+\end{figure}
 
 
 \section{Typescript}

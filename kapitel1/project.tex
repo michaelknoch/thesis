@@ -19,7 +19,7 @@ Serverlogs, noch deutlich schwieriger.
 Innerhalb einer Microservice Architektur ist es nicht notwendig, dass alle Services auf dem selben Server operieren.
 Es ist möglich dass Services auf einer Vielzahl von Servern, womöglich an komplett unterschiedlichen geographischen Punkten miteinander agieren,
 oder im Problemfall eben nicht miteinander agieren können. Instanzen einzelner Services können zur Laufzeit starten, stoppen oder womöglich abstürzen
-und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind daher deutlich komplexer zu überblicken,
+und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind also deutlich komplexer zu überblicken,
 daher ist ein Monitoring Tool, um die Stabilität und Performance einer solchen Architektur zu gewährleisten, meist stark von Nöten.
 
 
@@ -33,7 +33,7 @@ Im nachfolgenden werden Anforderungen an das umzusetzende System gestellt um das
 Dies ist der Initiale Screen.
 Er erscheint, wenn die Applikation erfolgreich geladen wurde und der Nutzer nicht eingeloggt ist.
 Nutzer können sich mit bestehenden Accounts einloggen oder neu registrieren.
-Des weiteren sollen neue Passwörter, für Nutzer die ihr bestehendes Passwort vergessen haben, angefordert werden können.
+Des weiteren sollen neue Passwörter, für Nutzer, die ihr bestehendes Passwort vergessen haben, angefordert werden können.
 Rudimentäres Error Handling weist Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
 im System bereits vorhandene Mailadressen hin.
 
@@ -82,7 +82,7 @@ Zusätzlich soll das Dashboard als Einstiegspunkt anderer Views dienen.
 \subsubsection{Metriken}
 
 Die Metriken Sektion soll pro Applikation eine Kollektion von Diagrammen beinhalten.
-Dabei soll die Applikation, so wie den aktiven Beobachtungszeitraum, gewählt werden können.
+Dabei soll die Applikation, so wie der aktive Beobachtungszeitraum, gewählt werden können.
 
 \vspace{1cm}
 \textbf{Diagramme}
@@ -134,7 +134,7 @@ wird dies als Event, also als Notification, für den User ausgegeben.
 \subsection{Plattformen}
 
 Wie in Motivation bereits angesprochen, geht es in MIA um zwei Aspekte. Einerseits können Applikationen anhand der Diagramme und Graphen im Detail analysiert werden,
-auf der anderen Seite möchte man als Nutzer reaktiv auf dem Laufenden gehalten werden, speziell wenn Latenzprobleme, Service Ausfälle oder ähnliches reibungslose Abläufe eines Systems gefährden.
+auf der anderen Seite möchte man als Nutzer reaktiv auf dem Laufenden gehalten werden, speziell wenn Latenzprobleme und Service Ausfälle reibungslose Abläufe eines Systems gefährden.
 Hierzu erhält der Nutzer Push Notifications über das Event System.
 
 Die Applikation soll daher als App für iOS und Android, so wie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.

@@ -9,8 +9,31 @@ ihren Funktionsumfang hinsichtlich der Anforderungen des Projekts zu untersuchen
 Des weiteren sollen mögliche Alternativen evaluiert werden.
 
 
-\section{Angular2}
-\subsection{Einführung}
+\section{AngularJS}
+
+Angular ist derzeit das womöglich populärste Javascript Framework auf dem Markt.
+Doch wo kommt dieser Hype eigentlich her?
+Im nachfolgenden wird dies anhand eines Interviews mit Robin Böhm erklärt. \cite{Angu68:online}.
+Böhm war einer der ersten Entwickler, der Angular 2012 in Deutschland bekannt machte.
+``Zu dieser Zeit war jQuery noch die Basis des Webs. jQuery hatte aber nie den Anspruch, ein Framework für Web-Anwendungen zu sein. Der eigentliche Sinn war, die APIs der verschiedenen Browser zu vereinheitlichen.
+Man musste sich deshalb immer eine eigene Architektur überlegen. Allerdings fehlte die Erfahrung, wie man große Applikationen im Web schreibt. Das führte natürlich oft zu Chaos und unwartbaren Projekten.''\cite{Angu68:online}
+Böhm spricht mit Angular von einem sehr mächtigen Komplettpaket, welches Anwendungsentwicklung im Web auf ein neues Level hebe.
+Gründe dafür sind die geringe Lernkurve, simple Template Syntax,
+welche auf HTML aufbaut, so wie hohe Wartbarkeit aufgrund einfacher Testbarkeit von einzelnen Appkomponenten.
+
+Wenn Böhm über Angular 2 spricht, spricht er von einem Framework für die Zukunft.
+Apps, die zeitnah in Produktion gehen sollten, würde er nach wie vor mit Angular1 entwickeln,
+da Angular2 noch nicht als Release vorliegt und interne Funktionalität auf Browserfeatures basiert,
+die teilweise noch nicht in jedem Browser zur Verfügung stehen und daher durch Polyfills implementiert werden müssen.
+``Somit wird Angular 2 sein ganzes Potential wohl auch erst in einigen Jahren entfalten können.
+Wenn man jedoch erst heute damit anfangen würde, ein Framework für heute zu bauen,
+ist es bereits veraltet, wenn es fertig ist.''\cite{Angu68:online}
+Zudem sind Style Guides und Best Practise Ansätze für die Entwicklung von Applikationen mit Angular 2,
+noch in der Entstehung.
+Dennoch spricht Böhm zuversichtlich über die Neuentwicklung des Framework.
+
+
+\subsection{Neuerungen des Framework}
 
 Angular 2 ist die Nachfolgeversion des von Google entwickelten Javascript Framework Angular 1.
 Die in 2009 veröffentlichte erste Version fand großen Anklang in der Community
@@ -20,7 +43,7 @@ welche zur stetigen Weiterentwicklung und so zu dem Erfolg von Angular1 beigetra
 Das Github Repository der ersten Version hat mittlerweile 1.489 Contributors mit nahezu 7000 gestellten Pull Requests. \cite{ng1-github}
 
 Mit Angular 2 wurden einige Grundkonzepte überarbeitet um in eine komplett neue Richtung gehen zu können.
-Ziel von Google ist es, ein komplett komponentenbasiertes leicht zu bedienendes Framework für moderne
+Ziel von Google ist es, ein komponentenbasiertes leicht zu bedienendes Framework für moderne
 Webanwendungen zu schaffen, welches bessere Performance und transparentere Interne Strukturen aufweisen soll, als die Vorgängerversion.
 Eine Angular 2 Anwendung besteht daher aus einer Vielzahl diverser Komponenten, wodurch es möglich wird
 Funktionalität zu kapseln, zu abstrahieren und wieder zu verwenden. Der Fokus hierbei liegt nicht nur auf Wiederverwendbarkeit innerhalb einer Codebasis.
@@ -28,12 +51,55 @@ Elemente der Anwendung sollen sowohl für den Browser, als auch für mobile Ger�
 Angular 2 soll im Vergleich zu seiner Vorgängerversion leichter zu lernen und nutzen sein,
 so wie eine solide Basis auch für komplexere Webanwendungen bieten. \cite[11-12]{Angular2}
 
-\subsection{Model View ViewModel}
+
 \subsection{Komponenten}
-\subsubsection{Allgemein}
+
+Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation.
+Wer in Angular 2 Features wie Controller, Direktiven, Scopes und RootScopes aus der Vorgängerversion sucht,
+wird diese nicht finden. UI und deren Funktionalität wird, von Service Layern abgesehen, in Komponenten definiert.
+Diese werden in Angular2 als Typescript Klasse definiert und mit @Component dekoriert.
+Der Component Decorator wird mithilfe des ES6 Imports importiert.
+Der Selektor definiert den HTML Tag der Komponente, über welchen sie eingefügt und damit instanziiert werden kann.
+
+Template oder TemplateUrl enthält entweder einen String mit inline Markup in angulars Template Syntax,
+oder eine Referenz zu einer zugehörigen HTML Datei, welche das Markup enthält.
+Ebenso kann Stylesheet inline oder per Dateireferenz eingebunden sein.
+Directives erwartet ein Array von in dieser Komponente zu verwenden weiteren Komponenten.
+Ist eine Komponenten als Directive referenziert,
+kann ihr Selector im Markup der referenzierenden Komponente eingebunden,
+und dadurch ihre Gesamte Funktionalität genutzt werden.
+Desweiteren lassen sich durch den Decorator Serviceprovider referenzieren, hierzu jedoch später mehr.
+
+Eine Komponente besteht neben der Decorator Annotation aus einer Klasse.
+Daher hat sie einen Klassennamen und mindestens einen impliziten Konstruktor.
+Die Klasse wird mit dem ES6 Prefix öffentlich exportiert. Die Sichtbarkeit von Variablen und Funtkionen,
+innerhalb der Klasse, kann mithilfe der Prefixe private und public definiert werden.
+Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtbar für deren verwender, zu kapseln.
+
+\vspace{1cm}
+\lstinputlisting[language=Java,label=code,caption=Basic Component]{kapitel3/basic-component.ts}
+\vspace{1cm}
+
+
 \subsubsection{Vererbung}
 
-\subsection{Dependency Injection}
+Vererbung, ein Grundkonzept der Objektorientientierung,
+wird eingesetzt wenn Verhalten von verschiedenen Objekten zur Wiederverwendung
+abstrahiert werden muss. Da Angular 2 Komponenten aus einer Klasse bestehen,
+können wir Vererbung Nutzen um Funktionalität von Komponenten zu abstrahieren
+um redundanten Code zwischen den Komponenten
+zu vermeiden. Logik wird dabei von der Komponente in eine dritte Klasse ausgelagert,
+welche mit dem Schlüsselwort extend als
+Abstraktionsebene eingebunden wird. \cite{DanWa45:online}
+
+
+\subsection{Services und Dependency Injection}
+
+
+
+\cite[280]{Angular2}
+
+
 \subsection{Rendering und Performance}
 
 \subsection{Change Detection}

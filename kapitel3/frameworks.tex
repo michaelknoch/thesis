@@ -93,19 +93,89 @@ welche mit dem Schlüsselwort extend als
 Abstraktionsebene eingebunden wird. \cite{DanWa45:online}
 
 
-\subsection{Services und Dependency Injection}
+\subsection{Services, Providers und Dependency Injection}
+
+Oftmals bietet es sich an, Funktionalität von Komponenten in Services auszulagern.
+Speziell wenn mehrere Komponenten auf die selben Daten,
+die womöglich asynchron per HTTP geladen werden müssen, zugreifen.
+Services werden ebenfalls als Klassen implementiert, welche mithilfe von \ac{DI}
+als Singleton instanziiert und in die Komponenten injiziert werden können.
+\ac{DI} ist ein Design Pattern, welches das Framework bereits in der ersten Version implementiert hat.
+In Angular 2 wurde \ac{DI} neu entwickel, um die Injizierung von Services in Komponenten zu ermöglichen.
+
+\ac{DI} bringt vielerlei Vorteile mit sich. In der Implementierung einer Angular 2 Komponente wird im
+Konstruktor deklariert, welche Abhängigkeiten (Dependencies) für die Komponentenfunktionalität benötigt werden.
+Das Framework kümmert sich daraufhin automatisch um die Instanziierung der Objekte.
+Die Implementierung einer Komponente wird durch die Verwendung von \ac{DI} sehr flexibel,
+da Implementierungen von Services einfach ausgetauscht werden können.
+Soll beispielweise die Funktionalität einer Komponente, welche über einen Service dynamisch Daten lädt, getestet werden,
+so kann die Implementierung des Services einfach ausgetauscht werden, so dass dieser statische Testdaten liefert,
+sollte der Server in der Testumgebung nicht erreichbar sein.
+\cite[281]{Angular2}
+
+
+\vspace{0.3cm}
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.8\linewidth]{kapitel3/component-injector.png}
+ \caption{Component Injector}\cite[343]{Angular2}
+\end{figure}
+\vspace{0.3cm}
+
+\ac{DI} wird dabei mithilfe von Providern konfiguriert.
+Dies geschieht auf Komponentenebene oder im Root der Applikation.
+Wird ein Service über einen Provider im Bootstrap Prozess im Root der Applikation referenziert,
+so ist die Instanz des Services in jede Komponente der Applikation injizierbar.
+Wird der Provider in der Komponente definiert, so ist die Serviceinstanz in dieser Komponente, so wie in
+allen Kindkomponenten verfügbar. Desweiteren lassen sich Provider kombinieren, da diese überschreibbar sind.
+Sollte also ein Serviceprovider im Root der Applikation definiert sein, können dennoch weitere Provider in den Komponenten definiert werden.
+Jedoch werden demnach auch mehrere Instanzen des Services erzeugt.
+Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume zu erzeugen. \cite[286]{Angular2}
+
+\vspace{0.2cm}
+\lstinputlisting[language=Java,label=code,caption=Provider im Bootstrap Prozess]{kapitel3/provider-example-root.ts}
+\vspace{0.2cm}
+
+\vspace{0.2cm}
+\lstinputlisting[language=Java,label=code,caption=Provider in einer Komponente]{kapitel3/provider-example.ts}
+\vspace{0.2cm}
+
+
+\subsubsection{Services als Singletons}
+
+Wie bereits erwähnt, ermöglichen \ac{DI} Provider Services als Singleton instanziieren zu können.
+Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden,
+um Funktionalität aus Komponenten zu abstrahieren um in weiteren Komponeten verwendet zu werden,
+auf der anderen Seite können sie jedoch auch genutzt werden um Daten multiplen Komponenten zur Verfügung zu stellen.
+Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird, daher erhalten alle
+Komponenten, die den Service injizieren, die selbe Referenz, somit die selbe Instanz und daher die selbe globale Datenbasis.
+In einem Userservice könnte beispielweise eine Boolean Variable definiert sein, welche Auskunft darüber gibt,
+ob ein User eingeloggt ist, oder nicht. \cite[308]{Angular2}
+
+
+\subsection{Data Binding und Kommunikation}
+Das in eine Komponente eingebundene Markup repräsentiert die Viewschicht einer Komponente.
+Angular 2 besitzt zur Darstellung von Datenstrukturen eine komplexe, jedoch sehr ausdrucksstarke Template Syntax.
+Variablen und Funktionen einer Komponente, können mithilfe von doppelt geschweiften Klammern in die View eingebunden werden.
+Auf der Basis von HTML5 können zudem Schleifen und Fallunterscheidungen implementiert werden.
+Der Gültigkeitsbereich des Templates bezieht sich, bezüglich Variablen und Funktionen, dabei auf den Kontext der Komponente,
+welche das Template in der Component Decoration referenziert.
 
 
 
-\cite[280]{Angular2}
+
+\cite{Templ78:online}
 
 
-\subsection{Rendering und Performance}
+\subsection{Performance}
 
-\subsection{Change Detection}
+\subsubsection{Serverside Rendering}
+
+\subsubsection{Change Detection}
 
 Starten wir eine Angular2 Applikation, wird uns als Nutzer nach dem anfänglichen Laden der Seite eine View gerendert.
-Das bedeutet, dass eine interne Datenstruktur per Templating auf eine Viewstruktur, den DOM, abgebildet und uns als Nutzer somit mittels Text,
+Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet und uns als Nutzer somit mittels Text,
 Formularen, Buttons, Bildern etc. visuell aufbereitet wird.
 Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
 Zugriffe auf den DOM sind ressourcenintensiv, daher sollten DOM Manipulationen nicht inflationär stattfinden.

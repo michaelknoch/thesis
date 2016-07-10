@@ -1,0 +1,15 @@
+<p>Die Summe aus 1 + 1 ist nicht {{1 + 1 + getVal()}}</p>
+
+<div>
+    <h3 [ngClass]="{'active': booleanVariable}">
+      Diese Headline erhält eventuell eine Klasse
+    </h3>
+
+    <ul *ngIf="0 !== 1">
+        <li>Diese Liste wird nicht angezeigt</li>
+    <ul>
+</div>
+
+<div *ngFor="let item of array; let i=index" (complete)="selectItem(todo)">
+  <span>nr: {{i}} - name: {{item.name}}</span>
+</div>

@@ -143,6 +143,7 @@ Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume
 
 
 \subsubsection{Services als Singletons}
+\label{Services-als-Singletons}
 
 Wie bereits erwähnt, ermöglichen \ac{DI} Provider Services als Singleton instanziieren zu können.
 Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden,
@@ -154,19 +155,34 @@ In einem Userservice könnte beispielweise eine Boolean Variable definiert sein,
 ob ein User eingeloggt ist, oder nicht. \cite[308]{Angular2}
 
 
-\subsection{Data Binding und Kommunikation}
+\subsection{Data Binding}
 Das in eine Komponente eingebundene Markup repräsentiert die Viewschicht einer Komponente.
 Angular 2 besitzt zur Darstellung von Datenstrukturen eine komplexe, jedoch sehr ausdrucksstarke Template Syntax.
 Variablen und Funktionen einer Komponente, können mithilfe von doppelt geschweiften Klammern in die View eingebunden werden.
 Auf der Basis von HTML5 können zudem Schleifen und Fallunterscheidungen implementiert werden.
 Der Gültigkeitsbereich des Templates bezieht sich, bezüglich Variablen und Funktionen, dabei auf den Kontext der Komponente,
-welche das Template in der Component Decoration referenziert.
+welche das Template in der Component Decoration referenziert. \cite{Templ78:online}
 
+\vspace{1cm}
+\lstinputlisting[language=HTML,label=code,caption=Angular 2 Template Syntax]{kapitel3/template-example.html}
+\vspace{1cm}
 
+\subsection{Kommunikation}
 
+Da eine Angular 2 Applikation auschlißelich aus Komponenten besteht, müssen diese zwangsweise miteinander
+kommunizieren können. Für den Austausch von Daten stehen gibts es verschiedene Ansätze.
+Wie bereits in \ref{Services-als-Singletons} erwähnt, werden Services im Normalfall als Singleton
+instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hierbei für den
+Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen hinaus,
+können Events in Komponenten oder Services definiert, und von derer ebenfalls aboniert werden,
+um asynchrone Kommunikation applikationsintern zu ermöglichen.
 
-\cite{Templ78:online}
-
+Die Auslagerung von Funktionalität in Services macht jedoch nur dann wirlich Sin,
+wenn diese auch als Singleton existieren kann. Komponenten sind im vergleich zu Services keine Singletons,
+da sie mit jeder Verwendung in der Applikation neu instanziiert werden.
+Variablen und Funktionen, eingebundener Komponenten, können durch die Annotationen Input und Output
+direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kind-Komponenten
+relevante Daten über den Input Tag übergeben und über den Output Kanal werden Event Emitter aboniert.
 
 \subsection{Performance}
 

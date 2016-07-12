@@ -2,15 +2,15 @@
 
 \chapter{Grundlagen}
 
-Im nachfolgenden werden Grundlagen erläutert, die als Basis des Projekts, so wie zum Verständnis des Kapitels `Frameworks' erforderlich sind.
+Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts, sowie zum Verständnis des Kapitels `Frameworks' erforderlich sind.
 
 
 \section{Native Entwicklung}
 
 Bei der Enwticklung nativer Apps, werden Applikationen speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} entwickelt.
-Die App ist damit an die Platform gebunden. Apps für Apples iOS werden typischerweise in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
-Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die entwicklung des \ac{UI}.
-Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert.\cite{Heitkoetter2013}
+Die App ist damit an die Platform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
+Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
+Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert. \cite{Heitkoetter2013}
 
 \vspace{1cm}
 \textbf{Desktop Nativ}
@@ -28,10 +28,9 @@ Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore vert
 
 \vspace{1cm}
 
-
 \section{Cross Platform Entwicklung}
 
-Im vergleich zum Ansatz der nativen Entwicklung, bieteten diverse hybride Cross-platform Entwicklungsansätze die Möglichkeit eine Kodebasis zu entwickeln,
+Im Vergleich zum Ansatz der nativen Entwicklung, bieten diverse hybride Cross-platform Entwicklungsansätze die Möglichkeit eine Codebasis zu entwickeln,
 die auf diversen Platformen ausgeführt werden kann.\cite{Heitkoetter2013}
 Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden.
 \cite{Xamar84:online}
@@ -40,7 +39,8 @@ Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross ko
 
 Xamarin Entwickler, können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
 Der resultierende Code läuft dabei als nativer Code auf den Geräten.
-Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C, Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann.\cite{projectxamarin}
+Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C,
+Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann. \cite{projectxamarin}
 
 \begin{figure}[ht]
  \centering
@@ -49,8 +49,8 @@ Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C, Java m
 \end{figure}
 \vspace{1cm}
 
-Xamarin kommt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss, aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework,
-für jede Platform indiviudell entwickelt werden. Das mag funktionieren, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
+Xamarin stößt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework
+für jede Platform indiviudell entwickelt werden. Das funktioniert, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
 dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind, jedoch ist es fragwürdig ob sich das Framework als ``Cross Plattform Frontend Framework'' bezeichnen darf,
 wenn ein Großteil der Implementierung, zumindest bei Plattfor-universellem Appdesign, nach wie vor redundant vorgenommen werden muss.\cite{7Reas20:online}
 
@@ -68,7 +68,7 @@ wenn ein Großteil der Implementierung, zumindest bei Plattfor-universellem Appd
 Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Apps mithilfe von Webtechnologien zu entwickeln.
 HTML, CSS und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren.\cite{Cordo26:online}
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
-sondern in einer nativen Webview laufen gelassen. Diese Apps werden auch als hybride Apps bezeichnet.
+sondern läuft in einer nativen Webview. Diese Apps werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie aufsetzen.
 
 Zugriff auf Systemschnittstellen erhält man mittels Cordova Plugins. Diese bieten

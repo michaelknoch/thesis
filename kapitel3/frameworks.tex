@@ -181,8 +181,13 @@ Die Auslagerung von Funktionalität in Services macht jedoch nur dann wirlich Si
 wenn diese auch als Singleton existieren kann. Komponenten sind im vergleich zu Services keine Singletons,
 da sie mit jeder Verwendung in der Applikation neu instanziiert werden.
 Variablen und Funktionen, eingebundener Komponenten, können durch die Annotationen Input und Output
-direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kind-Komponenten
-relevante Daten über den Input Tag übergeben und über den Output Kanal werden Event Emitter aboniert.
+direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kindkomponenten
+relevante Daten über den Input Tag übergeben und über den Output Kanal werden Event Emitter aboniert. \cite{Angul94:online}
+
+Spricht man speziell von Kindkomponenten und nicht von Nachbarkomponenten,
+kann mithilfer der Annotation ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
+Die Kommunikation geschieht in diesem Fall nicht über die beiden View Layer der Komponenten,
+sondern direkt von der Elternkomponente zu ihrer Kindinstanz. \cite{ViewC61:online}
 
 \subsection{Performance}
 

@@ -10,6 +10,6 @@
     <ul>
 </div>
 
-<div *ngFor="let item of array; let i=index" (complete)="selectItem(todo)">
+<div *ngFor="let item of array; let i=index" (click)="selectItem(todo)">
   <span>nr: {{i}} - name: {{item.name}}</span>
 </div>

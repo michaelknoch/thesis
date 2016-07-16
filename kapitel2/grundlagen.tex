@@ -86,11 +86,11 @@ also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 
 \subsection{Einführung}
 
-Moderne Webanwendungen sind heutzutage meist nicht nur in ihrem Design komplex, komplexität lässt sich auch meist nicht in der Entwicklung
+Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch meist nicht in der Entwicklung
 von Logik vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
-womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Schaut man sich den DOM von Patrioten des Internets wie Facebook oder Amazon an,
+womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit blick auf den \ac{DOM} von Patrioten des Internets wie Facebook oder Amazon,
 wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersicht führt,
-da die Palette an HTML5 Semantic Tags nicht ausreicht, um die Funktionalitäts Vielfalt einer modernen Webanwendung abzudecken.
+da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung abzudecken.
 Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behelfen, um HTML Elemente überhaupt voneinander unterscheiden zu können.
 \cite{sitepoint-introduction-to-webcomponents}
 
@@ -111,7 +111,7 @@ software components.''
 
 \vspace{0.5cm}
 
-Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis von dem Traum der Komponentenorientierten Softwareentwicklung.
+Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis von dem Traum der komponentenorientierten Softwareentwicklung.
 Dabei soll eine Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
 ganzes Set an Komponenten für die Konstruktion seiner Applikation zu verwenden.
 Hierbi soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
@@ -124,7 +124,7 @@ by third parties.''
 \vspace{0.5cm}
 
 Szyperski definiert eine Komponente als eigenständiges, in sich geschlossenes Modul ohne Deployment
-Abhängigkeiten. D.h. Eine Komponente kann deployed werden, ohne dass andere Bausteine der Applikation ebenfalls deployed werden müssen.
+Abhängigkeiten, d.h. Eine Komponente kann deployed werden, ohne dass andere Bausteine der Applikation ebenfalls deployed werden müssen.
 Klar definierte Schnittstellen dienen der komponentenübergeifenden Kommunikation und repräsentieren
 möglichst transparent die Funktionalität der Komponente.
 Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
@@ -138,11 +138,11 @@ reusable blocks of UI presentation and behavior entirely with client side langua
 \cite[42]{Web-Component-Architecture}
 \vspace{1cm}
 
-Der W3C beschreibt diverse Wege wie entkoppelte wiederverwendbare UI Elemente,
-in Kombination von HTML, JavaScript und CSS, so genannte Web Components, geschaffen werden können.
+Der W3C beschreibt diverse Wege wie entkoppelte wiederverwendbare UI Elemente, so genannte Web Components,
+in Kombination von HTML, JavaScript und CSS geschaffen werden können.
 Der Begriff Web Components beinhaltet eine Sammlung von Standards,
 welche die bereits genannte Problematik der fehlenden HTML Semantik mit bestehenden Webtechnologien lösen kann.
-Web Components funktioniren als wiederverwendbare Web Widgets mit klar definierten Schnittstellen.
+Web Components funktionieren als wiederverwendbare Web Widgets mit klar definierten Schnittstellen.
 Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar sein.
 Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
 in das Markup, soll bereits die komponenteninteren Funktionalität zur Verfügung stehen.
@@ -162,16 +162,16 @@ Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird 
 
 \subsubsection{HTML Templates}
 
-Das HTML template-Element ermöglicht, Inhalte nicht zur Laufzeit der Website zu rendern,
-sondern den Renderforgang explizit per JavaScript zu steuern. Ressourcen, wie Videos und Bilder, werden demnach
-nicht initial geladen und verlängern nicht womöglich unnötig die Ladezeit der Applikation.
+Das HTML Template-Element ermöglicht Inhalte nicht zur Laufzeit der Website zu rendern,
+sondern den Renderforgang explizit per JavaScript zu steuern. Ressourcen, wie Videos und Bilder werden demnach
+nicht initial geladen und erzeugen keine unnötige Ladeverzögerung der Applikation.
 Inhalte des Template Tags werden zu Beginn auf Validität geprüft und stehen dann für die Verwendung im Dokument
 zur Verfügung.
 
 \subsubsection{Custom HTML Elements}
 
 Durch Custom HTML Elements werden Webkomponenten in Applikationen eingebunden.
-Eigene HTML Tags und Elemente können definiert werden und beinhalten in Javascript geschriebene Logik so wie CSS Styling.
+Eigene HTML Tags und Elemente können definiert werden und beinhalten in Javascript geschriebene Logik sowie CSS Styling.
 Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten:
 
 \begin{itemize}
@@ -186,19 +186,16 @@ Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten:
 Shadow Dom ermöglicht Optik und Logik einer Komponente zu kapseln.
 Seiteneffekte, bezüglich komponentenübergreifendem Style und Logik, werden verhindert.
 Beispielsweise kann Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
-da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments, oder anderer Elemente, zugreifen kann.
-Webapplikationen lassen sich dadurch endlich paketweise organisieren und strukturieren.
-
-\subsubsection{Vorteile}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments oder anderer Elemente zugreifen kann.
+Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 
 \subsubsection{Polyfills}
 
-Wie in Abbildung \ref{fig:platform_support} zu sehen ist, sind besagte Web Component Features nicht in
+Wie in Abbildung \ref{fig:platform_support} zu sehen ist, sind Web Components noch nicht in
 allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
-Hier kommen Polyfills ins spiel. Diese implementieren fehlende Browserfeatures und gewährleisten nahezu Vollständigen
-Support von unter anderem Web Components. Ein weiteres Beispiel für ein Polyfill ist core-js.
-Core-JS ermöglicht die Nutzung von ES5 und ES6, auch wenn der Browser diesen Standard nicht unterstützt.
+Hier kommen Polyfills ins spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten nahezu Vollständigen
+Support von unter anderem Web Components. Ein weiteres Beispiel für ein Polyfill ist core-js,
+welches die die Nutzung von ES5 und ES6, auch wenn der Browser diesen Standard nicht unterstützt, ermöglicht.
 
 \vspace{1cm}
 \begin{figure}[ht]
@@ -226,18 +223,18 @@ definieren sollte. Dieser trägt den namen ECMAScript und ist der offizielle und
 Sprache. ActionScript von Macromedia und JScript von Microsoft sind weitere Implementierungen der Browsersprache,
 die nicht dem ECMA Standard entsprechen, jedoch darauf aufbauen.
 
-1997 wurde die erste Versionen des nun standardisiertem ECMAScript veröffentlicht. Ein Jahr später erschien bereits ECMAScript2,
+1997 wurde die erste Version des nun standardisiertem ECMAScript veröffentlicht. Ein Jahr später erschien bereits ECMAScript2,
 allerdings beinhaltete dieses Update nur kleine Änderungen um einem parallel entstandenen ISO Standard von JavaScript zu implementieren.
 Die nächste große Neuerung kam 1999 mit ECMAScript3, in welcher einige innovative Features implementiert wurden.
 ``[...]regular expressions, better string handling, new control statements, try/catch exception handling, tighter definition of errors, formatting for numeric output and other enhancements.''\cite{js-vs-es}.
 
 Das nächste Update ECMAScript4 war 2008 geplant, zunächst als Prototyp entwickelt,
-jedoch noch vor dem Release, aufgrund eines rückschritttigem Featureset wieder aufgegeben.
-Zur selben Zeit entwickelte sich Ajax und damit eine völlig neue Art von dynamsichen Webapplikationen,
-basierend auf JavaScript.
+jedoch noch vor dem Release aufgrund eines rückschritttigem Featureset wieder aufgegeben.
+Zur selben Zeit wurde Ajax und damit eine völlig neue Art von dynamsichen Webapplikationen,
+basierend auf JavaScript, entwickelt.
 
-2009 erschien ECMAScript5, mit vollem Support in allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
-Neue Features waren unter anderem JSON support und klassische Array Funktionen wie map und forEach.
+2009 erschien ECMAScript5 und erhielt vollen Support in nahezu allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
+Neue Features waren unter anderem \ac{JSON} Support und klassische Array Funktionen wie map und forEach.
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 
 ECMAScript6 sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
@@ -250,7 +247,7 @@ Typescript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von ES6, d.h. sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features, wie der statischen Typisierung.
 Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative sein. \cite[28]{EssentialTS}
-Zusammen mit ES6 erhalten wir gegenüber ES5 folgende Features:
+Zusammen mit ES6 erhalten Entwickler gegenüber ES5 folgende Features:
 
 \begin{figure}[ht]
  \centering
@@ -261,7 +258,7 @@ Zusammen mit ES6 erhalten wir gegenüber ES5 folgende Features:
 
 \subsubsection{statische Typisierung}
 
-Die wohl größte Erungenschaft der Sprache ist das statische Typsystem.
+Die wohl größte Errungenschaft der Sprache ist das statische Typsystem.
 Typenfehler können in Typescript bereits zum Zeitpunkt
 der Kompilierung bzw. Transpilierung erkannt werden und treten nicht erst zur Laufzeit im Browser auf.
 Zudem wird Code in einer Typescript unterstützenden IDE dank Autovervollständigung
@@ -271,32 +268,32 @@ leichter zu schreiben und aussagekräftiger zu lesen.\cite[156]{ng-Book-2}
 
 Mit ES6 Klassen wurde eine neue Syntax für das prototypische Vererbungsmodell von Javascript entwickelt.
 Dabei handelt es sich nicht um die Einführung eines neuen OOP-Modells, sondern lediglich um eine vereinfachte Syntax für Objekte und deren Schnitstellen,
-so wie die Realisierung von Abstraktionen, wie man sie aus anderen Objektorientierten sprachen wie C++, Swift oder Java bereits kennt.\cite{js-Klassen}
+sowie die Realisierung von Abstraktionen, wie sie aus anderen Objektorientierten sprachen wie C++, Swift oder Java bereits bekannt sind.\cite{js-Klassen}
 
 \lstinputlisting[language=Java,label=code,caption=Klassen in ES6]{kapitel2/class.js}
 
 \subsubsection{Module}
 
 In ES5 gab es keinen Standard um Funktionen und Variablen in Namensräumen zu organisieren, oder dynamisch Code zu laden.
-Mit ES6 wurde das fehlende Feature durch exportieren und importieren von Modulen ergänzt. Dadurch wird es sehr bequem Programmcode zu organisieren und zu laden.
-Jedes ES6 Modul wird in einer eigenen Datei gespeichert. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn sie werden explizit exportiert.
-Mittels Export lassen sich also Schnittstellen für ein Modul definieren, welche mittels des Keywords Import importiert und verwendet werden können.
+Mit ES6 wurde das fehlende Feature durch das Exportieren und Importieren von Modulen ergänzt. Dadurch wird es sehr bequem, Programmcode zu organisieren und zu laden.
+Jedes ES6 Modul wird in einer eigenen Datei gespeichert. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn, sie werden explizit exportiert.
+Mittels Export lassen sich also Schnittstellen für ein Modul definieren, welche mit Hilfe des Keywords Import importiert und verwendet werden können.
 In Typescript lassen sich ganze Klassendefinitionen exportieren.
 Dabei ist es möglich Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
-Public Funktionen sind dann wie man es aus anderen OO-Sprachen kennt, auch von außen nutzbar.
+Public Funktionen sind dann auch von außen nutzbar.
 
 \lstinputlisting[language=Java,label=code,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}
 
 \subsection{Transpilierung}
 
-Typescript so wie ES6 bieten Entwicklern also eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
+Typescript sowie ES6 bieten Entwicklern eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
 Spannende Features bringen jedoch wenig, wenn sie im Standard zwar spezifiziert wurden,
 allerdings noch in sehr wenigen Browsern vollständig implementiert sind.
 Um TS oder ES6 Code also überhaupt in Produktion zu nutzen, sollte er auf den ES5 oder ES3
 Standard herunter transpiliert werden.
 Ein Transpiler ist ein Compiler, welcher Sourcecode nicht in Maschinencode, sondern ebenfalls in Sourcecode,
-allerdings einer anderen Sprache oder Version der Sprache wandelt.\cite{Introduction-to-the-Typescript-Transpiler}
-In der nachfolgenden Abbildung ist zu sehen, wie Typescript Code in funktionsfähigen ES5 Code transpiliert wird.
+allerdings einer anderen Sprache oder Sprachversion wandelt.\cite{Introduction-to-the-Typescript-Transpiler}
+In der nachfolgenden Abbildung ist zu sehen, wie Typescript-Code in funktionsfähigen ES5 Code transpiliert wird.
 
 \begin{figure}[ht]
  \centering

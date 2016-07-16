@@ -57,22 +57,22 @@ Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation und ersetz
 UI und deren Funktionalität wird in Komponenten definiert.
 Diese werden in Angular 2 als Typescript Klasse definiert und mit @Component dekoriert.
 Der Component Decorator wird mithilfe des ES6 Imports importiert.
-Der Selektor definiert den HTML Tag der Komponente, über welchen sie eingefügt und damit instanziiert wird.
+Der Selektor definiert den HTML Tag der Komponente, über welchen diese eingefügt und damit instanziiert wird.
 
-Template oder TemplateUrl enthält entweder einen String mit inline Markup in angulars Template Syntax,
+Template oder TemplateUrl enthält entweder einen String mit inline Markup in angulars Template Syntax
 oder eine Referenz zu einer zugehörigen HTML Datei, welche das Markup enthält.
-Ebenso kann Stylesheet inline oder per Dateireferenz eingebunden sein.
+Ebenso kann Stylesheet inline oder per Dateireferenz eingebunden werden.
 Directives erwartet ein Array von in dieser Komponente zu verwenden weiteren Komponenten.
-Ist eine Komponenten als Directive referenziert,
+Ist eine Komponente als Directive referenziert,
 kann ihr Selector im Markup der referenzierenden Komponente eingebunden,
-und dadurch ihre Gesamte Funktionalität genutzt werden.
+und dadurch ihre gesamte Funktionalität genutzt werden.
 Desweiteren lassen sich durch den Decorator Serviceprovider referenzieren, hierzu jedoch später mehr.
 
 Eine Komponente besteht neben der Decorator Annotation aus einer Klasse.
 Daher hat sie einen Klassennamen und mindestens einen impliziten Konstruktor.
-Die Klasse wird mit dem ES6 Prefix öffentlich exportiert. Die Sichtbarkeit von Variablen und Funtkionen,
-innerhalb der Klasse, kann mithilfe der Prefixe private und public definiert werden.
-Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtbar für deren verwender, zu kapseln.
+Die Klasse wird mit dem ES6 Prefix öffentlich exportiert. Die Sichtbarkeit von Variablen und Funktionen
+innerhalb der Klasse kann mithilfe der Prefixe private und public definiert werden.
+Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtbar für deren Verwender, zu kapseln.
 
 \vspace{1cm}
 \lstinputlisting[language=Java,label=code,caption=Basic Component]{kapitel3/basic-component.ts}
@@ -84,7 +84,7 @@ Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtba
 Vererbung, ein Grundkonzept der Objektorientientierung,
 wird eingesetzt wenn Verhalten von verschiedenen Objekten zur Wiederverwendung
 abstrahiert werden muss. Da Angular 2 Komponenten aus einer Klasse bestehen,
-können wir Vererbung Nutzen um Funktionalität von Komponenten zu abstrahieren
+kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren
 um redundanten Code zwischen den Komponenten
 zu vermeiden. Logik wird dabei von der Komponente in eine dritte Klasse ausgelagert,
 welche mit dem Schlüsselwort extend als
@@ -98,12 +98,12 @@ Speziell wenn mehrere Komponenten auf die selben Daten,
 die womöglich asynchron per HTTP geladen werden müssen, zugreifen.
 Services werden ebenfalls als Klassen implementiert, welche mithilfe von \ac{DI}
 als Singleton instanziiert und in die Komponenten injiziert werden können.
-\ac{DI} ist ein Design Pattern, welches das Framework bereits in der ersten Version implementiert hat.
+\ac{DI} ist ein Design Pattern, welches bereits in der ersten Version des Frameworks implementiert war.
 In Angular 2 wurde \ac{DI} neu entwickel, um die Injizierung von Services in Komponenten zu ermöglichen.
 
 \ac{DI} bringt vielerlei Vorteile mit sich. In der Implementierung einer Angular 2 Komponente wird im
 Konstruktor deklariert, welche Abhängigkeiten (Dependencies) für die Komponentenfunktionalität benötigt werden.
-Das Framework kümmert sich daraufhin automatisch um die Instanziierung der Objekte.
+Das Framework ist dabei für die automatische Instanziierung der Objekte verantwortlich.
 Die Implementierung einer Komponente wird durch die Verwendung von \ac{DI} sehr flexibel,
 da Implementierungen von Services einfach ausgetauscht werden können.
 Soll beispielweise die Funktionalität einer Komponente, welche über einen Service dynamisch Daten lädt, getestet werden,
@@ -125,7 +125,7 @@ sollte der Server in der Testumgebung nicht erreichbar sein.
 Dies geschieht auf Komponentenebene oder im Root der Applikation.
 Wird ein Service über einen Provider im Bootstrap Prozess im Root der Applikation referenziert,
 so ist die Instanz des Services in jede Komponente der Applikation injizierbar.
-Wird der Provider in der Komponente definiert, so ist die Serviceinstanz in dieser Komponente, sowie in
+Wird der Provider in der Komponente definiert, so ist die Serviceinstanz in dieser Komponente sowie in
 allen Kindkomponenten verfügbar. Desweiteren lassen sich Provider kombinieren, da diese überschreibbar sind.
 Sollte also ein Serviceprovider im Root der Applikation definiert sein, können dennoch weitere Provider in den Komponenten definiert werden.
 Jedoch werden demnach auch mehrere Instanzen des Services erzeugt.
@@ -175,10 +175,10 @@ Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen h
 können Events in Komponenten oder Services definiert, und von derer ebenfalls aboniert werden,
 um asynchrone Kommunikation applikationsintern zu ermöglichen.
 
-Die Auslagerung von Funktionalität in Services macht jedoch nur dann wirlich Sin,
-wenn diese auch als Singleton existieren kann. Komponenten sind im vergleich zu Services keine Singletons,
+Die Auslagerung von Funktionalität in Services ergibt jedoch nur dann wirlich Sin,
+wenn diese auch als Singleton existieren kann. Komponenten sind im Vergleich zu Services keine Singletons,
 da sie mit jeder Verwendung in der Applikation neu instanziiert werden.
-Variablen und Funktionen, eingebundener Komponenten, können durch die Annotationen Input und Output
+Variablen und Funktionen eingebundener Komponenten können durch die Annotationen Input und Output
 direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kindkomponenten
 relevante Daten über den Input Tag übergeben und über den Output Kanal werden Event Emitter aboniert. \cite{Angul94:online}
 
@@ -193,14 +193,14 @@ sondern direkt von der Elternkomponente zu ihrer Kindinstanz. \cite{ViewC61:onli
 
 \subsubsection{Change Detection}
 
-Starten wir eine Angular2 Applikation, wird uns als Nutzer nach dem anfänglichen Laden der Seite eine View gerendert.
+Wird eine Angular2 Applikation gestartet, wird nach anfänglichem Laden der Seite eine View gerendert.
 Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet und uns als Nutzer somit mittels Text,
-Formularen, Buttons, Bildern etc. visuell aufbereitet wird.
+Formularen, Buttons, Bildern etc. visuell aufbereitet.
 Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
 Zugriffe auf den DOM sind ressourcenintensiv, daher sollten DOM Manipulationen nicht inflationär stattfinden.
 Datenänderungen können entwerder durch User Events, XMLHttpRequests oder Timer (setTimeout(), setInterval()) ausgelöst werden.
-Alle dies geschieht asynchron. Wir können also davon ausgehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt,
-sich womöglich Daten geändert haben und die View aktualisiert werden muss.
+Alle dies geschieht asynchron. Es ist also davon auszugehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt,
+sich Daten geändert haben können und die View aktualisiert werden muss.
 \cite{changedetection-explained}
 
 \subsubsection{NgZone}
@@ -208,7 +208,7 @@ sich womöglich Daten geändert haben und die View aktualisiert werden muss.
 Zones sind ein internes Feature der Programmiersprache Dart. Da Dart jedoch zu JavaScript compiliert werden kann,
 können Zones ebenfalls in JavaScript genutzt werden. Daher ist zone.js als Portierung für JavScript entstanden, welche in Angular2 genutzt wird.
 Zones sind Ausführungskontexte, für die Observation asynchroner Operationen.
-Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösenen in den entsprechenden Ausführungskontexten diverse Events aus.
+Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösen in den entsprechenden Ausführungskontexten diverse Events aus.
 NgZone ist ein Fork von zone.js, welcher die Basisfunktionalität um zusätzliche Events erweitert.
 Change Detection relevant ist dabei das event onTurnDone().
 \cite{changedetection-explained}
@@ -218,14 +218,14 @@ Change Detection relevant ist dabei das event onTurnDone().
 \cite{ZONESINANGULAR2}
 \vspace{0.5cm}
 
-Sobald das onTurnDone() Event ausgelöst wird, löst NgZone wiederum eine tick() Event aus, welches Schlussendlich die Change Detection startet.
-Jede Angular2 Komponente besitzt seinen eigenen Change Detector. Da wir bereits wissen, dass eine Angular2 Applikation aus einem Komponentenbaum besteht,
-können wir davon ausgehen, dass sie ebenfalls aus einem Baum von Change Detectoren besteht.
-Change Detection wird innerhalb dieses Baumes als unidirektionaler Datenfluss von Oben nach Unten, beginnend mit dem Rootknoten, ausgeführt.
+Sobald das onTurnDone() Event ausgelöst wird, löst NgZone wiederum eine tick() Event aus, welches schlussendlich die Change Detection startet.
+Jede Angular2 Komponente besitzt seinen eigenen Change Detector. Da eine Angular2 Applikation aus einem Komponentenbaum besteht,
+kann davon ausgegangen werden, dass sie ebenfalls aus einem Baum von Change Detectoren besteht.
+Change Detection wird innerhalb dieses Baumes als unidirektionaler Datenfluss von oben nach unten, beginnend mit dem Rootknoten, ausgeführt.
 
-Obwohl jede Komponente bei einem tick() nach Änderungen prüft, ist Angular2 unglaublich schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
+Obwohl jede Komponente bei einem tick() nach Änderungen prüft, ist Angular2 sehr schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
 da jede Komponenten ihren eigenen Change Detector besitzt und es nicht die eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
-Dies wird erreicht indem Angular zur Laufzeit individuelle Change Detector Klassen für jede Komponente, entsprechend dem Datenmodell der Komponente erzeugt.
+Dies wird erreicht, indem Angular zur Laufzeit individuelle Change Detector Klassen für jede Komponente, entsprechend dem Datenmodell der Komponente, erzeugt.
 Dieser Code kann von Virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden.
 
 \vspace{1cm}

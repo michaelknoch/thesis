@@ -236,9 +236,67 @@ Dieser Code kann von Virtuellen Maschinen optimiert und daher vergleichsweise sc
  \caption{Change Detection Flow}\cite{changedetection-explained}
 \end{figure}
 
-
+\newpage
 \section{Ionic}
-\subsection{Allgemein}
+
+Im nachfolgenden wird die Relevanz des Frameworks Ionic 2 bezüglich des Projekts \projectname{} evaluiert.
+
+\subsection{Einführung}
+
+Ionic ist ein Cross Plattform Frontend Framework für die Entwicklung mobiler Applikationen.
+Auf Basis von Webtechnologien wie HTML5, CSS3 und Javascript können Apps für iOS, Android und Windowsphone
+entwickelt werden. Sie werden als hybride Apps bezeichnet,
+da sie eine Mischform zwischen Web-Apps und nativen Applikationen darstellen.
+Eine hybride App ist zunächste eine Webanwendung, die einen Browser für ihre Ausführung benötigt.
+Als Browser wird die native Webview der jeweiligen Platform verwendet,
+beispielsweise Safari für iOS und Chrome für Android.
+
+\subsection{Ökosystem Ionic}
+
+``More than code. Ionic is an ecosystem. You'll find a suite of mobile development tools and resources at your disposal that make
+Ionic the complete mobile dev package. It's the best way to build apps. Period.'' \cite{Ionic20:online}
+\vspace{0.5cm}
+
+\subsubsection{Ionic \ac{CLI}}
+Das \textbf{Ionic \ac{CLI}} vereinfacht den Umgang mit Ionic Projekten. Zunächst können individuelle
+Startertemplates anhand diverser Parameter generiert werden.
+Das Framework erzeugt dabei voll funktionstüchtige Applikationen, die den Einstieg in das Framework erleichtern sollen.
+Sidemenu und Tabmenu sind Beispiele für diese Template, welche in Typescript oder JavaScript generiert werden können.
+Des Weiteren lassen sich Applikationen anhand der \ac{CLI} emulieren und bauen,
+so wie direkt auf angeschlossenen Mobilen Geräten starten.
+
+\subsubsection{Ionic Creator}
+\textbf{Ionic Creator} ist ein hauseigenes Prototyping Tool, mit welchem Oberflächen statt
+mit HTML und CSS per Mausklick kreiert werden können.
+Dabei stehen von Beginn an eine Vielzahl von vorgefertigten Ionic Komponenten wie Buttons,
+Label und Datepicker zur Verfügung.
+Diese werden per Drag and Drop eingefügt und positioniert. Der Prototyp lässt sich direkt auf
+dem eigenen mobilen Gerät ausführen, oder kann als \ac{APK} oder \ac{IPA} für dritte exportiert werden.
+
+\subsubsection{Ionic Lab}
+\textbf{Ionic Lab} ist eine visuelle Oberfläche zur Bedienung des Ionic \ac{CLI}.
+Buildvorgang, Testing und Deployment soll mithilfe der Desktop App für Mac, Windows, und
+Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
+
+\subsubsection{Ionic Platform}
+
+Ionic Platform ist eine Cloud, so wie eine Sammlung von Diensten für die Entwicklung,
+Veröffentlichung und Skalierung von Apps. Ionic Platform bietet beispiwlesweise einen zentralen Dienst für die Handhabung von Nutzern.
+Nutzer können sich klassich per Mail oder per single sign on über
+Facebook, Google und Twitter registrieren und damit in der App authentifizieren.
+User können zentral in einer Weboberfläche verwaltet und ggfls. mit Push Nachrichten adressiert werden.
+Diese können zentral an alle Nutzer, oder ein definiertes Segment der Nutzer gesendet werden.
+Hierzu ist kein Server mit implementiertem \ac{APN} oder \ac{GCM} System von Nöten, das Push System von Ionic deckt diese
+Funktionalität bereits vollständig ab.
+
+Zusätzlich kann die Cloud für das Deployment von Apps automatisiert für diverse Zielplatformen genutzt werden.
+Interessant hierbei ist, dass iOS Apps generiert werden könne, auch wenn einem Entwickler
+keine macOS Umgebung zur Verfügung steht, da der Buildprozess zentral in der Ionic Cloud stattfindet.
+Ein Update einer Ionic App muss nicht zwingend über den Appstore der Platform geschehen,
+da Änderungen, die sich nur auf den Webinhalt der App (also HTML, CSS und JS) beziehen,
+beim Appstart aus der Cloud geladen werden können.
+Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu vermeiden.
+
 \subsection{Komponenten verwenden}
 \subsection{Deployment}
 

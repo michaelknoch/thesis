@@ -257,47 +257,85 @@ beispielsweise Safari für iOS und Chrome für Android.
 Ionic the complete mobile dev package. It's the best way to build apps. Period.'' \cite{Ionic20:online}
 \vspace{0.5cm}
 
-\subsubsection{Ionic \ac{CLI}}
-Das \textbf{Ionic \ac{CLI}} vereinfacht den Umgang mit Ionic Projekten. Zunächst können individuelle
+\paragraph{Ionic \ac{CLI}}
+Das Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten. Zunächst können individuelle
 Startertemplates anhand diverser Parameter generiert werden.
 Das Framework erzeugt dabei voll funktionstüchtige Applikationen, die den Einstieg in das Framework erleichtern sollen.
 Sidemenu und Tabmenu sind Beispiele für diese Template, welche in Typescript oder JavaScript generiert werden können.
 Des Weiteren lassen sich Applikationen anhand der \ac{CLI} emulieren und bauen,
 so wie direkt auf angeschlossenen Mobilen Geräten starten.
 
-\subsubsection{Ionic Creator}
-\textbf{Ionic Creator} ist ein hauseigenes Prototyping Tool, mit welchem Oberflächen statt
+\paragraph{Ionic Creator}
+ist ein hauseigenes Prototyping Tool, mit welchem Oberflächen statt
 mit HTML und CSS per Mausklick kreiert werden können.
 Dabei stehen von Beginn an eine Vielzahl von vorgefertigten Ionic Komponenten wie Buttons,
 Label und Datepicker zur Verfügung.
 Diese werden per Drag and Drop eingefügt und positioniert. Der Prototyp lässt sich direkt auf
 dem eigenen mobilen Gerät ausführen, oder kann als \ac{APK} oder \ac{IPA} für dritte exportiert werden.
 
-\subsubsection{Ionic Lab}
-\textbf{Ionic Lab} ist eine visuelle Oberfläche zur Bedienung des Ionic \ac{CLI}.
+\paragraph{Ionic Lab}
+ist eine visuelle Oberfläche zur Bedienung des Ionic \ac{CLI}.
 Buildvorgang, Testing und Deployment soll mithilfe der Desktop App für Mac, Windows, und
 Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
 
 \subsubsection{Ionic Platform}
 
 Ionic Platform ist eine Cloud, so wie eine Sammlung von Diensten für die Entwicklung,
-Veröffentlichung und Skalierung von Apps. Ionic Platform bietet beispiwlesweise einen zentralen Dienst für die Handhabung von Nutzern.
-Nutzer können sich klassich per Mail oder per single sign on über
-Facebook, Google und Twitter registrieren und damit in der App authentifizieren.
-User können zentral in einer Weboberfläche verwaltet und ggfls. mit Push Nachrichten adressiert werden.
-Diese können zentral an alle Nutzer, oder ein definiertes Segment der Nutzer gesendet werden.
+Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet Ionic Platform einen zentralen Dienst für die Handhabung von Nutzern einer App.
+Diese können sich dabei klassich per Mail oder per single sign on über
+Facebook, Google und Twitter registrieren und damit in der Applikation authentifizieren.
+Zudem können registrierte Nutzer zentral in einer Weboberfläche verwaltet und ggfls. mit Push Nachrichten adressiert werden.
+Diese können zentral an alle Nutzer, oder ein definiertes Segment dieser gesendet werden.
 Hierzu ist kein Server mit implementiertem \ac{APN} oder \ac{GCM} System von Nöten, das Push System von Ionic deckt diese
 Funktionalität bereits vollständig ab.
 
 Zusätzlich kann die Cloud für das Deployment von Apps automatisiert für diverse Zielplatformen genutzt werden.
-Interessant hierbei ist, dass iOS Apps generiert werden könne, auch wenn einem Entwickler
+Interessant hierbei ist, dass iOS Apps generiert werden könne, auch wenn
 keine macOS Umgebung zur Verfügung steht, da der Buildprozess zentral in der Ionic Cloud stattfindet.
 Ein Update einer Ionic App muss nicht zwingend über den Appstore der Platform geschehen,
 da Änderungen, die sich nur auf den Webinhalt der App (also HTML, CSS und JS) beziehen,
 beim Appstart aus der Cloud geladen werden können.
 Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu vermeiden.
 
-\subsection{Komponenten verwenden}
+\subsection{Komponenten verteilen und vewenden}
+
+Komponenten aus der Angular 2 Applikation sollen in der Ionic 2 App Verwendung finden.
+Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen oder neue Komponenten
+aus der Angular 2 Codebase als Updates für das Ionic Projekt propagiert.
+
+\subsubsection{Komponenten vorbereiten}
+
+Die zu verteilenden Komponenten sind in Typescript geschrieben,
+daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
+oder bereits vor der Verteilung transpiliert und als JavaScript Paket veröffentlicht werden.
+Interessant hierbei sind die Optionen \textbf{sourceMap} und \textbf{declaration} des Typescript Transpielrs.
+Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jeweils d.ts und .map Dateien abgelegt.
+
+\paragraph{Declaration(d.ts)}
+
+Eine d.ts Datei wird als TypeScript Declaration File bezeichnet.
+Es beschreibt Verhalten Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden
+und ermöglicht so die Verwendung von JavaScript Code, beispielswiese einer externen Bibliothek,
+in ein Projekt, welches in TypeScript geschrieben ist. Das Declaration File fungiert dabei als Interface
+für die JavaScript Implementierung und gewährleistet statische Typisierung
+und Autovervollständigung in unterstützenden IDEs.
+
+Im TypeScript Transpilierungsprozess können Declaration Files mithilfe der Option \textbf{declaration} generiert werden.
+Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files, von der Community oder von dem ursprünglichen Autor, nachgeliefert.
+\cite[471]{EssentialTS}
+
+\paragraph{SourceMap (.map)}
+
+Durch die Verwendung von *-to-JavaScript Compiler/Transpiler und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
+Der zur Entwicklungszeit geschriebene Code ist nicht der Selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
+Dies wird dann zu einem Problem, wenn zur Laufzeit Fehler während dem Debugging identifiziert, allerdings nicht mehr auf den Ursprungscode abgebildet werden
+können. Der Typescript Compiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt, welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
+Öffnet man nun die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, kann man den ursprünglichen Code inspizieren.
+\cite{Using97:online}
+
+\subsubsection{Komponenten verwenden}
+
+
 \subsection{Deployment}
 
 \section{Electron}

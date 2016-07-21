@@ -1,0 +1,85 @@
+%!TEX root = ../thesis.tex
+
+\chapter{Umsetzung}
+\label{chap:umsetzung}
+
+\section{Konzeption}
+
+
+\section{Komponenten verteilen und vewenden}
+
+Um redundanten Code zu vermeiden sollen Komponenten aus der Angular 2 Applikation in der Ionic 2 App Verwendung finden.
+Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen
+der Angular 2 Codebase als Updates für das Ionic Projekt propagiert.
+
+\subsubsection{Komponenten vorbereiten}
+
+Die zu verteilenden Komponenten sind in Typescript geschrieben,
+daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
+oder bereits vor der Verteilung transpiliert und als JavaScript Paket veröffentlicht werden.
+Interessant hierbei sind die Optionen \textbf{sourceMap} und \textbf{declaration} des Typescript Transpilers.
+Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jeweils d.ts und .map Dateien abgelegt.
+
+\paragraph{Declaration(d.ts)}
+
+Eine d.ts Datei wird als TypeScript Declaration File bezeichnet.
+Es beschreibt Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden.
+Das Declaration File ermöglicht die Verwendung von JavaScript Code, beispielswiese einer externen Bibliothek,
+in ein Projekt, welches in TypeScript geschrieben ist. Das Declaration File fungiert dabei als Interface
+für die JavaScript Implementierung und gewährleistet statische Typisierung
+und Autovervollständigung in unterstützenden IDEs.
+
+Im TypeScript Transpilierungsprozess können Declaration Files mithilfe der Option \textbf{declaration} generiert werden.
+Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files, von der Community oder von dem ursprünglichen Autor, nachgeliefert.
+\cite[471]{EssentialTS}
+
+\paragraph{SourceMap (.map)}
+
+Durch die Verwendung von *-to-JavaScript Compiler/Transpiler und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
+Der zur Entwicklungszeit geschriebene Code ist nicht der Selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
+Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nicht mehr auf den Ursprungscode abgebildet werden.
+Der Typescript Compiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
+welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
+Öffnet man nun die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, kann man den ursprünglichen Code inspizieren.
+\cite{Using97:online}
+
+
+\subsubsection{Komponenten verteilen}
+
+Es wird eine Infrastruktur benötigt um Komponenten projektübergreifend verteilen zu können.
+Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
+sowie Ionic Projekt zu integrieren. Symlinks lassen sich allerdings nicht versionieren, daher würde
+für jeden Entwickler, der an dem Projekt mitwirken möchte,
+ein hoher initialer Konfigurationsaufwand entstehen.
+Des Weiteren sollen Komponenten womöglich nicht nur in der Ionic App,
+sondern in vielen weiteren auf Angular 2 basierenden Projekten wiederverwendet werden.
+Eine Komponente oder ein Paket diverser Komponenten soll veröffentlicht und aktuell
+gehalten werden und soll von Entwicklern genutzt werden können.
+
+Es liegt nahe dieses Problem mithilfe eines Paketmanagers zu lösen. Angular und Ionic verwenden für das Management
+ihrer Kern-Abhängigkeiten den \ac{NPM}.
+Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden. Closed Source Pakete können
+bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
+
+
+\subsubsection{Komponenten verwenden}
+
+
+
+
+
+
+\paragraph{HTML und CSS Inlining}
+Zudem werden \ac{HTML} und \ac{CSS} referenzen der Komponente in Inline-Strings konvertiert.
+Damit werden Konflikte bezüglich relativen und absoluten Referenz-Pfaden verhindert,
+da diese zentral in einer Angular Applikation konfiguriert werden.
+Sind Style und Markup der Komponente als Inline-String definiert,
+wird diese Konfiguration bezüglich der verteilten Komponenten hinfällig.
+\cite{ludoh30:online}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel3/prepare-distribution-comp.png}
+ \caption{Vergleich der Development und Distribution Komponente}
+\end{figure}
+\vspace{0.3cm}

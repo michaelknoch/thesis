@@ -243,38 +243,66 @@ Im nachfolgenden wird die Relevanz des Frameworks Ionic 2 bezüglich des Projekt
 
 \subsection{Einführung}
 
-Ionic ist ein Cross Plattform Frontend Framework für die Entwicklung mobiler Applikationen.
+Ionic 2 ist ein Open Source \ac{SDK} für die Entwicklung mobiler Applikationen mithilfe von Angular 2 und Cordova.
 Auf Basis von Webtechnologien wie HTML5, CSS3 und Javascript können Apps für iOS, Android und Windowsphone
-entwickelt werden. Sie werden als hybride Apps bezeichnet,
+entwickelt werden. Diese werden als hybride Apps bezeichnet,
 da sie eine Mischform zwischen Web-Apps und nativen Applikationen darstellen.
 Eine hybride App ist zunächste eine Webanwendung, die einen Browser für ihre Ausführung benötigt.
 Als Browser wird die native Webview der jeweiligen Platform verwendet,
 beispielsweise Safari für iOS und Chrome für Android.
+Mithilfe von Cordova Plugins kann auf die \ac{API} des Systems zugegriffen werden um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden.
+\cite{ionic34:online}
+
+\subsection{Ionic Components}
+
+
+
+\subsection{Ionic Native}
+
+Ionic Native ist ein Wrapper für Cordova Module in JavaScript und Typescript.
+In der Vorgängerversion des \ac{SDK} wurden Cordova Plugins installiert und als globale Singletons registriert.
+Beispielsweise war es möglich aus jedem Kontext der Applikation ``navigator.camera.getPicture(onSuccess, onFail)'' aufzurufen.
+Ionic Native hingegen erlaubt Entwicklern Module selektiv zu importieren, wodurch diverse Vorteile entstehen.
+Globale Cordova Objekte werden vermieden, wodurch Codes deutlich strukturierter und verständlicher wird.
+Zudem werden Callbacks der Cordova Plugins mit Ionic Native in Promises oder Observables gewrappt.
+Dadurch entsteht ein einheitliches Interface im Stil von Angular 2 für die Nutzung dieser Module,
+wodurch deren asynchrone Events bequemer observiert werden können.
+
+Des Weiteren ist in Ionic Native eine Schicht für Fehlerbehandlung implementiert.
+Ist ein Cordova Modul nicht installiert, oder wird es falsch verwendet,
+generiert Ionic Native Fehler und Warnungen, die für Entwickler unabdingbar sind.
+In der Vorgängerversion des Ionic \ac{SDK} konnten Fehler, die durch falsche Verwendung von
+Cordova Modulen aufgetreten sind, meist nur durch ausprobieren oder Debugging des nativen Codes identifiziert werden.
+\cite{Ionic55:online}
+
+\vspace{1cm}
+\lstinputlisting[language=JavaScript,label=code,caption=Ionic Native Beispiel \cite{Ionic55:online}]{kapitel3/ionic-native-example.ts}
+\vspace{1cm}
+
 
 \subsection{Ökosystem Ionic}
 
 ``More than code. Ionic is an ecosystem. You'll find a suite of mobile development tools and resources at your disposal that make
-Ionic the complete mobile dev package. It's the best way to build apps. Period.'' \cite{Ionic20:online}
+Ionic the complete mobile dev package. It's the best way to build apps.'' \cite{Ionic20:online}
 \vspace{0.5cm}
 
 \paragraph{Ionic \ac{CLI}}
-Das Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten. Zunächst können individuelle
+Die Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten. Zunächst können individuelle
 Startertemplates anhand diverser Parameter generiert werden.
 Das Framework erzeugt dabei voll funktionstüchtige Applikationen, die den Einstieg in das Framework erleichtern sollen.
-Sidemenu und Tabmenu sind Beispiele für diese Template, welche in Typescript oder JavaScript generiert werden können.
-Des Weiteren lassen sich Applikationen anhand der \ac{CLI} emulieren und bauen,
-so wie direkt auf angeschlossenen Mobilen Geräten starten.
+Sidemenu und Tabmenu sind Beispiele für diese Templates, welche in Typescript oder JavaScript generiert werden können.
+Des Weiteren lassen sich Applikationen anhand der \ac{CLI} auf den Zielplattformen compilieren und auf angeschlossenen Geräten ausführen.
 
 \paragraph{Ionic Creator}
-ist ein hauseigenes Prototyping Tool, mit welchem Oberflächen statt
+ist ein Prototyping Tool, mit welchem Oberflächen statt
 mit HTML und CSS per Mausklick kreiert werden können.
 Dabei stehen von Beginn an eine Vielzahl von vorgefertigten Ionic Komponenten wie Buttons,
-Label und Datepicker zur Verfügung.
-Diese werden per Drag and Drop eingefügt und positioniert. Der Prototyp lässt sich direkt auf
-dem eigenen mobilen Gerät ausführen, oder kann als \ac{APK} oder \ac{IPA} für dritte exportiert werden.
+Label und Eingabefelder zur Verfügung.
+Diese werden per Drag and Drop eingefügt und positioniert. Der Prototyp lässt sich jedrzeit
+als \ac{APK} oder \ac{IPA} für dritte exportieren oder kann auf einem angeschlossenen Gerät gestartet werden.
 
 \paragraph{Ionic Lab}
-ist eine visuelle Oberfläche zur Bedienung des Ionic \ac{CLI}.
+ist eine visuelle Oberfläche zur Bedienung der Ionic \ac{CLI}.
 Buildvorgang, Testing und Deployment soll mithilfe der Desktop App für Mac, Windows, und
 Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
 
@@ -283,39 +311,39 @@ Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
 Ionic Platform ist eine Cloud, so wie eine Sammlung von Diensten für die Entwicklung,
 Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet Ionic Platform einen zentralen Dienst für die Handhabung von Nutzern einer App.
 Diese können sich dabei klassich per Mail oder per single sign on über
-Facebook, Google und Twitter registrieren und damit in der Applikation authentifizieren.
+Facebook, Google und Twitter registrieren und sind damit in der Applikation authentifiziert.
 Zudem können registrierte Nutzer zentral in einer Weboberfläche verwaltet und ggfls. mit Push Nachrichten adressiert werden.
-Diese können zentral an alle Nutzer, oder ein definiertes Segment dieser gesendet werden.
+Diese können sich dabei an alle Nutzer, oder ein definiertes Segment wenden.
 Hierzu ist kein Server mit implementiertem \ac{APN} oder \ac{GCM} System von Nöten, das Push System von Ionic deckt diese
 Funktionalität bereits vollständig ab.
 
-Zusätzlich kann die Cloud für das Deployment von Apps automatisiert für diverse Zielplatformen genutzt werden.
+Zusätzlich kann die Cloud für das zentrale Deployment für alle Zielplatformen genutzt werden.
 Interessant hierbei ist, dass iOS Apps generiert werden könne, auch wenn
-keine macOS Umgebung zur Verfügung steht, da der Buildprozess zentral in der Ionic Cloud stattfindet.
-Ein Update einer Ionic App muss nicht zwingend über den Appstore der Platform geschehen,
+keine macOS Umgebung zur Verfügung steht, da der Buildprozess in der Ionic Cloud stattfindet.
+Ein App Update muss nicht zwingend über den Appstore der Platform geschehen,
 da Änderungen, die sich nur auf den Webinhalt der App (also HTML, CSS und JS) beziehen,
 beim Appstart aus der Cloud geladen werden können.
 Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu vermeiden.
 
 \subsection{Komponenten verteilen und vewenden}
 
-Komponenten aus der Angular 2 Applikation sollen in der Ionic 2 App Verwendung finden.
-Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen oder neue Komponenten
-aus der Angular 2 Codebase als Updates für das Ionic Projekt propagiert.
+Um redundanten Code zu vermeiden sollen Komponenten aus der Angular 2 Applikation in der Ionic 2 App Verwendung finden.
+Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen
+der Angular 2 Codebase als Updates für das Ionic Projekt propagiert.
 
 \subsubsection{Komponenten vorbereiten}
 
 Die zu verteilenden Komponenten sind in Typescript geschrieben,
 daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
 oder bereits vor der Verteilung transpiliert und als JavaScript Paket veröffentlicht werden.
-Interessant hierbei sind die Optionen \textbf{sourceMap} und \textbf{declaration} des Typescript Transpielrs.
+Interessant hierbei sind die Optionen \textbf{sourceMap} und \textbf{declaration} des Typescript Transpilers.
 Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jeweils d.ts und .map Dateien abgelegt.
 
 \paragraph{Declaration(d.ts)}
 
 Eine d.ts Datei wird als TypeScript Declaration File bezeichnet.
-Es beschreibt Verhalten Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden
-und ermöglicht so die Verwendung von JavaScript Code, beispielswiese einer externen Bibliothek,
+Es beschreibt Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden.
+Das Declaration File ermöglicht die Verwendung von JavaScript Code, beispielswiese einer externen Bibliothek,
 in ein Projekt, welches in TypeScript geschrieben ist. Das Declaration File fungiert dabei als Interface
 für die JavaScript Implementierung und gewährleistet statische Typisierung
 und Autovervollständigung in unterstützenden IDEs.
@@ -328,12 +356,59 @@ Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files, v
 
 Durch die Verwendung von *-to-JavaScript Compiler/Transpiler und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
 Der zur Entwicklungszeit geschriebene Code ist nicht der Selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
-Dies wird dann zu einem Problem, wenn zur Laufzeit Fehler während dem Debugging identifiziert, allerdings nicht mehr auf den Ursprungscode abgebildet werden
-können. Der Typescript Compiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt, welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
+Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nicht mehr auf den Ursprungscode abgebildet werden.
+Der Typescript Compiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
+welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
 Öffnet man nun die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, kann man den ursprünglichen Code inspizieren.
 \cite{Using97:online}
 
+
+\subsubsection{Komponenten verteilen}
+
+Es wird eine Infrastruktur benötigt um Komponenten projektübergreifend verteilen zu können.
+Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
+sowie Ionic Projekt zu integrieren. Symlinks lassen sich allerdings nicht versionieren, daher würde
+für jeden Entwickler, der an dem Projekt mitwirken möchte,
+ein hoher initialer Konfigurationsaufwand entstehen.
+Des Weiteren sollen Komponenten womöglich nicht nur in der Ionic App,
+sondern in vielen weiteren auf Angular 2 basierenden Projekten wiederverwendet werden.
+Eine Komponente oder ein Paket diverser Komponenten soll veröffentlicht und aktuell
+gehalten werden und soll von Entwicklern genutzt werden können.
+
+Es liegt nahe dieses Problem mithilfe eines Paketmanagers zu lösen. Angular und Ionic verwenden für das Management
+ihrer Kern-Abhängigkeiten den \ac{NPM}.
+Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden. Closed Source Pakete können
+bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
+
+
 \subsubsection{Komponenten verwenden}
+
+
+
+
+
+
+\paragraph{HTML und CSS Inlining}
+Zudem werden \ac{HTML} und \ac{CSS} referenzen der Komponente in Inline-Strings konvertiert.
+Damit werden Konflikte bezüglich relativen und absoluten Referenz-Pfaden verhindert,
+da diese zentral in einer Angular Applikation konfiguriert werden.
+Sind Style und Markup der Komponente als Inline-String definiert,
+wird diese Konfiguration bezüglich der verteilten Komponenten hinfällig.
+\cite{ludoh30:online}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel3/prepare-distribution-comp.png}
+ \caption{Vergleich der Development und Distribution Komponente}
+\end{figure}
+\vspace{0.3cm}
+
+
+
+\subsubsection{Framework APIs}
+
+Ionic 2 basiert auf Angular 2, dennoch unterscheiden sich diverse APIs voneinander.
+Beispielsweise navigiert man durch eine Angular 2 mithilfe der Router API
 
 
 \subsection{Deployment}

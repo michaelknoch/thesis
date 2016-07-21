@@ -22,6 +22,42 @@
 \onehalfspacing
 
 
+\definecolor{Gray}{rgb}{.9,.9,.9}
+\definecolor{Comment}{rgb}{.40,.40,.40}
+\definecolor{Blue}{rgb}{.52, .152, .219}
+\definecolor{Green}{rgb}{.39, .174, .96}
+\definecolor{DeepBlue}{rgb}{.44, .62, .80}
+
+\lstdefinelanguage{JavaScript} {
+	morekeywords={
+		break,const,continue,delete,do,while,export,for,in,function,
+		if,else,import,in,instanceOf,label,let,new,return,switch,this,
+		throw,try,catch,typeof,var,void,with,yield
+	},
+	sensitive=false,
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[d]'
+}
+
+\lstset{
+	frame=tb,
+	framesep=5pt,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	keywordstyle=\ttfamily\bfseries\color{DeepBlue},
+	identifierstyle=\ttfamily,
+	stringstyle=\ttfamily\color{Green},
+	commentstyle=\color{Comment},
+	rulecolor=\color{Gray},
+	xleftmargin=5pt,
+	xrightmargin=5pt,
+	belowskip=\bigskipamount
+}
+
+
+
 % KOMA script anpassungen
 %TODO entfernen wenn kein KOMA Script gewuenscht
 \usepackage{scrhack}

@@ -294,7 +294,7 @@ Cordova Modulen aufgetreten sind, meist nur durch ausprobieren oder Debugging de
 \cite{ionic55:online}
 
 \vspace{1cm}
-\lstinputlisting[language=JavaScript,label=code,caption=Ionic Native Beispiel \cite{Ionic55:online}]{kapitel3/ionic-native-example.ts}
+\lstinputlisting[language=JavaScript,label=code,caption=Ionic Native Beispiel \cite{ionic55:online}]{kapitel3/ionic-native-example.ts}
 \vspace{1cm}
 
 
@@ -364,8 +364,34 @@ Der Fokus soll bei der Entwicklung auf die eigentliche Geschäftslogik der Anwen
 with web technologies like JavaScript, HTML, and CSS. It takes care of the hard parts so you can focus on the core of
 your application.''
 \cite{Elect57:online}
-\vspace{0.3cm}
 
-\subsection{Main Process}
+\subsection{Funktionsweise}
+\label{sec:functionsweise}
 
-\subsection{Renderer Process}
+\begin{figure}[htb]
+ \centering
+ \includegraphics[width=0.6\linewidth]{kapitel3/electron-context.png}
+ \caption{Electron Prozesse}\cite{Build58:online}
+\label{fig:electronprozess}
+\end{figure}
+
+Wie in Abbildung \ref{fig:electronprozess} dargestellt werden beim Start einer
+Electron Anwendung verschiedenen Prozesskontexte gestartet.
+Zunächst startet der Hauptprozess (main Process) in welchem grundlegende Konfigurationen vorgenommen werden können.
+Die Besonderheit dieses Kontextes ist die Verfügbarkeit von Node.js.
+Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebsystems um beispielsweise Dateien lesen oder schreiben zu können.
+Ferner wäre es im Hauptprozess möglich einen API oder Websocket Server zu starten.
+
+Der Hauptprozess instanziiert den Kontext der Webview, in Abbildung \ref{fig:electronprozess} wird dieser als render process bezeichnet.
+Dieser beinhaltet eine Browserumgebung, welcher die \ac{UI} der Anwendung in einem für den Nutzer sichtbaren Fenster darstellt.
+Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrome, gerendert \cite{Build58:online}.
+
+\subsection{Kommunikation}
+
+Da node.js nur im Hauptrozess von Electron genutzt werden kann, ist es erforderlich,
+dass die verschiedenen Kontexte miteinander interagieren bzw. kommunizieren können.
+Dies kann wie bereits in \ref{sec:functionsweise} Funktionsweise angesprochen,
+mithilfe eines zentralen API Servers oder Websockets stattfinden.
+Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
+Dem Main-, so wie Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
+über welche asynchrone Events gesendet und empfangen werden können.

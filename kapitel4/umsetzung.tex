@@ -3,10 +3,39 @@
 \chapter{Umsetzung}
 \label{chap:umsetzung}
 
-\section{Konzeption}
+Im nachfolgenden wird die Konzeption und Umsetzung der in \ref{sec:anforderungsanalyse}
+beschriebenen Anforderungen an das Projekt \projectname{} erläutert.
+Der Schwerpunkt soll dabei speziell auf die Cross Plattform Architektur so wie auf die
+Entwicklung der Komponenten hinsichtlich wiederverwendbarkeit gerichtet werden.
 
 
-\section{Komponenten verteilen und vewenden}
+\section{Konzeption der Applikationsstruktur}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel4/arch.png}
+ \caption{Cross Plattform Architektur}
+\end{figure}
+\vspace{0.3cm}
+
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel4/inner-arch.png}
+ \caption{Komponenten und Services}
+\end{figure}
+\vspace{0.3cm}
+
+
+\subsection{Komponenten}
+\subsubsection{Views}
+\subsubsection{wiederverwendbare Elemente}
+\subsection{Services}
+
+
+
+
+\section{Komponenten verteilen}
 
 Um redundanten Code zu vermeiden sollen Komponenten aus der Angular 2 Applikation in der Ionic 2 App Verwendung finden.
 Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen
@@ -63,6 +92,7 @@ bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
 
 
 \subsubsection{Komponenten verwenden}
+
 
 
 

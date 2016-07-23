@@ -6,27 +6,28 @@ In diesem Kapitel werden die Anforderungen an den praktischen Teil der Arbeit de
 \projectname{} wird im folgenden als Arbeitstitel für die Frontend Applikationen verwendet.
 
 \section{Motivation}
+\label{sec:motivation}
 
 Monitoring Tools dienen der Übewachung und Kontrolle bestehender Softwareprodukte.
 Hierbei gibt es diverse Abläufe und Metriken, welche geprüft und ausgewertet werden können, um einem Nutzer der Monitoring Applikation
-eine aussagekräftige Übersicht über seine Systeme zu gewähren. Speziell nach dem Release eines Projektes oder nach dem Release neuer Patches
+eine aussagekräftige Übersicht über seine Systeme zu gewähren. Speziell nach dem Release eines Projektes oder neuer Patches
 ist es meist unabdingbar das geupdatete System hinsichtlich Stabilität und Performance kritisch zu beobachten. Ein weiterer Aspekt, den es zu überwachen gilt,
 ist die Skalierfähigkeit eines Produktes. Steigt die Aktivität einer Applikation, beispielsweise durch steigende Nutzerzahlen,
 muss sichergestellt werden, dass steigende Antwort- und Ausfallzeiten erkannt und richtig interpretiert werden, damit Skalierungsprobleme schnellstmöglich behoben werden können.
-Handelt es sich bei dem zu überwachenden System um ein komplexes Zusammenspiel diverser Microservices, gestaltet sich die Herausforderung der manuellen Überwachung, beispielsweise anhand
+Handelt es sich bei dem zu überwachendem System um ein komplexes Zusammenspiel diverser Microservices, gestaltet sich die Herausforderung der manuellen Überwachung, beispielsweise anhand
 Serverlogs, deutlich schwieriger.
 
 Innerhalb einer Microservice Architektur ist es nicht notwendig, dass alle Services auf einem gemeinsamen Server operieren.
 Es ist möglich dass Services auf einer Vielzahl von Servern möglicherweise an komplett unterschiedlichen geographischen Punkten miteinander agieren,
 oder im Problemfall nicht miteinander agieren können. Instanzen einzelner Services können zur Laufzeit starten, stoppen oder abstürzen
 und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind also deutlich komplexer zu überblicken.
-Daher ist ein Monitoring Tool, um die Stabilität und Performance einer solchen Architektur zu gewährleisten, meist stark von Nöten.
+Daher ist ein Monitoring Tool, um Stabilität und Performance einer solchen Architektur zu gewährleisten, meist stark von Nöten.
 
 \newpage
 
 \section{Anforderungsanalyse}
 
-Im nachfolgenden werden Anforderungen an das umzusetzende System gestellt um das in Motivation beschriebene Problem zu lösen.
+Im nachfolgenden werden Anforderungen an das umzusetzende System gestellt um die in \ref{sec:motivation} Motivation beschriebenen Problem zu lösen.
 
 \subsection{Views}
 
@@ -38,7 +39,7 @@ In diesen werden Anforderungen beschrieben, sowie mithilfe von Mock Screenshots 
 Der Initiale Screen erscheint, wenn die Applikation erfolgreich geladen wurde und der Nutzer nicht eingeloggt ist.
 Nutzer können sich mit bestehenden Accounts einloggen (Abbildung \ref{fig:login}) oder neu registrieren (Abbildung \ref{fig:register}).
 Des Weiteren sollen neue Passwörter, für Nutzer, die ihr bestehendes Passwort vergessen haben, angefordert werden können.
-Rudimentäres Error Handling weist Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
+rudimentäres Error Handling weist Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
 im System bereits vorhandene Mailadressen hin.
 
 \begin{figure}[h]
@@ -58,16 +59,16 @@ im System bereits vorhandene Mailadressen hin.
 
 \textbf{Login Formular}
 \begin{itemize}
-\item Mail (String, Valide Mailadresse, Eindeutig im System)
-\item Password (String, Mindestens 3 Zeichen, Maximal 20 Zeichen)
+\item Mail (String, valide Mailadresse, eindeutig im System)
+\item Password (String, mindestens 3 Zeichen, maximal 20 Zeichen)
 \end{itemize}
 
 \textbf{Register Formular}
 \begin{itemize}
 \item Name (String)
 \item Surname (String)
-\item Mail (String, Valide Mailadresse, Eindeutig im System)
-\item Password (String, Mindestens 3 Zeichen, Maximal 20 Zeichen)
+\item Mail (String, valide Mailadresse, eindeutig im System)
+\item Password (String, mindestens 3 Zeichen, maximal 20 Zeichen)
 \end{itemize}
 
 
@@ -76,7 +77,7 @@ im System bereits vorhandene Mailadressen hin.
 
 Da ein Nutzer in der Lage ist mehrere aktive Systeme zeitgleich zu monitoren,
 wird eine Übersichtsseite (Abbildung \ref{fig:system-picker}) benötigt
-um die Systeme wechseln zu können. Zusätzlich sollen auf dieser Übersicht
+um Systeme wechseln zu können. Zusätzlich sollen auf dieser Übersicht
 neue Systeme angelegt werden können.
 
 \begin{figure}[h]
@@ -89,8 +90,8 @@ neue Systeme angelegt werden können.
 \textbf{System erstellen}
 
 \begin{itemize}
-\item Name (String, Maximal 20 Zeichen)
-\item Beschreibung (String, Maximal 255 Zeichen)
+\item Name (String, maximal 20 Zeichen)
+\item Beschreibung (String, maximal 255 Zeichen)
 \end{itemize}
 
 
@@ -98,7 +99,7 @@ neue Systeme angelegt werden können.
 
 Auf dem Dashboard soll ein Nutzer die wichtigsten Informationen über sein System erhalten.
 Fehlerverhalten des Systems soll deutlich und informativ dargestellt werden.
-Zusätzlich soll das Dashboard als Einstiegspunkt anderer Views dienen.
+Zusätzlich soll das Dashboard als Einstiegspunkt für weitere Views dienen.
 
 \subsubsection{Metriken}
 
@@ -182,8 +183,8 @@ wird dies als Event, also als Notification, für den User ausgegeben.
 
 \subsection{Plattformen}
 
-Wie bereits angesprochen, geht es in MIA um zwei Aspekte. Einerseits können Applikationen anhand der Diagramme und Graphen im Detail analysiert werden,
-andererseits möchte der Nutzer reaktiv über Vorgänge seines Systems informiert werden, speziell wenn Latenzprobleme und Service-Ausfälle reibungslose Abläufe eines Systems gefährden.
+Applikationen können anhand von Diagrammen und Graphen im Detail analysiert werden,
+ferner möchte ein Nutzer reaktiv über Vorgänge seines Systems informiert werden, speziell wenn Latenzprobleme und Service-Ausfälle reibungslose Abläufe eines Systems gefährden.
 Hierzu erhält der Nutzer Push Notifications über das Event System.
 
 Die Applikation soll daher als App für iOS und Android, sowie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.

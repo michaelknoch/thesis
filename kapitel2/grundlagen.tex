@@ -10,19 +10,19 @@ Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts, sowie zum
 Bei der Enwticklung nativer Apps, werden Applikationen speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} entwickelt.
 Die App ist damit an die Platform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
-Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert. \cite{Heitkoetter2013}
+Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
 
 \vspace{1cm}
 \textbf{Desktop Nativ}
 \begin{itemize}
-\item macOS (Swift / ObjectiveC)
+\item macOS (Swift, ObjectiveC, Java)
 \item Linux (C++, C\#, Java)
 \item Windows (C++, C\#, VisualBasic, Java)
 \end{itemize}
 
 \textbf{Mobil Nativ}
 \begin{itemize}
-\item iOS (Swift / ObjectiveC)
+\item iOS (Swift, ObjectiveC)
 \item Android (Java)
 \end{itemize}
 
@@ -31,16 +31,16 @@ Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore vert
 \section{Cross Platform Entwicklung}
 
 Im Vergleich zum Ansatz der nativen Entwicklung, bieten diverse hybride Cross-platform Entwicklungsansätze die Möglichkeit eine Codebasis zu entwickeln,
-die auf diversen Platformen ausgeführt werden kann.\cite{Heitkoetter2013}
-Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden.
-\cite{Xamar84:online}
+die auf diversen Platformen ausgeführt werden kann \cite{Heitkoetter2013}.
+Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
+\cite{Xamar84:online}.
 
 \subsection{Cross kompilierte Apps am beispiel von Xamarin}
 
 Xamarin Entwickler, können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
 Der resultierende Code läuft dabei als nativer Code auf den Geräten.
-Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C,
-Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann. \cite{projectxamarin}
+Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C und
+Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectxamarin}.
 
 \begin{figure}[ht]
  \centering
@@ -52,7 +52,7 @@ Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann. \cite{project
 Xamarin stößt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework
 für jede Platform indiviudell entwickelt werden. Das funktioniert, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
 dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind, jedoch ist es fragwürdig ob sich das Framework als ``Cross Plattform Frontend Framework'' bezeichnen darf,
-wenn ein Großteil der Implementierung, zumindest bei Plattfor-universellem Appdesign, nach wie vor redundant vorgenommen werden muss.\cite{7Reas20:online}
+wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem Appdesign, nach wie vor redundant vorgenommen werden muss \cite{7Reas20:online}.
 
 \begin{figure}[ht]
  \centering
@@ -66,7 +66,7 @@ wenn ein Großteil der Implementierung, zumindest bei Plattfor-universellem Appd
 \subsection{Web Apps (Cordova, Phonegap)}
 
 Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Apps mithilfe von Webtechnologien zu entwickeln.
-HTML, CSS und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren.\cite{Cordo26:online}
+HTML, CSS und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
 sondern läuft in einer nativen Webview. Diese Apps werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie aufsetzen.
@@ -86,13 +86,13 @@ also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 
 \subsection{Einführung}
 
-Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch meist nicht in der Entwicklung
-von Logik vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
+Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
+von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
 womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit blick auf den \ac{DOM} von Patrioten des Internets wie Facebook oder Amazon,
 wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersicht führt,
-da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung abzudecken.
-Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behelfen, um HTML Elemente überhaupt voneinander unterscheiden zu können.
-\cite{sitepoint-introduction-to-webcomponents}
+da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung zu beschreiben.
+Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behelfen, um HTML Elemente überhaupt voneinander unterscheiden zu können
+\cite{sitepoint-introduction-to-webcomponents}.
 
 \subsection{Komponenten in der Softwarentwicklung}
 
@@ -114,7 +114,7 @@ software components.''
 Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis von dem Traum der komponentenorientierten Softwareentwicklung.
 Dabei soll eine Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
 ganzes Set an Komponenten für die Konstruktion seiner Applikation zu verwenden.
-Hierbi soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
+Hierbei soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
 
 \vspace{0.5cm}
 ``A software component is a unit of composition with contractually specified interfaces and explicit
@@ -145,16 +145,16 @@ welche die bereits genannte Problematik der fehlenden HTML Semantik mit bestehen
 Web Components funktionieren als wiederverwendbare Web Widgets mit klar definierten Schnittstellen.
 Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar sein.
 Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
-in das Markup, soll bereits die komponenteninteren Funktionalität zur Verfügung stehen.
-\cite[42]{Web-Component-Architecture}
+in das Markup, soll bereits die komponenteninteren Funktionalität zur Verfügung stehen
+\cite[42]{Web-Component-Architecture}.
 Webcomponents bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
 
 \subsubsection{HTML Imports}
 HTML kann in HTML Dokumente importiert und verwendet werden.
 Dabei können in dem referenziertem zu importierendem HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
 welche dementsprechend aufgelöst werden.
-Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen.
-\cite{HTMLI44:online}
+Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen
+\cite{HTMLI44:online}.
 
 \vspace{1cm}
 \lstinputlisting[language=HTML,label=code,caption=HTML Imports]{kapitel2/html_import.html}
@@ -238,15 +238,15 @@ Neue Features waren unter anderem \ac{JSON} Support und klassische Array Funktio
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 
 ECMAScript6 sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
-dann allerdings bis in den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert.
-\cite{js-vs-es}
+dann allerdings bis in den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert
+\cite{js-vs-es}.
 
 \subsection{Allgemein}
 
 Typescript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von ES6, d.h. sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features, wie der statischen Typisierung.
-Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative sein. \cite[28]{EssentialTS}
+Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative sein \cite[28]{EssentialTS}.
 Zusammen mit ES6 erhalten Entwickler gegenüber ES5 folgende Features:
 
 \begin{figure}[ht]
@@ -262,7 +262,7 @@ Die wohl größte Errungenschaft der Sprache ist das statische Typsystem.
 Typenfehler können in Typescript bereits zum Zeitpunkt
 der Kompilierung bzw. Transpilierung erkannt werden und treten nicht erst zur Laufzeit im Browser auf.
 Zudem wird Code in einer Typescript unterstützenden IDE dank Autovervollständigung
-leichter zu schreiben und aussagekräftiger zu lesen.\cite[156]{ng-Book-2}
+leichter zu schreiben und aussagekräftiger zu lesen \cite[156]{ng-Book-2}.
 
 \subsubsection{Klassen}
 
@@ -292,7 +292,7 @@ allerdings noch in sehr wenigen Browsern vollständig implementiert sind.
 Um TS oder ES6 Code also überhaupt in Produktion zu nutzen, sollte er auf den ES5 oder ES3
 Standard herunter transpiliert werden.
 Ein Transpiler ist ein Compiler, welcher Sourcecode nicht in Maschinencode, sondern ebenfalls in Sourcecode,
-allerdings einer anderen Sprache oder Sprachversion wandelt.\cite{Introduction-to-the-Typescript-Transpiler}
+allerdings einer anderen Sprache oder Sprachversion wandelt \cite{Introduction-to-the-Typescript-Transpiler}.
 In der nachfolgenden Abbildung ist zu sehen, wie Typescript-Code in funktionsfähigen ES5 Code transpiliert wird.
 
 \begin{figure}[ht]

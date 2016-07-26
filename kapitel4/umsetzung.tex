@@ -11,12 +11,38 @@ Entwicklung der Komponenten hinsichtlich wiederverwendbarkeit gerichtet werden.
 
 \section{Konzeption der Applikationsstruktur}
 
+In diesem Kapitel wird die Konzeptphase der Plattformübergreifenden Applikationsstruktur (Abbildung \ref{kapitel4/arch}) erläutert.
+Um Endprodukte für Web, Desktop und App zu generieren werden die Frameworks Angular 2, Electron und das
+Ionic \ac{SDK} verwendet. Die Codebase für die Web- und Desktop Anwendung lassen sich so weit vereinen,
+dass diese sich ein gemeinsames Repository teilen. Ein weiteres Repository beinhaltet die hybride Applikation,
+welche mithilfe des Ionic 2 \ac{SDK} entwickelt wird. Obwohl Ionic 2 auf das Angular Framework aufbaut,
+macht es Sinn den Web und App Code voneinander getrennt zu behandeln.
+Gründe dafür sind zum einen konzeptionelle Unterschiede zwischen Web und App von \projectname{}.
+Darüber hinaus unterscheiden sich die Navigation APIs der Frameworks, sowie die Menüführung der beiden Anwendungen.
+Die \ac{UI} und Funktionalität wird daher innerhalb der Angular 2 (Web/Desktop)
+Anwendung in Form von wiederverwendbaren Komponenten entwickelt und
+Repository-übergreifend für die Verwendung im Ionic 2 Projekt verteilt.
+Der verteilte Code wird im folgenden als \textbf{Shared Layer} bezeichnet.
+Das Shared Layer beinhaltet verschiedene Elemente, welche die Kernfunktionalitäten von \projectname{} abdecken.
+Im Folgenden werden zwischen View-Komponenten und wiederverwendbaren Komponenten sowie Service Implementierungen unterschieden.
+
+
+\begin{itemize}
+  \item Angular 2/Web und Desktop: github.com/michaelknoch/mia
+  \item Ionic 2/App: github.com/michaelknoch/miamobile
+\end{itemize}
+
+
+
 \begin{figure}[h]
  \centering
  \includegraphics[width=\linewidth]{kapitel4/arch.png}
  \caption{Cross Plattform Architektur}
+ \label{kapitel4/arch}
 \end{figure}
 \vspace{0.3cm}
+
+
 
 
 \begin{figure}[h]
@@ -26,13 +52,37 @@ Entwicklung der Komponenten hinsichtlich wiederverwendbarkeit gerichtet werden.
 \end{figure}
 \vspace{0.3cm}
 
+\subsubsection{View-Komponenten}
 
-\subsection{Komponenten}
-\subsubsection{Views}
-\subsubsection{wiederverwendbare Elemente}
-\subsection{Services}
+\begin{itemize}
+  \item Login
+  \item Systems
+  \item Applications
+  \item Dashboard
+  \item Journal
+  \item Metrics
+  \item Traces
+\end{itemize}
+
+\subsubsection{wiederverwendbare Komponenten}
+
+Angular 2 Components, die anhand ihres Selektors in View-Komponenten eingebunden werden,
+werden in \projectname{} als wiederverwendbare Komponenten bezeichnet.
+Wiederverwendbar deshalb, da ihre Funktionalität lediglich anhand des Selektors eingebunden werden kann.
+Wiederkehrende Elemente in den Views sollen daher in Form von wiederverwendbaren Komponenten implementiert werden.
+
+\paragraph{ApplicationMetaPicker}
 
 
+
+
+\paragraph{ngCytoScape}
+\paragraph{ng2-charts}
+
+
+
+
+\section{Komponenten entwickeln}
 
 
 \section{Komponenten verteilen}
@@ -41,7 +91,7 @@ Um redundanten Code zu vermeiden sollen Komponenten aus der Angular 2 Applikatio
 Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen
 der Angular 2 Codebase als Updates für das Ionic Projekt propagiert.
 
-\subsubsection{Komponenten vorbereiten}
+\subsection{vorbereiten}
 
 Die zu verteilenden Komponenten sind in Typescript geschrieben,
 daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
@@ -73,7 +123,7 @@ welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
 \cite{Using97:online}
 
 
-\subsubsection{Komponenten verteilen}
+\subsection{verteilen}
 
 Es wird eine Infrastruktur benötigt um Komponenten projektübergreifend verteilen zu können.
 Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
@@ -91,8 +141,10 @@ Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert wer
 bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
 
 
-\subsubsection{Komponenten verwenden}
+\subsection{einbinden}
 
+\ac{NPM} Module werden mit dem Befehl \textbf{npm install modul} installiert.
+Sie stehen im Projekt innerhalb der Node Modules zur Verfügung.
 
 
 

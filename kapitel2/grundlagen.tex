@@ -7,7 +7,7 @@ Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts, sowie zum
 
 \section{Native Entwicklung}
 
-Bei der Enwticklung nativer Apps, werden Applikationen speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} entwickelt.
+Bei der Enwticklung nativer Applikationen werden diese speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} entwickelt.
 Die App ist damit an die Platform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
 Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
@@ -30,16 +30,16 @@ Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore vert
 
 \section{Cross Platform Entwicklung}
 
-Im Vergleich zum Ansatz der nativen Entwicklung, bieten diverse hybride Cross-platform Entwicklungsansätze die Möglichkeit eine Codebasis zu entwickeln,
+Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse hybride Cross-platform Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
 die auf diversen Platformen ausgeführt werden kann \cite{Heitkoetter2013}.
 Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
 \cite{Xamar84:online}.
 
-\subsection{Cross kompilierte Apps am beispiel von Xamarin}
+\subsection{Cross-kompilierte Apps am beispiel von Xamarin}
 
-Xamarin Entwickler, können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
+Xamarin Entwickler können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
 Der resultierende Code läuft dabei als nativer Code auf den Geräten.
-Die Xamarin entwickler versprechen, dass alles was in Swift, Objective-C und
+Die Xamarin Entwickler versprechen, dass alles was in Swift, Objective-C und
 Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectxamarin}.
 
 \begin{figure}[ht]
@@ -65,7 +65,7 @@ wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem App
 
 \subsection{Web Apps (Cordova, Phonegap)}
 
-Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Apps mithilfe von Webtechnologien zu entwickeln.
+Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Anwendungen mithilfe von Webtechnologien zu entwickeln.
 HTML, CSS und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
 sondern läuft in einer nativen Webview. Diese Apps werden auch als hybride Apps bezeichnet.
@@ -88,10 +88,10 @@ also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 
 Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
 von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
-womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit blick auf den \ac{DOM} von Patrioten des Internets wie Facebook oder Amazon,
+womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf den \ac{DOM} von Patrioten des Internets wie Facebook oder Amazon
 wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersicht führt,
-da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung zu beschreiben.
-Statt aussagekräftige Tags zu verwenden, muss man sich mit Klassen und IDs behelfen, um HTML Elemente überhaupt voneinander unterscheiden zu können
+da die Palette an HTML5 Semantic Tags nicht ausreicht um die Vielfalt der Funktionalität einer modernen Webanwendung zu beschreiben.
+Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
 
 \subsection{Komponenten in der Softwarentwicklung}
@@ -111,7 +111,7 @@ software components.''
 
 \vspace{0.5cm}
 
-Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis von dem Traum der komponentenorientierten Softwareentwicklung.
+Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis vom Traum der komponentenorientierten Softwareentwicklung.
 Dabei soll eine Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
 ganzes Set an Komponenten für die Konstruktion seiner Applikation zu verwenden.
 Hierbei soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
@@ -124,9 +124,9 @@ by third parties.''
 \vspace{0.5cm}
 
 Szyperski definiert eine Komponente als eigenständiges, in sich geschlossenes Modul ohne Deployment
-Abhängigkeiten, d.h. Eine Komponente kann deployed werden, ohne dass andere Bausteine der Applikation ebenfalls deployed werden müssen.
+Abhängigkeiten, d.h. Eine Komponente kann ausgeliefert werden, ohne dass andere Elemente der Applikation ebenfalls neu gebaut werden müssen.
 Klar definierte Schnittstellen dienen der komponentenübergeifenden Kommunikation und repräsentieren
-möglichst transparent die Funktionalität der Komponente.
+dabei die Funktionalität der Komponente möglichst Transparent.
 Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
 und von Dritten verwendet werden können.
 
@@ -138,7 +138,7 @@ reusable blocks of UI presentation and behavior entirely with client side langua
 \cite[42]{Web-Component-Architecture}
 \vspace{1cm}
 
-Der W3C beschreibt diverse Wege wie entkoppelte wiederverwendbare UI Elemente, so genannte Web Components,
+Der W3C beschreibt diverse Wege, wie entkoppelte wiederverwendbare UI Elemente, sogenannte Web Components,
 in Kombination von HTML, JavaScript und CSS geschaffen werden können.
 Der Begriff Web Components beinhaltet eine Sammlung von Standards,
 welche die bereits genannte Problematik der fehlenden HTML Semantik mit bestehenden Webtechnologien lösen kann.
@@ -163,9 +163,9 @@ Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird 
 \subsubsection{HTML Templates}
 
 Das HTML Template-Element ermöglicht Inhalte nicht zur Laufzeit der Website zu rendern,
-sondern den Renderforgang explizit per JavaScript zu steuern. Ressourcen, wie Videos und Bilder werden demnach
+sondern den Rendervorgang explizit per JavaScript zu steuern. Ressourcen wie Videos und Bilder werden demnach
 nicht initial geladen und erzeugen keine unnötige Ladeverzögerung der Applikation.
-Inhalte des Template Tags werden zu Beginn auf Validität geprüft und stehen dann für die Verwendung im Dokument
+Inhalte des Template-Tags werden zu Beginn auf Validität geprüft und stehen dann für die Verwendung im Dokument
 zur Verfügung.
 
 \subsubsection{Custom HTML Elements}
@@ -185,7 +185,7 @@ Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten:
 \subsubsection{Shadow Dom}
 Shadow Dom ermöglicht Optik und Logik einer Komponente zu kapseln.
 Seiteneffekte, bezüglich komponentenübergreifendem Style und Logik, werden verhindert.
-Beispielsweise kann Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
+Beispielsweise kann das Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
 da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments oder anderer Elemente zugreifen kann.
 Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 
@@ -193,9 +193,9 @@ Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 
 Wie in Abbildung \ref{fig:platform_support} zu sehen ist, sind Web Components noch nicht in
 allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
-Hier kommen Polyfills ins spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten nahezu Vollständigen
-Support von unter anderem Web Components. Ein weiteres Beispiel für ein Polyfill ist core-js,
-welches die die Nutzung von ES5 und ES6, auch wenn der Browser diesen Standard nicht unterstützt, ermöglicht.
+Hier kommen Polyfills ins spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu Vollständigen
+Support von Web Components in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
+welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Browser diese nicht unterstützt, ermöglicht.
 
 \vspace{1cm}
 \begin{figure}[ht]
@@ -234,7 +234,7 @@ Zur selben Zeit wurde Ajax und damit eine völlig neue Art von dynamsichen Webap
 basierend auf JavaScript, entwickelt.
 
 2009 erschien ECMAScript5 und erhielt vollen Support in nahezu allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
-Neue Features waren unter anderem \ac{JSON} Support und klassische Array Funktionen wie map und forEach.
+Es beinhaltet neue Features wie \ac{JSON} Support und klassische Array Funktionen wie map und forEach.
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 
 ECMAScript6 sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
@@ -274,12 +274,12 @@ sowie die Realisierung von Abstraktionen, wie sie aus anderen Objektorientierten
 
 \subsubsection{Module}
 
-In ES5 gab es keinen Standard um Funktionen und Variablen in Namensräumen zu organisieren, oder dynamisch Code zu laden.
+In ES5 gab es keinen Standard um Funktionen und Variablen in Namensräumen zu organisieren oder dynamisch Code zu laden.
 Mit ES6 wurde das fehlende Feature durch das Exportieren und Importieren von Modulen ergänzt. Dadurch wird es sehr bequem, Programmcode zu organisieren und zu laden.
 Jedes ES6 Modul wird in einer eigenen Datei gespeichert. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn, sie werden explizit exportiert.
-Mittels Export lassen sich also Schnittstellen für ein Modul definieren, welche mit Hilfe des Keywords Import importiert und verwendet werden können.
+Mittels Export lassen sich also Schnittstellen für ein Modul definieren, welche importiert und verwendet werden können.
 In Typescript lassen sich ganze Klassendefinitionen exportieren.
-Dabei ist es möglich Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
+Dabei ist es möglich, Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
 Public Funktionen sind dann auch von außen nutzbar.
 
 \lstinputlisting[language=Java,label=code,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}

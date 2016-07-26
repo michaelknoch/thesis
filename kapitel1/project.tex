@@ -28,19 +28,19 @@ Daher ist ein Monitoring Tool, um Stabilität und Performance einer solchen Arch
 \section{Anforderungsanalyse}
 \label{sec:anforderungsanalyse}
 
-Im nachfolgenden werden Anforderungen an das umzusetzende System gestellt um die in \ref{sec:motivation} Motivation beschriebenen Problem zu lösen.
+Im folgenden werden Anforderungen an das umzusetzende System gestellt um das in \ref{sec:motivation} Motivation beschriebenen Problem zu lösen.
 
 \subsection{Views}
 
 Dieses Kapitel ist in Unterkapitel unterteilt, welche den einzelnen Views der Applikation \projectname{} entsprechen.
-In diesen werden Anforderungen beschrieben, sowie mithilfe von Mock Screenshots visuell aufbereitet.
+In diesen werden Anforderungen beschrieben sowie mithilfe von Mock Screenshots visuell aufbereitet.
 
 \subsubsection{Login / Registrieren}
 
-Der Initiale Screen erscheint, wenn die Applikation erfolgreich geladen wurde und der Nutzer nicht eingeloggt ist.
+Dieser Screen erscheint, wenn die Applikation erfolgreich geladen wurde und der Nutzer nicht eingeloggt ist.
 Nutzer können sich mit bestehenden Accounts einloggen (Abbildung \ref{fig:login}) oder neu registrieren (Abbildung \ref{fig:register}).
 Des Weiteren sollen neue Passwörter, für Nutzer, die ihr bestehendes Passwort vergessen haben, angefordert werden können.
-rudimentäres Error Handling weist Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
+rudimentäres Error-Handling weist Nutzern im Fehlerfall auf falsche Passwörter und im Registrierfall auf
 im System bereits vorhandene Mailadressen hin.
 
 \begin{figure}[h]
@@ -61,7 +61,7 @@ im System bereits vorhandene Mailadressen hin.
 \textbf{Login Formular}
 \begin{itemize}
 \item Mail (String, valide Mailadresse, eindeutig im System)
-\item Password (String, mindestens 3 Zeichen, maximal 20 Zeichen)
+\item Password (String)
 \end{itemize}
 
 \textbf{Register Formular}
@@ -69,7 +69,7 @@ im System bereits vorhandene Mailadressen hin.
 \item Name (String)
 \item Surname (String)
 \item Mail (String, valide Mailadresse, eindeutig im System)
-\item Password (String, mindestens 3 Zeichen, maximal 20 Zeichen)
+\item Password (String)
 \end{itemize}
 
 
@@ -104,8 +104,8 @@ Zusätzlich soll das Dashboard als Einstiegspunkt für weitere Views dienen.
 
 \subsubsection{Metriken}
 
-Die Metriken Sektion soll pro Applikation eine Kollektion von Diagrammen beinhalten.
-Dabei soll die Applikation, sowie der aktive Beobachtungszeitraum, gewählt werden können.
+Die Metriken-Sektion soll pro Applikation eine Kollektion von Diagrammen beinhalten.
+Dabei soll die Applikation sowie der aktive Beobachtungszeitraum gewählt werden können.
 
 \begin{figure}[h]
  \centering
@@ -126,10 +126,10 @@ Dabei soll die Applikation, sowie der aktive Beobachtungszeitraum, gewählt werd
 
 \subsubsection{Graph}
 
-Im Vergleich zur Metrik View soll der Graph nicht nur einzelne Applikationen darstellen,
+Im Vergleich zur Metriken-View soll der Graph nicht nur einzelne Applikationen darstellen,
 sondern das Kommunikationsnetz des Gesamtsystems visualisieren.
 Wie in Abbildung \ref{fig:graph} zu sehen ist, sollen dabei Services als Knoten und Requests als Kanten dargestellt werden.
-Zu visualisierende Metriken sind Anzahl und Dauer der Requests zwischen den Services
+Bei den zu visualisierenden Metriken handelt es sich um die Faktoren Anzahl und Dauer der Requests zwischen den Services.
 Zusätzlich soll auch hier der Beobachtungszeitraum definiert werden können.
 
 \begin{figure}[h]
@@ -141,9 +141,9 @@ Zusätzlich soll auch hier der Beobachtungszeitraum definiert werden können.
 
 \subsubsection{Traces}
 
-Die Traces Sektion besteht aus zwei Views. Einer Übersichtsliste der Request Einstiegspunkte,
+Die Traces Sektion besteht aus zwei verschiedenen Ansichten. Einer Übersichtsliste der Request Einstiegspunkte,
 welche zur Trace Detailseite (Abbildung \ref{fig:trace}) überleitet. Im Detail besteht ein Trace aus den Requests
-aller an einer Aktion beteiligten Services. Dabei werden die Zeitlichen Abläufe in einem Gantt Chart dargestellt.
+aller an einer Aktion beteiligten Services. Dabei werden die Service-Zugriffe in relation zur Zeit in einem Gantt Chart dargestellt.
 
 \begin{figure}[h]
  \centering
@@ -155,25 +155,27 @@ aller an einer Aktion beteiligten Services. Dabei werden die Zeitlichen Abläufe
 
 \subsubsection{Journal}
 
-Das Journal besteht aus Logeinträgen bezüglich Serverstart, Serverstop und Servercrash.
-
 \begin{figure}[h]
  \centering
  \includegraphics[width=0.6\linewidth]{kapitel1/mocks/journal.png}
  \caption{Journal Mock}
+ \label{fig:journalmock}
 \end{figure}
+
+Das Journal (Abbildung \ref{fig:journalmock}) beinhaltet Einträge bezüglich Serverstart, Serverstop und Servercrash.
+
 
 \subsubsection{Settings}
 
-In den Einstellungen können Nutzerrelevante Parameter definiert werden. Metadaten können geändert werden.
-Nutzer sollen die Möglichkeit erhalten ein Profilbild einzustellen.
+In den Einstellungen können Nutzerrelevante Parameter definiert werden. Metadaten können geändert werden
+und Nutzer sollen die Möglichkeit erhalten ein Profilbild einzustellen.
 
 \subsubsection{Events}
 
-Reaktiv werden Nutzer auf Fehlverhalten derer Applikationen hingewiesen. Sollten Services außerplahnmäßig terminieren oder ihre Erreichbarkeit verlieren,
+Reaktiv werden Nutzer auf Fehlverhalten ihrer Applikationen hingewiesen. Sollten Services außerplahnmäßig terminieren oder ihre Erreichbarkeit verlieren,
 wird dies als Event, also als Notification, für den User ausgegeben.
 
-\textbf{Events}
+\paragraph{mögliche Events}
 \begin{itemize}
 \item Service Start
 \item Service Stop
@@ -188,6 +190,6 @@ Applikationen können anhand von Diagrammen und Graphen im Detail analysiert wer
 ferner möchte ein Nutzer reaktiv über Vorgänge seines Systems informiert werden, speziell wenn Latenzprobleme und Service-Ausfälle reibungslose Abläufe eines Systems gefährden.
 Hierzu erhält der Nutzer Push Notifications über das Event System.
 
-Die Applikation soll daher als App für iOS und Android, sowie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.
+Die Applikation soll daher als App für iOS und Android sowie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.
 In Anbetracht, dass das Frontend Team nur aus meiner Person besteht, stellt sich diese Anforderung, in der doch knappen Entwicklungszeit, als große Herausforderung dar.
 Daher liegt die Entscheidung nahe, den Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.

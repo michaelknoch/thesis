@@ -6,30 +6,27 @@
 Im Folgenden werden die für den praktischen Teil der Arbeit genutzten Frameworks beschrieben.
 Ziel dieses Kapitels ist es, die Auswahl der genannten Frameworks zu begründen und
 ihren Funktionsumfang hinsichtlich der Anforderungen des Projekts zu untersuchen.
-Des weiteren sollen mögliche Alternativen evaluiert werden.
-
 
 \section{AngularJS}
 
 Angular ist derzeit eines der populärste Frontend Javascript Frameworks auf dem Markt.
-Im nachfolgenden wird der Erfolg des Frameworks anhand eines Interviews mit Robin Böhm erklärt. \cite{Angu68:online}.
 Böhm war einer der ersten Entwickler, der Angular 2012 in Deutschland bekannt machte.
 ``Zu dieser Zeit war jQuery noch die Basis des Webs. jQuery hatte aber nie den Anspruch, ein Framework für Web-Anwendungen zu sein. Der eigentliche Sinn war, die APIs der verschiedenen Browser zu vereinheitlichen.
 Man musste sich deshalb immer eine eigene Architektur überlegen. Allerdings fehlte die Erfahrung, wie man große Applikationen im Web schreibt. Das führte natürlich oft zu Chaos und unwartbaren Projekten.''\cite{Angu68:online}
 Böhm spricht mit Angular von einem sehr mächtigen Komplettpaket, welches Anwendungsentwicklung im Web auf ein neues Level hebe.
 Gründe dafür sind die geringe Lernkurve, simple Template Syntax,
-welche auf HTML aufbaut, sowie hohe Wartbarkeit aufgrund einfacher Testbarkeit von einzelnen Appkomponenten.
+welche auf HTML aufbaut sowie hohe Wartbarkeit aufgrund einfacher Testbarkeit von einzelnen Appkomponenten.
 
-Wenn Böhm über Angular 2 spricht, spricht er von einem Framework für die Zukunft.
-Apps, die zeitnah in Produktion gehen, würde er nach wie vor mit Angular 1 entwickeln,
-da Angular2 noch nicht als Release vorliegt und interne Funktionalität auf Browserfeatures basiert,
+Böhm bezeichnet Angular 2 als ein Framework für die Zukunft.
+Anwendungen, die zeitnah in Produktion gehen sollten, würde er nach wie vor mit Angular 1 entwickeln,
+da Angular 2 noch nicht als Release vorliegt und interne Funktionalität auf Browserfeatures basiert,
 die teilweise noch nicht in jedem Browser zur Verfügung stehen und daher durch Polyfills implementiert werden müssen.
 ``Somit wird Angular 2 sein ganzes Potential wohl auch erst in einigen Jahren entfalten können.
 Wenn man jedoch erst heute damit anfangen würde, ein Framework für heute zu bauen,
 ist es bereits veraltet, wenn es fertig ist.''\cite{Angu68:online}
-Zudem sind Style Guides und Best Practise Ansätze für die Entwicklung von Applikationen mit Angular 2
+Zudem sind Styleguides und Best Practise Ansätze für die Entwicklung von Applikationen mit Angular 2
 noch in der Entstehung.
-Dennoch spricht Böhm zuversichtlich über die Neuentwicklung des Framework.
+Dennoch ist Böhm von den Konzepten von Angular 2 überzeugt.
 
 
 \subsection{Neuerungen des Framework}
@@ -37,16 +34,16 @@ Dennoch spricht Böhm zuversichtlich über die Neuentwicklung des Framework.
 Angular 2 ist die Nachfolgeversion des von Google entwickelten Javascript Framework Angular 1.
 Die in 2009 veröffentlichte erste Version fand großen Anklang in der Community
 und wurde als Basis für dynamische Single-page-Webanwendung verschiedenster Art und Größe genutzt.
-In den seit Release vergangenen Jahren hat sich die Community um das Framework immer weiter vergrößert,
+In den seit dem Release vergangenen Jahren hat sich die Community um das Framework immer weiter vergrößert,
 welche zur stetigen Weiterentwicklung und so zu dem Erfolg von Angular1 beigetragen hat.
 Das Github Repository der ersten Version hat mittlerweile 1.489 Contributors mit nahezu 7000 gestellten Pull Requests. \cite{ng1-github}
 
 Mit Angular 2 wurden einige Grundkonzepte überarbeitet um in eine komplett neue Richtung gehen zu können.
 Ziel von Google ist es, ein komponentenbasiertes leicht zu bedienendes Framework für moderne
 Webanwendungen zu schaffen, welches Performanceverbesserungen und transparentere interne Strukturen als die Vorgängerversion aufweisen soll.
-Eine Angular 2 Anwendung besteht daher aus einer Vielzahl diverser Komponenten, wodurch es möglich wird
+Eine Angular 2 Anwendung besteht daher aus einer Vielzahl diverser Komponenten, wodurch es möglich wird,
 Funktionalität zu kapseln, zu abstrahieren und wieder zu verwenden. Der Fokus hierbei liegt nicht nur auf Wiederverwendbarkeit innerhalb einer Codebasis.
-Elemente der Anwendung sollen sowohl für den Browser, als auch für mobile Geräte sowie für native Desktop Clients genutzt werden können.
+Elemente der Anwendung sollen sowohl für den Browser als auch für mobile Geräte sowie für native Desktop Clients genutzt werden können.
 Angular 2 soll im Vergleich zu seiner Vorgängerversion leichter zu lernen und zu nutzen sein,
 sowie eine solide Basis auch für komplexere Webanwendungen bieten. \cite[11-12]{Angular2}
 
@@ -66,7 +63,7 @@ Directives erwartet ein Array von in dieser Komponente zu verwenden weiteren Kom
 Ist eine Komponente als Directive referenziert,
 kann ihr Selector im Markup der referenzierenden Komponente eingebunden,
 und dadurch ihre gesamte Funktionalität genutzt werden.
-Desweiteren lassen sich durch den Decorator Serviceprovider referenzieren, hierzu jedoch später mehr.
+Desweiteren lassen sich durch den Decorator Serviceprovider referenzieren.
 
 Eine Komponente besteht neben der Decorator Annotation aus einer Klasse.
 Daher hat sie einen Klassennamen und mindestens einen impliziten Konstruktor.
@@ -82,7 +79,7 @@ Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtba
 \subsubsection{Vererbung}
 
 Vererbung, ein Grundkonzept der Objektorientientierung,
-wird eingesetzt wenn Verhalten von verschiedenen Objekten zur Wiederverwendung
+wird eingesetzt, wenn Verhalten von verschiedenen Objekten zur Wiederverwendung
 abstrahiert werden muss. Da Angular 2 Komponenten aus einer Klasse bestehen,
 kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren
 um redundanten Code zwischen den Komponenten
@@ -99,7 +96,7 @@ die womöglich asynchron per HTTP geladen werden müssen, zugreifen.
 Services werden ebenfalls als Klassen implementiert, welche mithilfe von \ac{DI}
 als Singleton instanziiert und in die Komponenten injiziert werden können.
 \ac{DI} ist ein Design Pattern, welches bereits in der ersten Version des Frameworks implementiert war.
-In Angular 2 wurde \ac{DI} neu entwickel, um die Injizierung von Services in Komponenten zu ermöglichen.
+In Angular 2 wurde \ac{DI} neu entwickelt, um flexiblere Injizierung von Services in Komponenten zu ermöglichen.
 
 \ac{DI} bringt vielerlei Vorteile mit sich. In der Implementierung einer Angular 2 Komponente wird im
 Konstruktor deklariert, welche Abhängigkeiten (Dependencies) für die Komponentenfunktionalität benötigt werden.
@@ -143,14 +140,14 @@ Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume
 \subsubsection{Services als Singletons}
 \label{Services-als-Singletons}
 
-Wie bereits erwähnt, ermöglichen \ac{DI} Provider Services als Singleton instanziieren zu können.
-Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden,
+Wie bereits erwähnt, ermöglichen \ac{DI} Provider Services als Singleton zu instanziieren.
+Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden
 um Funktionalität aus Komponenten zu abstrahieren um in weiteren Komponeten verwendet zu werden,
 auf der anderen Seite können sie jedoch auch genutzt werden um Daten multiplen Komponenten zur Verfügung zu stellen.
-Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird, daher erhalten alle
+Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird. Daher erhalten alle
 Komponenten, die den Service injizieren, die selbe Referenz, somit die selbe Instanz und daher die selbe globale Datenbasis.
 In einem Userservice könnte beispielweise eine Boolean Variable definiert sein, welche Auskunft darüber gibt,
-ob ein User eingeloggt ist, oder nicht. \cite[308]{Angular2}
+ob ein User eingeloggt ist oder nicht. \cite[308]{Angular2}
 
 
 \subsection{Data Binding}
@@ -168,23 +165,23 @@ welche das Template in der Component Decoration referenziert. \cite{Templ78:onli
 \subsection{Kommunikation}
 
 Da eine Angular 2 Applikation auschlißelich aus Komponenten besteht, müssen diese zwangsweise miteinander
-kommunizieren können. Für den Austausch von Daten stehen gibts es verschiedene Ansätze.
+kommunizieren können. Für den Austausch von Daten gibts es verschiedene Ansätze.
 Wie bereits in \ref{Services-als-Singletons} erwähnt, werden Services im Normalfall als Singleton
 instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hierbei für den
 Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen hinaus,
 können Events in Komponenten oder Services definiert, und von derer ebenfalls aboniert werden,
 um asynchrone Kommunikation applikationsintern zu ermöglichen.
 
-Die Auslagerung von Funktionalität in Services ergibt jedoch nur dann wirlich Sin,
+Die Auslagerung von Funktionalität in Services ergibt jedoch nur dann wirklich Sinn,
 wenn diese auch als Singleton existieren kann. Komponenten sind im Vergleich zu Services keine Singletons,
 da sie mit jeder Verwendung in der Applikation neu instanziiert werden.
 Variablen und Funktionen eingebundener Komponenten können durch die Annotationen Input und Output
 direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kindkomponenten
-relevante Daten über den Input Tag übergeben und über den Output Kanal werden Event Emitter aboniert. \cite{Angul94:online}
+relevante Daten über den Input Tag übergeben und über den Output Kanal in Form von Event Emittern aboniert. \cite{Angul94:online}
 
-Spricht man speziell von Kindkomponenten und nicht von Nachbarkomponenten,
-kann mithilfer der Annotation ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
-Die Kommunikation geschieht in diesem Fall nicht über die beiden View Layer der Komponenten,
+Handelt es sich speziell von Kindkomponenten und nicht um Nachbarkomponenten,
+kann mithilfe der Annotation ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
+Die Kommunikation geschieht in diesem Fall nicht über die View Layer der Komponenten,
 sondern direkt von der Elternkomponente zu ihrer Kindinstanz. \cite{ViewC61:online}
 
 \subsection{Performance}
@@ -193,24 +190,24 @@ sondern direkt von der Elternkomponente zu ihrer Kindinstanz. \cite{ViewC61:onli
 
 \subsubsection{Change Detection}
 
-Wird eine Angular2 Applikation gestartet, wird nach anfänglichem Laden der Seite eine View gerendert.
-Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet und uns als Nutzer somit mittels Text,
+Beim Start einer Angular2 Applikation wird nach anfänglichem Laden der Seite eine View gerendert.
+Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet dem Nutzer somit mittels Text,
 Formularen, Buttons, Bildern etc. visuell aufbereitet.
 Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
 Zugriffe auf den DOM sind ressourcenintensiv, daher sollten DOM Manipulationen nicht inflationär stattfinden.
 Datenänderungen können entwerder durch User Events, XMLHttpRequests oder Timer (setTimeout(), setInterval()) ausgelöst werden.
-Alle dies geschieht asynchron. Es ist also davon auszugehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt,
+Dies geschieht asynchron. Es ist also davon auszugehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt,
 sich Daten geändert haben können und die View aktualisiert werden muss.
 \cite{changedetection-explained}
 
 \subsubsection{NgZone}
 
-Zones sind ein internes Feature der Programmiersprache Dart. Da Dart jedoch zu JavaScript compiliert werden kann,
-können Zones ebenfalls in JavaScript genutzt werden. Daher ist zone.js als Portierung für JavScript entstanden, welche in Angular2 genutzt wird.
-Zones sind Ausführungskontexte, für die Observation asynchroner Operationen.
-Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösen in den entsprechenden Ausführungskontexten diverse Events aus.
+Zones sind ein internes Feature der Programmiersprache Dart. Da Dart zu JavaScript compiliert werden kann,
+können Zones ebenfalls in JavaScript genutzt werden. Zone.js als Portierung für JavScript entstanden, welche in Angular2 genutzt wird.
+Zones sind Ausführungskontexte (Scopes) für die Observation asynchroner Operationen.
+Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösen innerhalb des entsprechenden Ausführungskontexts verschiedene Events aus.
 NgZone ist ein Fork von zone.js, welcher die Basisfunktionalität um zusätzliche Events erweitert.
-Change Detection relevant ist dabei das event onTurnDone().
+Für die Change Detection relevant ist dabei das event onTurnDone().
 \cite{changedetection-explained}
 
 \vspace{0.5cm}
@@ -224,9 +221,9 @@ kann davon ausgegangen werden, dass sie ebenfalls aus einem Baum von Change Dete
 Change Detection wird innerhalb dieses Baumes als unidirektionaler Datenfluss von oben nach unten, beginnend mit dem Rootknoten, ausgeführt.
 
 Obwohl jede Komponente bei einem tick() nach Änderungen prüft, ist Angular2 sehr schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
-da jede Komponenten ihren eigenen Change Detector besitzt und es nicht die eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
+da jede Komponenten ihren eigenen Change Detector besitzt und es nicht eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
 Dies wird erreicht, indem Angular zur Laufzeit individuelle Change Detector Klassen für jede Komponente, entsprechend dem Datenmodell der Komponente, erzeugt.
-Dieser Code kann von Virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden.
+Dieser Code kann von virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden.
 
 \vspace{1cm}
 
@@ -247,10 +244,10 @@ Ionic 2 ist ein Open Source \ac{SDK} für die Entwicklung mobiler Applikationen 
 Auf Basis von Webtechnologien wie HTML5, CSS3 und Javascript können Apps für iOS, Android und Windowsphone
 entwickelt werden. Diese werden als hybride Apps bezeichnet,
 da sie eine Mischform zwischen Web-Apps und nativen Applikationen darstellen.
-Eine hybride App ist zunächste eine Webanwendung, die einen Browser für ihre Ausführung benötigt.
+Eine hybride App ist zunächst eine Webanwendung, die einen Browser für ihre Ausführung benötigt.
 Als Browser wird die native Webview der jeweiligen Platform verwendet,
 beispielsweise Safari für iOS und Chrome für Android.
-Mithilfe von Cordova Plugins kann auf die \ac{API} des Systems zugegriffen werden um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden.
+Mithilfe von Cordova Plugins kann auf das \ac{API} des Systems zugegriffen werden um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden.
 \cite{ionic34:online}
 
 \subsection{Ionic Components}
@@ -266,7 +263,7 @@ Interessant dabei ist, dass die Optik der Komponente dabei dem \ac{CI} der Platt
 
 \subsection{Theming}
 Theming wird in einer Ionic Anwendung durch \ac{CSS} realisiert.
-Styles werden entweder in eine Komponente gekapselt global definiert.
+Styles werden entweder in eine Komponente gekapselt oder global definiert.
 Globale Stile können dabei plattformspezifisch oder plattformunabhängig definiert werden.
 So befinden sich in einer klassischen Ionic 2 App individuelle Styles für iOS, Android und Windowsphone.
 Dadurch kann das umzusetzende \ac{CI} flexiblel getreu dem Standard der Plattform entwickelt werden.
@@ -279,9 +276,9 @@ können plattformunabhängige globale Stile definiert werden.
 
 Ionic Native ist ein Wrapper für Cordova Module in JavaScript und Typescript.
 In der Vorgängerversion des \ac{SDK} wurden Cordova Plugins installiert und als globale Singletons registriert.
-Beispielsweise war es möglich aus jedem Kontext der Applikation heraus ``navigator.camera.getPicture(onSuccess, onFail)'' aufzurufen.
+Beispielsweise war es möglich, aus jedem Kontext der Applikation heraus ``navigator.camera.getPicture(onSuccess, onFail)'' aufzurufen.
 Ionic Native hingegen erlaubt Entwicklern Module selektiv zu importieren, wodurch diverse Vorteile entstehen.
-Globale Cordova Objekte werden vermieden, wodurch Codes deutlich strukturierter und verständlicher wird.
+Globale Cordova Objekte werden vermieden, wodurch Code deutlich strukturierter und verständlicher wird.
 Zudem werden Callbacks der Cordova Plugins mit Ionic Native in Promises oder Observables gewrappt.
 Dadurch entsteht ein einheitliches Interface im Stil von Angular 2 für die Nutzung dieser Module,
 wodurch deren asynchrone Events bequemer observiert werden können.
@@ -326,7 +323,7 @@ Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
 
 \subsubsection{Ionic Platform}
 
-Ionic Platform ist eine Cloud, so wie eine Sammlung von Diensten für die Entwicklung,
+Ionic Platform ist eine Cloud, sowie eine Sammlung von Diensten für die Entwicklung,
 Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet Ionic Platform einen zentralen Dienst für die Handhabung von Nutzern einer App.
 Diese können sich dabei klassich per Mail oder per single sign on über
 Facebook, Google und Twitter registrieren und sind damit in der Applikation authentifiziert.
@@ -336,7 +333,7 @@ Hierzu ist kein Server mit implementiertem \ac{APN} oder \ac{GCM} System von Nö
 Funktionalität bereits vollständig ab.
 
 Zusätzlich kann die Cloud für das zentrale Deployment für alle Zielplatformen genutzt werden.
-Interessant hierbei ist, dass iOS Apps generiert werden könne, auch wenn
+Interessant hierbei ist, dass iOS Apps generiert werden können, auch wenn
 keine macOS Umgebung zur Verfügung steht, da der Buildprozess in der Ionic Cloud stattfindet.
 Ein App Update muss nicht zwingend über den Appstore der Platform geschehen,
 da Änderungen, die sich nur auf den Webinhalt der App (also HTML, CSS und JS) beziehen,
@@ -375,9 +372,9 @@ your application.''
 \label{fig:electronprozess}
 \end{figure}
 
-Wie in Abbildung \ref{fig:electronprozess} dargestellt werden beim Start einer
+Wie in Abbildung \ref{fig:electronprozess} dargestellt, werden beim Start einer
 Electron Anwendung verschiedenen Prozesskontexte gestartet.
-Zunächst startet der Hauptprozess (main Process) in welchem grundlegende Konfigurationen vorgenommen werden können.
+Zunächst startet der Hauptprozess (main Process), in welchem grundlegende Konfigurationen vorgenommen werden können.
 Die Besonderheit dieses Kontextes ist die Verfügbarkeit von Node.js.
 Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebsystems um beispielsweise Dateien lesen oder schreiben zu können.
 Ferner wäre es im Hauptprozess möglich einen API oder Websocket Server zu starten.
@@ -393,5 +390,5 @@ dass die verschiedenen Kontexte miteinander interagieren bzw. kommunizieren kön
 Dies kann wie bereits in \ref{sec:functionsweise} Funktionsweise angesprochen,
 mithilfe eines zentralen API Servers oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
-Dem Main-, so wie Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
+Dem Main- sowie dem Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.

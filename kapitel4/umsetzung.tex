@@ -70,14 +70,18 @@ Im folgenden werden Ansätze der Komponentenentwicklung bezüglich der in
 Bei der Entwicklung generischer Komponenten ist der Begriff der Wiederverwendbarkeit von zentraler Bedeutung.
 Komponenten werden im Vergleich zum spezifischen Ansatz nicht nur für einen Anwendungsfall konzipiert, sondern können
 für diverse meist ähnliche Anwendungsbereiche genutzt werden. Dabei soll die Komponente nicht nur in der mobilen Ionic App,
-sondern Projektübergreifend Verwendung finden. Einige Komponenten der Applikation \projectname{} werden
-generisch Entwickelt und OpenSource veröffentlicht. Dadurch kann die Komponente von dritten genutzt und verbessert werden.
+sondern Projektübergreifend Verwendung finden.
+Typisch für generische Angular 2 Komponenten ist die Verwendung des @Input Kanals.
+Dabei werden zum einen Daten- und zur individualisierung nötige Konfigurationsobjekte in die Komponente eingeschleust.
+Einige Komponenten der Applikation \projectname{} sind
+generisch Entwickelt und OpenSource auf Github veröffentlicht.
+Dadurch kann die Komponente von dritten genutzt und womöglich erweitert werden.
 
 
 \subsubsection{spezifischer Ansatz}
 
 Einige Komponenten lassen sich aufgrund ihrer spezifischen Funktionalität nicht generisch entwickeln.
-Sie decken nur einen Anwendungsfall ab und können in anderen Projekten nicht wiederverwendet werden.
+Da sie nur einen spezifischen Anwendungsfall abdecken, können sie nur schwer in anderen Projekten wiederverwendet werden.
 Dennoch werden diese innerhalb des Projekts \projectname{}
 in der Angular 2 sowie in der Ionic 2 Anwendung verwendet.
 Beispiele für spezifische Komponenten sind View- und Menükomponenten welche die Grundstruktur einer Applikation abbilden.
@@ -85,15 +89,17 @@ Beispiele für spezifische Komponenten sind View- und Menükomponenten welche di
 \subsection{MVC und Abhängigkeiten}
 
 Im Idealfall können Komponenten voneinander gekapselt entwickelt werden,
-sodass sie völlig eigenständig nutzbar sind, da sie untereinander keine Abhängigkeiten aufweisen.
-Jede Komponente beinhaltet ein individuelles \ac{MVC} Paket für die Implementierung der Funktionalität von der View bis zur Datenschicht.
-Modelklassen und Services befinden sich innerhalb der Komponenten und nicht innerhalb eines globalen Model Layers.
+sodass sie völlig eigenständig nutzbar sind und untereinander keine Abhängigkeiten aufweisen.
+Jede Komponente beinhaltet individuelle \ac{MVC} Schichten für die Implementierung der Funktionalität von der View bis zur Datenschicht.
+Modelklassen (Typisierung) und Services befinden sich innerhalb der Komponente und nicht innerhalb eines globalen Model Layers.
 Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübergreifende Abhängigkeiten.
-Implementiert man Funktionalität in Services, welcher von mehreren Komponenten genutzt wird,
-so sollte dieser nicht im Model Layer von einer der Komponenten, sondern außerhalb liegen.
-Ferner ist es warscheinlich, dass Modelklassen (Typisierung) in mehreren Komponenten verwendet werden.
+Wird Funktionalität in Services, welcher von mehreren Komponenten genutzt wird, implementiert
+so sollte dieser nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht zur globalen Verwendung befinden.
+Ferner ist es warscheinlich, dass Typescript Modelklassen (Typisierung) ebenfalls in mehreren Komponenten verwendet werden.
 Dennoch sollten diese nicht redundant implementiert,
-sondern Zentral zur Verfügung gestellt werden.
+sondern Zentral zur Verfügung gestellt werden. Es stellt sich also heraus,
+dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
+sondern es durchaus Sinn ergibt Komponentenpakete über die Infrastruktur zu verteilen.
 
 
 \subsection{Komponenten Generator}
@@ -107,12 +113,53 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 
 \subsection{Implementierung}
 
-\subsubsection{View Komponenten}
+Im nachfolgenden werden die in \projectname{} entwickelten Komponenten in drei verschiedene Kategorien unterteilt.
 
-\subsubsection{Wiederverwendbare Komponenten}
+\subsubsection{Views}
 
-\subsubsection{bibliothek Komponenten}
 
+
+\subsubsection{Elemente}
+
+\subsubsection{Bibliothek Interfaces}
+
+In \projectname werden die externen Bibliotheken Chart.js und Cytoscape.js verwendet.
+Für deren Nutzung sind Interfaces in Form von Komponenten implementiert.
+Das bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand des globalen \ac{DOM} \ref{component-interface-1},
+sondern mittels Angular Komponenten realisiert werden.
+
+\newpage
+\paragraph{Chart.js}
+ist eine Bibliothek für das Zeichnen komplexer Diagramme.
+Es wird in \projectname{} hauptsächlich für die visualisierung der Daten für die Metrik Sektion verwendet.
+Chart.js ist responsive implementiert, d.h. die Charts können sowohl für den Desktop
+als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
+
+\vspace{0.3cm}
+\lstinputlisting[language=JavaScript,label=component-interface-1,caption=Chart.js ohne Komponenten Interface]{kapitel4/chartjs-oldschool.js}
+
+\lstinputlisting[language=JavaScript,label=component-interface-2,caption=Chart.js mit Komponenten Interface]{kapitel4/chartjs-new.js}
+\vspace{0.3cm}
+In \ref{component-interface-2} wird die Nutzung des Komponenten Interface \textbf{ng2-charts} (github.com/valor-software/ng2-charts) verdeutlicht.
+Die Komponente wird von Valor Software entwickelt und steht quelloffen unter der MIT Lizenz zur Verfügung \cite{valor6:online}.
+
+Die Komponente erweist sich als sehr hilfreich, da das Chart bereits durch die simple Verwendung des Komponenten-Selektors (base-chart) instanziiert werden kann.
+Des Weiteren werden die zu visualisierenden Daten sowie ein optionales Konfigurationsobjekt über den Selektor an die Komponenten übergeben.
+Ändert sich das Datenobjekt wird das Chart automatisch aktualisiert.
+
+
+\newpage
+\paragraph{Cytoscape.js}
+ist eine Bibliothek zur Visualisierung und Analyse komplexer Netzwerke.
+Diese findet in \projectname{} Verwendung in der Implementierung der Graphen-Sektion,
+in welcher Interaktionen zwischen Services visualisiert werden.
+Um eine mit ng2-charts vergleichbar bequeme Nutzung der Graphen-Bibliothek zu ermöglichen,
+wurde eine eigene Interface-Komponente entwickelt und als Open Source auf Github veröffentlicht.
+
+\lstinputlisting[language=JavaScript,label=ng2-cytoscape,caption=ng2-cytoscape Implementierung]{kapitel4/ng2-cytoscape.ts}
+
+Listing \ref{ng2-cytoscape} beinhaltet die Implementierung von ng2-cytoscape.
+Um Übersicht zu gewährleisten wird für die Implementierung nicht relevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
 
 
 

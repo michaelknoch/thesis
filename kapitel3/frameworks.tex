@@ -393,12 +393,24 @@ Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunik
 Dem Main- sowie dem Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.
 
+\section{\ac{NPM}}
+
+\ac{NPM} ist der Package Manager von Node.js mit über 300.000 verschiedenen Paketen und
+4.939.882.172 Paket Installationen im Juni 2016.
+Open Source Pakete können kostenfrei veröffentlicht werden.
+Für die Verwaltung von Closed Source Paketen wird ein Premium Preismodell ab einem Aufpreis von 7\$ pro Monat angeboten.
+\ac{NPM} wird nicht ausschließlich für die Node Entwicklung verwendet, JavaScript Pakete wie Angular, Ionic, Electron und deren
+Abhängigkeiten können ebenfalls komplett über \ac{NPM} geladen werden.
+
 \section{Gulp}
 
 Gulp ist ein Build System zur Optimierung und Automatisierung von Abläufen komplexer Softwareprodukte.
 Das System basiert auf Node.js Streams, kann jedoch ebenfalls für Plattformen wie Java, PHP und .Net verwendet werden.
 Automatisierungen werden mit Gulp in Form von Tasks implementiert,
 welche typischerweise Dateien Lesen, diese innerhalb von Streams verarbeiten und das Ergebis wiederum auf die
-Festplatte schreiben. Tasks können dabei manuell, oder über Filewatcher durch Dateiänderungen ausgelöst werden.
-Anwendungsfälle für Gulp Tasks sind beispielweise die transpilierung von Typescript zu JavaScript Code oder
-automatisierung von Deployment Prozessen.
+Festplatte schreiben \cite{gulpj46:online}.
+Tasks können dabei manuell, oder über Filewatcher durch Dateiänderungen ausgelöst werden.
+Anwendungsfälle für Gulp Tasks sind beispielweise Transpilierung von Typescript zu JavaScript Code oder
+Automatisierung von Deployment Prozessen. Die \ac{NPM} Registry beinhaltet bereits über 14.000 Open Source Plugins,
+mit denen die Grundfunktinalität von Gulp erweitert werden kann \cite{resul14:online}.
+Gulp selbst wurde im Juni 2016 2.304.745 mal per NPM installiert \cite{gulp17:online}.

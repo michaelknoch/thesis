@@ -1,6 +1,6 @@
 %!TEX root = ../thesis.tex
 
-\chapter{Frameworks}
+\chapter{Frameworks und Tools}
 \label{chap:frameworks}
 
 Im Folgenden werden die für den praktischen Teil der Arbeit genutzten Frameworks beschrieben.
@@ -392,3 +392,13 @@ mithilfe eines zentralen API Servers oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
 Dem Main- sowie dem Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.
+
+\section{Gulp}
+
+Gulp ist ein Build System um Arbeitsabläufe durch Automatisierungen zu optimieren.
+Das System basiert auf Node.js Streams, kann jedoch ebenfalls für Plattformen wie Java, PHP und .Net verwendet werden.
+Automatisierungen werden mit Gulp in Form von Tasks implementiert,
+welche typischerweise Dateien Lesen, diese innerhalb von Streams verarbeiten und das Ergebis wiederum auf die
+Festplatte schreiben. Tasks können dabei manuell, oder über Filewatcher durch Dateiänderungen ausgelöst werden.
+Anwendungsfälle für Gulp Tasks sind beispielweise die transpilierung von Typescript zu JavaScript Code oder
+automatisierung von Deployment Prozessen.

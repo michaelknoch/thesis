@@ -218,7 +218,69 @@ Sind Style und Markup der Komponente als Inline-String definiert,
 wird diese Konfiguration bezüglich der verteilten Komponenten hinfällig.
 \cite{ludoh30:online}
 
+\newpage
 \section{Auslieferung}
+
+Um den Aufwand der Auslieferung für die jeweiligen Plattformen gering zu halten
+sind im Rahmen des Projekts \projectname{} diverse Deployment Prozesse entstanden,
+welche im folgenden erläutert werden.
+
 \subsection{Web}
-\subsection{Dekstop}
+\label{deployment-web}
+
+Die Web Applikation wird über die \ac{AWS} Instanz ausgeliefert, auf welcher sich auch der \ac{API} Server befindet.
+Aufgrund großer Unzufriedenheit mit der anfänglichen Ladezeit der Anwendung von nahezu 10 Sekunden wurde ein Deployment
+Prozess konzipiert, welcher die Dauer des Ladevorgangs deutlich reduziert.
+Ohne Optimierungen werden beim Start der Anwendungen 624 verschiedene Dateien geladen,
+welche insgesamt eine Größe von 2,4MB aufweisen.
+Dabei stellen Komponenten und Services der eigentlichen Implementierung nur ein Bruchteil der Menge dar.
+Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek RxJs.
+Zunächst werden externe \ac{HTML} und \ac{CSS} Assets von Komponenten in
+inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \textbf{app.bundle.js} Datei zusammengefasst.
+Möglich wäre den Code aus der resultierenden app.bundle.js zu minifizieren,
+wodurch er zum einen unkenntlicher um damit schwerer zu kopieren wird,
+zusätzlich würde er weiter an Dateigröße verlieren. Da sich die Applikation \projectname{}
+jedoch noch nicht in einem produktionsreifen Zustand befindet, wird Minifizierung zunächst ausgelassen.
+Die 624 Dateirequests konnten auf 16 reduziert werden wodurch die Applikation bereits nach 1,9
+Sekunden vollständig geladen werden kann.
+Die Menge der geladenen Daten wird aufgrund fehlender Minifizierung nahezu kaum reduziert.
+
+\subsection{Desktop}
+
+\subsubsection{Auslieferung}
+Um die Ladezeit der Desktop App ebenfalls gering zu halten baut der Auslieferungsprozess der Electron App
+auf den in \ref{deployment-web} beschrieben Prozess der Webapplikation auf. Daher werden Applikationscode und die
+Abhängigkeiten von Angular zunächst ebenfalls zu einer \textbf{app.bundle.js} Datei zusammengefasst.
+Das Node Modul \textbf{electron-packager} ermöglicht die Generierung der Electron App für verschiedene Plattformen,
+welche eigenständig Ausgeführt werden kann.
+Ein weiteres Node Modul \textbf{electron-release} ermöglicht eine Veröffentlichung
+der Anwendung innerhalb der Releases auf dem Github Repository.
+Dort kann die App von Nutzern heruntergeladen und verwendet werden.
+
+\subsubsection{Client Updates}
+
+Desktop Apps können entweder manuell durch Initivative der Nutzer oder durch
+automatische Client Updates aktuell gehalten werden.
+Electron bietet mit \textbf{autoUpdater} eine Schnittstelle für die Implementierung
+von automatischen Updates im Hintergrund an.
+Electron autoUpdater ist dabei nur eine Schnittstelle welche das Squirrel Framework
+für Automatisierungen für Windows und MacOS bedient.
+Notwendig für die Hintergrundaktualisierung ist ein REST-Service, welcher beim Start der Anwendung mit der
+aktuellen Version angefragt werden kann
+und daraufhin einen Downloadpfad für ein womögliches Update liefert.
+Electron autoUpdater lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
+Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
+
+Im Ramen des Projekts \projectname{} wurde ein REST-Service für die 
+Verwendung von Electron autoUpdater implementiert:
+github.com/michaelknoch/mia-electron-autoupdater-server
+
 \subsection{App}
+
+Die iOS und Android App wird mithilfe der Ionic \ac{CLI} gebaut und muss daraufhin für den
+jeweiligen Appstore veröffentlicht werden. Der Build Prozess,
+welcher durch den Befehl \textbf{ionic build ios} und \textbf{ionic build android} ausgeführt wird,
+erstellt dabei die Applikation für die jeweilige Zielplattform.
+Für die Veröffentlichung in den Stores ist die Freischaltung eines Entwickler Accounts erforderlich,
+welche durch eine einmalige Zahlung von 25\$ für den Google Play Store bzw. einer jährlichen Gebühr von 99\$
+für den iOS AppStore so wie einer Prüfung der Person bzw. des Unternehmens erfolgt.

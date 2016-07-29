@@ -78,14 +78,28 @@ Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtba
 
 \subsubsection{Vererbung}
 
-Vererbung, ein Grundkonzept der Objektorientientierung,
-wird eingesetzt, wenn Verhalten von verschiedenen Objekten zur Wiederverwendung
-abstrahiert werden muss. Da Angular 2 Komponenten aus einer Klasse bestehen,
+Vererbung ist eines der Grundkonzepte von Objektorientientierung,
+welches eingesetzt wird um Verhalten von Objekten bezüglich Wiederverwendbarkeit zu
+abstrahieren. Angular 2 Komponenten bestehen aus Klassen, daher
 kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren
 um redundanten Code zwischen den Komponenten
-zu vermeiden. Logik wird dabei von der Komponente in eine dritte Klasse ausgelagert,
+zu vermeiden. Funktionalität wird dabei von der Komponente in eine dritte Klasse ausgelagert,
 welche mit dem Schlüsselwort extend als
-Abstraktionsebene eingebunden wird. \cite{DanWa45:online}
+Abstraktionsebene eingebunden wird \cite{DanWa45:online}.
+
+\subsubsection{Lebenszyklus}
+Eine Angular Komponente besitzt einen Lebenszyklus (Component Lifecycle) mit diversen Einstiegspunkten,
+um wichtige Momente einer Angular Komponente für Entwickler offen zu legen um darauf reagieren zu können. \cite[837-839]{ng-Book-2}.
+Zur Verdeutlichung sind einige dieser in Listing \ref{lifecycle-example} implementiert.
+NgOnInit und ngOnDestroy wird beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
+Angular führt ngOnChanges aus, wenn sich Variablen der Komponente verändert haben. Anhand von SimpleChanges
+können Daten vor und nach dem Change Event miteinander verglichen werden.
+
+\vspace{0.3cm}
+\lstinputlisting[language=Java,label=lifecycle-example,caption=Lebenszyklus Beispiel]{kapitel3/lifecycle-example.ts}
+\vspace{0.3cm}
+
+
 
 
 \subsection{Services, Providers und Dependency Injection}

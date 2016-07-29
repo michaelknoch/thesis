@@ -113,13 +113,34 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 
 \subsection{Implementierung}
 
-Im nachfolgenden werden die in \projectname{} entwickelten Komponenten in drei verschiedene Kategorien unterteilt.
 
-\subsubsection{Views}
+\subsubsection{Login und Authentifikation}
+
+Es wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
+Der \ac{API}-Server gibt dabei einen Cookie basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
+Zunächst wird die \textbf{Login Ansicht} geladen, welche das \textbf{Login Element} als Kind-Komponente enthält.
+In dieser sind die nötigen Eingabefelder sowie die Anbindung an den \textbf{UserService} implementiert.
+Der UserService bedient die Login und Register Schnittstelle des \ac{API}-Servers.
+Nach erfolgreichem Login returniert der Server einen Statuscode von 200, welcher vom UserService an das Login Element propagiert wird.
+Das Login Element antwortet der Login View mit einem \textbf{Update Event}, welche daraufhin zur Dashboard View weiterleitet.
+
+In der Implementierung des User Services werden innerhalb des Login- und Registriervorgangs sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
+Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die \textbf{getLocalMe()} Funktion ausgelesen.
+Dies ermöglicht Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
+Zusätzlich ist ein globaler Http Interceptor implementiert, welcher bei jedem ausgehenden Request der Anwendung prüft, ob das zuvor gesetzte Cookie noch Gültigkeit besitzt.
+Sollte eine Route des \ac{API}-Servers, welche Authentifizierung erfordert, einen Statuscode 401 (Unauthorized) liefern,
+fängt der Http Interceptor den Fehler und leitet zur Login View zurück um den Nutzer für eine erneute Authentifizierung aufzufordern.
 
 
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel4/login.jpg}
+ \caption{Login und Userservice}
+ \label{kapitel4/login}
+\end{figure}
+\vspace{0.3cm}
 
-\subsubsection{Elemente}
+
 
 \subsubsection{Bibliothek Interfaces}
 
@@ -221,7 +242,7 @@ wird diese Konfiguration bezüglich der verteilten Komponenten hinfällig.
 \newpage
 \section{Auslieferung}
 
-Um den Aufwand der Auslieferung für die jeweiligen Plattformen gering zu halten
+Um die Auslieferung für die jeweiligen Plattformen zu ermöglichen
 sind im Rahmen des Projekts \projectname{} diverse Deployment Prozesse entstanden,
 welche im folgenden erläutert werden.
 
@@ -271,7 +292,7 @@ und daraufhin einen Downloadpfad für ein womögliches Update liefert.
 Electron autoUpdater lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
 Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 
-Im Ramen des Projekts \projectname{} wurde ein REST-Service für die 
+Im Ramen des Projekts \projectname{} wurde ein REST-Service für die
 Verwendung von Electron autoUpdater implementiert:
 github.com/michaelknoch/mia-electron-autoupdater-server
 

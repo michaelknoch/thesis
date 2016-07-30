@@ -118,14 +118,20 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 
 Es wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
 Der \ac{API}-Server gibt dabei einen Cookie basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
-Zunächst wird die \textbf{Login Ansicht} geladen, welche das \textbf{Login Element} als Kind-Komponente enthält.
-In dieser sind die nötigen Eingabefelder sowie die Anbindung an den \textbf{UserService} implementiert.
+Zunächst wird die Login Ansicht geladen, welche das Login Element als Kind-Komponente enthält.
+In dieser sind die nötigen Eingabefelder sowie die Anbindung an den UserService implementiert.
 Der UserService bedient die Login und Register Schnittstelle des \ac{API}-Servers.
-Nach erfolgreichem Login returniert der Server einen Statuscode von 200, welcher vom UserService an das Login Element propagiert wird.
-Das Login Element antwortet der Login View mit einem \textbf{Update Event}, welche daraufhin zur Dashboard View weiterleitet.
+Nach erfolgreichem Login returniert der Server einen Statuscode von 200 (OK), welcher vom Service an das Login Element propagiert wird.
+Das Login Element antwortet der Login View mit einem Update Event, welche daraufhin zur Dashboard View weiterleitet.
 
-In der Implementierung des User Services werden innerhalb des Login- und Registriervorgangs sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
-Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die \textbf{getLocalMe()} Funktion ausgelesen.
+In der Implementierung des UserServices (\ref{UserService} UserService) werden innerhalb des Login- und Registriervorgangs
+sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
+Dies geschieht sehr elegant mithilfe des Variablen Decorators \textbf{angular2-localstorage} \cite{marcj95:online}.
+Die zu persistierenden Variablen werden mit @Localstorage dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
+Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage geladen.
+Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator serialisiert werden um sie überhaupt Localstorage speichern zu können.
+
+Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die getLocalMe() Funktion ausgelesen.
 Dies ermöglicht Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
 Zusätzlich ist ein globaler Http Interceptor implementiert, welcher bei jedem ausgehenden Request der Anwendung prüft, ob das zuvor gesetzte Cookie noch Gültigkeit besitzt.
 Sollte eine Route des \ac{API}-Servers, welche Authentifizierung erfordert, einen Statuscode 401 (Unauthorized) liefern,
@@ -146,8 +152,8 @@ fängt der Http Interceptor den Fehler und leitet zur Login View zurück um den 
 
 In \projectname werden die externen Bibliotheken Chart.js und Cytoscape.js verwendet.
 Für deren Nutzung sind Interfaces in Form von Komponenten implementiert.
-Das bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand des globalen \ac{DOM} \ref{component-interface-1},
-sondern mittels Angular Komponenten realisiert werden.
+Das bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand globaler \ac{DOM} Zugriffe (Listing \ref{component-interface-1}),
+sondern durch Angular Komponenten realisiert werden.
 
 \newpage
 \paragraph{Chart.js}
@@ -161,7 +167,7 @@ als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
 
 \lstinputlisting[language=JavaScript,label=component-interface-2,caption=Chart.js mit Komponenten Interface]{kapitel4/chartjs-new.js}
 \vspace{0.3cm}
-In \ref{component-interface-2} wird die Nutzung des Komponenten Interface \textbf{ng2-charts} (github.com/valor-software/ng2-charts) verdeutlicht.
+In Listing \ref{component-interface-2} wird die Nutzung des Komponenten Interface \textbf{ng2-charts} (github.com/valor-software/ng2-charts) verdeutlicht.
 Die Komponente wird von Valor Software entwickelt und steht quelloffen unter der MIT Lizenz zur Verfügung \cite{valor6:online}.
 
 Die Komponente erweist sich als sehr hilfreich, da das Chart bereits durch die simple Verwendung des Komponenten-Selektors (base-chart) instanziiert werden kann.
@@ -183,61 +189,71 @@ Listing \ref{ng2-cytoscape} beinhaltet die Implementierung von ng2-cytoscape.
 Um Übersicht zu gewährleisten wird für die Implementierung nicht relevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
 
 
-
+\newpage
 \section{Komponentenverteilung}
 
-Um redundanten Code zu vermeiden sollen Komponenten aus der Angular 2 Applikation in der Ionic 2 App Verwendung finden.
-Hierzu soll ein möglicher Workflow entwickelt und evaluiert werden, welcher Änderungen
-der Angular 2 Codebase als Updates für das Ionic Projekt propagiert.
+Die Komponenten aus dem Angular 2 Projekt werden i
 
 \subsection{Vorbereitung und Veröffentlichung}
 
 Die zu verteilenden Komponenten sind in Typescript geschrieben,
 daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
-oder bereits vor der Verteilung transpiliert und als JavaScript Paket veröffentlicht werden.
+oder bereits vor der Verteilung transpiliert und damit als JavaScript Paket veröffentlicht werden.
 Interessant hierbei sind die Optionen \textbf{sourceMap} und \textbf{declaration} des Typescript Transpilers.
 Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jeweils d.ts und .map Dateien abgelegt.
 
-\paragraph{Declaration(d.ts)}
+\subsubsection{Declaration(d.ts)}
 
 Eine d.ts Datei wird als TypeScript Declaration File bezeichnet.
 Es beschreibt Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden.
 Das Declaration File ermöglicht die Verwendung von JavaScript Code, beispielswiese einer externen Bibliothek,
-in ein Projekt, welches in TypeScript geschrieben ist. Das Declaration File fungiert dabei als Interface
+in ein TypeScript Projekt. Das Declaration File fungiert dabei als Typescript Interface
 für die JavaScript Implementierung und gewährleistet statische Typisierung
 und Autovervollständigung in unterstützenden IDEs.
 
 Im TypeScript Transpilierungsprozess können Declaration Files mithilfe der Option \textbf{declaration} generiert werden.
 Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files, von der Community oder von dem ursprünglichen Autor, nachgeliefert.
+In \projectname{} werden Declaration Dateien im Transpilierungsprozess generiert und mit der Komponente verteilt,
+damit Typen und Schnittstellen der Komponenten im Ionic Projekt verwendet werden können.
 \cite[471]{EssentialTS}
 
-\paragraph{SourceMap (.map)}
-
-Durch die Verwendung von *-to-JavaScript Compiler/Transpiler und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
+\subsubsection{SourceMap (.map)}
+Durch die Verwendung von *-to-JavaScript Transpilern und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
 Der zur Entwicklungszeit geschriebene Code ist nicht der Selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
-Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nicht mehr auf den Ursprungscode abgebildet werden.
-Der Typescript Compiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
+Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nur erschwert auf den Ursprungscode abgebildet werden.
+Der Typescript Transpiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
 welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
-Öffnet man nun die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, kann man den ursprünglichen Code inspizieren.
+Wird die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, geöffnet, kann der ursprünglichen Code inspiziert werden.
+SourceMaps werden in \projectname{} verwendet um transpilierten Code während der Ausführung der Angular so wie Ionic Anwendung debuggen zu können.
 \cite{Using97:online}
 
 
 
 \subsection{Verwendung im Ionic Projekt}
-
 \ac{NPM} Module werden mit dem Befehl \textbf{npm install} installiert.
 Sie stehen im Projekt innerhalb der Node Modules zur Verfügung und können in das Projekt importiert und verwendet werden.
 
+Bei der Wiederverwendung der entwickelten Komponenten im Ionic Projekt sind diverse Problemstellungen entstanden,
+welche im folgenden erläutert und gelöst werden.
+
+\subsection{Absolute Asset Pfade}
+
+Angular Komponenten enthalten Template Markup und \ac{CSS} Styling, dies wird entweder inline im Code der Komponente
+definiert oder innerhalb externer \ac{HTML} und \ac{CSS} Dateien implementiert und über Dateipfade in der Komponente referenziert.
+Abhängig von der Konfiguration der Komponente, des Modul Formats und des verwendeten Modul Loaders
+können relative oder Absolute Pfade zur Referenzierung der Markup und Style Assets angegeben werden.
 
 
 
-\paragraph{HTML und CSS Inlining}
-Zudem werden \ac{HTML} und \ac{CSS} referenzen der Komponente in Inline-Strings konvertiert.
+
+Daher werden \ac{HTML} und \ac{CSS} referenzen der Komponente in Inline-Strings konvertiert.
 Damit werden Konflikte bezüglich relativen und absoluten Referenz-Pfaden verhindert,
 da diese zentral in einer Angular Applikation konfiguriert werden.
 Sind Style und Markup der Komponente als Inline-String definiert,
 wird diese Konfiguration bezüglich der verteilten Komponenten hinfällig.
 \cite{ludoh30:online}
+
+
 
 \newpage
 \section{Auslieferung}

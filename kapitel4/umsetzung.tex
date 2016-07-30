@@ -115,6 +115,7 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 
 
 \subsubsection{Login und Authentifikation}
+\label{Login-und-Authentifikation}
 
 Es wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
 Der \ac{API}-Server gibt dabei einen Cookie basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
@@ -129,7 +130,7 @@ sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persis
 Dies geschieht sehr elegant mithilfe des Variablen Decorators \textbf{angular2-localstorage} \cite{marcj95:online}.
 Die zu persistierenden Variablen werden mit @Localstorage dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
 Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage geladen.
-Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator serialisiert werden um sie überhaupt Localstorage speichern zu können.
+Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden um sie überhaupt im Localstorage speichern zu können.
 
 Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die getLocalMe() Funktion ausgelesen.
 Dies ermöglicht Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
@@ -192,7 +193,6 @@ Um Übersicht zu gewährleisten wird für die Implementierung nicht relevanter I
 \newpage
 \section{Komponentenverteilung}
 
-Die Komponenten aus dem Angular 2 Projekt werden i
 
 \subsection{Vorbereitung und Veröffentlichung}
 
@@ -238,20 +238,47 @@ welche im folgenden erläutert und gelöst werden.
 
 \subsection{Absolute Asset Pfade}
 
-Angular Komponenten enthalten Template Markup und \ac{CSS} Styling, dies wird entweder inline im Code der Komponente
-definiert oder innerhalb externer \ac{HTML} und \ac{CSS} Dateien implementiert und über Dateipfade in der Komponente referenziert.
+Angular Komponenten enthalten Template Markup und \ac{CSS} Styling, welches entweder inline im Code der Komponente
+definiert oder innerhalb externer \ac{HTML} und \ac{CSS} Dateien implementiert und über Dateipfade in der Komponente referenziert wird.
 Abhängig von der Konfiguration der Komponente, des Modul Formats und des verwendeten Modul Loaders
 können relative oder Absolute Pfade zur Referenzierung der Markup und Style Assets angegeben werden.
+In der Angular Applikation werden Module mithilfe von SystemJS geladen. Dies ermöglicht die Nutzung relativer Pfade.
+Ionic hingegen liefert einen Deployment Prozess mithilfe von \emph{Browserify}, welcher eine absolute Referenz voraussetzt.
+Die Verwendung von absoluten Pfaden ist keine Option, wenn Komponenten Codebase übergreifend Verwendung finden sollen,
+da die Strukturen der beiden Applikationen komplett identisch sein müssten.
+Eine einfache Lösung für dieses Problem wäre das Markup und Style nicht in externe Dateien auszulagern,
+sondern diese innerhalb der Komponente zu definieren.
+Dies führt allerdings schnell zu unübersichtlichen Komponenten,
+wodurch deren Wartbarkeit und damit die Qualität der gesamten Anwendung drastisch abnehmen kann.
 
+Um die Komponenten aus der Angular Applikation mit relativen Asset Pfaden nutzen zu können,
+werden \ac{HTML} und \ac{CSS} Referenzen mithilfe des Moduls \emph{gulp-inline-ng2-template} noch vor der Verteilung zu Inline-Strings gewandelt \cite{ludoh30:online}.
+Dadurch werden Konflikte bezüglich relativen und absoluten Referenz-Pfaden hinfällig.
+Zudem wurde ein Pull Request in \emph{ionic-gulp-tasks} gestellt, welcher \emph{gulp-inline-ng2-template}
+in den Ionic Build Prozess integriert und damit die Nutzung relativer Asset Pfade mit \emph{Browserify} ermöglicht.
+Bisher wurde der Pull Request allerdings nicht gemerged, vermutlich weil diese Build Prozess Modifzierung die
+Transpilierungsdauer einer Ionic App von zwei auf zehn Sekunden erhöht.
+Das Ionic Team evaluiert derzeit Möglichkeiten für die Nutzung relativer Asset Pfade \cite{relat31:online}.
 
+\subsection{Angular2-Localstorage Inkompatibilität}
+In \ref{Login-und-Authentifikation} wurde die Lokale persistierung der Nutzerdaten im Localstorage
+des Browser anhand des \emph{angular2-localstorage} Decorators erläutert.
+Der Decorator wird über den Bootstrap Prozess der Angular Applikation registriert,
+dadurch werden Schreibzugriffe auf Variablen erfasst und Daten gespeichert.
+Allerdings unterscheidet sich der Bootstrap einer Ionic Anwendung von dem einer Angular Applikation.
+Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im Ionic Projekt verwendet werden kann.
+Da jedoch Funktionalität des UserServices und ApplicationMetaPickerServices auf den Decorator aufbaut,
+gilt es dieses Problem zu lösen.
 
-
-Daher werden \ac{HTML} und \ac{CSS} referenzen der Komponente in Inline-Strings konvertiert.
-Damit werden Konflikte bezüglich relativen und absoluten Referenz-Pfaden verhindert,
-da diese zentral in einer Angular Applikation konfiguriert werden.
-Sind Style und Markup der Komponente als Inline-String definiert,
-wird diese Konfiguration bezüglich der verteilten Komponenten hinfällig.
-\cite{ludoh30:online}
+Zuvor wurde in \ref{sec:services} Services, Providers und Dependency Injection erläutert wie
+Implementierungen von Services dynamisch ausgetauscht werden können.
+Die Services, welche den problematischen Decorator beinhalten, werden also für die Ionic Anwendung neu geschrieben
+und mithilfe eines Providers mit der ursprünglichen Implementierung ausgetauscht.
+Statt die Variablen mit dem Storage Decorator zu persistieren, ist im neuen Service eine \emph{persistUser()} Funktion implementiert, welche die erforderlichen Nutzerdaten nach
+erfolgreichem Login- oder Registrierungsvorgang serialisiert und in den Localstorage speichert.
+Durch einen manuellen Lesezugriff auf den Localstorage werden die Variablen innerhalb des Konstruktors initialisiert.
+Um sicherzustellen, dass der Service die nötige Funktionalität vollständig abdeckt, implementieren beide Services ein Interface,
+welches die erforderlichen Schnittstellen vorgibt.
 
 
 

@@ -117,6 +117,14 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 \subsubsection{Login und Authentifikation}
 \label{Login-und-Authentifikation}
 
+\begin{figure}[h!p!]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel4/login.jpg}
+ \caption{Login und Userservice}
+ \label{kapitel4/login}
+\end{figure}
+\vspace{0.3cm}
+
 Es wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
 Der \ac{API}-Server gibt dabei einen Cookie basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
 Zunächst wird die Login Ansicht geladen, welche das Login Element als Kind-Komponente enthält.
@@ -139,14 +147,32 @@ Sollte eine Route des \ac{API}-Servers, welche Authentifizierung erfordert, eine
 fängt der Http Interceptor den Fehler und leitet zur Login View zurück um den Nutzer für eine erneute Authentifizierung aufzufordern.
 
 
+
+
+\subsubsection{Meta Picker}
+
+Mit der Meta Picker Komponente ist ein wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
+Diese Komponente findet derzeit Verwendung in der Metrik und Graphen Sektion. Wird eine Applikation bzw. ein Zeinterval über den Picker definiert,
+wird diese Auswahl im Localstorage des Browsers persistiert und bei nachfolgenden Instanziierungen der Komponente zunächst aus dem Storage geladen und erneut ausgewählt.
+Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage}
+welcher bereits in der Implementierung \ref{Login-und-Authentifikation} Login und Authentifikation Verwendung fand.
+Abbildung \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der Komponente.
+Die binäre Option hideApplikation versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
+da innerhalb dieser View das Zusammenspiel der einzelnen Services dargestellt wird und daher nur ein Zeitfilter relevant ist.
+Über die \emph{metaUpdate()} Funktion werden Updates der Komponente aboniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
+so propagiert der Meta Picker ein Update an die äußere Komponente. \emph{\$event} beinhaltet dabei die neuen Parameter.
+
+
+\lstinputlisting[language=HTML,label=meta-picker-example,caption=Verwendungsbeispiel Meta Picker]{kapitel4/metapicker-example.html}
+
+
 \begin{figure}[h]
  \centering
- \includegraphics[width=\linewidth]{kapitel4/login.jpg}
- \caption{Login und Userservice}
- \label{kapitel4/login}
+ \includegraphics[width=\linewidth]{kapitel4/metapicker.jpg}
+ \caption{Meta Picker}
+ \label{metapicker}
 \end{figure}
 \vspace{0.3cm}
-
 
 
 \subsubsection{Bibliothek Interfaces}
@@ -267,7 +293,7 @@ Der Decorator wird über den Bootstrap Prozess der Angular Applikation registrie
 dadurch werden Schreibzugriffe auf Variablen erfasst und Daten gespeichert.
 Allerdings unterscheidet sich der Bootstrap einer Ionic Anwendung von dem einer Angular Applikation.
 Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im Ionic Projekt verwendet werden kann.
-Da jedoch Funktionalität des UserServices und ApplicationMetaPickerServices auf den Decorator aufbaut,
+Da jedoch Funktionalität des UserServices und des ApplicationMetaPickerServices auf den Decorator aufbaut,
 gilt es dieses Problem zu lösen.
 
 Zuvor wurde in \ref{sec:services} Services, Providers und Dependency Injection erläutert wie

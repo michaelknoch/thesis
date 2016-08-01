@@ -2,35 +2,35 @@
 
 \chapter{Grundlagen}
 
-Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts, sowie zum Verständnis des Kapitels `Frameworks' erforderlich sind.
+Im Folgenden werden Grundlagen erläutert die als Basis des Projekts sowie zum Verständnis von Kapitel \ref{chap:frameworks} Frameworks und Tools erforderlich sind.
 
 
 \section{Native Entwicklung}
 
-Bei der Enwticklung nativer Applikationen werden diese speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} entwickelt.
+Bei der Entwicklung nativer Applikationen wird Prorammcode speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
 Die App ist damit an die Platform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
 Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
 
-\vspace{1cm}
+\vspace{0.3cm}
 \textbf{Desktop Nativ}
 \begin{itemize}
 \item macOS (Swift, ObjectiveC, Java)
 \item Linux (C++, C\#, Java)
 \item Windows (C++, C\#, VisualBasic, Java)
 \end{itemize}
+\vspace{0.3cm}
 
 \textbf{Mobil Nativ}
 \begin{itemize}
 \item iOS (Swift, ObjectiveC)
 \item Android (Java)
 \end{itemize}
+\vspace{0.3cm}
 
-\vspace{1cm}
+\section{Mobile Cross Platform Entwicklung}
 
-\section{Cross Platform Entwicklung}
-
-Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse hybride Cross-platform Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
+Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse Cross-platform Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
 die auf diversen Platformen ausgeführt werden kann \cite{Heitkoetter2013}.
 Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
 \cite{Xamar84:online}.
@@ -66,7 +66,7 @@ wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem App
 \subsection{Web Apps (Cordova, Phonegap)}
 
 Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Anwendungen mithilfe von Webtechnologien zu entwickeln.
-HTML, CSS und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
+\ac{HTML}, \ac{CSS} und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
 sondern läuft in einer nativen Webview. Diese Apps werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie aufsetzen.
@@ -75,6 +75,12 @@ Zugriff auf Systemschnittstellen erhält man mittels Cordova Plugins. Diese biet
 Interfaces in Javascript für den Zugriff auf native Systemkomponenten wie Kamera, GPS, Dateisystem etc.
 Plugins bestehen daher aus Javascript und dem Plattform kompatiblen Code,
 also beispielsweise Swift/Objective-C für iOS oder Java für Android.
+
+\ac{UI} Entwicklung muss im Vergleich zum Xamarin Framework nicht redundant vorgenommen werden, da Implementierungen der
+Ansichten für sämtliche unterstützten Plattformen identisch ausgeliefert werden können.
+Da \ac{UI} mithilfe von \ac{HTML} und \ac{CSS} realisiert wird,
+können spezielle Stilregeln dennoch auch plattformspezifisch angewandt werden, um beispielsweise eine App zu entwickeln,
+welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
 
 \vspace{1cm}
 \lstinputlisting[language=Java,label=code,caption=Cordova Kamera Example]{kapitel2/cordova-plugin-example.js}
@@ -88,9 +94,9 @@ also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 
 Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
 von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
-womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf den \ac{DOM} von Patrioten des Internets wie Facebook oder Amazon
+womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} von Patrioten moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
 wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersicht führt,
-da die Palette an HTML5 Semantic Tags nicht ausreicht um die Vielfalt der Funktionalität einer modernen Webanwendung zu beschreiben.
+da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung zu beschreiben.
 Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
 
@@ -112,8 +118,8 @@ software components.''
 \vspace{0.5cm}
 
 Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis vom Traum der komponentenorientierten Softwareentwicklung.
-Dabei soll eine Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
-ganzes Set an Komponenten für die Konstruktion seiner Applikation zu verwenden.
+Dabei soll Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
+ganzes Set an vorgefertigten Komponenten für die Konstruktion seiner Applikation zu verwenden.
 Hierbei soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
 
 \vspace{0.5cm}
@@ -139,13 +145,13 @@ reusable blocks of UI presentation and behavior entirely with client side langua
 \vspace{1cm}
 
 Der W3C beschreibt diverse Wege, wie entkoppelte wiederverwendbare UI Elemente, sogenannte Web Components,
-in Kombination von HTML, JavaScript und CSS geschaffen werden können.
+in Kombination von \ac{HTML}, JavaScript und \ac{CSS} geschaffen werden können.
 Der Begriff Web Components beinhaltet eine Sammlung von Standards,
 welche die bereits genannte Problematik der fehlenden HTML Semantik mit bestehenden Webtechnologien lösen kann.
 Web Components funktionieren als wiederverwendbare Web Widgets mit klar definierten Schnittstellen.
 Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar sein.
 Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
-in das Markup, soll bereits die komponenteninteren Funktionalität zur Verfügung stehen
+in das Markup, soll bereits die komponenteninterne Funktionalität zur Verfügung stehen
 \cite[42]{Web-Component-Architecture}.
 Webcomponents bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
 
@@ -156,9 +162,9 @@ welche dementsprechend aufgelöst werden.
 Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen
 \cite{HTMLI44:online}.
 
-\vspace{1cm}
+\vspace{0.3cm}
 \lstinputlisting[language=HTML,label=code,caption=HTML Imports]{kapitel2/html_import.html}
-\vspace{1cm}
+\vspace{0.3cm}
 
 \subsubsection{HTML Templates}
 
@@ -178,7 +184,7 @@ Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten:
 \item createdCallback - Element wird registriert
 \item attachedCallback - Element wird in den DOM der Applikation eingefügt
 \item detachedCallback - Element wird aus dem DOM entfernt
-\item attributeChangedCallback - Attribute werden Element hinzugefügt, verändert oder entfernt
+\item attributeChangedCallback - Attribute werden Elementen hinzugefügt, verändert oder entfernt
 \end{itemize}
 
 
@@ -191,19 +197,20 @@ Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 
 \subsubsection{Polyfills}
 
+\vspace{1cm}
+\begin{figure}[htp]
+ \centering
+ \includegraphics[width=0.8\linewidth]{kapitel2/platform_support.jpg}
+ \caption{Platform Support}\cite{WebCo43:online}
+ \label{fig:platform_support}
+\end{figure}
+
 Wie in Abbildung \ref{fig:platform_support} zu sehen ist, sind Web Components noch nicht in
 allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
 Hier kommen Polyfills ins spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu Vollständigen
 Support von Web Components in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
 welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Browser diese nicht unterstützt, ermöglicht.
 
-\vspace{1cm}
-\begin{figure}[ht]
- \centering
- \includegraphics[width=0.8\linewidth]{kapitel2/platform_support.jpg}
- \caption{Platform Support}\cite{WebCo43:online}
- \label{fig:platform_support}
-\end{figure}
 
 
 \section{Typescript}
@@ -230,10 +237,10 @@ Die nächste große Neuerung kam 1999 mit ECMAScript3, in welcher einige innovat
 
 Das nächste Update ECMAScript4 war 2008 geplant, zunächst als Prototyp entwickelt,
 jedoch noch vor dem Release aufgrund eines rückschritttigem Featureset wieder aufgegeben.
-Zur selben Zeit wurde Ajax und damit eine völlig neue Art von dynamsichen Webapplikationen,
-basierend auf JavaScript, entwickelt.
+Zur selben Zeit etstand Ajax und damit eine völlig neue Art von dynamsichen Webapplikationen,
+basierend auf JavaScript.
 
-2009 erschien ECMAScript5 und erhielt vollen Support in nahezu allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
+2009 erschien ECMAScript5 und erhielt kurz darauf vollen Support in nahezu allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
 Es beinhaltet neue Features wie \ac{JSON} Support und klassische Array Funktionen wie map und forEach.
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 

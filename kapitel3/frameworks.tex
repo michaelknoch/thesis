@@ -3,9 +3,9 @@
 \chapter{Frameworks und Tools}
 \label{chap:frameworks}
 
-Im Folgenden werden die für den praktischen Teil der Arbeit genutzten Frameworks beschrieben.
+Im Folgenden werden die für den praktischen Teil der Arbeit genutzten Frameworks und Tools beschrieben.
 Ziel dieses Kapitels ist es, die Auswahl der genannten Frameworks zu begründen und
-ihren Funktionsumfang hinsichtlich der Anforderungen des Projekts zu untersuchen.
+ihren Funktionsumfang hinsichtlich der Projektanforderungen zu untersuchen.
 
 \section{AngularJS}
 
@@ -15,7 +15,7 @@ Böhm war einer der ersten Entwickler, der Angular 2012 in Deutschland bekannt m
 Man musste sich deshalb immer eine eigene Architektur überlegen. Allerdings fehlte die Erfahrung, wie man große Applikationen im Web schreibt. Das führte natürlich oft zu Chaos und unwartbaren Projekten.''\cite{Angu68:online}
 Böhm spricht mit Angular von einem sehr mächtigen Komplettpaket, welches Anwendungsentwicklung im Web auf ein neues Level hebe.
 Gründe dafür sind die geringe Lernkurve, simple Template Syntax,
-welche auf HTML aufbaut sowie hohe Wartbarkeit aufgrund einfacher Testbarkeit von einzelnen Appkomponenten.
+welche auf \ac{HTML} aufbaut sowie hohe Wartbarkeit aufgrund einfacher Testbarkeit von einzelnen Anwendungskomponenten.
 
 Böhm bezeichnet Angular 2 als ein Framework für die Zukunft.
 Anwendungen, die zeitnah in Produktion gehen sollten, würde er nach wie vor mit Angular 1 entwickeln,
@@ -31,12 +31,12 @@ Dennoch ist Böhm von den Konzepten von Angular 2 überzeugt.
 
 \subsection{Neuerungen des Framework}
 
-Angular 2 ist die Nachfolgeversion des von Google entwickelten Javascript Framework Angular 1.
+Angular 2 ist die Nachfolgeversion des von Google entwickelten JavaScript Framework Angular 1.
 Die in 2009 veröffentlichte erste Version fand großen Anklang in der Community
 und wurde als Basis für dynamische Single-page-Webanwendung verschiedenster Art und Größe genutzt.
 In den seit dem Release vergangenen Jahren hat sich die Community um das Framework immer weiter vergrößert,
-welche zur stetigen Weiterentwicklung und so zu dem Erfolg von Angular1 beigetragen hat.
-Das Github Repository der ersten Version hat mittlerweile 1.489 Contributors mit nahezu 7000 gestellten Pull Requests. \cite{ng1-github}
+welche zur stetigen Weiterentwicklung und so zu dem Erfolg von Angular 1 beigetragen hat.
+Das Github Repository der ersten Version hat mittlerweile 1.489 Contributors mit nahezu 7000 gestellten Pull Requests \cite{ng1-github}.
 
 Mit Angular 2 wurden einige Grundkonzepte überarbeitet um in eine komplett neue Richtung gehen zu können.
 Ziel von Google ist es, ein komponentenbasiertes leicht zu bedienendes Framework für moderne
@@ -45,12 +45,12 @@ Eine Angular 2 Anwendung besteht daher aus einer Vielzahl diverser Komponenten, 
 Funktionalität zu kapseln, zu abstrahieren und wieder zu verwenden. Der Fokus hierbei liegt nicht nur auf Wiederverwendbarkeit innerhalb einer Codebasis.
 Elemente der Anwendung sollen sowohl für den Browser als auch für mobile Geräte sowie für native Desktop Clients genutzt werden können.
 Angular 2 soll im Vergleich zu seiner Vorgängerversion leichter zu lernen und zu nutzen sein,
-sowie eine solide Basis auch für komplexere Webanwendungen bieten. \cite[11-12]{Angular2}
+sowie eine solide Basis auch für komplexere Webanwendungen bieten \cite[11-12]{Angular2}.
 
 
 \subsection{Komponenten}
 
-Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation und ersetzen die Direktiven aus Angular 1 nahezu vollständig.
+Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation und ersetzen Direktiven aus Angular 1 nahezu vollständig.
 UI und deren Funktionalität wird in Komponenten definiert.
 Diese werden in Angular 2 als Typescript Klasse definiert und mit @Component dekoriert.
 Der Component Decorator wird mithilfe des ES6 Imports importiert.

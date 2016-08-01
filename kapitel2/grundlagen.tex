@@ -82,9 +82,9 @@ Da \ac{UI} mithilfe von \ac{HTML} und \ac{CSS} realisiert wird,
 können spezielle Stilregeln dennoch auch plattformspezifisch angewandt werden, um beispielsweise eine App zu entwickeln,
 welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
 
-\vspace{1cm}
+\vspace{0.3cm}
 \lstinputlisting[language=Java,label=code,caption=Cordova Kamera Example]{kapitel2/cordova-plugin-example.js}
-\vspace{1cm}
+\vspace{0.3cm}
 
 \newpage
 \section{Web Components}
@@ -194,18 +194,15 @@ Seiteneffekte, bezüglich komponentenübergreifendem Style und Logik, werden ver
 Beispielsweise kann das Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
 da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments oder anderer Elemente zugreifen kann.
 Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
-
 \subsubsection{Polyfills}
-
-\vspace{1cm}
 \begin{figure}[htp]
  \centering
  \includegraphics[width=0.8\linewidth]{kapitel2/platform_support.jpg}
- \caption{Platform Support}\cite{WebCo43:online}
+ \caption{Platform Support \cite{WebCo43:online}}
  \label{fig:platform_support}
 \end{figure}
 
-Wie in Abbildung \ref{fig:platform_support} zu sehen ist, sind Web Components noch nicht in
+\noindent Wie in Abbildung \ref{fig:platform_support} zu erkennen ist, sind elementare Bestandteile, die für die Verwendung von Web Components erforderlich sind, noch nicht in
 allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
 Hier kommen Polyfills ins spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu Vollständigen
 Support von Web Components in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
@@ -217,11 +214,6 @@ welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Brow
 
 \subsection{Entwicklung von Javascript}
 
-\begin{figure}[ht]
- \centering
- \includegraphics[width=\linewidth]{kapitel2/javascript-timeline.png}
- \caption{History of Javascript}\cite[28]{EssentialTS}
-\end{figure}
 
 Javascript wurde erstmals 1996 von Brendan Eich in einer Implementierung des Netscape Navigator Browsers eingeführt,
 worauf weitere Browser die Syntax und APIs ähnlich, jedoch nicht identisch nach implementierten.
@@ -229,6 +221,12 @@ Daraufhin veröffentlichte die ECMA International einen Standard, welcher die Sp
 definieren sollte. Dieser trägt den namen ECMAScript und ist der offizielle und bekannteste Standard der
 Sprache. ActionScript von Macromedia und JScript von Microsoft sind weitere Implementierungen der Browsersprache,
 die nicht dem ECMA Standard entsprechen, jedoch darauf aufbauen.
+
+\begin{figure}[hp]
+ \centering
+ \includegraphics[width=\linewidth]{kapitel2/javascript-timeline.png}
+ \caption{History of Javascript \cite[28]{EssentialTS}}
+\end{figure}
 
 1997 wurde die erste Version des nun standardisiertem ECMAScript veröffentlicht. Ein Jahr später erschien bereits ECMAScript2,
 allerdings beinhaltete dieses Update nur kleine Änderungen um einem parallel entstandenen ISO Standard von JavaScript zu implementieren.
@@ -252,9 +250,9 @@ dann allerdings bis in den Juni 2015 verschoben und ist bis heute noch nicht aus
 
 Typescript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von ES6, d.h. sie implementiert den JavaScript Standard und ergänzt diesen
-durch zusätzliche Features, wie der statischen Typisierung.
-Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative sein \cite[28]{EssentialTS}.
-Zusammen mit ES6 erhalten Entwickler gegenüber ES5 folgende Features:
+durch zusätzliche Features.
+Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
+Zusammen mit dem Featureset von EcmaScript5 erhalten Entwickler gegenüber ES5 folgende Features:
 
 \begin{figure}[ht]
  \centering
@@ -275,21 +273,34 @@ leichter zu schreiben und aussagekräftiger zu lesen \cite[156]{ng-Book-2}.
 
 Mit ES6 Klassen wurde eine neue Syntax für das prototypische Vererbungsmodell von Javascript entwickelt.
 Dabei handelt es sich nicht um die Einführung eines neuen OOP-Modells, sondern lediglich um eine vereinfachte Syntax für Objekte und deren Schnitstellen,
-sowie die Realisierung von Abstraktionen, wie sie aus anderen Objektorientierten sprachen wie C++, Swift oder Java bereits bekannt sind.\cite{js-Klassen}
+sowie die Realisierung von Abstraktionen, wie sie aus anderen Objektorientierten sprachen wie C++, Swift oder Java bereits bekannt sind \cite{js-Klassen}.
+Ein Beispiel für eine ES6 Klasse ist in Listing \ref{es6class} implementiert.
 
-\lstinputlisting[language=Java,label=code,caption=Klassen in ES6]{kapitel2/class.js}
+\lstinputlisting[language=Java,label=es6class,caption=Klassen in ES6]{kapitel2/class.js}
 
 \subsubsection{Module}
 
-In ES5 gab es keinen Standard um Funktionen und Variablen in Namensräumen zu organisieren oder dynamisch Code zu laden.
-Mit ES6 wurde das fehlende Feature durch das Exportieren und Importieren von Modulen ergänzt. Dadurch wird es sehr bequem, Programmcode zu organisieren und zu laden.
-Jedes ES6 Modul wird in einer eigenen Datei gespeichert. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn, sie werden explizit exportiert.
-Mittels Export lassen sich also Schnittstellen für ein Modul definieren, welche importiert und verwendet werden können.
+Innerhalb des ES5 Standards gab es keine Möglichkeit Funktionen und Variablen strukturiert in Namensräumen zu organisieren oder dynamisch Code zu laden.
+Mit ES6 wurde das fehlende Feature durch das Exportieren und Importieren von Modulen ergänzt. Dadurch wird es einfacher, Programmcode zu organisieren.
+Jedes ES6 Modul kann dabei in eine eigenene Datei ausgelagert werden. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn, sie werden explizit exportiert.
+Mittels Export lassen sich also Schnittstellen für Module definieren, welche daraufhin importiert und verwendet werden können.
 In Typescript lassen sich ganze Klassendefinitionen exportieren.
 Dabei ist es möglich, Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
 Public Funktionen sind dann auch von außen nutzbar.
 
 \lstinputlisting[language=Java,label=code,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}
+
+\subsection{Decorator}
+
+Typescirpt Decorator ermöglichen eine Implementierung des Dekorierer Pattern um Klassen,
+Funktionen und Variablen deklarativ um Funktionalität zu erweitern. Dies ermöglicht eine zentrale Implementierung von
+Funktionalität, welche mithilfe des @ Symbols und einer nachfolgenden Funktion an Elemente einer Anwendung angebracht werden kann.
+Eine sehr vereinfachte Implementierung eines Decorators ist in Listing \ref{decorator-example} dargestellt.
+
+\vspace{0.3cm}
+\lstinputlisting[language=Java,label=decorator-example,caption=Decorator Beispiel]{kapitel2/decorator-example.ts}
+\vspace{0.3cm}
+
 
 \subsection{Transpilierung}
 
@@ -305,5 +316,5 @@ In der nachfolgenden Abbildung ist zu sehen, wie Typescript-Code in funktionsfä
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.8\linewidth]{kapitel2/Introduction-transpiler.png}
- \caption{Transpilierung}\cite[27]{ng-Book-2}
+ \caption{Transpilierung \cite[27]{ng-Book-2}}
 \end{figure}

@@ -3,17 +3,17 @@
 \chapter{Umsetzung}
 \label{chap:umsetzung}
 
-Im nachfolgenden wird die Konzeption und Umsetzung der in \ref{sec:anforderungsanalyse}
-beschriebenen Anforderungen an das Projekt \projectname{} erläutert.
+Im Nachfolgenden soll die Konzeption und die Umsetzung der in \ref{sec:anforderungsanalyse}
+beschriebenen Anforderungen an das Projekt \projectname{} erläutert werden.
 Der Schwerpunkt soll dabei speziell auf die Cross Plattform Architektur sowie auf die
-Entwicklung der Komponenten hinsichtlich wiederverwendbarkeit gerichtet werden.
+Entwicklung der Komponenten hinsichtlich Wiederverwendbarkeit gerichtet werden.
 
 
 \section{Applikationsstruktur}
 
 In diesem Kapitel wird die Konzeptphase der Plattformübergreifenden Applikationsstruktur
 (Abbildung \ref{kapitel4/arch}) erläutert.
-Um Endprodukte für Web, Desktop und App zu generieren werden die Frameworks Angular 2, Electron und das
+Um Endprodukte für Web, Desktop und App zu generieren, werden die Frameworks Angular 2, Electron und das
 Ionic \ac{SDK} verwendet. Die Codebase für die Web- und Desktop Anwendung lassen sich so weit vereinen,
 dass diese innerhalb eines Repositories implementiert werden können.
 Ein weiteres Repository beinhaltet die hybride Applikation,
@@ -41,27 +41,12 @@ Repository-übergreifend für die Verwendung im Ionic 2 Projekt verteilt.
 \vspace{0.3cm}
 
 
-\section{Verteilungsinfrastruktur}
-
-Es wird eine Infrastruktur benötigt um Komponenten projektübergreifend verteilen zu können.
-Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
-sowie Ionic Projekt zu integrieren. Symlinks lassen sich allerdings nicht versionieren, daher würde
-für jeden neuen Entwickler ein komplexer initialer Konfigurationsaufwand entstehen.
-Des Weiteren sollen Komponenten womöglich nicht nur in der Ionic App,
-sondern in vielen weiteren auf Angular 2 basierenden Projekten wiederverwendet werden.
-Eine Komponente oder ein Paket diverser Komponenten soll veröffentlicht und aktuell
-gehalten werden und soll von Entwicklern genutzt werden können.
-
-Es liegt nahe dieses Problem mithilfe eines Paketmanagers zu lösen. Angular und Ionic verwenden für das Management
-ihrer Kern-Abhängigkeiten den \ac{NPM}.
-Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden. Closed Source Pakete können
-bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
 
 \section{Komponentenentwicklung}
 
 \subsection{Komponententypen}
 
-Im folgenden werden Ansätze der Komponentenentwicklung bezüglich der in
+Im Folgenden werden Ansätze der Komponentenentwicklung bezüglich der in
 \projectname{} erforderlichen Funktionalitäten entwickelt.
 
 
@@ -69,13 +54,13 @@ Im folgenden werden Ansätze der Komponentenentwicklung bezüglich der in
 
 Bei der Entwicklung generischer Komponenten ist der Begriff der Wiederverwendbarkeit von zentraler Bedeutung.
 Komponenten werden im Vergleich zum spezifischen Ansatz nicht nur für einen Anwendungsfall konzipiert, sondern können
-für diverse meist ähnliche Anwendungsbereiche genutzt werden. Dabei soll die Komponente nicht nur in der mobilen Ionic App,
-sondern Projektübergreifend Verwendung finden.
+für diverse, meist ähnliche Anwendungsbereiche genutzt werden. Dabei soll die Komponente nicht nur in der mobilen Ionic App,
+sondern projektübergreifend Verwendung finden.
 Typisch für generische Angular 2 Komponenten ist die Verwendung des @Input Kanals.
-Dabei werden zum einen Daten- und zur individualisierung nötige Konfigurationsobjekte in die Komponente eingeschleust.
+Dabei werden zum einen Daten- und zur Individualisierung nötige Konfigurationsobjekte in die Komponente eingeschleust.
 Einige Komponenten der Applikation \projectname{} sind
-generisch Entwickelt und OpenSource auf Github veröffentlicht.
-Dadurch kann die Komponente von dritten genutzt und womöglich erweitert werden.
+generisch entwickelt und OpenSource auf Github veröffentlicht.
+Dadurch kann die Komponente von Dritten genutzt und auch erweitert werden.
 
 
 \subsubsection{spezifischer Ansatz}
@@ -93,19 +78,19 @@ sodass sie völlig eigenständig nutzbar sind und untereinander keine Abhängigk
 Jede Komponente beinhaltet individuelle \ac{MVC} Schichten für die Implementierung der Funktionalität von der View bis zur Datenschicht.
 Modelklassen (Typisierung) und Services befinden sich innerhalb der Komponente und nicht innerhalb eines globalen Model Layers.
 Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübergreifende Abhängigkeiten.
-Wird Funktionalität in Services, welcher von mehreren Komponenten genutzt wird, implementiert
-so sollte dieser nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht zur globalen Verwendung befinden.
+Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert
+so sollte diese nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht zur globalen Verwendung befinden.
 Ferner ist es warscheinlich, dass Typescript Modelklassen (Typisierung) ebenfalls in mehreren Komponenten verwendet werden.
 Dennoch sollten diese nicht redundant implementiert,
-sondern Zentral zur Verfügung gestellt werden. Es stellt sich also heraus,
+sondern zentral zur Verfügung gestellt werden. Es stellt sich also heraus,
 dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
-sondern es durchaus Sinn ergibt Komponentenpakete über die Infrastruktur zu verteilen.
+sondern es durchaus Sinn ergibt, Komponentenpakete über die Infrastruktur zu verteilen.
 
 
 \subsection{Komponenten Generator}
 
-Um den Entwicklungsprozess der Anwendung zu beschleunigen wurde mithilfe von yeoman.io ein Komponenten-Generator entwickelt.
-Dieser ermöglicht die Grundstruktur neuer Komponenten anhand diverser Optionen in kurzer Zeit auszuliefern.
+Um den Entwicklungsprozess der Anwendung zu beschleunigen, wurde mithilfe von yeoman.io ein Komponenten-Generator entwickelt.
+Dieser ermöglicht es die Grundstruktur neuer Komponenten anhand diverser Optionen in kurzer Zeit auszuliefern.
 Dabei wird der Name sowie der Auslieferungsort der neuen Komponente während der Generierung im Terminal erfragt.
 Zusätzlich kann definiert werden, ob externe \ac{HTML} und \ac{CSS} Dateien angelegt, oder ob diese inline in der Komponente genutzt werden sollen.
 Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentlicht
@@ -117,7 +102,7 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 \subsubsection{Login und Authentifikation}
 \label{Login-und-Authentifikation}
 
-\begin{figure}[h!p!]
+\begin{figure}[hptb]
  \centering
  \includegraphics[width=\linewidth]{kapitel4/login.jpg}
  \caption{Login und Userservice}
@@ -126,7 +111,7 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 \vspace{0.3cm}
 
 Es wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
-Der \ac{API}-Server gibt dabei einen Cookie basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
+Der \ac{API}-Server gibt dabei einen Cookie-basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
 Zunächst wird die Login Ansicht geladen, welche das Login Element als Kind-Komponente enthält.
 In dieser sind die nötigen Eingabefelder sowie die Anbindung an den UserService implementiert.
 Der UserService bedient die Login und Register Schnittstelle des \ac{API}-Servers.
@@ -141,7 +126,7 @@ Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage gel
 Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden um sie überhaupt im Localstorage speichern zu können.
 
 Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die getLocalMe() Funktion ausgelesen.
-Dies ermöglicht Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
+Dies ermöglicht es Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
 Zusätzlich ist ein globaler Http Interceptor implementiert, welcher bei jedem ausgehenden Request der Anwendung prüft, ob das zuvor gesetzte Cookie noch Gültigkeit besitzt.
 Sollte eine Route des \ac{API}-Servers, welche Authentifizierung erfordert, einen Statuscode 401 (Unauthorized) liefern,
 fängt der Http Interceptor den Fehler und leitet zur Login View zurück um den Nutzer für eine erneute Authentifizierung aufzufordern.
@@ -166,7 +151,7 @@ so propagiert der Meta Picker ein Update an die äußere Komponente. \emph{\$eve
 \lstinputlisting[language=HTML,label=meta-picker-example,caption=Verwendungsbeispiel Meta Picker]{kapitel4/metapicker-example.html}
 
 
-\begin{figure}[h]
+\begin{figure}[hptb]
  \centering
  \includegraphics[width=\linewidth]{kapitel4/metapicker.jpg}
  \caption{Meta Picker}
@@ -177,16 +162,16 @@ so propagiert der Meta Picker ein Update an die äußere Komponente. \emph{\$eve
 
 \subsubsection{Bibliothek Interfaces}
 
-In \projectname werden die externen Bibliotheken Chart.js und Cytoscape.js verwendet.
+In \projectname{} werden die externen Bibliotheken Chart.js und Cytoscape.js verwendet.
 Für deren Nutzung sind Interfaces in Form von Komponenten implementiert.
-Das bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand globaler \ac{DOM} Zugriffe (Listing \ref{component-interface-1}),
+Dies bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand globaler \ac{DOM} Zugriffe (Listing \ref{component-interface-1}),
 sondern durch Angular Komponenten realisiert werden.
 
-\newpage
+
 \paragraph{Chart.js}
 ist eine Bibliothek für das Zeichnen komplexer Diagramme.
-Es wird in \projectname{} hauptsächlich für die visualisierung der Daten für die Metrik Sektion verwendet.
-Chart.js ist responsive implementiert, d.h. die Charts können sowohl für den Desktop
+Es wird in \projectname{} hauptsächlich für die Visualisierung der Daten für die Metrik Sektion verwendet.
+Chart.js ist responsive implementiert, das heißt die Charts können sowohl für den Desktop
 als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
 
 \vspace{0.3cm}
@@ -199,10 +184,10 @@ Die Komponente wird von Valor Software entwickelt und steht quelloffen unter der
 
 Die Komponente erweist sich als sehr hilfreich, da das Chart bereits durch die simple Verwendung des Komponenten-Selektors (base-chart) instanziiert werden kann.
 Des Weiteren werden die zu visualisierenden Daten sowie ein optionales Konfigurationsobjekt über den Selektor an die Komponenten übergeben.
-Ändert sich das Datenobjekt wird das Chart automatisch aktualisiert.
+Ändert sich das Datenobjekt, wird das Chart automatisch aktualisiert.
 
 
-\newpage
+
 \paragraph{Cytoscape.js}
 ist eine Bibliothek zur Visualisierung und Analyse komplexer Netzwerke.
 Diese findet in \projectname{} Verwendung in der Implementierung der Graphen-Sektion,
@@ -219,6 +204,34 @@ Um Übersicht zu gewährleisten wird für die Implementierung nicht relevanter I
 \newpage
 \section{Komponentenverteilung}
 
+\subsection{Verteilungsinfrastruktur}
+
+Es wird eine Infrastruktur benötigt, um Komponenten projektübergreifend verteilen zu können.
+Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
+sowie Ionic Projekt zu integrieren. Symlinks lassen sich allerdings nicht versionieren, daher würde
+für jeden neuen Entwickler ein komplexer initialer Konfigurationsaufwand entstehen.
+Des Weiteren sollen Komponenten womöglich nicht nur in der Ionic App,
+sondern in vielen weiteren auf Angular 2 basierenden Projekten wiederverwendet werden.
+Eine Komponente oder ein Paket diverser Komponenten soll veröffentlicht, aktuell
+gehalten und von Entwicklern genutzt werden können.
+
+Es liegt nahe dieses Problem mithilfe eines Paketmanagers zu lösen. Angular und Ionic verwenden für das Management
+ihrer Kern-Abhängigkeiten den \ac{NPM}.
+Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden. Closed Source Pakete können
+bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
+Da \projectname{} Open Source entwickelt wird,
+reicht ein kostenfreier Basis Account für die Verteilung der Awendungs-Komponenten völlig aus.
+
+Es wäre denkbar jede Komponente über ein eigenes \ac{NPM} Paket zu veröffentlichen.
+Allerdings würde dies nicht nur den Veröffentlichungs- und Update Mechanismus erschweren,
+sondern würde auch eine aufwändige Definition von Modulabhängigkeiten bedeuten.
+Um die Komplexität der Infrastruktur nicht unnötig zu erhöhen,
+werden Komponenten, welche anhand des spezifischen Ansatzes entwickelt werden,
+gemeinsam innerhalb eines \ac{NPM} Moduls \emph{(mia-distributed)} verteilt.
+So ist sichergestellt, dass alle spezifischen Abhängigkeiten innerhalb eines Pakets aufgelöst werden können.
+Generische Komponenten werden jeweils eigenständig veröffentlicht und als Abhängigkeiten von \emph {mia-distributed} deklariert.
+So wird sichergestellt, dass generisch entwickelte Abhängigkeiten beim installieren von \emph{mia-distributed}
+ebenfalls geladen und installiert werden und diese dennoch problemlos von dritten verwendet werden können.
 
 \subsection{Vorbereitung und Veröffentlichung}
 
@@ -232,7 +245,7 @@ Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jew
 
 Eine d.ts Datei wird als TypeScript Declaration File bezeichnet.
 Es beschreibt Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden.
-Das Declaration File ermöglicht die Verwendung von JavaScript Code, beispielswiese einer externen Bibliothek,
+Das Declaration File ermöglicht die Verwendung von JavaScript Code, beispielsweise einer externen Bibliothek,
 in ein TypeScript Projekt. Das Declaration File fungiert dabei als Typescript Interface
 für die JavaScript Implementierung und gewährleistet statische Typisierung
 und Autovervollständigung in unterstützenden IDEs.
@@ -245,10 +258,10 @@ damit Typen und Schnittstellen der Komponenten im Ionic Projekt verwendet werden
 
 \subsubsection{SourceMap (.map)}
 Durch die Verwendung von *-to-JavaScript Transpilern und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
-Der zur Entwicklungszeit geschriebene Code ist nicht der Selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
+Der zur Entwicklungszeit geschriebene Code ist nicht der selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
 Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nur erschwert auf den Ursprungscode abgebildet werden.
 Der Typescript Transpiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
-welche dabei als Referenztabelle zwischen Quell und Zielcode fungieren.
+welche dabei als Referenztabelle zwischen Quell- und Zielcode fungieren.
 Wird die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, geöffnet, kann der ursprünglichen Code inspiziert werden.
 SourceMaps werden in \projectname{} verwendet um transpilierten Code während der Ausführung der Angular so wie Ionic Anwendung debuggen zu können.
 \cite{Using97:online}
@@ -260,14 +273,14 @@ SourceMaps werden in \projectname{} verwendet um transpilierten Code während de
 Sie stehen im Projekt innerhalb der Node Modules zur Verfügung und können in das Projekt importiert und verwendet werden.
 
 Bei der Wiederverwendung der entwickelten Komponenten im Ionic Projekt sind diverse Problemstellungen entstanden,
-welche im folgenden erläutert und gelöst werden.
+welche im Folgenden erläutert und gelöst werden sollen.
 
-\subsection{Absolute Asset Pfade}
+\subsubsection{Absolute Asset Pfade}
 
 Angular Komponenten enthalten Template Markup und \ac{CSS} Styling, welches entweder inline im Code der Komponente
 definiert oder innerhalb externer \ac{HTML} und \ac{CSS} Dateien implementiert und über Dateipfade in der Komponente referenziert wird.
 Abhängig von der Konfiguration der Komponente, des Modul Formats und des verwendeten Modul Loaders
-können relative oder Absolute Pfade zur Referenzierung der Markup und Style Assets angegeben werden.
+können relative oder absolute Pfade zur Referenzierung der Markup und Style Assets angegeben werden.
 In der Angular Applikation werden Module mithilfe von SystemJS geladen. Dies ermöglicht die Nutzung relativer Pfade.
 Ionic hingegen liefert einen Deployment Prozess mithilfe von \emph{Browserify}, welcher eine absolute Referenz voraussetzt.
 Die Verwendung von absoluten Pfaden ist keine Option, wenn Komponenten Codebase übergreifend Verwendung finden sollen,
@@ -286,7 +299,7 @@ Bisher wurde der Pull Request allerdings nicht gemerged, vermutlich weil diese B
 Transpilierungsdauer einer Ionic App von zwei auf zehn Sekunden erhöht.
 Das Ionic Team evaluiert derzeit Möglichkeiten für die Nutzung relativer Asset Pfade \cite{relat31:online}.
 
-\subsection{Angular2-Localstorage Inkompatibilität}
+\subsubsection{Angular2-Localstorage Inkompatibilität}
 In \ref{Login-und-Authentifikation} wurde die Lokale persistierung der Nutzerdaten im Localstorage
 des Browser anhand des \emph{angular2-localstorage} Decorators erläutert.
 Der Decorator wird über den Bootstrap Prozess der Angular Applikation registriert,
@@ -296,7 +309,7 @@ Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im 
 Da jedoch Funktionalität des UserServices und des ApplicationMetaPickerServices auf den Decorator aufbaut,
 gilt es dieses Problem zu lösen.
 
-Zuvor wurde in \ref{sec:services} Services, Providers und Dependency Injection erläutert wie
+Zuvor wurde in \ref{sec:services} Services, Providers und Dependency Injection erläutert, wie
 Implementierungen von Services dynamisch ausgetauscht werden können.
 Die Services, welche den problematischen Decorator beinhalten, werden also für die Ionic Anwendung neu geschrieben
 und mithilfe eines Providers mit der ursprünglichen Implementierung ausgetauscht.
@@ -313,7 +326,7 @@ welches die erforderlichen Schnittstellen vorgibt.
 
 Um die Auslieferung für die jeweiligen Plattformen zu ermöglichen
 sind im Rahmen des Projekts \projectname{} diverse Deployment Prozesse entstanden,
-welche im folgenden erläutert werden.
+welche im folgenden erläutert werden sollen.
 
 \subsection{Web}
 \label{deployment-web}
@@ -328,7 +341,7 @@ Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek RxJs.
 Zunächst werden externe \ac{HTML} und \ac{CSS} Assets von Komponenten in
 inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \textbf{app.bundle.js} Datei zusammengefasst.
 Möglich wäre den Code aus der resultierenden app.bundle.js zu minifizieren,
-wodurch er zum einen unkenntlicher um damit schwerer zu kopieren wird,
+wodurch er zum einen unkenntlicher und damit schwerer zu kopieren wird,
 zusätzlich würde er weiter an Dateigröße verlieren. Da sich die Applikation \projectname{}
 jedoch noch nicht in einem produktionsreifen Zustand befindet, wird Minifizierung zunächst ausgelassen.
 Die 624 Dateirequests konnten auf 16 reduziert werden wodurch die Applikation bereits nach 1,9
@@ -338,11 +351,11 @@ Die Menge der geladenen Daten wird aufgrund fehlender Minifizierung nahezu kaum 
 \subsection{Desktop}
 
 \subsubsection{Auslieferung}
-Um die Ladezeit der Desktop App ebenfalls gering zu halten baut der Auslieferungsprozess der Electron App
+Um die Ladezeit der Desktop App ebenfalls gering zu halten, baut der Auslieferungsprozess der Electron App
 auf den in \ref{deployment-web} beschrieben Prozess der Webapplikation auf. Daher werden Applikationscode und die
 Abhängigkeiten von Angular zunächst ebenfalls zu einer \textbf{app.bundle.js} Datei zusammengefasst.
 Das Node Modul \textbf{electron-packager} ermöglicht die Generierung der Electron App für verschiedene Plattformen,
-welche eigenständig Ausgeführt werden kann.
+welche eigenständig ausgeführt werden kann.
 Ein weiteres Node Modul \textbf{electron-release} ermöglicht eine Veröffentlichung
 der Anwendung innerhalb der Releases auf dem Github Repository.
 Dort kann die App von Nutzern heruntergeladen und verwendet werden.
@@ -357,7 +370,8 @@ Electron autoUpdater ist dabei nur eine Schnittstelle welche das Squirrel Framew
 für Automatisierungen für Windows und MacOS bedient.
 Notwendig für die Hintergrundaktualisierung ist ein REST-Service, welcher beim Start der Anwendung mit der
 aktuellen Version angefragt werden kann
-und daraufhin einen Downloadpfad für ein womögliches Update liefert.
+und daraufhin einen Downloadpfad für ein eventuell verfügbares Update liefert.
+Sollte kein Update zur Verfügung stehen wird ein Statuscode 204 (No Content) geliefert.
 Electron autoUpdater lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
 Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 
@@ -373,4 +387,4 @@ welcher durch den Befehl \textbf{ionic build ios} und \textbf{ionic build androi
 erstellt dabei die Applikation für die jeweilige Zielplattform.
 Für die Veröffentlichung in den Stores ist die Freischaltung eines Entwickler Accounts erforderlich,
 welche durch eine einmalige Zahlung von 25\$ für den Google Play Store bzw. einer jährlichen Gebühr von 99\$
-für den iOS AppStore so wie einer Prüfung der Person bzw. des Unternehmens erfolgt.
+für den iOS AppStore so wie einer Prüfung der Person beziehungsweise des Unternehmens erfolgt.

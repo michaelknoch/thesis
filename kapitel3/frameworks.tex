@@ -29,18 +29,18 @@ noch in der Entstehung.
 Dennoch ist Böhm von den Konzepten von Angular 2 überzeugt.
 
 
-\subsection{Neuerungen des Framework}
+\subsection{Neuerungen des Frameworks}
 
 Angular 2 ist die Nachfolgeversion des von Google entwickelten JavaScript Framework Angular 1.
-Die in 2009 veröffentlichte erste Version fand großen Anklang in der Community
+Die 2009 veröffentlichte erste Version fand großen Anklang in der Community
 und wurde als Basis für dynamische Single-page-Webanwendung verschiedenster Art und Größe genutzt.
 In den seit dem Release vergangenen Jahren hat sich die Community um das Framework immer weiter vergrößert,
 welche zur stetigen Weiterentwicklung und so zu dem Erfolg von Angular 1 beigetragen hat.
 Das Github Repository der ersten Version hat mittlerweile 1.489 Contributors mit nahezu 7000 gestellten Pull Requests \cite{ng1-github}.
 
-Mit Angular 2 wurden einige Grundkonzepte überarbeitet um in eine komplett neue Richtung gehen zu können.
-Ziel von Google ist es, ein komponentenbasiertes leicht zu bedienendes Framework für moderne
-Webanwendungen zu schaffen, welches Performanceverbesserungen und transparentere interne Strukturen als die Vorgängerversion aufweisen soll.
+Mit Angular 2 wurden einige Grundkonzepte überarbeitet, um in eine komplett neue Richtung gehen zu können.
+Ziel von Google ist es, ein komponentenbasiertes und leicht bedienbares Framework für moderne
+Webanwendungen zu schaffen, das Performanceverbesserungen und transparentere interne Strukturen als die Vorgängerversion aufweisen soll.
 Eine Angular 2 Anwendung besteht daher aus einer Vielzahl diverser Komponenten, wodurch es möglich wird,
 Funktionalität zu kapseln, zu abstrahieren und wieder zu verwenden. Der Fokus hierbei liegt nicht nur auf Wiederverwendbarkeit innerhalb einer Codebasis.
 Elemente der Anwendung sollen sowohl für den Browser als auch für mobile Geräte sowie für native Desktop Clients genutzt werden können.
@@ -71,17 +71,17 @@ Die Klasse wird mit dem ES6 Prefix öffentlich exportiert. Die Sichtbarkeit von 
 innerhalb der Klasse kann mithilfe der Prefixe private und public definiert werden.
 Dadurch ist es möglich, Funktionalität und Daten in eine Komponente, unsichtbar für deren Verwender, zu kapseln.
 
-\vspace{1cm}
+\vspace{0.3cm}
 \lstinputlisting[language=Java,label=code,caption=Basic Component]{kapitel3/basic-component.ts}
-\vspace{1cm}
+\vspace{0.3cm}
 
 
 \subsubsection{Vererbung}
 
 Vererbung ist eines der Grundkonzepte von Objektorientientierung,
-welches eingesetzt wird um Verhalten von Objekten bezüglich Wiederverwendbarkeit zu
+welches eingesetzt wird, um Verhalten von Objekten bezüglich Wiederverwendbarkeit zu
 abstrahieren. Angular 2 Komponenten bestehen aus Klassen, daher
-kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren
+kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren,
 um redundanten Code zwischen den Komponenten
 zu vermeiden. Funktionalität wird dabei von der Komponente in eine dritte Klasse ausgelagert,
 welche mit dem Schlüsselwort extend als
@@ -156,9 +156,9 @@ Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume
 \label{Services-als-Singletons}
 
 Wie bereits erwähnt, ermöglichen \ac{DI} Provider Services als Singleton zu instanziieren.
-Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden
-um Funktionalität aus Komponenten zu abstrahieren um in weiteren Komponeten verwendet zu werden,
-auf der anderen Seite können sie jedoch auch genutzt werden um Daten multiplen Komponenten zur Verfügung zu stellen.
+Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden,
+um Funktionalität aus Komponenten zu abstrahieren um in weiteren Komponeten verwendet zu werden.
+Auf der anderen Seite können sie jedoch auch genutzt werden, um Daten multiplen Komponenten zur Verfügung zu stellen.
 Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird. Daher erhalten alle
 Komponenten, die den Service injizieren, die selbe Referenz, somit die selbe Instanz und daher die selbe globale Datenbasis.
 In einem Userservice könnte beispielweise eine Boolean Variable definiert sein, welche Auskunft darüber gibt,
@@ -179,10 +179,10 @@ welche das Template in der Component Decoration referenziert. \cite{Templ78:onli
 
 \subsection{Kommunikation}
 
-Da eine Angular 2 Applikation auschlißelich aus Komponenten besteht, müssen diese zwangsweise miteinander
-kommunizieren können. Für den Austausch von Daten gibts es verschiedene Ansätze.
-Wie bereits in \ref{Services-als-Singletons} erwähnt, werden Services im Normalfall als Singleton
-instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hierbei für den
+Da eine Angular 2 Applikation ausschließlich aus Komponenten besteht, müssen diese zwangsweise miteinander
+kommunizieren können. Für den Austausch von Daten gibt es verschiedene Ansätze.
+Wie bereits in \ref{Services-als-Singletons} Services als Singletons erwähnt, werden Services im Normalfall als Singleton
+instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hier für den
 Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen hinaus,
 können Events in Komponenten oder Services definiert, und von derer ebenfalls aboniert werden,
 um asynchrone Kommunikation applikationsintern zu ermöglichen.
@@ -195,18 +195,15 @@ direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden be
 relevante Daten über den Input Tag übergeben und über den Output Kanal in Form von Event Emittern aboniert. \cite{Angul94:online}
 
 Handelt es sich speziell von Kindkomponenten und nicht um Nachbarkomponenten,
-kann mithilfe der Annotation ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
+kann durch die Annotation ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
 Die Kommunikation geschieht in diesem Fall nicht über die View Layer der Komponenten,
 sondern direkt von der Elternkomponente zu ihrer Kindinstanz. \cite{ViewC61:online}
 
-\subsection{Performance}
 
-\subsubsection{Serverside Rendering}
-
-\subsubsection{Change Detection}
+\subsection{Change Detection}
 
 Beim Start einer Angular2 Applikation wird nach anfänglichem Laden der Seite eine View gerendert.
-Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet dem Nutzer somit mittels Text,
+Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet dem Nutzer so mittels Text,
 Formularen, Buttons, Bildern etc. visuell aufbereitet.
 Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
 Zugriffe auf den DOM sind ressourcenintensiv, daher sollten DOM Manipulationen nicht inflationär stattfinden.
@@ -215,20 +212,20 @@ Dies geschieht asynchron. Es ist also davon auszugehen, dass sobald eine asynchr
 sich Daten geändert haben können und die View aktualisiert werden muss.
 \cite{changedetection-explained}
 
-\subsubsection{NgZone}
+\subsection{NgZone}
 
 Zones sind ein internes Feature der Programmiersprache Dart. Da Dart zu JavaScript compiliert werden kann,
-können Zones ebenfalls in JavaScript genutzt werden. Zone.js als Portierung für JavScript entstanden, welche in Angular2 genutzt wird.
+können Zones ebenfalls in JavaScript genutzt werden. Zone.js ist als Portierung für JavScript entstanden, welche in Angular2 genutzt wird.
 Zones sind Ausführungskontexte (Scopes) für die Observation asynchroner Operationen.
 Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösen innerhalb des entsprechenden Ausführungskontexts verschiedene Events aus.
 NgZone ist ein Fork von zone.js, welcher die Basisfunktionalität um zusätzliche Events erweitert.
 Für die Change Detection relevant ist dabei das event onTurnDone().
 \cite{changedetection-explained}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \textbf{``onTurnDone() - Notifies subscribers immediately after Angular’s zone is done processing the current turn and any micro tasks scheduled from that turn.''}
 \cite{ZONESINANGULAR2}
-\vspace{0.5cm}
+\vspace{0.3cm}
 
 Sobald das onTurnDone() Event ausgelöst wird, löst NgZone wiederum eine tick() Event aus, welches schlussendlich die Change Detection startet.
 Jede Angular2 Komponente besitzt seinen eigenen Change Detector. Da eine Angular2 Applikation aus einem Komponentenbaum besteht,
@@ -251,7 +248,7 @@ Dieser Code kann von virtuellen Maschinen optimiert und daher vergleichsweise sc
 \newpage
 \section{Ionic}
 
-Im nachfolgenden wird die Relevanz des Frameworks Ionic 2 bezüglich des Projekts \projectname{} evaluiert.
+Im nachfolgenden soll die Relevanz des Frameworks Ionic 2 bezüglich des Projekts \projectname{} evaluiert werden.
 
 \subsection{Einführung}
 
@@ -262,13 +259,13 @@ da sie eine Mischform zwischen Web-Apps und nativen Applikationen darstellen.
 Eine hybride App ist zunächst eine Webanwendung, die einen Browser für ihre Ausführung benötigt.
 Als Browser wird die native Webview der jeweiligen Platform verwendet,
 beispielsweise Safari für iOS und Chrome für Android.
-Mithilfe von Cordova Plugins kann auf das \ac{API} des Systems zugegriffen werden um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden.
+Mithilfe von Cordova Plugins kann auf das \ac{API} des Systems zugegriffen werden, um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden.
 \cite{ionic34:online}
 
 \subsection{Ionic Components}
 
 \ac{UI} Elemente einer Ionic Anwendung werden mithilfe von Angular 2 Komponenten realisiert.
-Dabei können diese wie in einer Angular 2 App anhand ihres HTML Selektors wiederverwendet werden.
+Dabei können diese, wie in einer Angular 2 App, anhand ihres HTML Selektors wiederverwendet werden.
 Komponenten können dabei wiederum verschachtelt werden, so dass ein Komponentenbaum entsteht.
 
 Das Ionic \ac{SDK} stellt Entwicklern eine ganze Reihe an vorgefertigten Komponenten zur Verfügung,
@@ -281,9 +278,9 @@ Theming wird in einer Ionic Anwendung durch \ac{CSS} realisiert.
 Styles werden entweder in eine Komponente gekapselt oder global definiert.
 Globale Stile können dabei plattformspezifisch oder plattformunabhängig definiert werden.
 So befinden sich in einer klassischen Ionic 2 App individuelle Styles für iOS, Android und Windowsphone.
-Dadurch kann das umzusetzende \ac{CI} flexiblel getreu dem Standard der Plattform entwickelt werden.
+Dadurch kann das umzusetzende \ac{CI} flexibel getreu dem Standard der Plattform entwickelt werden.
 Soll eine Anwendung bezüglich Optik für jede Plattform identisch sein,
-können plattformunabhängige globale Stile definiert werden.
+können plattformunabhängige, globale Stile definiert werden.
 \cite{ionic73:online}
 
 
@@ -321,15 +318,15 @@ Die Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten. Zunächst können
 Startertemplates anhand diverser Parameter generiert werden.
 Das Framework erzeugt dabei voll funktionstüchtige Applikationen, die den Einstieg in das Framework erleichtern sollen.
 Sidemenu und Tabmenu sind Beispiele für diese Templates, welche in Typescript oder JavaScript generiert werden können.
-Des Weiteren lassen sich Applikationen anhand der \ac{CLI} auf den Zielplattformen compilieren und auf angeschlossenen Geräten ausführen.
+Überdies lassen sich Applikationen anhand der \ac{CLI} auf den Zielplattformen compilieren und auf angeschlossenen Geräten ausführen.
 
 \paragraph{Ionic Creator}
 ist ein Prototyping Tool, mit welchem Oberflächen statt
 mit HTML und CSS per Mausklick kreiert werden können.
 Dabei stehen von Beginn an eine Vielzahl von vorgefertigten Ionic Komponenten wie Buttons,
 Label und Eingabefelder zur Verfügung.
-Diese werden per Drag and Drop eingefügt und positioniert. Der Prototyp lässt sich jedrzeit
-als \ac{APK} oder \ac{IPA} für dritte exportieren oder kann auf einem angeschlossenen Gerät gestartet werden.
+Diese werden per Drag and Drop eingefügt und positioniert. Der Prototyp lässt sich jederzeit
+als \ac{APK} oder \ac{IPA} für Dritte exportieren oder kann auf einem angeschlossenen Gerät gestartet werden.
 
 \paragraph{Ionic Lab}
 ist eine visuelle Oberfläche zur Bedienung der Ionic \ac{CLI}.
@@ -339,18 +336,18 @@ Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
 \subsubsection{Ionic Platform}
 
 Ionic Platform ist eine Cloud, sowie eine Sammlung von Diensten für die Entwicklung,
-Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet Ionic Platform einen zentralen Dienst für die Handhabung von Nutzern einer App.
-Diese können sich dabei klassich per Mail oder per single sign on über
+Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet \emph{Ionic Platform} einen zentralen Dienst für die Handhabung von Nutzern einer App.
+Diese können sich dabei klassisch per Mail oder per single sign on über
 Facebook, Google und Twitter registrieren und sind damit in der Applikation authentifiziert.
 Zudem können registrierte Nutzer zentral in einer Weboberfläche verwaltet und ggfls. mit Push Nachrichten adressiert werden.
 Diese können sich dabei an alle Nutzer, oder ein definiertes Segment wenden.
 Hierzu ist kein Server mit implementiertem \ac{APN} oder \ac{GCM} System von Nöten, das Push System von Ionic deckt diese
 Funktionalität bereits vollständig ab.
 
-Zusätzlich kann die Cloud für das zentrale Deployment für alle Zielplatformen genutzt werden.
+Zusätzlich kann die Cloud für das zentrale Deployment aller Zielplatformen genutzt werden.
 Interessant hierbei ist, dass iOS Apps generiert werden können, auch wenn
 keine macOS Umgebung zur Verfügung steht, da der Buildprozess in der Ionic Cloud stattfindet.
-Ein App Update muss nicht zwingend über den Appstore der Platform geschehen,
+Ein App Update muss nicht zwingend über den Appstore der Plattform geschehen,
 da Änderungen, die sich nur auf den Webinhalt der App (also HTML, CSS und JS) beziehen,
 beim Appstart aus der Cloud geladen werden können.
 Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu vermeiden.
@@ -359,9 +356,9 @@ Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu v
 \section{Electron}
 \subsection{Allgemein}
 
-Durch die stetige Entwicklung von Webbrowsern und Apps für Mobilgeräten verloren Desktop Applikationen in den letzten Jahren immer mehr an Bedeutung.
-Dennoch bieten sie gegenüber Anwendungen, welche nur in Browsern ausgeführt werden, einige Vorteile.
-Desktop Anwendungen befinden sich im Dock bzw. im Startmenü des Betriebsystems oder sind womöglich im Autostart referenziert.
+Durch die stetige Entwicklung von Webbrowsern und Apps für Mobilgeräten haben Desktop Applikationen in den letzten Jahren immer mehr an Bedeutung verloren.
+Dennoch bieten sie gegenüber Anwendungen, die nur in Browsern ausgeführt werden, einige Vorteile.
+Desktop Anwendungen befinden sich im Dock beziehungsweise im Startmenü des Betriebsystems oder sind womöglich im Autostart referenziert.
 Dadurch wirken sie präsenter, sind schneller zu erreichen und können selbst im minimierten Zustand noch Code ausführen.
 Sie sind nicht durch Browser limitiert und können APIs der Betriebsysteme nutzen \cite{Build58:online}.
 
@@ -400,12 +397,12 @@ Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrom
 
 \subsection{Kommunikation}
 
-Da node.js nur im Hauptrozess von Electron genutzt werden kann, ist es erforderlich,
-dass die verschiedenen Kontexte miteinander interagieren bzw. kommunizieren können.
-Dies kann wie bereits in \ref{sec:functionsweise} Funktionsweise angesprochen,
+Da Node.js nur im Hauptrozess von Electron genutzt werden kann, ist es erforderlich,
+dass die verschiedenen Kontexte miteinander interagieren beziehungsweise kommunizieren können.
+Dies kann, wie bereits in \ref{sec:functionsweise} Funktionsweise angesprochen,
 mithilfe eines zentralen API Servers oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
-Dem Main- sowie dem Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
+Dem Main- und dem Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.
 
 \section{\ac{NPM}}
@@ -414,7 +411,7 @@ Dem Main- sowie dem Render Prozess wird jeweils eine IPC Event Emitter Instanz z
 4.939.882.172 Paket Installationen im Juni 2016.
 Open Source Pakete können kostenfrei veröffentlicht werden.
 Für die Verwaltung von Closed Source Paketen wird ein Preismodell ab 7\$ pro Monat angeboten.
-Abhängigkeiten des Projekts \projectname{} Pakete wie Angular, Ionic und Electron können vollständig
+Dependencies des Projekts \projectname{}, also Pakete wie Angular, Ionic und Electron können vollständig
 über \ac{NPM} geladen werden \cite{npm31:online}.
 
 \section{Gulp}
@@ -422,7 +419,7 @@ Abhängigkeiten des Projekts \projectname{} Pakete wie Angular, Ionic und Electr
 Gulp ist ein Build System zur Ablaufoptimierung und Automatisierung komplexer Softwareprodukte.
 Das System basiert auf Node.js Streams, kann jedoch auch für Plattformen wie Java, PHP und .Net verwendet werden.
 Automatisierungen werden mit Gulp in Form von Tasks implementiert,
-welche typischerweise Dateien Lesen, diese innerhalb von Streams verarbeiten und das Ergebis wiederum auf die
+welche typischerweise Dateien lesen, diese innerhalb von Streams verarbeiten und das Ergebis wiederum auf die
 Festplatte schreiben \cite{gulpj46:online}.
 Tasks können dabei manuell, oder über Filewatcher durch Dateiänderungen ausgelöst werden.
 Anwendungsfälle für Gulp Tasks sind beispielweise Transpilierung von Typescript zu JavaScript Code oder

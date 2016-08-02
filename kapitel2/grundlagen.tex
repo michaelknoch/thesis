@@ -2,13 +2,13 @@
 
 \chapter{Grundlagen}
 
-Im Folgenden werden Grundlagen erläutert die als Basis des Projekts sowie zum Verständnis von Kapitel \ref{chap:frameworks} Frameworks und Tools erforderlich sind.
+Im Folgenden sollen die Grundlagen erläutert werden, die als Basis des Projekts sowie zum Verständnis von Kapitel \ref{chap:frameworks} Frameworks und Tools erforderlich sind.
 
 
 \section{Native Entwicklung}
 
-Bei der Entwicklung nativer Applikationen wird Prorammcode speziell für eine Zielplatform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
-Die App ist damit an die Platform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
+Bei der Entwicklung nativer Applikationen wird der Prorammcode speziell für eine Zielplattform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
+Die App ist damit an die Plattform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
 Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
 
@@ -28,14 +28,14 @@ Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore vert
 \end{itemize}
 \vspace{0.3cm}
 
-\section{Mobile Cross Platform Entwicklung}
+\section{Mobile Cross Plattform Entwicklung}
 
-Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse Cross-platform Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
-die auf diversen Platformen ausgeführt werden kann \cite{Heitkoetter2013}.
+Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse Cross-Plattform Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
+die auf diversen Plattformen ausgeführt werden kann \cite{Heitkoetter2013}.
 Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
 \cite{Xamar84:online}.
 
-\subsection{Cross-kompilierte Apps am beispiel von Xamarin}
+\subsection{Cross-kompilierte Apps am Beispiel von Xamarin}
 
 Xamarin Entwickler können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
 Der resultierende Code läuft dabei als nativer Code auf den Geräten.
@@ -45,13 +45,13 @@ Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectx
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.9\linewidth]{kapitel2/csharp_xamarin.png}
- \caption{Xamarin Platforms \cite{7Reas20:online}}
+ \caption{Xamarin Plattformen \cite{7Reas20:online}}
 \end{figure}
 \vspace{1cm}
 
 Xamarin stößt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework
-für jede Platform indiviudell entwickelt werden. Das funktioniert, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
-dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind, jedoch ist es fragwürdig ob sich das Framework als ``Cross Plattform Frontend Framework'' bezeichnen darf,
+für jede Plattform indiviudell entwickelt werden. Dies funktioniert, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
+dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind. Es ist jedoch fragwürdig ob sich das Framework als ``Cross Plattform Frontend Framework'' bezeichnen darf,
 wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem Appdesign, nach wie vor redundant vorgenommen werden muss \cite{7Reas20:online}.
 
 \begin{figure}[ht]
@@ -69,14 +69,14 @@ Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Anwendunge
 \ac{HTML}, \ac{CSS} und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
 sondern läuft in einer nativen Webview. Diese Apps werden auch als hybride Apps bezeichnet.
-Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie aufsetzen.
+Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie basieren.
 
 Zugriff auf Systemschnittstellen erhält man mittels Cordova Plugins. Diese bieten
 Interfaces in Javascript für den Zugriff auf native Systemkomponenten wie Kamera, GPS, Dateisystem etc.
 Plugins bestehen daher aus Javascript und dem Plattform kompatiblen Code,
 also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 
-\ac{UI} Entwicklung muss im Vergleich zum Xamarin Framework nicht redundant vorgenommen werden, da Implementierungen der
+\ac{UI} Entwicklung muss dabei im Vergleich zum Xamarin Framework nicht redundant vorgenommen werden, da Implementierungen der
 Ansichten für sämtliche unterstützten Plattformen identisch ausgeliefert werden können.
 Da \ac{UI} mithilfe von \ac{HTML} und \ac{CSS} realisiert wird,
 können spezielle Stilregeln dennoch auch plattformspezifisch angewandt werden, um beispielsweise eine App zu entwickeln,
@@ -95,7 +95,7 @@ welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
 Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
 von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
 womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} von Patrioten moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
-wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersicht führt,
+wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt,
 da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung zu beschreiben.
 Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
@@ -132,7 +132,7 @@ by third parties.''
 Szyperski definiert eine Komponente als eigenständiges, in sich geschlossenes Modul ohne Deployment
 Abhängigkeiten, d.h. Eine Komponente kann ausgeliefert werden, ohne dass andere Elemente der Applikation ebenfalls neu gebaut werden müssen.
 Klar definierte Schnittstellen dienen der komponentenübergeifenden Kommunikation und repräsentieren
-dabei die Funktionalität der Komponente möglichst Transparent.
+dabei die Funktionalität der Komponente möglichst transparent.
 Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
 und von Dritten verwendet werden können.
 
@@ -142,7 +142,7 @@ und von Dritten verwendet werden können.
 ``Web Components are an emerging set of standards from the W3C to describe a way to create encapsulated,
 reusable blocks of UI presentation and behavior entirely with client side languages- HTML, JavaScript and CSS.''
 \cite[42]{Web-Component-Architecture}
-\vspace{1cm}
+\vspace{0.3cm}
 
 Der W3C beschreibt diverse Wege, wie entkoppelte wiederverwendbare UI Elemente, sogenannte Web Components,
 in Kombination von \ac{HTML}, JavaScript und \ac{CSS} geschaffen werden können.
@@ -198,13 +198,13 @@ Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 \begin{figure}[htp]
  \centering
  \includegraphics[width=0.8\linewidth]{kapitel2/platform_support.jpg}
- \caption{Platform Support \cite{WebCo43:online}}
+ \caption{Plattform Support \cite{WebCo43:online}}
  \label{fig:platform_support}
 \end{figure}
 
 \noindent Wie in Abbildung \ref{fig:platform_support} zu erkennen ist, sind elementare Bestandteile, die für die Verwendung von Web Components erforderlich sind, noch nicht in
 allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
-Hier kommen Polyfills ins spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu Vollständigen
+Hier kommen Polyfills ins Spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu Vollständigen
 Support von Web Components in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
 welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Browser diese nicht unterstützt, ermöglicht.
 
@@ -216,9 +216,9 @@ welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Brow
 
 
 Javascript wurde erstmals 1996 von Brendan Eich in einer Implementierung des Netscape Navigator Browsers eingeführt,
-worauf weitere Browser die Syntax und APIs ähnlich, jedoch nicht identisch nach implementierten.
+worauf weitere Browser die Syntax und API ähnlich, jedoch nicht identisch nach implementierten.
 Daraufhin veröffentlichte die ECMA International einen Standard, welcher die Spezifikationen der neuen Sprache
-definieren sollte. Dieser trägt den namen ECMAScript und ist der offizielle und bekannteste Standard der
+definieren sollte. Dieser trägt den Namen ECMAScript und ist der offizielle und bekannteste Standard der
 Sprache. ActionScript von Macromedia und JScript von Microsoft sind weitere Implementierungen der Browsersprache,
 die nicht dem ECMA Standard entsprechen, jedoch darauf aufbauen.
 
@@ -228,13 +228,13 @@ die nicht dem ECMA Standard entsprechen, jedoch darauf aufbauen.
  \caption{History of Javascript \cite[28]{EssentialTS}}
 \end{figure}
 
-1997 wurde die erste Version des nun standardisiertem ECMAScript veröffentlicht. Ein Jahr später erschien bereits ECMAScript2,
+1997 wurde die erste Version des nun standardisierten ECMAScript veröffentlicht. Ein Jahr später erschien bereits ECMAScript2,
 allerdings beinhaltete dieses Update nur kleine Änderungen um einem parallel entstandenen ISO Standard von JavaScript zu implementieren.
 Die nächste große Neuerung kam 1999 mit ECMAScript3, in welcher einige innovative Features implementiert wurden.
 ``[...]regular expressions, better string handling, new control statements, try/catch exception handling, tighter definition of errors, formatting for numeric output and other enhancements.''\cite{js-vs-es}.
 
-Das nächste Update ECMAScript4 war 2008 geplant, zunächst als Prototyp entwickelt,
-jedoch noch vor dem Release aufgrund eines rückschritttigem Featureset wieder aufgegeben.
+Das nächste Update ECMAScript4 war für 2008 geplant und wurde zunächst als Prototyp entwickelt,
+es wurde jedoch noch vor dem Release aufgrund eines rückschrittigen Featureset wieder aufgegeben.
 Zur selben Zeit etstand Ajax und damit eine völlig neue Art von dynamsichen Webapplikationen,
 basierend auf JavaScript.
 
@@ -243,13 +243,13 @@ Es beinhaltet neue Features wie \ac{JSON} Support und klassische Array Funktione
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 
 ECMAScript6 sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
-dann allerdings bis in den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert
+dann allerdings auf den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert
 \cite{js-vs-es}.
 
 \subsection{Allgemein}
 
 Typescript ist eine von Microsoft entwickelte Programmiersprache.
-Die Sprache ist ein Superset von ES6, d.h. sie implementiert den JavaScript Standard und ergänzt diesen
+Die Sprache ist ein Superset von ES6, das heißt sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features.
 Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
 Zusammen mit dem Featureset von EcmaScript5 erhalten Entwickler gegenüber ES5 folgende Features:
@@ -263,7 +263,7 @@ Zusammen mit dem Featureset von EcmaScript5 erhalten Entwickler gegenüber ES5 f
 
 \subsubsection{statische Typisierung}
 
-Die wohl größte Errungenschaft der Sprache ist das statische Typsystem.
+Die wohl größte Errungenschaft von Typescript ist das statische Typsystem.
 Typenfehler können in Typescript bereits zum Zeitpunkt
 der Kompilierung bzw. Transpilierung erkannt werden und treten nicht erst zur Laufzeit im Browser auf.
 Zudem wird Code in einer Typescript unterstützenden IDE dank Autovervollständigung
@@ -273,7 +273,7 @@ leichter zu schreiben und aussagekräftiger zu lesen \cite[156]{ng-Book-2}.
 
 Mit ES6 Klassen wurde eine neue Syntax für das prototypische Vererbungsmodell von Javascript entwickelt.
 Dabei handelt es sich nicht um die Einführung eines neuen OOP-Modells, sondern lediglich um eine vereinfachte Syntax für Objekte und deren Schnitstellen,
-sowie die Realisierung von Abstraktionen, wie sie aus anderen Objektorientierten sprachen wie C++, Swift oder Java bereits bekannt sind \cite{js-Klassen}.
+sowie die Realisierung von Abstraktionen, wie sie aus anderen objektorientierten Sprachen, wie C++, Swift oder Java, bereits bekannt sind \cite{js-Klassen}.
 Ein Beispiel für eine ES6 Klasse ist in Listing \ref{es6class} implementiert.
 
 \lstinputlisting[language=Java,label=es6class,caption=Klassen in ES6]{kapitel2/class.js}
@@ -307,7 +307,7 @@ Eine sehr vereinfachte Implementierung eines Typescript Decorators ist in Listin
 
 \subsection{Transpilierung}
 
-Typescript sowie ES6 bieten Entwicklern eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
+Typescript und ES6 bieten Entwicklern eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
 Spannende Features bringen jedoch wenig, wenn sie im Standard zwar spezifiziert wurden,
 allerdings noch in sehr wenigen Browsern vollständig implementiert sind.
 Um TS oder ES6 Code also überhaupt in Produktion zu nutzen, sollte er auf den ES5 oder ES3

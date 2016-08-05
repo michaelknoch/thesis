@@ -3,7 +3,7 @@
 \chapter{Umsetzung}
 \label{chap:umsetzung}
 
-Im Nachfolgenden soll die Konzeption und die Umsetzung der in \ref{sec:anforderungsanalyse}
+Im Nachfolgenden soll die Konzeption und Umsetzung der in \ref{sec:anforderungsanalyse}
 beschriebenen Anforderungen an das Projekt \projectname{} erläutert werden.
 Der Schwerpunkt soll dabei speziell auf die Cross Plattform Architektur sowie auf die
 Entwicklung der Komponenten hinsichtlich Wiederverwendbarkeit gerichtet werden.
@@ -11,17 +11,17 @@ Entwicklung der Komponenten hinsichtlich Wiederverwendbarkeit gerichtet werden.
 
 \section{Applikationsstruktur}
 
-In diesem Kapitel wird die Konzeptphase der Plattformübergreifenden Applikationsstruktur
-(Abbildung \ref{kapitel4/arch}) erläutert.
+Dieses Kapitel beschäftigt sich mit der Konzeptphase der Plattformübergreifenden Applikationsstruktur
+(Abbildung \ref{kapitel4/arch}).
 Um Endprodukte für Web, Desktop und App zu generieren, werden die Frameworks Angular 2, Electron und das
-Ionic \ac{SDK} verwendet. Die Codebase für die Web- und Desktop Anwendung lassen sich so weit vereinen,
+Ionic \ac{SDK} verwendet. Die Codebase für die Web- und Desktop Anwendungen lassen sich so weit vereinen,
 dass diese innerhalb eines Repositories implementiert werden können.
 Ein weiteres Repository beinhaltet die hybride Applikation,
 welche mithilfe des Ionic 2 \ac{SDK} entwickelt wird. Obwohl Ionic 2 auf das Angular Framework aufbaut,
 macht es Sinn den Web und App Code voneinander getrennt zu behandeln.
-Gründe dafür sind zum einen konzeptionelle Unterschiede zwischen Web und App von \projectname{}.
-Darüber hinaus unterscheiden sich die Navigation APIs der Frameworks, sowie die Menüführung der beiden Anwendungen.
-Die \ac{UI} und Funktionalität wird daher innerhalb der Angular 2 (Web/Desktop)
+Gründe dafür sind zum einen konzeptionelle Unterschiede im Aufbau der Applikation
+sowie unterschiedliche Navigation APIs der Frameworks.
+Die \ac{UI} und Funktionalität wird daher innerhalb der Angular 2
 Anwendung in Form von wiederverwendbaren Komponenten entwickelt und
 Repository-übergreifend für die Verwendung im Ionic 2 Projekt verteilt.
 
@@ -53,14 +53,22 @@ Im Folgenden werden Ansätze der Komponentenentwicklung bezüglich der in
 \subsubsection{generischer Ansatz}
 
 Bei der Entwicklung generischer Komponenten ist der Begriff der Wiederverwendbarkeit von zentraler Bedeutung.
-Komponenten werden im Vergleich zum spezifischen Ansatz nicht nur für einen Anwendungsfall konzipiert, sondern können
-für diverse, meist ähnliche Anwendungsbereiche genutzt werden. Dabei soll die Komponente nicht nur in der mobilen Ionic App,
-sondern projektübergreifend Verwendung finden.
+Komponenten werden gegenüber dem spezifischen Ansatz nicht für einen definierten Anwendungsfall konzipiert,
+sondern können
+für diverse, womöglich ähnliche Anwendungsbereiche genutzt werden.
 Typisch für generische Angular 2 Komponenten ist die Verwendung des @Input Kanals.
-Dabei werden zum einen Daten- und zur Individualisierung nötige Konfigurationsobjekte in die Komponente eingeschleust.
-Einige Komponenten der Applikation \projectname{} sind
-generisch entwickelt und OpenSource auf Github veröffentlicht.
-Dadurch kann die Komponente von Dritten genutzt und auch erweitert werden.
+Dabei werden zum einen Daten- sowie Konfigurationsobjekte von außen in die Komponente eingeschleust.
+Anhand der Konfigurationsobjekte können generische Komponenten individuell an verschiedene Bedürfnisse angepasst werden.
+Durch den Transfer von Datenobjekten wird der Vorgang der Aggregation aus der Komponente abstrahiert und es werden eventuelle
+Abhängigkeiten zu Services oder API-Servern vermieden.
+
+Komponenten,
+die anhand des generischen Ansatzes entwickelt werden,
+sollen nicht nur in der mobilen Ionic App,
+sondern projektübergreifend Verwendung finden.
+Daher wurde ein Teil der in \projectname{} entwickelten Komponenten anhand des generischen Ansatzes
+entwickelt und Open Source auf Github veröffentlicht.
+Dadurch können diese von Dritten genutzt und bei Bedarf um Funktionalität erweitert werden.
 
 
 \subsubsection{spezifischer Ansatz}
@@ -89,17 +97,17 @@ sondern es durchaus Sinn ergibt, Komponentenpakete über die Infrastruktur zu ve
 
 \subsection{Komponenten Generator}
 
-Um den Entwicklungsprozess der Anwendung zu beschleunigen, wurde mithilfe von yeoman.io ein Komponenten-Generator entwickelt.
+Um den Entwicklungsprozess der Anwendung zu beschleunigen, wurde mithilfe von \emph{yeoman.io} ein Komponenten-Generator entwickelt.
 Dieser ermöglicht es die Grundstruktur neuer Komponenten anhand diverser Optionen in kurzer Zeit auszuliefern.
 Dabei wird der Name sowie der Auslieferungsort der neuen Komponente während der Generierung im Terminal erfragt.
 Zusätzlich kann definiert werden, ob externe \ac{HTML} und \ac{CSS} Dateien angelegt, oder ob diese inline in der Komponente genutzt werden sollen.
 Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentlicht
 (github.com/michaelknoch/generator-ng2-comp).
 
-\subsection{Implementierung}
+\section{Implementierung}
 
 
-\subsubsection{Login und Authentifikation}
+\subsection{Login und Authentifikation}
 \label{Login-und-Authentifikation}
 
 \begin{figure}[hptb]
@@ -134,7 +142,7 @@ fängt der Http Interceptor den Fehler und leitet zur Login View zurück um den 
 
 
 
-\subsubsection{Meta Picker}
+\subsection{Meta Picker}
 
 Mit der Meta Picker Komponente ist ein wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
 Diese Komponente findet derzeit Verwendung in der Metrik und Graphen Sektion. Wird eine Applikation bzw. ein Zeinterval über den Picker definiert,
@@ -160,7 +168,23 @@ so propagiert der Meta Picker ein Update an die äußere Komponente. \emph{\$eve
 \vspace{0.3cm}
 
 
-\subsubsection{Bibliothek Interfaces}
+\subsection{Traces}
+
+Mithilfe der Traces Sektion werden serviceübergreifende Requests in Releation zur Zeit in einem Gantt Chart dargestellt.
+Anhand der Visualisierung soll es für Anwendungsentwickler möglich sein, Verzögerungen oder Fehler im Aufrufstapel (Call Stack) identifizieren zu können.
+Für die Umsetzung des Gantt Charts lag es zunächst nahe, eine bestehende Bibliothek zu verwenden.
+Allerdings konnte keines der untersuchten Bibliotheken den Funktionsumfang bezüglich der Anforderungsanalyse abdecken.
+Konfigurationsaufwand, Größe der Bibliothek und die Möglichkeit das Diagramm auch auf mobilen Geräten nutzen zu können, waren für die Untersuchung ausschlaggebende Kriterien.
+Mit \emph{ng2-simplegantt} wurde daher eine eigene sehr vereinfachte Implementierung eines Gantt Diagramms, entsprechend dem generischen Ansatz, vorgenommen.
+
+Die Daten werden zunächst über den Anwendungsspezifischen Trace Service vom API-Server erfragt und anschließend innerhalb der ebenfalls spezifisch entwickelten Trace Komponente
+für die Darstellung in \emph{ng2-simplegantt} aufbereitet.
+Bei der Implementierung der generischen Komponente wurde auf die Verwendung von absoluten Pixelwerten weitestgehend verzichtet.
+Abstände und Positionen werden mithilfe von relativen Prozentwerten ausgedrückt. Dadurch ist die Komponente responsive und kann
+ohne scriptbasierte rechenintensive Kalkulationen anhand der Bildschirmbreite auf Mobilgeräten verwendet werden.
+
+
+\subsection{Bibliothek Interfaces}
 
 In \projectname{} werden die externen Bibliotheken Chart.js und Cytoscape.js verwendet.
 Für deren Nutzung sind Interfaces in Form von Komponenten implementiert.
@@ -168,8 +192,8 @@ Dies bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand globale
 sondern durch Angular Komponenten realisiert werden.
 
 
-\paragraph{Chart.js}
-ist eine Bibliothek für das Zeichnen komplexer Diagramme.
+\subsubsection{Chart.js}
+Chart.js ist eine Bibliothek für das Zeichnen komplexer Diagramme.
 Es wird in \projectname{} hauptsächlich für die Visualisierung der Daten für die Metrik Sektion verwendet.
 Chart.js ist responsive implementiert, das heißt die Charts können sowohl für den Desktop
 als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
@@ -188,8 +212,9 @@ Des Weiteren werden die zu visualisierenden Daten sowie ein optionales Konfigura
 
 
 
-\paragraph{Cytoscape.js}
-ist eine Bibliothek zur Visualisierung und Analyse komplexer Netzwerke.
+\subsubsection{Cytoscape.js}
+
+Cytoscape.js ist eine Bibliothek zur Visualisierung und Analyse komplexer Netzwerke.
 Diese findet in \projectname{} Verwendung in der Implementierung der Graphen-Sektion,
 in welcher Interaktionen zwischen Services visualisiert werden.
 Um eine mit ng2-charts vergleichbar bequeme Nutzung der Graphen-Bibliothek zu ermöglichen,
@@ -199,6 +224,12 @@ wurde eine eigene Interface-Komponente entwickelt und als Open Source auf Github
 
 Listing \ref{ng2-cytoscape} beinhaltet die Implementierung von ng2-cytoscape.
 Um Übersicht zu gewährleisten wird für die Implementierung nicht relevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
+
+
+
+
+
+
 
 
 \newpage

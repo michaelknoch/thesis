@@ -104,10 +104,10 @@ Zusätzlich kann definiert werden, ob externe \ac{HTML} und \ac{CSS} Dateien ang
 Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentlicht
 (github.com/michaelknoch/generator-ng2-comp).
 
-\section{Implementierung}
+\subsection{Implementierung}
 
 
-\subsection{Login und Authentifikation}
+\subsubsection{Login und Authentifikation}
 \label{Login-und-Authentifikation}
 
 \begin{figure}[hptb]
@@ -142,7 +142,7 @@ fängt der Http Interceptor den Fehler und leitet zur Login View zurück um den 
 
 
 
-\subsection{Meta Picker}
+\subsubsection{Meta Picker}
 
 Mit der Meta Picker Komponente ist ein wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
 Diese Komponente findet derzeit Verwendung in der Metrik und Graphen Sektion. Wird eine Applikation bzw. ein Zeinterval über den Picker definiert,
@@ -168,7 +168,7 @@ so propagiert der Meta Picker ein Update an die äußere Komponente. \emph{\$eve
 \vspace{0.3cm}
 
 
-\subsection{Traces}
+\subsubsection{Traces}
 
 Mithilfe der Traces Sektion werden serviceübergreifende Requests in Releation zur Zeit in einem Gantt Chart dargestellt.
 Anhand der Visualisierung soll es für Anwendungsentwickler möglich sein, Verzögerungen oder Fehler im Aufrufstapel (Call Stack) identifizieren zu können.
@@ -184,7 +184,7 @@ Abstände und Positionen werden mithilfe von relativen Prozentwerten ausgedrück
 ohne scriptbasierte rechenintensive Kalkulationen anhand der Bildschirmbreite auf Mobilgeräten verwendet werden.
 
 
-\subsection{Bibliothek Interfaces}
+\subsubsection{Bibliothek Interfaces}
 
 In \projectname{} werden die externen Bibliotheken Chart.js und Cytoscape.js verwendet.
 Für deren Nutzung sind Interfaces in Form von Komponenten implementiert.
@@ -192,7 +192,7 @@ Dies bedeutet, dass Instanzen von Chart.js und Cytoscape.js nicht anhand globale
 sondern durch Angular Komponenten realisiert werden.
 
 
-\subsubsection{Chart.js}
+\*subsubsection{Chart.js}
 Chart.js ist eine Bibliothek für das Zeichnen komplexer Diagramme.
 Es wird in \projectname{} hauptsächlich für die Visualisierung der Daten für die Metrik Sektion verwendet.
 Chart.js ist responsive implementiert, das heißt die Charts können sowohl für den Desktop
@@ -212,7 +212,7 @@ Des Weiteren werden die zu visualisierenden Daten sowie ein optionales Konfigura
 
 
 
-\subsubsection{Cytoscape.js}
+\*subsubsection{Cytoscape.js}
 
 Cytoscape.js ist eine Bibliothek zur Visualisierung und Analyse komplexer Netzwerke.
 Diese findet in \projectname{} Verwendung in der Implementierung der Graphen-Sektion,
@@ -224,10 +224,6 @@ wurde eine eigene Interface-Komponente entwickelt und als Open Source auf Github
 
 Listing \ref{ng2-cytoscape} beinhaltet die Implementierung von ng2-cytoscape.
 Um Übersicht zu gewährleisten wird für die Implementierung nicht relevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
-
-
-
-
 
 
 
@@ -395,10 +391,10 @@ Dort kann die App von Nutzern heruntergeladen und verwendet werden.
 
 Desktop Apps können entweder manuell durch Initivative der Nutzer oder durch
 automatische Client Updates aktuell gehalten werden.
-Electron bietet mit \textbf{autoUpdater} eine Schnittstelle für die Implementierung
+Electron bietet mit \textbf{autoUpdater} eine Implementierung
 von automatischen Updates im Hintergrund an.
-Electron autoUpdater ist dabei nur eine Schnittstelle welche das Squirrel Framework
-für Automatisierungen für Windows und MacOS bedient.
+Electron autoUpdater ist dabei eine Schnittstelle welche das Squirrel Framework
+für Automatisierungen von Windows und MacOS Anwendungen bedient.
 Notwendig für die Hintergrundaktualisierung ist ein REST-Service, welcher beim Start der Anwendung mit der
 aktuellen Version angefragt werden kann
 und daraufhin einen Downloadpfad für ein eventuell verfügbares Update liefert.
@@ -409,6 +405,39 @@ Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 Im Ramen des Projekts \projectname{} wurde ein REST-Service für die
 Verwendung von Electron autoUpdater implementiert:
 github.com/michaelknoch/mia-electron-autoupdater-server
+
+\subsubsection{Update Notifications}
+
+Während der Updatevorgang einer Electron App im Main Kontext der
+Anwendung stattfindet, ist der Render Prozess beziehungsweise der Angular Kontext unwissend über die aktuelle
+Version der App sowie den Status des Updates. Um relevante Informationen für Nutzer innerhalb der Anwendung darstellen zu können,
+müssen dem Render Kontext genannte Information bereitgestellt werden.
+Daher wird Electrons IPC Schnittstelle für einen asynchronen Austausch von Daten implementiert.
+
+Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der package.json gelesen.
+Anhand dieser Versionsummer wird gegen den API-Service geprüft, ob ein Update vefügbar ist. Der Download des Updates beginnt bereits automatisch,
+sobald der API-Endpoint einen Downloadpfad returniert.
+
+Zeitgleich findet der Bootstrap Prozess der Angular Applikation im Render Prozess statt.
+Ist dieser abgeschlossen, startet der IPC Service, welcher bereits während seiner Instanziierung den
+IPC Request ``version-request'' an den Node Kontext übermittelt.
+Dieser antwortet daraufhin mit der zuvor ausgelesenen Version der Anwendung, welche im Angular Kontext wiederum als HTML5 Push Notification, siehe Abbildung \ref{kapitel4/update-push}, ausgegeben wird.
+
+War der Download des Updates efolgreich, löst der Update Prozess das Event ``update-downloaded'' im Node Kontext aus,
+welches durch IPC an den IPC Service der Angular Applikation weitergeleitet wird. Erneut erscheint eine für den Nutzer bestimmte Notification, siehe Abbildung \ref{kapitel4/update-push}, welche auf Klick einen Restart der Applikation auslöst.
+Dies ist mithilfe eines Klick Listeners realisiert, der dem Node Kontext das Event ``force-restart'' propagiert.
+Daraufhin wird über die \ac{API} des Updaters ``quitAndInstall()'' aufgerufen, was die Applikation veranlasst sich selbst zu beenden und in der neuen Version zu starten.
+
+
+\begin{figure}[h]
+ \centering
+  \includegraphics[width=0.5\linewidth]{kapitel4/version-push.jpg}
+ \includegraphics[width=0.5\linewidth]{kapitel4/update-push.jpg}
+ \caption{Update Notifications}
+ \label{kapitel4/update-push}
+\end{figure}
+\vspace{0.3cm}
+
 
 \subsection{App}
 

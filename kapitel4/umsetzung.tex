@@ -4,9 +4,9 @@
 \label{chap:umsetzung}
 
 Im Nachfolgenden wird die Konzeption und Umsetzung der in \ref{sec:anforderungsanalyse}
-beschriebenen Anforderungen an das Projekt \projectname{} erläutert werden.
+beschriebenen Anforderungen an das Projekt \projectname{} erläutert.
 Der Schwerpunkt liegt dabei speziell auf der Cross Plattform Architektur sowie auf der
-Entwicklung der Komponenten hinsichtlich Wiederverwendbarkeit gerichtet werden.
+Entwicklung der Komponenten hinsichtlich Wiederverwendbarkeit.
 
 
 \section{Applikationsstruktur}
@@ -19,8 +19,8 @@ dass diese innerhalb eines Repositories implementiert werden können.
 Ein weiteres Repository beinhaltet die hybride Applikation,
 welche mithilfe des Ionic 2 \ac{SDK} entwickelt wird. Obwohl Ionic 2 auf das Angular Framework aufbaut,
 macht es Sinn den Web und App Code voneinander getrennt zu behandeln.
-Gründe dafür sind zum einen konzeptionelle Unterschiede im Aufbau der Applikation
-sowie unterschiedliche Navigation APIs der Frameworks.
+Gründe dafür sind zum einen konzeptionelle Unterschiede im Aufbau der Applikationen
+sowie Unterschiede in der Grundstruktur der beiden Frameworks.
 Die \ac{UI} und Funktionalität wird daher innerhalb der Angular 2
 Anwendung in Form von wiederverwendbaren Komponenten entwickelt und
 Repository-übergreifend für die Verwendung im Ionic 2 Projekt verteilt.
@@ -59,16 +59,16 @@ für diverse, womöglich ähnliche Anwendungsbereiche genutzt werden.
 Typisch für generische Angular 2 Komponenten ist die Verwendung des @Input Kanals.
 Dabei werden zum einen Daten- sowie Konfigurationsobjekte von außen in die Komponente eingeschleust.
 Anhand der Konfigurationsobjekte können generische Komponenten individuell an verschiedene Bedürfnisse angepasst werden.
-Durch den Transfer von Datenobjekten wird der Vorgang der Aggregation aus der Komponente abstrahiert und es werden eventuelle
+Durch den Transfer von Datenobjekten werden Aggregationsvorgänge aus den Komponente abstrahiert und es werden eventuelle
 Abhängigkeiten zu Services oder API-Servern vermieden.
 
 Komponenten,
 die anhand des generischen Ansatzes entwickelt werden,
 sollen nicht nur in der mobilen Ionic App,
-sondern projektübergreifend Verwendung finden.
+sondern projektübergreifend in der Open Source Community Verwendung finden.
 Daher wurde ein Teil der in \projectname{} entwickelten Komponenten anhand des generischen Ansatzes
 entwickelt und Open Source auf Github veröffentlicht.
-Dadurch können diese von Dritten genutzt und bei Bedarf um Funktionalität erweitert werden.
+Dadurch können diese von der Community genutzt und bei Bedarf verbessert und um Funktionalität erweitert werden.
 
 
 \subsubsection{spezifischer Ansatz}
@@ -88,11 +88,12 @@ Modelklassen (Typisierung) und Services befinden sich innerhalb der Komponente u
 Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübergreifende Abhängigkeiten.
 Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert
 so sollte diese nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht zur globalen Verwendung befinden.
-Ferner ist es warscheinlich, dass Typescript Modelklassen (Typisierung) ebenfalls in mehreren Komponenten verwendet werden.
+Es liegt nahe, dass Typescript Modelklassen (Typisierung) ebenfalls in mehreren Komponenten verwendet werden.
 Dennoch sollten diese nicht redundant implementiert,
-sondern zentral zur Verfügung gestellt werden. Es stellt sich also heraus,
+sondern zentral zur Verfügung gestellt werden. Es stellt sich heraus,
 dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
-sondern es durchaus Sinn ergibt, Komponentenpakete über die Infrastruktur zu verteilen.
+sondern es durchaus Sinn ergibt, Komponenten, Service und Modelklassen anhand ihrer Abhängigkeiten in Paketen zu verwalten und
+gebündelt über die Infrastruktur zu verteilen.
 
 
 \subsection{Komponenten Generator}
@@ -101,8 +102,12 @@ Um den Entwicklungsprozess der Anwendung zu beschleunigen, wurde mithilfe von \e
 Dieser ermöglicht es die Grundstruktur neuer Komponenten anhand diverser Optionen in kurzer Zeit auszuliefern.
 Dabei wird der Name sowie der Auslieferungsort der neuen Komponente während der Generierung im Terminal erfragt.
 Zusätzlich kann definiert werden, ob externe \ac{HTML} und \ac{CSS} Dateien angelegt, oder ob diese inline in der Komponente genutzt werden sollen.
-Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentlicht
-(github.com/michaelknoch/generator-ng2-comp).
+Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentlicht.
+
+\begin{itemize}
+\item github.com/michaelknoch/generator-ng2-comp
+\end{itemize}
+
 
 \subsection{Implementierung}
 
@@ -120,7 +125,7 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 
 Es wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
 Der \ac{API}-Server gibt dabei einen Cookie-basierten Ansatz für die Authentifikation vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
-Zunächst wird die Login Ansicht geladen, welche das Login Element als Kind-Komponente enthält.
+Zunächst wird die Login View geladen, welche das Login Element als Kind-Komponente enthält.
 In dieser sind die nötigen Eingabefelder sowie die Anbindung an den UserService implementiert.
 Der UserService bedient die Login und Register Schnittstelle des \ac{API}-Servers.
 Nach erfolgreichem Login returniert der Server einen Statuscode von 200 (OK), welcher vom Service an das Login Element propagiert wird.
@@ -149,11 +154,11 @@ Diese Komponente findet derzeit Verwendung in der Metrik und Graphen Sektion. Wi
 wird diese Auswahl im Localstorage des Browsers persistiert und bei nachfolgenden Instanziierungen der Komponente zunächst aus dem Storage geladen und erneut ausgewählt.
 Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage}
 welcher bereits in der Implementierung \ref{Login-und-Authentifikation} Login und Authentifikation Verwendung fand.
-Abbildung \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der Komponente.
+Listing \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der Meta Picker Komponente.
 Die binäre Option hideApplikation versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
-da innerhalb dieser View das Zusammenspiel der einzelnen Services dargestellt wird und daher nur ein Zeitfilter relevant ist.
-Über die \emph{metaUpdate()} Funktion werden Updates der Komponente aboniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
-so propagiert der Meta Picker ein Update an die äußere Komponente. \emph{\$event} beinhaltet dabei die neuen Parameter.
+da innerhalb dieser View das Zusammenspiel der einzelnen Services dargestellt wird und daher lediglich eine Filterung nach Zeit relevant ist.
+Über die Funktion \emph{metaUpdate()} werden Updates der Komponente aboniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
+so propagiert der Meta Picker ein Update an die äußere Eltern-Komponente. \emph{\$event} beinhaltet dabei die vom Nutzer neu gesetzten Parameter.
 
 
 \lstinputlisting[language=HTML,label=meta-picker-example,caption=Verwendungsbeispiel Meta Picker]{kapitel4/metapicker-example.html}

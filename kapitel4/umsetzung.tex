@@ -3,9 +3,9 @@
 \chapter{Umsetzung}
 \label{chap:umsetzung}
 
-Im Nachfolgenden soll die Konzeption und Umsetzung der in \ref{sec:anforderungsanalyse}
+Im Nachfolgenden wird die Konzeption und Umsetzung der in \ref{sec:anforderungsanalyse}
 beschriebenen Anforderungen an das Projekt \projectname{} erläutert werden.
-Der Schwerpunkt soll dabei speziell auf die Cross Plattform Architektur sowie auf die
+Der Schwerpunkt liegt dabei speziell auf der Cross Plattform Architektur sowie auf der
 Entwicklung der Komponenten hinsichtlich Wiederverwendbarkeit gerichtet werden.
 
 
@@ -77,7 +77,7 @@ Einige Komponenten lassen sich aufgrund ihrer spezifischen Funktionalität nicht
 Da sie nur einen spezifischen Anwendungsfall abdecken, können sie nur schwer in anderen Projekten wiederverwendet werden.
 Dennoch werden diese innerhalb des Projekts \projectname{}
 in der Angular 2 sowie in der Ionic 2 Anwendung verwendet.
-Beispiele für spezifische Komponenten sind View- und Menükomponenten welche die Grundstruktur einer Applikation abbilden.
+Beispiele für spezifische Komponenten sind View- und Menükomponenten welche die Grundstruktur der Applikation abbilden.
 
 \subsection{MVC und Abhängigkeiten}
 
@@ -128,7 +128,7 @@ Das Login Element antwortet der Login View mit einem Update Event, welche darauf
 
 In der Implementierung des UserServices (\ref{UserService} UserService) werden innerhalb des Login- und Registriervorgangs
 sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
-Dies geschieht sehr elegant mithilfe des Variablen Decorators \textbf{angular2-localstorage} \cite{marcj95:online}.
+Dies geschieht sehr elegant mithilfe des Variablen Decorators \emph{angular2-localstorage} \cite{marcj95:online}.
 Die zu persistierenden Variablen werden mit @Localstorage dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
 Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage geladen.
 Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden um sie überhaupt im Localstorage speichern zu können.
@@ -203,7 +203,7 @@ als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
 
 \lstinputlisting[language=JavaScript,label=component-interface-2,caption=Chart.js mit Komponenten Interface]{kapitel4/chartjs-new.js}
 \vspace{0.3cm}
-In Listing \ref{component-interface-2} wird die Nutzung des Komponenten Interface \textbf{ng2-charts} (github.com/valor-software/ng2-charts) verdeutlicht.
+In Listing \ref{component-interface-2} wird die Nutzung des Komponenten Interface \emph{ng2-charts} (github.com/valor-software/ng2-charts) verdeutlicht.
 Die Komponente wird von Valor Software entwickelt und steht quelloffen unter der MIT Lizenz zur Verfügung \cite{valor6:online}.
 
 Die Komponente erweist sich als sehr hilfreich, da das Chart bereits durch die simple Verwendung des Komponenten-Selektors (base-chart) instanziiert werden kann.
@@ -265,7 +265,7 @@ ebenfalls geladen und installiert werden und diese dennoch problemlos von dritte
 Die zu verteilenden Komponenten sind in Typescript geschrieben,
 daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
 oder bereits vor der Verteilung transpiliert und damit als JavaScript Paket veröffentlicht werden.
-Interessant hierbei sind die Optionen \textbf{sourceMap} und \textbf{declaration} des Typescript Transpilers.
+Interessant hierbei sind die Optionen \emph{sourceMap} und \emph{declaration} des Typescript Transpilers.
 Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jeweils d.ts und .map Dateien abgelegt.
 
 \subsubsection{Declaration(d.ts)}
@@ -277,7 +277,7 @@ in ein TypeScript Projekt. Das Declaration File fungiert dabei als Typescript In
 für die JavaScript Implementierung und gewährleistet statische Typisierung
 und Autovervollständigung in unterstützenden IDEs.
 
-Im TypeScript Transpilierungsprozess können Declaration Files mithilfe der Option \textbf{declaration} generiert werden.
+Im TypeScript Transpilierungsprozess können Declaration Files mithilfe der Option \emph{declaration} generiert werden.
 Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files, von der Community oder von dem ursprünglichen Autor, nachgeliefert.
 In \projectname{} werden Declaration Dateien im Transpilierungsprozess generiert und mit der Komponente verteilt,
 damit Typen und Schnittstellen der Komponenten im Ionic Projekt verwendet werden können.
@@ -296,7 +296,7 @@ SourceMaps werden in \projectname{} verwendet um transpilierten Code während de
 
 
 \subsection{Verwendung im Ionic Projekt}
-\ac{NPM} Module werden mit dem Befehl \textbf{npm install} installiert.
+\ac{NPM} Module werden mit dem Befehl \emph{npm install} installiert.
 Sie stehen im Projekt innerhalb der Node Modules zur Verfügung und können in das Projekt importiert und verwendet werden.
 
 Bei der Wiederverwendung der entwickelten Komponenten im Ionic Projekt sind diverse Problemstellungen entstanden,
@@ -380,10 +380,10 @@ Die Menge der geladenen Daten wird aufgrund fehlender Minifizierung nahezu kaum 
 \subsubsection{Auslieferung}
 Um die Ladezeit der Desktop App ebenfalls gering zu halten, baut der Auslieferungsprozess der Electron App
 auf den in \ref{deployment-web} beschrieben Prozess der Webapplikation auf. Daher werden Applikationscode und die
-Abhängigkeiten von Angular zunächst ebenfalls zu einer \textbf{app.bundle.js} Datei zusammengefasst.
-Das Node Modul \textbf{electron-packager} ermöglicht die Generierung der Electron App für verschiedene Plattformen,
+Abhängigkeiten von Angular zunächst ebenfalls zu einer app.bundle.js Datei zusammengefasst.
+Das Node Modul \emph{electron-packager} ermöglicht die Generierung der Electron App für verschiedene Plattformen,
 welche eigenständig ausgeführt werden kann.
-Ein weiteres Node Modul \textbf{electron-release} ermöglicht eine Veröffentlichung
+Ein weiteres Node Modul \emph{electron-release} ermöglicht eine Veröffentlichung
 der Anwendung innerhalb der Releases auf dem Github Repository.
 Dort kann die App von Nutzern heruntergeladen und verwendet werden.
 
@@ -391,7 +391,7 @@ Dort kann die App von Nutzern heruntergeladen und verwendet werden.
 
 Desktop Apps können entweder manuell durch Initivative der Nutzer oder durch
 automatische Client Updates aktuell gehalten werden.
-Electron bietet mit \textbf{autoUpdater} eine Implementierung
+Electron bietet mit \emph{autoUpdater} eine Implementierung
 von automatischen Updates im Hintergrund an.
 Electron autoUpdater ist dabei eine Schnittstelle welche das Squirrel Framework
 für Automatisierungen von Windows und MacOS Anwendungen bedient.
@@ -414,7 +414,7 @@ Version der App sowie den Status des Updates. Um relevante Informationen für Nu
 müssen dem Render Kontext genannte Information bereitgestellt werden.
 Daher wird Electrons IPC Schnittstelle für einen asynchronen Austausch von Daten implementiert.
 
-Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der package.json gelesen.
+Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der Package.json gelesen.
 Anhand dieser Versionsummer wird gegen den API-Service geprüft, ob ein Update vefügbar ist. Der Download des Updates beginnt bereits automatisch,
 sobald der API-Endpoint einen Downloadpfad returniert.
 
@@ -426,7 +426,7 @@ Dieser antwortet daraufhin mit der zuvor ausgelesenen Version der Anwendung, wel
 War der Download des Updates efolgreich, löst der Update Prozess das Event ``update-downloaded'' im Node Kontext aus,
 welches durch IPC an den IPC Service der Angular Applikation weitergeleitet wird. Erneut erscheint eine für den Nutzer bestimmte Notification, siehe Abbildung \ref{kapitel4/update-push}, welche auf Klick einen Restart der Applikation auslöst.
 Dies ist mithilfe eines Klick Listeners realisiert, der dem Node Kontext das Event ``force-restart'' propagiert.
-Daraufhin wird über die \ac{API} des Updaters ``quitAndInstall()'' aufgerufen, was die Applikation veranlasst sich selbst zu beenden und in der neuen Version zu starten.
+Daraufhin wird ``quitAndInstall()'' über die \ac{API} des Updaters aufgerufen, wodurch die Applikation veranlasst wird sich selbst zu beenden und in der neuen Version zu erscheinen.
 
 
 \begin{figure}[h]
@@ -443,8 +443,8 @@ Daraufhin wird über die \ac{API} des Updaters ``quitAndInstall()'' aufgerufen, 
 
 Die iOS und Android App wird mithilfe der Ionic \ac{CLI} gebaut und muss daraufhin für den
 jeweiligen Appstore veröffentlicht werden. Der Build Prozess,
-welcher durch den Befehl \textbf{ionic build ios} und \textbf{ionic build android} ausgeführt wird,
+welcher durch den Befehl \emph{ionic build ios} und \emph{ionic build android} ausgeführt wird,
 erstellt dabei die Applikation für die jeweilige Zielplattform.
-Für die Veröffentlichung in den Stores ist die Freischaltung eines Entwickler Accounts erforderlich,
-welche durch eine einmalige Zahlung von 25\$ für den Google Play Store bzw. einer jährlichen Gebühr von 99\$
-für den iOS AppStore so wie einer Prüfung der Person beziehungsweise des Unternehmens erfolgt.
+Für die Veröffentlichung in den Stores ist zunächst die Freischaltung eines Entwickler Accounts erforderlich,
+welche durch eine einmalige Zahlung von 25\$ für den Google Play Store beziehungsweise einer jährlichen Gebühr von 99\$
+für den iOS AppStore so wie einer Prüfung der Person oder des Unternehmens erfolgt.

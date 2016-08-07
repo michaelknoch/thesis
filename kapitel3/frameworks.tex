@@ -377,12 +377,6 @@ your application.''
 \subsection{Funktionsweise}
 \label{sec:functionsweise}
 
-\begin{figure}[htb]
- \centering
- \includegraphics[width=0.6\linewidth]{kapitel3/electron-context.png}
- \caption{Electron Prozesse}\cite{Build58:online}
-\label{fig:electronprozess}
-\end{figure}
 
 Wie in Abbildung \ref{fig:electronprozess} dargestellt, werden beim Start einer
 Electron Anwendung verschiedenen Prozesskontexte gestartet.
@@ -394,6 +388,14 @@ Ferner wäre es im Hauptprozess möglich einen API oder Websocket Server zu star
 Der Hauptprozess instanziiert den Kontext der Webview, in Abbildung \ref{fig:electronprozess} wird dieser als render process bezeichnet.
 Dieser beinhaltet eine Browserumgebung, welcher die \ac{UI} der Anwendung in einem für den Nutzer sichtbaren Fenster darstellt.
 Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrome, gerendert \cite{Build58:online}.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.4\linewidth]{kapitel3/electron-context.png}
+ \caption{Electron Prozesse \cite{Build58:online}}
+\label{fig:electronprozess}
+\end{figure}
+
 
 \subsection{Kommunikation}
 \label{sec:Kommunikation}
@@ -414,6 +416,11 @@ Open Source Pakete können kostenfrei veröffentlicht werden.
 Für die Verwaltung von Closed Source Paketen wird ein Preismodell ab 7\$ pro Monat angeboten.
 Dependencies des Projekts \projectname{}, also Pakete wie Angular, Ionic und Electron können vollständig
 über \ac{NPM} geladen werden \cite{npm31:online}.
+
+Ein \ac{NPM} Modul beinhaltet neben dem Programmcode eine Package.json Datei, in welcher relevante Metainformationen über das Modul selbst und den Autor gespeichert werden.
+Zusätzlich können in der Package.json post-Installation Scripte referenziert werden um
+beispielsweise eine Transpilierung von TypeScript zu JavaScript vornzunehmen, nachdem das Modul als Abhängigkeit installiert wurde.
+Die Veröffentlichtung in der Registry und damit auf \emph{npmjs.com} sowie der Updatevorgang eines Moduls geschieht über die \ac{CLI} von \ac{NPM}.
 
 \section{Gulp}
 

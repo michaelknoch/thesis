@@ -1,4 +1,58 @@
 %!TEX root = ../thesis.tex
 
-\chapter{Ausblick}
-\label{chap:ausblick}
+\chapter{Reflexion}
+\label{chap:reflexion}
+
+
+
+
+\section{Ausblick}
+
+Während der Entwicklung des Systems entstanden fortlaufend neue projektrelevante Ideen,
+die weit über die definierte Anforderungsanalyse des Prototypen hinausgingen.
+Aufgrund des kurzen Entwicklungszeitraums konnten viele davon werder konzipiert noch implementiert werden.
+Dennoch sollen diese im folgenden genannt und hinsichtlich ihrer Chancen kurz evaluiert werden.
+Im folgenden wird zwischen funktionalen und nichtfunktionalen Ideen unterschieden.
+
+\subsection{Funktional}
+
+\subsubsection{Momente speichern}
+
+Während der Implementierung des \emph{Meta Pickers} kam die Idee auf, Momente zur späteren Analyse speichern zu können.
+Ein Use Case bestünde darin, dass ein Anwendungsentwickler und Nutzer der Applikation \projectname{}
+über die mobile App eine Push Notification auf sein Smartphone erhält, weil auf seinem System ein problematischer Sachverhalt
+entstanden ist. Mithilfe der App kann er sich zunächst Übersicht verschaffen und den Zeitpunkt des Problemauftritts speichern.
+Im Büro wird der gespeicherte Zeitraum dann mithilfe der Desktop Anwendung vollständig analysiert,
+das Problem wird von besagtem Anwendungsentwickler im Sourcecode ausfindig gemacht, behoben und der gespeicherte Zeitpunkt wird mit ``gelöst'' Markiert.
+
+\subsubsection{Community}
+
+Durch die Implementierung eines Community Features könnten System mithilfe von \projectname{} im Kollektiv überwacht werden.
+Systeme müssten dahingehend für weitere Nutzer freigegeben werden können.
+Zusätzlich könnten diverse Kommunikationsschnittstellen für einen
+Austausch zwischen den Entwicklern implementiert werden. Ein möglicher Use Case könnte auf das Feature
+\emph{Momente speichern} aufbauen,
+indem Momente, beziehungsweise Zeiträume, nicht nur für die eigene Analyse gespeichert werden, sondern aus der mobilen Anwendung heraus
+für eine Vielzahl von Entwicklern hinterlegt werden können.
+Aufgrund von kritischem Systemverhalten entstehen Diskussionen um Probleme kollegial und damit effektiver lösen zu können.
+
+\subsection{Nichtfunktional}
+
+
+\subsubsection{Unit Testing}
+
+Spätestens dann, wenn die Anwendung aktiv genutzt werden soll, darf ihre Glaubwürdigkeit nicht aufgrund von Fehlverhalten beeinflusst werden.
+Unit Tests für Angular 2 Applikationen können beispielsweise mithilfe der Testing Bibliothek \emph{Jasmine} implementiert werden.
+Dabei können einzelne Komponenten, Services oder zusätzliche Klassen vollständig getestet werden \cite{Angul78:online}.
+Während der Entwicklung des Prototypen \projectname{} wurde die Entwicklung von Tests aufgrund besagter Zeitroblematik vernachlässigt,
+daher sollte bestehende Funktionalität nachträglich, sowie neue Features durch Unit Tests abgedeckt werden um die Qualität der Software zu gewährleisten.
+
+\subsubsection{Continuous Deployment}
+
+Der Build Prozess, welcher momentan Lokal auf dem Computer des Entwicklers stattfindet, könnte auf einen externen Continuous Integration (CI) Server ausgelagert werden.
+Denkbar wären Services wie \emph{TravisCI}, \emph{CircleCI} oder die Konfiguration eines eigenen Jenkins Server.
+Änderungen in Form von Commits auf der Master Branch könnten damit automatisch die Test- und Buildkette starten um Updates für die Desktop Anwendung sowie für die App zu generieren.
+Herausforderung dabei sind die Bedienung der verschiedenen Zielplattformen, da MacOS Desktop Anwendungen nur auf MacOS und
+Windows Anwendungen ebenfalls nur auf Windows Plattformen generiert und signiert werden können.
+Genannte CI-Services erlauben zwar eine Emulierung verschiedener Betriebsysteme,
+allerdings bedeutet dies einen hohen Konfigurationsaufwand und erfordert ein gewisses Budget für die nötige Rechenleistung.

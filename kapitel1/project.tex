@@ -97,12 +97,23 @@ um ein aktives System zu definieren. Zusätzlich soll auf dieser Ansicht die Mö
 
 \subsubsection{Applikationen}
 
-Ein System besteht aus einer vielzahl von Applikationen, die zunächst  erstellt und
-konfiguriert werden müssen, bevor ihre Daten im Monitoring System einsehbar sind.
+Ein System besteht aus einer vielzahl von Applikationen, die zunächst im System erstellt,
+konfiguriert und instrumentiert werden müssen, bevor ihre Daten im Monitoring System einsehbar sind.
 Die Neuerstellung sowie die Übersicht und Konfiguration bestehender Applikationen
-findet in dieser Ansicht statt.
-Applikation werden dabei anhand ihres \emph{Application Tokens} dem entsprechenden
-Programmcode zugeordnet.
+findet in dieser Ansicht statt. Die Instrumentierung der Applikationen
+geschieht durch einen \emph{Application Token}, welcher in der Monitoring
+Applikation generiert und im Anwendungscode selbst referenziert wird.
+
+
+\vspace{0.3cm}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=0.6\linewidth]{kapitel1/mocks/apps.png}
+ \caption{Applikationen Mock}
+ \label{fig:apps}
+\end{figure}
+
 
 \subsubsection{Dashboard}
 
@@ -114,6 +125,8 @@ Zusätzlich soll das Dashboard als Einstiegspunkt für weitere Ansichten der Anw
 
 Die Metriken-Sektion soll eine Kollektion von Diagrammen beinhalten.
 Dabei soll die Applikation und der aktive Beobachtungszeitraum gewählt werden können.
+
+\vspace{0.3cm}
 
 \begin{figure}[h]
  \centering
@@ -139,6 +152,7 @@ sondern das Kommunikationsnetz des Gesamtsystems visualisieren.
 Wie in Abbildung \ref{fig:graph} veranschaulicht, sollen dabei Services als Knoten und Requests als Kanten dargestellt werden.
 Bei den zu visualisierenden Metriken handelt es sich um die Faktoren Anzahl und Dauer der Requests zwischen den Services.
 Zusätzlich soll erneut die Möglichkeit bestehen, den Beobachtungszeitraum zu definieren.
+\vspace{0.3cm}
 
 \begin{figure}[h]
  \centering
@@ -185,11 +199,3 @@ Hierzu erhält der Nutzer Notifications über das Event System.
 Die Applikation soll daher als App für iOS und Android sowie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.
 In Anbetracht der Größe des Entwicklerteams stellt sich diese Anforderung, in der doch knappen Entwicklungszeit, als große Herausforderung dar.
 Daher liegt die Entscheidung nahe, den Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.
-
-\paragraph{mögliche Events}
-\begin{itemize}
-\item Service Start
-\item Service Stop
-\item Service Absturz
-\item Anstieg von Request Latenzzeiten
-\end{itemize}

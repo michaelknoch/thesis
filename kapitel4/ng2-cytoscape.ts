@@ -14,7 +14,7 @@ export class NgCytoscape implements OnChanges {
     @Input() public layout;
     @Input() public zoom;
 
-    public constructor(private el: ElementRef) {
+    public constructor(private elementRef: ElementRef) {
         this.layout = this.layout || {...};
         this.zoom = this.zoom || {...};
         this.style = this.style || cytoscape.stylesheet()
@@ -27,7 +27,7 @@ export class NgCytoscape implements OnChanges {
     }
 
     public render() {
-        jQuery(this.el.nativeElement).cytoscape({
+        jQuery(this.elementRef.nativeElement).cytoscape({
             layout: this.layout,
             minZoom: this.zoom.min,
             maxZoom: this.zoom.max,

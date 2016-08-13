@@ -1,38 +1,55 @@
 %!TEX root = ../thesis.tex
 
 \chapter{Reflexion}
+
+Im vorherirgen Kapitel wurde die Implementierung des praktischen Teils der Arbeit erläutert.
+In diesem Kapitel wird die Implementierung sowie die Technologieauswahl
+hinsichtlich der vorausgegangenen Anforderungsanalyse bewertet.
+
 \label{chap:reflexion}
 
 \section{Prototyp}
 
-Im folgenden wird die entwickelte Frontend Architektur hinsichtlich verschiedener Kriterien evaluiert.
-
 \subsection{Cross Plattform}
 
-Die in \ref{sec:anforderungsanalyse} Anforderungsanalyse beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
-Das Projekt \projectname{} ist als Website, Desktop Anwendung für macOS und Windows sowie als App für iOS und Android mit vorbehalt verfügbar.
-Der Vorbehalt resultiert aus dem Status des Projekts und dem verfügbaren Budget.
+\begin{figure}[h]
+ \centering
+  \includegraphics[width=1\linewidth]{kapitel5/showcase.png}
+ \caption{\projectname{} auf macOS, Windows und iOS}
+ \label{kapitel5/cross}
+\end{figure}
+\vspace{0.3cm}
+
+\noindent Die in \ref{sec:anforderungsanalyse} Anforderungsanalyse beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
+Das Projekt \projectname{} ist als Website, Desktop Anwendung für macOS und Windows sowie als mobile App für iOS und Android mit Vorbehalt verfügbar.
+Der Vorbehalt resultiert aus dem prototypischen Status des Projekts und dem derzeit verfügbaren Budget.
 Die Infrastruktur des Backend-Systems, welches in der Bachelorarbeit von \emph{Timo Weiß} beschrieben wird,
 ist derzeit auf drei verschiedene \ac{AWS} Instanzen verteilt. Diese müssen für den Betrieb der Anwendung allesamt
 hochgefahren werden, wodurch Kosten entstehen, die einen Rund um die Uhr Betrieb derzeit äußerst kostspielig gestalten.
-Daher wurde die Entscheidung getroffen, die mobilen Anwendungen für iOS und Android zunächst noch nicht über die jeweiligen App Stores zu vertreiben.
+Zudem liegt die derzeitige Implementierung zunächst als prototyp vor und sollte daher vor einem
+öffentlichen Release zunächst als geschlossene Beta Anwendung getestet und evaluiert werden. 
+
+Daher wurde die Entscheidung getroffen, die mobilen Anwendungen für iOS und Android zunächst noch nicht öffentlich über die jeweiligen App Stores zu vertreiben.
 Die Webanwendung ist während aktivierter \ac{AWS} Instanzen öffentlich erreichbar.
 Die Desktop Applikation kann jederzeit über die Github Releases heruntergeladen und gestartet werden,
-allerdings steht sowohl der Web- als auch Desktop Anwendung keine Funktionalität zur Verfügung, wenn besagte \ac{AWS}
+allerdings steht sowohl der Web- als auch der Desktop Anwendung keine Funktionalität zur Verfügung, wenn besagte \ac{AWS}
 Instanzen heruntergefahren sind.
 
-
-Die komplette Cross Plattform Frontend Architektur besteht aus einem komplexen Zusammenspiel von insgesamt fünf verschiedenen Git Repositories.
-Und ist zum aktuellen Zeitpunkt Open Source verfügbar und kann daher vollständig eingesehen werden.
+Die komplette Cross Plattform Frontend Architektur besteht aus einem komplexen Zusammenspiel von insgesamt sechs verschiedenen Git Repositories
+welche zum aktuellen Zeitpunkt Open Source verfügbar und daher vollständig einsehbar sind.
 
 \begin{itemize}
   \item{\textbf{Web, Desktop, Komponentenentwicklung} github.com/michaelknoch/mia}
   \item{\textbf{Mobil} github.com/michaelknoch/miamobile}
   \item{\textbf{Komponenten Generator} github.com/michaelknoch/generator-ng2-comp}
-  \item{\textbf{Bibliothek-Komponente} github.com/michaelknoch/ng2-cytoscape}
-  \item{\textbf{Bibliothek-Komponente} github.com/michaelknoch/ng2-simplegantt}
+  \item{\textbf{ng2-cytoscape} github.com/michaelknoch/ng2-cytoscape}
+  \item{\textbf{ng2-simplegantt} github.com/michaelknoch/ng2-simplegantt}
   \item{\textbf{Desktop Update Server} github.com/michaelknoch/mia-electron-autoupdater-server}
 \end{itemize}
+
+
+\section{Technologieauswahl}
+
 
 
 \section{Ausblick}
@@ -85,3 +102,26 @@ Herausforderung dabei sind die Bedienung der verschiedenen Zielplattformen, da M
 Windows Anwendungen ebenfalls nur auf Windows Plattformen generiert und signiert werden können.
 Genannte CI-Services erlauben zwar eine Emulierung verschiedener Betriebsysteme,
 allerdings bedeutet dies einen hohen Konfigurationsaufwand und erfordert ein gewisses Budget für die nötige Rechenleistung.
+
+
+\chapter{Fazit}
+
+Im Rahmen dieser Arbeit entstand eine Cross Plattform Frontend Architektur für ein System,
+welches die API Endpunkte der SaaS-monitoring Infrastruktur von \emph{Timo Weiß} bedient und die dort aufbereiteten Daten visualisiert.
+Es wurden Chancen moderner Webtechnologien, wie Web Components und Typescript, erläutert
+sowie verschiedene Frameworks und Tools hinsichtlich zuvor definierter Systemanforderungen analysiert.
+Ziel war es, eine komponentenorienterte Architektur zunächst zu konzipieren und anschließend zu implementieren, um
+mit geringem Programmieraufwand Produkte für möglichst viele verschiedene Plattformen erhalten zu können.
+Das Frontend Projekt erhielt den Arbeitstitel \projectname{} und wurde entsprechend den beschriebenen Anforderungen
+als Desktop-, Web- und Mobilanwendung entwickelt. Dabei waren die Frameworks Angular 2 und Ionic 2 von zentraler Bedeutung.
+
+Funktionalität wurde mithilfe von Angular Komponenten innerhalb wiederverwendbarer
+Elemente gekapselt und kann daher innerhalb und außerhalb der Anwendung wiederverwendet werden.
+Neben der Implementierung der Komponenten wurden zudem Workflow Optimierungen und Deployment Prozesse entwickelt,
+welche die Produktivität der Entwicklung drastisch gesteigert haben, wodurch es überhautp erst möglich wurde den Funktionsumfang
+innerhalb der kurzen Entwicklungszeit auf derart vielvältige Weise vertreiben zu können.
+
+In einem Ausblick wurden mögliche Chancen der Anwendung sowie erste Schritte beschrieben, die erforderlich sind um aus diesem ersten
+Prototypen ein konkurenzfähiges Produkt zu schaffen.
+Es bleibt abzusehen wieviel Energie und Kapazität für die Weiterentwicklung des Projekts beziehungsweise für eine definitiv im Projektplan anstehende Firmengründung zur Verfüfung steht.
+Fest steht allerding, dass Softwareprojekte, die aus Eigenmotivation heraus konzipiert und entwickelt werden schnell zu einer Herzensangelegenheit werden.

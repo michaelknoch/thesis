@@ -2,15 +2,83 @@
 
 \chapter{Reflexion}
 
-Im vorherirgen Kapitel wurde die Implementierung des praktischen Teils der Arbeit erläutert.
-In diesem Kapitel wird die Implementierung sowie die Technologieauswahl
-hinsichtlich der vorausgegangenen Anforderungsanalyse bewertet.
+Im vorherirgen Kapitel wurde die Umsetzung des praktischen Teils der Arbeit erläutert.
+In diesem Kapitel wird die Technologieauswahl sowie die Implementierung
+hinsichtlich der vorausgegangenen Anforderungsanalyse reflektiert.
 
 \label{chap:reflexion}
 
-\section{Prototyp}
+\section{Technologieauswahl}
 
-\subsection{Cross Plattform}
+Mithilfe des \textbf{Angular 2 Frameworks} wurde Funktionalität von \projectname{} in Form von
+Web Components implementiert.
+Dadurch konnte Funktionalität, statt sie redundant implementieren zu müssen, innerhalb der
+Anwendung beziehungsweise plattformübergreifend mehrfach wiederverwendet werden.
+Zusätzlich wurden Komponenten die keine spezifischen Abhängigkeiten zum Projekt aufwiesen als
+generische Komponenten für die Open Source Community entwickelt.
+
+Die Wahl der Frameworks Angular 2 für die Web- und Desktop Anwendung sowie Ionic 2 für
+die mobile App erwies sich als sehr gute Kombination,
+da Angular Komponenten innerhalb von Ionic nahtlos verwendet werden können
+und sich die APIs der beiden Frameworks sehr ähneln.
+
+Ein zentraler Bestandteil der Implementierung ist Angulars Dependency Injection.
+Komponenten müssen sich dabei nicht um die Instanziierungen von Objekten kümmern,
+sondern können vom Anwendungskontext völlig entkoppelt globale Instanzen konsumieren.
+Implementierungen werden dadurch deutlich flexibler und austauschbar,
+sollte Funktionalität bestehender Komponenten erweitert oder überschrieben werden müssen.
+
+Angular 2 befindet sich zum aktuellen Zeitpunkt (13. August) im fünften Release Candidate und steht damit kurz
+vor dem offiziellen Release der Version 2.0. Zu beginn der Thesis befand sich das Framework im ersten Release Candidate.
+Erst mit dem letzten RC5 Update des Frameworks wurden einige APIs speziell für den Bootstrap Prozess der Anwendung verändert,
+zwischen den RC1 und RC4 Veröffentlichungen konnte Angular 2 ohne Änderungen am Projektcode problemlos
+aktualisiert werden. Alte Implementierungen funktionieren nach wie vor in RC5,
+wurden dennoch als veraltet markiert und werden vermutlich in der Version 2.0 nicht mehr
+funktionieren.
+
+
+\textbf{Ionic 2} befand sich zu Beginn des Projekts bereits in der siebten Beta der neuen Version.
+Zum jetzigen Zeitpunkt (5. August) ist Beta 11 erscheinen, allerdings läuft die mobile App von
+\projectname{} noch auf Betaversion 10, da das neuste Ionic Update,
+wie so manches zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichten der
+mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden sollen.
+Es wurde allerdings zunächst ein downgrade auf Beta 10 durchgeführt.
+
+Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant.
+Die letzte geplante Beta Veröffentlichung soll eine Vielzahl von interessanten
+Änderungen beinhalten. Zum einen steht dem Ionic Build Prozess ein großes Update bevor.
+Dieser wurde bereits in \emph{\ref{Absolute-Asset-Pfade} Absolute Asset Pfade} kritisiert und eine
+mögliche Verbesserung in Form eines Pull Requests vorgelegt.
+Das Problem der relativen und absoluten Pfade soll nun mit einem Technologiewechsel von \emph{Browserify} zu \emph{Webpack 2} gelöst werden.
+Zusätzlich bietet \emph{Webpack 2} eine Technik welche ``tree shaking'' gennant wird.
+Diese liefert dem Build Prozess Transparenz darüber, welcher \ac{CSS} und JavaScript Code tatsächlich verwendet wird.
+Dadurch soll der Output sowie die Dauer des Buildvorgangs drastisch reduziert werden \cite{Annou88:online}.
+Darüber hinaus will Ionic mithilfe des Ahead-of-time Compilers von Angular Templates zum Zeitpunkt des Buildvorgangs und nicht mehr zur Laufzeit kompilieren.
+Dadurch soll die App deutlich an Leistung gewinnen und speziell der Start einer App soll damit drastisch verkürzt werden.
+
+\vspace{0.3cm}
+
+``We’re looking forward to delivering a high quality release candidate in the coming weeks,
+and we want to say thank you to the community for all of the great contributions,
+via GitHub issues and pull requests. It is an incredible privilege to work with such an awesome community!'' \cite{Annou88:online}
+
+\vspace{0.3cm}
+
+\noindent
+Die 1.0.0 Version des \textbf{Electron Framework} wurde bereits am 9. Mai veröffentlicht.
+Daher konnte schon zu Beginn des Projekts \projectname{} mit einer stabilen API für die Entwicklung
+der Desktop Anwendung gerechnet werden, was sich in der Entwicklungsphase bestätigte.
+Als sehr Zeitaufwändig stellte sich die Implementierung des automatischen
+Update Mechanismus, beschrieben in \ref{client-updates} Client Aktualisierung, heraus.
+Nicht weil diese Schnittstelle des Frameworks derart komplex zu bedienen ist, sondern weil der Aktualisierungsvorgang nur getestet werden kann,
+wenn die Anwendung zuvor für Produktion gebaut, signiert und für den Updateserver sichtbar ins Netz geladen wurde.
+Beim Start der produktions Anwendung ist es nur schwer möglich Zugriff auf nötige Debug Informationen zu erhalten,
+somit verzögerte sich die Testphase von Electron AutoUpdate erheblich.
+
+
+\newpage
+
+\section{Cross Plattform}
 
 \begin{figure}[h]
  \centering
@@ -27,7 +95,7 @@ Die Infrastruktur des Backend-Systems, welches in der Bachelorarbeit von \emph{T
 ist derzeit auf drei verschiedene \ac{AWS} Instanzen verteilt. Diese müssen für den Betrieb der Anwendung allesamt
 hochgefahren werden, wodurch Kosten entstehen, die einen Rund um die Uhr Betrieb derzeit äußerst kostspielig gestalten.
 Zudem liegt die derzeitige Implementierung zunächst als prototyp vor und sollte daher vor einem
-öffentlichen Release zunächst als geschlossene Beta Anwendung getestet und evaluiert werden. 
+öffentlichen Release zunächst als geschlossene Beta Anwendung getestet und evaluiert werden.
 
 Daher wurde die Entscheidung getroffen, die mobilen Anwendungen für iOS und Android zunächst noch nicht öffentlich über die jeweiligen App Stores zu vertreiben.
 Die Webanwendung ist während aktivierter \ac{AWS} Instanzen öffentlich erreichbar.
@@ -46,9 +114,6 @@ welche zum aktuellen Zeitpunkt Open Source verfügbar und daher vollständig ein
   \item{\textbf{ng2-simplegantt} github.com/michaelknoch/ng2-simplegantt}
   \item{\textbf{Desktop Update Server} github.com/michaelknoch/mia-electron-autoupdater-server}
 \end{itemize}
-
-
-\section{Technologieauswahl}
 
 
 

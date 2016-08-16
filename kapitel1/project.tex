@@ -2,7 +2,7 @@
 
 \chapter{Projekt \projectname{}}
 
-In diesem Kapitel soll die Grundlage der praktischen Arbeit, welche im folgenden \projectname{} genannt wird, erläutert werden.
+In diesem Kapitel wird die Grundlage der praktischen Arbeit, welche im folgenden \projectname{} genannt wird, erläutert.
 
 \section{Motivation}
 \label{sec:motivation}
@@ -22,7 +22,7 @@ Es ist möglich dass Services auf einer Vielzahl von Servern möglicherweise an 
 oder im Problemfall nicht miteinander agieren können. Instanzen einzelner Services können zur Laufzeit starten, stoppen oder abstürzen
 und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind also deutlich komplexer zu überblicken, da durch die Verteilung von Funktionalität auch
 mögliche Fehlerquellen verteilt werden.
-Daher ist ein Monitoring Tool, um Stabilität und Performance einer solchen Architektur zu gewährleisten, meist stark sehr sinnvoll.
+Daher ist ein Monitoring Tool, um Stabilität und Performance einer solchen Architektur zu gewährleisten, meist sehr sinnvoll.
 
 \newpage
 
@@ -82,9 +82,9 @@ Nach erfolgreichem Login beziehungsweise nach erfolgreichem Registrierungsvorgan
 
 \subsubsection{System wählen / erstellen}
 
-Nutzer können mithilfe von \projectname{} mehrere verschiedene Anwendungen monitoren.
+Nutzer können mithilfe von \projectname{} mehrere verschiedene Anwendungen überwachen.
 Daher wird eine Übersichtsseite (Abbildung \ref{fig:system-picker}) benötigt
-um ein aktives System zu definieren. Zusätzlich soll auf dieser Ansicht die Möglichkeit bestehen neue Systeme anzulegen.
+um das aktive System zu definieren. Zusätzlich soll auf dieser Ansicht die Möglichkeit bestehen neue Systeme anzulegen.
 
 \vspace{0.3cm}
 
@@ -124,7 +124,7 @@ Zusätzlich soll das Dashboard als Einstiegspunkt für weitere Ansichten der Anw
 \subsubsection{Metriken}
 
 Die Metriken-Sektion soll eine Kollektion von Diagrammen beinhalten.
-Dabei soll die Applikation und der aktive Beobachtungszeitraum gewählt werden können.
+Um Daten filtern zu können soll die Applikation und der Beobachtungszeitraum gewählt werden können.
 
 \vspace{0.3cm}
 
@@ -151,7 +151,7 @@ Im Vergleich zur Metriken-View soll der Graph nicht nur einzelne Applikationen d
 sondern das Kommunikationsnetz des Gesamtsystems visualisieren.
 Wie in Abbildung \ref{fig:graph} veranschaulicht, sollen dabei Services als Knoten und Requests als Kanten dargestellt werden.
 Bei den zu visualisierenden Metriken handelt es sich um die Faktoren Anzahl und Dauer der Requests zwischen den Services.
-Zusätzlich soll erneut die Möglichkeit bestehen, den Beobachtungszeitraum zu definieren.
+Zusätzlich soll erneut die Möglichkeit bestehen, den Beobachtungszeitraum als Datenfilter nutzen zu können.
 \vspace{0.3cm}
 
 \begin{figure}[h]
@@ -165,7 +165,7 @@ Zusätzlich soll erneut die Möglichkeit bestehen, den Beobachtungszeitraum zu d
 
 Die Traces Sektion besteht aus zwei verschiedenen Ansichten. Die Übersichtsliste der Request Einstiegspunkte,
 leitet zur Trace Detailseite (Abbildung \ref{fig:trace}) über. Im Detail besteht ein Trace aus den Requests
-aller an einer Aktion beteiligten Services. Dabei werden die Service-Zugriffe in Relation zur Zeit in einem Gantt Chart dargestellt.
+aller an einer Aktion beteiligten Services. Dabei werden Service-Zugriffe in Relation zur Zeit in einem Gantt Chart dargestellt.
 
 \vspace{0.3cm}
 \begin{figure}[h]
@@ -185,7 +185,9 @@ aller an einer Aktion beteiligten Services. Dabei werden die Service-Zugriffe in
  \label{fig:journalmock}
 \end{figure}
 
-Das Journal (Abbildung \ref{fig:journalmock}) beinhaltet Einträge bezüglich Serverstart, Serverstop und Servercrash.
+\noindent
+Das Journal, visuell dargestellt in Abbildung \ref{fig:journalmock} beinhaltet zeitlich sortierte Einträge
+bezüglich Start und Stop von Applikationen innerhalb eines Systems.
 
 
 \newpage
@@ -193,9 +195,12 @@ Das Journal (Abbildung \ref{fig:journalmock}) beinhaltet Einträge bezüglich Se
 \subsection{Plattformen}
 
 Applikationen können anhand von Diagrammen und Graphen im Detail analysiert werden,
-ferner möchte ein Nutzer reaktiv über Vorgänge seines Systems informiert werden, speziell wenn Latenzprobleme und Service-Ausfälle reibungslose Abläufe eines Systems gefährden.
-Hierzu erhält der Nutzer Notifications über das Event System.
+zudem möchte ein Nutzer der Anwendung proaktiv über kritische Vorgänge innerhalb seines Systems informiert werden,
+speziell wenn Latenzprobleme und Service-Ausfälle reibungslose Abläufe seines Systems gefährden.
+Hierzu erhält der Nutzer Notifications über das Event System. Die Applikation soll daher als Webanwendung sowie als App für iOS und Android
+zur Verfügung stehen, um Anwendungsentwickler auch unterwegs über das System \projectname{} erreichen zu können.
 
-Die Applikation soll daher als App für iOS und Android sowie als Desktop Applikation für MacOS, Linux und Windows zur Verfügung stehen.
+Zusätzlich zur Web- und Mobilanwendung soll eine Desktop-Applikation für macOS und Windows implementiert werden,
+um eine möglichst große Zielgruppe and Endnutzern erreichen zu können.
 In Anbetracht der Größe des Entwicklerteams stellt sich diese Anforderung, in der doch knappen Entwicklungszeit, als große Herausforderung dar.
-Daher liegt die Entscheidung nahe, den Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.
+Daher liegt die Entscheidung nahe, einen Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.

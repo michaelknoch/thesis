@@ -358,9 +358,9 @@ Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu v
 
 Durch die stetige Entwicklung von Webbrowsern und Apps für Mobilgeräten haben Desktop Applikationen in den letzten Jahren immer mehr an Bedeutung verloren.
 Dennoch bieten sie gegenüber Anwendungen, die nur in Browsern ausgeführt werden, einige Vorteile.
-Desktop Anwendungen befinden sich im Dock beziehungsweise im Startmenü des Betriebsystems oder sind womöglich im Autostart referenziert.
+Desktop Anwendungen befinden sich im Dock beziehungsweise im Startmenü des Betriebssystems oder sind womöglich im Autostart referenziert.
 Dadurch wirken sie präsenter, sind schneller zu erreichen und können selbst im minimierten Zustand noch Code ausführen.
-Sie sind nicht durch Browser limitiert und können APIs der Betriebsysteme nutzen \cite{Build58:online}.
+Sie sind nicht durch Browser limitiert und können APIs der Betriebssysteme nutzen \cite{Build58:online}.
 
 Electron ist ein Framework zur Entwicklung nativer Desktop Anwendungen, ebenfalls basierend auf Webtechnologien.
 Atom, Visual Studio Code, Whatsapp und Slack sind erfolgreiche Beispiele für Anwendungen, die mithilfe von Electron
@@ -382,7 +382,7 @@ Wie in Abbildung \ref{fig:electronprozess} dargestellt, werden beim Start einer
 Electron Anwendung verschiedenen Prozesskontexte gestartet.
 Zunächst startet der Hauptprozess (main Process), in welchem grundlegende Konfigurationen vorgenommen werden können.
 Die Besonderheit dieses Kontextes ist die Verfügbarkeit von Node.js.
-Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebsystems um beispielsweise Dateien lesen oder schreiben zu können.
+Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebssystems um beispielsweise Dateien lesen oder schreiben zu können.
 Ferner wäre es im Hauptprozess möglich einen API oder Websocket Server zu starten.
 
 Der Hauptprozess instanziiert den Kontext der Webview, in Abbildung \ref{fig:electronprozess} wird dieser als render process bezeichnet.

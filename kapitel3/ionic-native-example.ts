@@ -1,4 +1,4 @@
-// gps example with promises
+// camera example with promises
 import {Camera} from 'ionic-native';
 
 Camera.getPicture().then(

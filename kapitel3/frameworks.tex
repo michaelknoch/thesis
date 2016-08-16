@@ -86,11 +86,12 @@ Abstraktionsebene eingebunden wird \cite{DanWa45:online}.
 
 \subsubsection{Lebenszyklus}
 Eine Angular Komponente besitzt einen Lebenszyklus (Component Lifecycle) mit diversen Einstiegspunkten,
-um wichtige Momente einer Angular Komponente für Entwickler offen zu legen um darauf reagieren zu können. \cite[837-839]{ng-Book-2}.
+um wichtige Momente einer Angular Komponente für die Entwicklung offen zu legen \cite[837-839]{ng-Book-2}.
 Zur Verdeutlichung sind einige dieser in Listing \ref{lifecycle-example} implementiert.
-NgOnInit und ngOnDestroy wird beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
+NgOnInit und ngOnDestroy werden beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
 Angular führt ngOnChanges aus, wenn sich Variablen der Komponente verändert haben. Anhand von SimpleChanges
-können Daten vor und nach dem Change Event miteinander verglichen werden.
+können Daten vor und nach dem Event miteinander verglichen werden.
+Wie Angular die Änderung von Variablen ermittelt, wird in \ref{sec:change-detection} Change Detection erläutert.
 
 \vspace{0.3cm}
 \lstinputlisting[language=Java,label=lifecycle-example,caption=Lebenszyklus Beispiel]{kapitel3/lifecycle-example.ts}
@@ -113,12 +114,11 @@ In Angular 2 wurde \ac{DI} neu entwickelt, um flexiblere Injizierung von Service
 \ac{DI} bringt vielerlei Vorteile mit sich. In der Implementierung einer Angular 2 Komponente wird im
 Konstruktor deklariert, welche Abhängigkeiten (Dependencies) für die Komponentenfunktionalität benötigt werden.
 Das Framework ist dabei für die automatische Instanziierung der Objekte verantwortlich.
-Die Implementierung einer Komponente wird durch die Verwendung von \ac{DI} sehr flexibel,
-da Implementierungen von Services einfach ausgetauscht werden können.
+Die Implementierung von Komponenten wird durch die Verwendung von \ac{DI} sehr dynamisch,
+da Implementierungen von Services, wie in Abbildung \ref{service-injection} dargestellt, einfach ausgetauscht werden können.
 Soll beispielweise die Funktionalität einer Komponente, welche über einen Service dynamisch Daten lädt, getestet werden,
 so kann die Implementierung des Services einfach ausgetauscht werden, so dass dieser statische Testdaten liefert,
-sollte der Server in der Testumgebung nicht erreichbar sein.
-\cite[281]{Angular2}
+sollte der API-Server in der Testumgebung nicht erreichbar sein \cite[281]{Angular2}.
 
 
 \vspace{0.3cm}
@@ -127,25 +127,26 @@ sollte der Server in der Testumgebung nicht erreichbar sein.
  \centering
  \includegraphics[width=0.8\linewidth]{kapitel3/component-injector.png}
  \caption{Component Injector}\cite[343]{Angular2}
+ \label{service-injection}
 \end{figure}
 \vspace{0.3cm}
 
-\ac{DI} wird dabei mithilfe von Providern konfiguriert.
+\ac{DI} wird in Angular mithilfe von Providern konfiguriert.
 Dies geschieht auf Komponentenebene oder im Root der Applikation.
 Wird ein Service über einen Provider im Bootstrap Prozess im Root der Applikation referenziert,
-so ist die Instanz des Services in jede Komponente der Applikation injizierbar.
-Wird der Provider in der Komponente definiert, so ist die Serviceinstanz in dieser Komponente sowie in
+so ist diese Instanz des Services in jede Komponente der Applikation injizierbar.
+Wird der Provider erst in der Komponente definiert (Listing \ref{provider2}), so ist die Serviceinstanz nur in dieser Komponente sowie in
 allen Kindkomponenten verfügbar. Desweiteren lassen sich Provider kombinieren, da diese überschreibbar sind.
-Sollte also ein Serviceprovider im Root der Applikation definiert sein, können dennoch weitere Provider in den Komponenten definiert werden.
+Sollte also ein Serviceprovider im Root der Applikation definiert sein (Listing \ref{provider1}), können dennoch weitere Provider in den Komponenten definiert werden.
 Jedoch werden demnach auch mehrere Instanzen des Services erzeugt.
-Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume zu erzeugen. \cite[286]{Angular2}
+Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume zu erzeugen \cite[286]{Angular2}.
 
 \vspace{0.2cm}
-\lstinputlisting[language=Java,label=code,caption=Provider im Bootstrap Prozess]{kapitel3/provider-example-root.ts}
+\lstinputlisting[language=Javascript,label=provider1,caption=Provider im Bootstrap Prozess]{kapitel3/provider-example-root.ts}
 \vspace{0.2cm}
 
 \vspace{0.2cm}
-\lstinputlisting[language=Java,label=code,caption=Provider in einer Komponente]{kapitel3/provider-example.ts}
+\lstinputlisting[language=Javascript,label=provider2,caption=Provider in einer Komponente]{kapitel3/provider-example.ts}
 \vspace{0.2cm}
 
 
@@ -159,20 +160,19 @@ Auf der anderen Seite können sie jedoch auch genutzt werden, um Daten multiplen
 Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird. Daher erhalten alle
 Komponenten, die den Service injizieren, die selbe Referenz, somit die selbe Instanz und daher die selbe globale Datenbasis.
 In einem Userservice könnte beispielweise eine Boolean Variable definiert sein, welche Auskunft darüber gibt,
-ob ein User eingeloggt ist oder nicht. \cite[308]{Angular2}
+ob ein User eingeloggt ist oder nicht \cite[308]{Angular2}.
 
 
 \subsection{Data Binding}
 Das in eine Komponente eingebundene Markup repräsentiert die Viewschicht einer Komponente.
-Angular 2 besitzt zur Darstellung von Datenstrukturen eine komplexe, jedoch sehr ausdrucksstarke Template Syntax.
+Angular 2 besitzt zur Darstellung von Datenstrukturen eine komplexe, jedoch sehr ausdrucksstarke Template Syntax, siehe Listing \ref{ngtemplate}.
 Variablen und Funktionen einer Komponente, können mithilfe von doppelt geschweiften Klammern in die View eingebunden werden.
 Auf der Basis von HTML5 können zudem Schleifen und Fallunterscheidungen implementiert werden.
 Der Gültigkeitsbereich des Templates bezieht sich, bezüglich Variablen und Funktionen, dabei auf den Kontext der Komponente,
-welche das Template in der Component Decoration referenziert. \cite{Templ78:online}
+welche das Template in der Component Decoration referenziert \cite{Templ78:online}.
 
-\vspace{1cm}
-\lstinputlisting[language=HTML,label=code,caption=Angular 2 Template Syntax]{kapitel3/template-example.html}
-\vspace{1cm}
+\vspace{0.3cm}
+\lstinputlisting[language=HTML,label=ngtemplate,caption=Angular 2 Template Syntax]{kapitel3/template-example.html}
 
 \subsection{Kommunikation}
 
@@ -181,33 +181,33 @@ kommunizieren können. Für den Austausch von Daten gibt es verschiedene Ansätz
 Wie bereits in \ref{Services-als-Singletons} Services als Singletons erwähnt, werden Services im Normalfall als Singleton
 instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hier für den
 Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen hinaus,
-können Events in Komponenten oder Services definiert, und von derer ebenfalls aboniert werden,
-um asynchrone Kommunikation applikationsintern zu ermöglichen.
+können Events in Komponenten oder Services definiert und ebenfalls aboniert werden,
+um asynchrone Kommunikation applikationsintern zu ermöglichen. Die Auslagerung von Funktionalität in Services ergibt jedoch nur dann wirklich Sinn,
+wenn diese auch als Singleton existieren kann.
 
-Die Auslagerung von Funktionalität in Services ergibt jedoch nur dann wirklich Sinn,
-wenn diese auch als Singleton existieren kann. Komponenten sind im Vergleich zu Services keine Singletons,
+Komponenten sind im Vergleich zu Services keine Singletons,
 da sie mit jeder Verwendung in der Applikation neu instanziiert werden.
-Variablen und Funktionen eingebundener Komponenten können durch die Annotationen Input und Output
-direkt über den HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kindkomponenten
-relevante Daten über den Input Tag übergeben und über den Output Kanal in Form von Event Emittern aboniert. \cite{Angul94:online}
+Variablen und Funktionen eingebundener Komponenten können durch die Annotationen @Input und @Output
+direkt über ihren HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kindkomponenten
+relevante Daten über den Input Tag übergeben und über den Output Kanal in Form von Event Emittern aboniert \cite{Angul94:online}.
 
-Handelt es sich speziell von Kindkomponenten und nicht um Nachbarkomponenten,
-kann durch die Annotation ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
+Handelt es sich bei dem Kommunikationsziel speziell um Kindkomponenten und nicht um Nachbarkomponenten,
+kann durch die Annotation @ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
 Die Kommunikation geschieht in diesem Fall nicht über die View Layer der Komponenten,
-sondern direkt von der Elternkomponente zu ihrer Kindinstanz. \cite{ViewC61:online}
+sondern direkt von der Elternkomponente zu ihrer Kindinstanz \cite{ViewC61:online}.
 
 
 \subsection{Change Detection}
+\label{sec:change-detection}
 
 Beim Start einer Angular2 Applikation wird nach anfänglichem Laden der Seite eine View gerendert.
-Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet dem Nutzer so mittels Text,
+Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den DOM, abgebildet und dem Nutzer so mittels Text,
 Formularen, Buttons, Bildern etc. visuell aufbereitet.
 Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
 Zugriffe auf den DOM sind ressourcenintensiv, daher sollten DOM Manipulationen nicht inflationär stattfinden.
 Datenänderungen können entwerder durch User Events, XMLHttpRequests oder Timer (setTimeout(), setInterval()) ausgelöst werden.
 Dies geschieht asynchron. Es ist also davon auszugehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt,
-sich Daten geändert haben können und die View aktualisiert werden muss.
-\cite{changedetection-explained}
+sich Daten geändert haben können und die View aktualisiert werden muss \cite{changedetection-explained}.
 
 \subsection{NgZone}
 
@@ -216,8 +216,7 @@ können Zones ebenfalls in JavaScript genutzt werden. Zone.js ist als Portierung
 Zones sind Ausführungskontexte (Scopes) für die Observation asynchroner Operationen.
 Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösen innerhalb des entsprechenden Ausführungskontexts verschiedene Events aus.
 NgZone ist ein Fork von zone.js, welcher die Basisfunktionalität um zusätzliche Events erweitert.
-Für die Change Detection relevant ist dabei das event onTurnDone().
-\cite{changedetection-explained}
+Für die Change Detection relevant ist dabei das event onTurnDone() \cite{changedetection-explained}.
 
 \vspace{0.3cm}
 \textbf{``onTurnDone() - Notifies subscribers immediately after Angular’s zone is done processing the current turn and any micro tasks scheduled from that turn.''}
@@ -226,13 +225,13 @@ Für die Change Detection relevant ist dabei das event onTurnDone().
 
 Sobald das onTurnDone() Event ausgelöst wird, löst NgZone wiederum eine tick() Event aus, welches schlussendlich die Change Detection startet.
 Jede Angular2 Komponente besitzt seinen eigenen Change Detector. Da eine Angular2 Applikation aus einem Komponentenbaum besteht,
-kann davon ausgegangen werden, dass sie ebenfalls aus einem Baum von Change Detectoren besteht.
+kann davon ausgegangen werden, dass sie ebenfalls aus einem Baum von Change Detektoren besteht.
 Change Detection wird innerhalb dieses Baumes als unidirektionaler Datenfluss von oben nach unten, beginnend mit dem Rootknoten, ausgeführt.
 
 Obwohl jede Komponente bei einem tick() nach Änderungen prüft, ist Angular2 sehr schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
 da jede Komponenten ihren eigenen Change Detector besitzt und es nicht eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
 Dies wird erreicht, indem Angular zur Laufzeit individuelle Change Detector Klassen für jede Komponente, entsprechend dem Datenmodell der Komponente, erzeugt.
-Dieser Code kann von virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden.
+Dieser Code kann von virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden \cite{changedetection-explained}.
 
 \vspace{1cm}
 
@@ -250,14 +249,14 @@ Im nachfolgenden soll die Relevanz des Frameworks Ionic 2 bezüglich des Projekt
 \subsection{Einführung}
 
 Ionic 2 ist ein Open Source \ac{SDK} für die Entwicklung mobiler Applikationen mithilfe von Angular 2 und Cordova.
-Auf Basis von Webtechnologien wie HTML5, CSS3 und Javascript können Apps für iOS, Android und Windowsphone
+Auf Basis von Webtechnologien wie HTML5, CSS3 und JavaScript können Apps für iOS, Android und Windowsphone
 entwickelt werden. Diese werden als hybride Apps bezeichnet,
 da sie eine Mischform zwischen Web-Apps und nativen Applikationen darstellen.
 Eine hybride App ist zunächst eine Webanwendung, die einen Browser für ihre Ausführung benötigt.
 Als Browser wird die native Webview der jeweiligen Platform verwendet,
 beispielsweise Safari für iOS und Chrome für Android.
-Mithilfe von Cordova Plugins kann auf das \ac{API} des Systems zugegriffen werden, um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden.
-\cite{ionic34:online}
+Mithilfe von Cordova Plugins kann auf das \ac{API} des Systems zugegriffen werden,
+um Funktionalitäten wie beispielsweise GPS, Telefonbuch und Kamera zu verwenden \cite{ionic34:online}.
 
 \subsection{Ionic Components}
 
@@ -267,8 +266,7 @@ Komponenten können dabei wiederum verschachtelt werden, so dass ein Komponenten
 
 Das Ionic \ac{SDK} stellt Entwicklern eine ganze Reihe an vorgefertigten Komponenten zur Verfügung,
 welche native Standardelemente der jeweiligen Plattform abdecken. Beispiele dafür sind Buttons, Listen, Tabs oder ActionSheets.
-Interessant dabei ist, dass die Optik der Komponente dabei dem \ac{CI} der Plattform entspricht.
-\cite{ionic99:online}
+Interessant dabei ist, dass die Optik der Komponente dabei dem \ac{CI} der Plattform entspricht \cite{ionic99:online}.
 
 \subsection{Theming}
 Theming wird in einer Ionic Anwendung durch \ac{CSS} realisiert.
@@ -277,8 +275,7 @@ Globale Stile können dabei plattformspezifisch oder plattformunabhängig defini
 So befinden sich in einer klassischen Ionic 2 App individuelle Styles für iOS, Android und Windowsphone.
 Dadurch kann das umzusetzende \ac{CI} flexibel getreu dem Standard der Plattform entwickelt werden.
 Soll eine Anwendung bezüglich Optik für jede Plattform identisch sein,
-können plattformunabhängige, globale Stile definiert werden.
-\cite{ionic73:online}
+können plattformunabhängige, globale Stile definiert werden \cite{ionic73:online}.
 
 
 \subsection{Ionic Native}
@@ -288,7 +285,7 @@ In der Vorgängerversion des \ac{SDK} wurden Cordova Plugins installiert und als
 Beispielsweise war es möglich, aus jedem Kontext der Applikation heraus ``navigator.camera.getPicture(onSuccess, onFail)'' aufzurufen.
 Ionic Native hingegen erlaubt Entwicklern Module selektiv zu importieren, wodurch diverse Vorteile entstehen.
 Globale Cordova Objekte werden vermieden, wodurch Code deutlich strukturierter und verständlicher wird.
-Zudem werden Callbacks der Cordova Plugins mit Ionic Native in Promises oder Observables gewrappt.
+Zudem werden Callbacks der Cordova Plugins mit Ionic Native in Promises oder Observables verpackt.
 Dadurch entsteht ein einheitliches Interface im Stil von Angular 2 für die Nutzung dieser Module,
 wodurch deren asynchrone Events bequemer observiert werden können.
 
@@ -296,12 +293,12 @@ Des Weiteren ist in Ionic Native eine Schicht für Fehlerbehandlung implementier
 Ist ein Cordova Modul nicht installiert, oder wird es falsch verwendet,
 generiert Ionic Native Fehler und Warnungen, die für Entwickler unabdingbar sind.
 In der Vorgängerversion des Ionic \ac{SDK} konnten Fehler, die durch falsche Verwendung von
-Cordova Modulen aufgetreten sind, meist nur durch ausprobieren oder Debugging des nativen Codes identifiziert werden.
-\cite{ionic55:online}
+Cordova Modulen aufgetreten sind, meist nur durch ausprobieren oder Debugging des nativen Codes identifiziert werden
+\cite{ionic55:online}.
+Listing \ref{ionicnative} zeigt eine beispielhafte Implementierung der Kamera und GPS Schnittstellen mithilfe von Ionic-Native.
 
-\vspace{1cm}
-\lstinputlisting[language=JavaScript,label=code,caption=Ionic Native Beispiel \cite{ionic55:online}]{kapitel3/ionic-native-example.ts}
-\vspace{1cm}
+\vspace{0.3cm}
+\lstinputlisting[language=JavaScript,label=ionicnative,caption=Ionic Native Beispiel \cite{ionic55:online}]{kapitel3/ionic-native-example.ts}
 
 
 \subsection{Ökosystem Ionic}
@@ -311,11 +308,11 @@ Ionic the complete mobile dev package. It's the best way to build apps.'' \cite{
 \vspace{0.5cm}
 
 \paragraph{Ionic \ac{CLI}}
-Die Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten. Zunächst können individuelle
+Die Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten erheblich. Zunächst können individuelle
 Startertemplates anhand diverser Parameter generiert werden.
 Das Framework erzeugt dabei voll funktionstüchtige Applikationen, die den Einstieg in das Framework erleichtern sollen.
-Sidemenu und Tabmenu sind Beispiele für diese Templates, welche in Typescript oder JavaScript generiert werden können.
-Überdies lassen sich Applikationen anhand der \ac{CLI} auf den Zielplattformen compilieren und auf angeschlossenen Geräten ausführen.
+\emph{Sidemenu} und \emph{Tabmenu} sind Beispiele für Templates, welche in Typescript oder JavaScript generiert werden können.
+Darüber hinaus lassen sich Applikationen mithilfe der \ac{CLI} auf den Zielplattformen compilieren und auf angeschlossenen Geräten ausführen.
 
 \paragraph{Ionic Creator}
 ist ein Prototyping Tool, mit welchem Oberflächen statt
@@ -333,11 +330,11 @@ Linux speziell in Teams deutlich vereinfacht werden. \cite{Ionic75:online}
 \subsubsection{Ionic Platform}
 
 Ionic Platform ist eine Cloud, sowie eine Sammlung von Diensten für die Entwicklung,
-Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet \emph{Ionic Platform} einen zentralen Dienst für die Handhabung von Nutzern einer App.
-Diese können sich dabei klassisch per Mail oder per single sign on über
+Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet Ionic Platform einen zentralen Dienst für die Nutzerverwaltung innerhalb einer App.
+Nutzer können sich dabei klassisch per Mail oder per single sign on über
 Facebook, Google und Twitter registrieren und sind damit in der Applikation authentifiziert.
-Zudem können registrierte Nutzer zentral in einer Weboberfläche verwaltet und ggfls. mit Push Nachrichten adressiert werden.
-Diese können sich dabei an alle Nutzer, oder ein definiertes Segment wenden.
+Zudem können registrierte Nutzer zentral in einer Weboberfläche verwaltet und gegebenenfalls mit Push Nachrichten adressiert werden.
+Diese können dabei an alle Nutzer, oder ein definiertes Segment gerichtet werden.
 Hierzu ist kein Server mit implementiertem \ac{APN} oder \ac{GCM} System von Nöten, das Push System von Ionic deckt diese
 Funktionalität bereits vollständig ab.
 

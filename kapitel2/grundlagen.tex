@@ -2,12 +2,12 @@
 
 \chapter{Grundlagen}
 
-Im Folgenden sollen die Grundlagen erläutert werden, die als Basis des Projekts sowie zum Verständnis von Kapitel \ref{chap:frameworks} Frameworks und Tools erforderlich sind.
+Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts sowie zum Verständnis von Kapitel \ref{chap:frameworks} Frameworks und Tools erforderlich sind.
 
 
 \section{Native Entwicklung}
 
-Bei der Entwicklung nativer Applikationen wird der Prorammcode speziell für eine Zielplattform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
+Bei der Entwicklung nativer Applikationen wird der Programmcode speziell für eine Zielplattform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
 Die App ist damit an die Plattform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
 Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
@@ -44,13 +44,14 @@ Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectx
 
 \begin{figure}[ht]
  \centering
- \includegraphics[width=0.9\linewidth]{kapitel2/csharp_xamarin.png}
+ \includegraphics[width=0.8\linewidth]{kapitel2/csharp_xamarin.png}
  \caption{Xamarin Plattformen \cite{7Reas20:online}}
 \end{figure}
 \vspace{1cm}
 
+\noindent
 Xamarin stößt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework
-für jede Plattform indiviudell entwickelt werden. Dies funktioniert, wenn die App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
+für jede Plattform indiviudell entwickelt werden. Dies funktioniert, wenn eine App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
 dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind. Es ist jedoch fragwürdig ob sich das Framework als ``Cross Plattform Frontend Framework'' bezeichnen darf,
 wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem Appdesign, nach wie vor redundant vorgenommen werden muss \cite{7Reas20:online}.
 
@@ -68,13 +69,14 @@ wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem App
 Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Anwendungen mithilfe von Webtechnologien zu entwickeln.
 \ac{HTML}, \ac{CSS} und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
-sondern läuft in einer nativen Webview. Diese Apps werden auch als hybride Apps bezeichnet.
+sondern läuft in einer nativen Webview. Diese Anwendungen werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie basieren.
 
-Zugriff auf Systemschnittstellen erhält man mittels Cordova Plugins. Diese bieten
-Interfaces in Javascript für den Zugriff auf native Systemkomponenten wie Kamera, GPS, Dateisystem etc.
-Plugins bestehen daher aus Javascript und dem Plattform kompatiblen Code,
+Zugriff auf Systemschnittstellen erhalten Entwickler mithilfe von Cordova Plugins. Diese bieten
+Interfaces in JavaScript für den Zugriff auf native Systemkomponenten wie Kamera, GPS, Dateisystem et cetera.
+Plugins bestehen daher aus JavaScript und dem Plattform kompatiblen Code,
 also beispielsweise Swift/Objective-C für iOS oder Java für Android.
+Listing \ref{cordova-camera-example} beinhaltet eine Implementierung der Kamera-Schnittstelle über das Plugin \emph{cordova-plugin-camera}.
 
 \ac{UI} Entwicklung muss dabei im Vergleich zum Xamarin Framework nicht redundant vorgenommen werden, da Implementierungen der
 Ansichten für sämtliche unterstützten Plattformen identisch ausgeliefert werden können.
@@ -83,7 +85,7 @@ können spezielle Stilregeln dennoch auch plattformspezifisch angewandt werden, 
 welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
 
 \vspace{0.3cm}
-\lstinputlisting[language=Java,label=code,caption=Cordova Kamera Example]{kapitel2/cordova-plugin-example.js}
+\lstinputlisting[language=Javascript,label=cordova-camera-example,caption=Cordova Kamera Example]{kapitel2/cordova-plugin-example.js}
 \vspace{0.3cm}
 
 \newpage
@@ -94,9 +96,9 @@ welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
 
 Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
 von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
-womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} von Patrioten moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
+womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
 wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt,
-da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitäts Vielfalt einer modernen Webanwendung zu beschreiben.
+da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitätsvielfalt einer modernen Webanwendung zu beschreiben.
 Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
 
@@ -156,14 +158,14 @@ in das Markup, soll bereits die komponenteninterne Funktionalität zur Verfügun
 Webcomponents bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
 
 \subsubsection{HTML Imports}
-HTML kann in HTML Dokumente importiert und verwendet werden.
-Dabei können in dem referenziertem zu importierendem HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
+HTML kann per Referenz in HTML Dokumente importiert und damit verwendet werden (Listing \ref{htmlimport}).
+Dabei können in dem referenziertem HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
 welche dementsprechend aufgelöst werden.
 Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen
 \cite{HTMLI44:online}.
 
 \vspace{0.3cm}
-\lstinputlisting[language=HTML,label=code,caption=HTML Imports]{kapitel2/html_import.html}
+\lstinputlisting[language=HTML,label=htmlimport,caption=HTML Imports]{kapitel2/html_import.html}
 \vspace{0.3cm}
 
 \subsubsection{HTML Templates}
@@ -178,7 +180,7 @@ zur Verfügung.
 
 Durch Custom HTML Elements werden Webkomponenten in Applikationen eingebunden.
 Eigene HTML Tags und Elemente können definiert werden und beinhalten in Javascript geschriebene Logik sowie CSS Styling.
-Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten:
+Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten, welche für die Entwicklung einer Anwendung genutzt werden können.:
 
 \begin{itemize}
 \item createdCallback - Element wird registriert
@@ -197,7 +199,7 @@ Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 \subsubsection{Polyfills}
 \begin{figure}[htp]
  \centering
- \includegraphics[width=0.8\linewidth]{kapitel2/platform_support.jpg}
+ \includegraphics[width=0.7\linewidth]{kapitel2/platform_support.jpg}
  \caption{Plattform Support \cite{WebCo43:online}}
  \label{fig:platform_support}
 \end{figure}
@@ -210,7 +212,7 @@ welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Brow
 
 
 
-\section{Typescript}
+\section{TypeScript}
 
 \subsection{Entwicklung von JavaScript}
 
@@ -248,10 +250,10 @@ dann allerdings auf den Juni 2015 verschoben und ist bis heute noch nicht ausrei
 
 \subsection{Allgemein}
 
-Typescript ist eine von Microsoft entwickelte Programmiersprache.
+TypeScript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von ES6, das heißt sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features.
-Typescript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
+TypeScript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
 Zusammen mit dem Featureset von EcmaScript5 erhalten Entwickler gegenüber ES5 folgende Features:
 
 \begin{figure}[ht]
@@ -263,10 +265,10 @@ Zusammen mit dem Featureset von EcmaScript5 erhalten Entwickler gegenüber ES5 f
 
 \subsubsection{statische Typisierung}
 
-Die wohl größte Errungenschaft von Typescript ist das statische Typsystem.
-Typenfehler können in Typescript bereits zum Zeitpunkt
+Die wohl größte Errungenschaft von TypeScript ist das statische Typsystem.
+Typenfehler können bereits zum Zeitpunkt
 der Kompilierung bzw. Transpilierung erkannt werden und treten nicht erst zur Laufzeit im Browser auf.
-Zudem wird Code in einer Typescript unterstützenden IDE dank Autovervollständigung
+Zudem wird Code in einer TypeScript unterstützenden IDE dank Autovervollständigung
 leichter zu schreiben und aussagekräftiger zu lesen \cite[156]{ng-Book-2}.
 
 \subsubsection{Klassen}
@@ -276,45 +278,47 @@ Dabei handelt es sich nicht um die Einführung eines neuen OOP-Modells, sondern 
 sowie die Realisierung von Abstraktionen, wie sie aus anderen objektorientierten Sprachen, wie C++, Swift oder Java, bereits bekannt sind \cite{js-Klassen}.
 Ein Beispiel für eine ES6 Klasse ist in Listing \ref{es6class} implementiert.
 
+\vspace{0.3cm}
 \lstinputlisting[language=Java,label=es6class,caption=Klassen in ES6]{kapitel2/class.js}
 
 \subsubsection{Module}
 
-Innerhalb des ES5 Standards gab es keine Möglichkeit Funktionen und Variablen strukturiert in Namensräumen zu organisieren oder dynamisch Code zu laden.
-Mit ES6 wurde das fehlende Feature durch das Exportieren und Importieren von Modulen ergänzt. Dadurch wird es einfacher, Programmcode zu organisieren.
-Jedes ES6 Modul kann dabei in eine eigenene Datei ausgelagert werden. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn, sie werden explizit exportiert.
-Mittels Export lassen sich also Schnittstellen für Module definieren, welche daraufhin importiert und verwendet werden können.
-In Typescript lassen sich ganze Klassendefinitionen exportieren.
+Innerhalb des ES5 Standards gab es keine Möglichkeit Funktionen und Variablen strukturiert in Namensräumen organisieren oder dynamisch laden zu können.
+Mit ES6 wurde das fehlende Feature durch den Ex- und Import von Modulen ergänzt. Dadurch ist es einfacher, Programmcode zu organisieren,
+da ES6 Module in verschiedene Dateien ausgelagert werden können. Variablen und Funktionen sind von außerhalb nicht sichtbar, es sei denn, sie werden explizit exportiert.
+Wie in Listing \ref{jsmodule} dargestellt, lassen sich mittels Export also Schnittstellen für Module definieren, welche daraufhin importiert und verwendet werden können.
+In TypeScript lassen sich ganze Klassendefinitionen exportieren.
 Dabei ist es möglich, Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
-Public Funktionen sind dann auch von außen nutzbar.
+Mit public markierte Funktionen sind dann ebenfalls von außen nutzbar.
 
-\lstinputlisting[language=Java,label=code,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}
+\vspace{0.3cm}
+\lstinputlisting[language=Javascript,label=jsmodule,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}
 
 \subsection{Decorator}
 
-Typescript Decorator basieren auf dem Dekorierer Entwurfsmuster (Decorator Design Pattern) um Klassen,
+TypeScript Decorator basieren auf das Dekorierer Entwurfsmuster (Decorator Design Pattern) um Klassen,
 Funktionen, Variablen und Parameter deklarativ um Funktionalität zu erweitern.
 Das Konzept der Decorator ist vergleichbar mit dem der Annotations, welches beispielsweise Verwendung in Java, Scala und C\#
 finden.
 Mithilfe eines Decorators kann eine zentrale Implementierung
 mithilfe des @ Symbols und einer nachfolgenden Funktion an Elemente einer Anwendung angebracht werden.
-Eine sehr vereinfachte Implementierung eines Typescript Decorators ist in Listing \ref{decorator-example} dargestellt.
+Eine sehr vereinfachte Implementierung eines TypeScript Decorators ist in Listing \ref{decorator-example} dargestellt.
 
 \vspace{0.3cm}
-\lstinputlisting[language=Java,label=decorator-example,caption=Decorator Beispiel]{kapitel2/decorator-example.ts}
+\lstinputlisting[language=Javascript,label=decorator-example,caption=Decorator Beispiel]{kapitel2/decorator-example.ts}
 \vspace{0.3cm}
 
 
 \subsection{Transpilierung}
 
-Typescript und ES6 bieten Entwicklern eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
+TypeScript und ES6 bieten Entwicklern eine ganze Reihe von Neuerungen gegenüber den Vorgängerversionen.
 Spannende Features bringen jedoch wenig, wenn sie im Standard zwar spezifiziert wurden,
 allerdings noch in sehr wenigen Browsern vollständig implementiert sind.
-Um TS oder ES6 Code also überhaupt in Produktion zu nutzen, sollte er auf den ES5 oder ES3
+Um TypeScript oder ES6 Code also überhaupt in Produktion nutzen zu können, sollte er auf den ES5 oder ES3
 Standard herunter transpiliert werden.
 Ein Transpiler ist ein Compiler, welcher Sourcecode nicht in Maschinencode, sondern ebenfalls in Sourcecode,
 allerdings einer anderen Sprache oder Sprachversion wandelt \cite{Introduction-to-the-Typescript-Transpiler}.
-In der nachfolgenden Abbildung ist zu sehen, wie Typescript-Code in funktionsfähigen ES5 Code transpiliert wird.
+In der nachfolgenden Abbildung ist zu sehen, wie TypeScript-Code in funktionsfähigen ES5 Code transpiliert wird.
 
 \begin{figure}[ht]
  \centering

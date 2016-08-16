@@ -89,7 +89,7 @@ Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübe
 Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert
 so sollte diese nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht befinden.
 Es liegt nahe, dass Typescript Modelklassen (Typisierung) ebenfalls in mehreren Komponenten verwendet werden.
-Dennoch sollten diese nicht redundant implementiert,
+Demnach sollten diese nicht redundant implementiert,
 sondern zentral zur Verfügung gestellt werden. Es stellt sich heraus,
 dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
 sondern es durchaus Sinn ergibt, Komponenten, Service und Modelklassen anhand ihrer Abhängigkeiten in Paketen zu verwalten und
@@ -246,7 +246,7 @@ Die Zuweisung der übrigen Variablen ist optional, da sie innerhalb des Konstruk
 Dadurch kann die Komponente bereits ohne eine ausgiebige Studie der Dokumentation verwendet und dennoch, falls verlangt, individuell konfiguriert werden.
 
 Durch die Implementierung des \emph{onChanges} Interfaces und damit der Funktion \emph{ngOnChanges} wird sichergestellt,
-dass der Graph neu gezeichnet wird, sobald sich Daten die mit @Input dekoriert wurden ändern.
+dass der Graph neu gezeichnet wird, sobald sich Daten welche mit @Input dekoriert wurden, ändern.
 Cytoscape.js erwartet für den Rendervorgang ein Jquery Element auf welches die Funktion cytoscape({..})
 mit den zuvor eingeschleusten Daten- und Konfigurationsobjekten angewandt wird.
 Durch die Verwendung von ElementRef aus dem Core von Angular, kann eine globale \ac{DOM} Selektion anhand von IDs oder Klassen vermieden werden, da \emph{elementRef.nativeElement} eine Referenz auf das native \ac{DOM} Objekt beinhaltet.
@@ -421,7 +421,7 @@ welches die erforderlichen Schnittstellen vorgibt.
 
 Um die Auslieferung für die jeweiligen Plattformen zu ermöglichen
 sind im Rahmen des Projekts \projectname{} diverse Deployment Prozesse entstanden,
-welche im folgenden erläutert werden sollen.
+welche im folgenden erläutert werden.
 
 \subsection{Web}
 \label{deployment-web}
@@ -434,7 +434,7 @@ welche insgesamt eine Größe von 2,4MB aufweisen.
 Dabei stellen Komponenten und Services der eigentlichen Implementierung nur ein Bruchteil der Menge dar.
 Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek RxJs, welche für den Betrieb von Angular benötigt wird.
 Zunächst werden externe \ac{HTML} und \ac{CSS} Assets von Komponenten in
-inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \textbf{app.bundle.js} Datei zusammengefasst.
+inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \emph{app.bundle.js} Datei zusammengefasst.
 Möglich wäre den Code aus der resultierenden app.bundle.js zu minifizieren,
 wodurch er zum einen unkenntlicher und damit schwerer zu kopieren wird,
 zusätzlich würde er weiter an Dateigröße verlieren. Da sich die Applikation \projectname{}
@@ -472,8 +472,10 @@ Electron autoUpdater lädt die neue App herunter, entpackt diese und tauscht den
 Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 
 Im Ramen des Projekts \projectname{} wurde ein REST-Service für die
-Verwendung von Electron autoUpdater implementiert:
-github.com/michaelknoch/mia-electron-autoupdater-server
+Verwendung von Electron autoUpdater implementiert.
+\begin{itemize}
+\item github.com/michaelknoch/mia-electron-autoupdater-server
+\end{itemize}
 
 \subsubsection{Update Notifications}
 
@@ -483,7 +485,7 @@ Version der App sowie den Status des Updates. Um relevante Informationen für Nu
 müssen dem Render Kontext genannte Information bereitgestellt werden.
 Daher wird Electrons IPC Schnittstelle für einen asynchronen Austausch von Daten implementiert.
 
-Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der Package.json gelesen.
+Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der Package.json der Desktop-Anwendung gelesen.
 Anhand dieser Versionsummer wird gegen den API-Service geprüft, ob ein Update vefügbar ist. Der Download des Updates beginnt bereits automatisch,
 sobald der API-Endpoint einen Downloadpfad returniert.
 

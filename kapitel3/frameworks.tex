@@ -68,8 +68,10 @@ Die Komponentenklasse hat einen Klassennamen und einen impliziten oder explizite
 Sie wird mithilfe des ES6 Prefixes öffentlich exportiert (Zeile 11).
 Die Sichtbarkeit von Variablen und Funktionen innerhalb der Klasse kann mithilfe der Prefixe private und public definiert werden.
 Dadurch ist es möglich, Funktionalität und Daten innerhalb einer Komponente, transparent für deren Verwender, zu kapseln.
+Die Implementierung der Angular Komponenten basiert dabei auf dem Standard der Web Components, welcher bereits in \ref{sec:webcomponents} Web Components beschrieben wurde.
 
-\vspace{0.3cm}
+\newpage
+
 \lstinputlisting[language=Javascript,label=ng2component,caption=Basic Component]{kapitel3/basic-component.ts}
 
 
@@ -93,7 +95,9 @@ Angular führt ngOnChanges aus, wenn sich Variablen der Komponente verändert ha
 können Daten vor und nach dem Event miteinander verglichen werden.
 Wie Angular die Änderung von Variablen ermittelt, wird in \ref{sec:change-detection} Change Detection erläutert.
 
-\vspace{0.3cm}
+\newpage
+
+
 \lstinputlisting[language=Java,label=lifecycle-example,caption=Lebenszyklus Beispiel]{kapitel3/lifecycle-example.ts}
 \vspace{0.3cm}
 

@@ -2,10 +2,6 @@
 
 \chapter{Reflexion}
 
-Im vorherirgen Kapitel wurde die Umsetzung des praktischen Teils der Arbeit erläutert.
-In diesem Kapitel wird die Technologieauswahl sowie die Implementierung
-hinsichtlich der vorausgegangenen Anforderungsanalyse reflektiert.
-
 \label{chap:reflexion}
 
 \section{Technologieauswahl}
@@ -14,10 +10,10 @@ Mithilfe des \textbf{Angular 2 Frameworks} wurde Funktionalität von \projectnam
 Web Components implementiert.
 Dadurch konnte Funktionalität, statt sie redundant implementieren zu müssen, innerhalb der
 Anwendung beziehungsweise plattformübergreifend mehrfach wiederverwendet werden.
-Zusätzlich wurden Komponenten die keine spezifischen Abhängigkeiten zum Projekt aufwiesen als
+Zusätzlich wurden Komponenten, die keine spezifischen Abhängigkeiten zum Projekt aufwiesen, als
 generische Komponenten für die Open Source Community entwickelt.
 
-Die Wahl der Frameworks Angular 2 für die Web- und Desktop Anwendung sowie Ionic 2 für
+Die Wahl der Frameworks Angular 2 für die Web- und Desktop-Anwendung sowie Ionic 2 für
 die mobile App erwies sich als sehr gute Kombination,
 da Angular Komponenten innerhalb von Ionic nahtlos verwendet werden können
 und sich die APIs der beiden Frameworks sehr ähneln.
@@ -25,7 +21,7 @@ und sich die APIs der beiden Frameworks sehr ähneln.
 Ein zentraler Bestandteil der Implementierung ist Angulars Dependency Injection.
 Komponenten müssen sich dabei nicht um die Instanziierungen von Objekten kümmern,
 sondern können vom Anwendungskontext völlig entkoppelt globale Instanzen konsumieren.
-Implementierungen werden dadurch deutlich flexibler und austauschbar,
+Implementierungen werden austauschbar und damit Flexibel,
 sollte Funktionalität bestehender Komponenten erweitert oder überschrieben werden müssen.
 
 Angular 2 befindet sich zum aktuellen Zeitpunkt (13. August) im fünften Release Candidate und steht damit kurz
@@ -37,12 +33,12 @@ wurden dennoch als veraltet markiert und werden vermutlich in der Version 2.0 ni
 funktionieren.
 
 
-\textbf{Ionic 2} befand sich zu Beginn des Projekts bereits in der siebten Beta der neuen Version.
-Zum jetzigen Zeitpunkt (5. August) ist Beta 11 erscheinen, allerdings läuft die mobile App von
+\textbf{Ionic 2} erschien bereits zu Beginn des Projekts in der siebten Beta der neuen Version.
+Zum jetzigen Zeitpunkt (13. August) ist Beta 11 erscheinen, allerdings läuft die mobile App von
 \projectname{} noch auf Betaversion 10, da das neuste Ionic Update,
 wie so manches zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichten der
 mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden sollen.
-Es wurde allerdings zunächst ein downgrade auf Beta 10 durchgeführt.
+Es wurde allerdings zunächst ein Downgrade auf Beta 10 durchgeführt.
 
 Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant.
 Die letzte geplante Beta Veröffentlichung soll eine Vielzahl von interessanten
@@ -50,7 +46,7 @@ Die letzte geplante Beta Veröffentlichung soll eine Vielzahl von interessanten
 Dieser wurde bereits in \emph{\ref{Absolute-Asset-Pfade} Absolute Asset Pfade} kritisiert und eine
 mögliche Verbesserung in Form eines Pull Requests vorgelegt.
 Das Problem der relativen und absoluten Pfade soll nun mit einem Technologiewechsel von \emph{Browserify} zu \emph{Webpack 2} gelöst werden.
-Zusätzlich bietet \emph{Webpack 2} eine Technik welche ``tree shaking'' gennant wird.
+Zusätzlich bietet \emph{Webpack 2} eine Technik, welche ``tree shaking'' gennant wird.
 Diese liefert dem Build Prozess Transparenz darüber, welcher \ac{CSS} und JavaScript Code tatsächlich verwendet wird.
 Dadurch soll der Output sowie die Dauer des Buildvorgangs drastisch reduziert werden \cite{Annou88:online}.
 Darüber hinaus will Ionic mithilfe des Ahead-of-time Compilers von Angular Templates zum Zeitpunkt des Buildvorgangs und nicht mehr zur Laufzeit kompilieren.
@@ -67,12 +63,12 @@ via GitHub issues and pull requests. It is an incredible privilege to work with 
 \noindent
 Die 1.0.0 Version des \textbf{Electron Framework} wurde bereits am 9. Mai veröffentlicht.
 Daher konnte schon zu Beginn des Projekts \projectname{} mit einer stabilen API für die Entwicklung
-der Desktop Anwendung gerechnet werden, was sich in der Entwicklungsphase bestätigte.
+der Desktop-Anwendung gerechnet werden, was sich in der Entwicklungsphase bestätigte.
 Als sehr Zeitaufwändig stellte sich die Implementierung des automatischen
-Update Mechanismus, beschrieben in \ref{client-updates} Client Aktualisierung, heraus.
+Update Mechanismus, beschrieben in \emph{\ref{client-updates} Client Aktualisierung}, heraus.
 Nicht weil diese Schnittstelle des Frameworks derart komplex zu bedienen ist, sondern weil der Aktualisierungsvorgang nur getestet werden kann,
 wenn die Anwendung zuvor für Produktion gebaut, signiert und für den Updateserver sichtbar ins Netz geladen wurde.
-Beim Start der produktions Anwendung ist es nur schwer möglich Zugriff auf nötige Debug Informationen zu erhalten,
+Beim Start der Anwendung, insofern sie für Produktion gebaut wurde, ist es nur schwer möglich, Zugriff auf nötige Debug Informationen zu erhalten,
 somit verzögerte sich die Testphase von Electron AutoUpdate erheblich.
 
 
@@ -88,23 +84,23 @@ somit verzögerte sich die Testphase von Electron AutoUpdate erheblich.
 \end{figure}
 \vspace{0.3cm}
 
-\noindent Die in \ref{sec:anforderungsanalyse} Anforderungsanalyse beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
+\noindent Die in \emph{\ref{sec:anforderungsanalyse} Anforderungsanalyse} beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
 Screenshots der Desktopanwendung sowie der mobilen App sind in \ref{screens} \emph{Screenshots Desktopanwendung und App} vorzufinden.
-Das Projekt \projectname{} ist als Website, Desktop Anwendung für macOS und Windows sowie als mobile App für iOS und Android mit Vorbehalt verfügbar.
+Das Projekt \projectname{} ist als Website, Desktop-Anwendung für macOS und Windows sowie als mobile App für iOS und Android unter Vorbehalt verfügbar.
 Der Vorbehalt resultiert aus dem prototypischen Status des Projekts und dem derzeit verfügbaren Budget.
 Die Infrastruktur des Backend-Systems, welches in der Bachelorarbeit von \emph{Timo Weiß} beschrieben wird,
 ist derzeit auf drei verschiedene \ac{AWS} Instanzen verteilt. Diese müssen für den Betrieb der Anwendung allesamt
-hochgefahren werden, wodurch Kosten entstehen, die einen Rund um die Uhr Betrieb derzeit äußerst kostspielig gestalten.
+hochgefahren werden, wodurch Kosten entstehen, die einen Rund-um-die-Uhr-Betrieb derzeit äußerst kostspielig gestalten.
 Zudem liegt die derzeitige Implementierung als prototyp vor und sollte daher vor einem
 öffentlichen Release zunächst als geschlossene Beta-Anwendung getestet und evaluiert werden.
 
 Daher wurde die Entscheidung getroffen, die mobilen Anwendungen für iOS und Android zunächst noch nicht öffentlich über die jeweiligen App Stores zu vertreiben.
 Die Webanwendung ist während aktivierter \ac{AWS} Instanzen öffentlich erreichbar.
 Die Desktop Applikation kann jederzeit über die Github Releases heruntergeladen und gestartet werden,
-allerdings steht sowohl der Web- als auch der Desktop Anwendung keine Funktionalität zur Verfügung, wenn besagte \ac{AWS}
+allerdings steht sowohl der Web- als auch der Desktop-Anwendung keine Funktionalität zur Verfügung, wenn besagte \ac{AWS}
 Instanzen heruntergefahren sind.
 
-Die komplette Cross Plattform Frontend Architektur besteht aus einem komplexen Zusammenspiel von insgesamt sechs verschiedenen Git Repositories
+Die komplette Cross Plattform Frontend Architektur besteht aus einem komplexen Zusammenspiel von insgesamt sechs verschiedenen Git Repositories,
 welche zum aktuellen Zeitpunkt Open Source verfügbar und daher vollständig einsehbar sind.
 
 \begin{itemize}
@@ -131,10 +127,10 @@ This problem is unsolvable.'' \cite{Webvs43:online}
 \section{Ausblick}
 
 Während der Entwicklung des Systems entstanden fortlaufend neue projektrelevante Ideen,
-die weit über die definierte Anforderungsanalyse des Prototypen hinausgingen.
-Aufgrund des kurzen Entwicklungszeitraums konnten viele davon werder konzipiert noch implementiert werden.
-Dennoch sollen diese im folgenden genannt und hinsichtlich ihrer Chancen kurz evaluiert werden.
-Im folgenden wird zwischen funktionalen und nichtfunktionalen Ideen unterschieden.
+die weit über die definierte Anforderungsanalyse des Prototypen hinausgehen.
+Aufgrund des kurzen Entwicklungszeitraums konnten viele davon weder konzipiert noch implementiert werden.
+Dennoch sollen diese genannt und hinsichtlich ihrer Chancen kurz evaluiert werden.
+Hierbei wird zwischen funktionalen und nichtfunktionalen Ideen unterschieden.
 
 \subsection{Funktional}
 
@@ -144,7 +140,7 @@ Während der Implementierung des \emph{Meta Pickers} kam die Idee auf, Momente z
 Ein Use Case bestünde darin, dass ein Anwendungsentwickler und Nutzer der Applikation \projectname{}
 über die mobile App eine Push Notification auf sein Smartphone erhält, weil auf seinem System ein problematischer Sachverhalt
 entstanden ist. Mithilfe der App kann er sich zunächst Übersicht verschaffen und den Zeitpunkt des Problemauftritts speichern.
-Im Büro wird der gespeicherte Zeitraum dann mithilfe der Desktop Anwendung vollständig analysiert,
+Im Büro wird der gespeicherte Zeitraum dann mithilfe der Desktop-Anwendung vollständig analysiert,
 das Problem wird von besagtem Anwendungsentwickler im Sourcecode ausfindig gemacht, behoben und der gespeicherte Zeitpunkt wird mit ``gelöst'' Markiert.
 
 \subsubsection{Community}
@@ -156,7 +152,7 @@ Austausch zwischen den Entwicklern implementiert werden. Ein möglicher Use Case
 \emph{Momente speichern} aufbauen,
 indem Momente, beziehungsweise Zeiträume, nicht nur für die eigene Analyse gespeichert werden, sondern aus der mobilen Anwendung heraus
 für eine Vielzahl von Entwicklern hinterlegt werden können.
-Aufgrund von kritischem Systemverhalten entstehen Diskussionen um Probleme kollegial und damit effektiver lösen zu können.
+Aufgrund von kritischem Systemverhalten entstehen Diskussionen, um Probleme kollegial und damit effektiver lösen zu können.
 
 \subsection{Nichtfunktional}
 
@@ -167,14 +163,14 @@ Spätestens dann, wenn die Anwendung aktiv genutzt werden soll, darf ihre Glaubw
 Unit Tests für Angular 2 Applikationen können beispielsweise mithilfe der Testing Bibliothek \emph{Jasmine} implementiert werden.
 Dabei können einzelne Komponenten, Services oder zusätzliche Klassen vollständig getestet werden \cite{Angul78:online}.
 Während der Entwicklung des Prototypen \projectname{} wurde die Entwicklung von Tests aufgrund besagter Zeitroblematik vernachlässigt,
-daher sollte bestehende Funktionalität nachträglich, sowie neue Features durch Unit Tests abgedeckt werden um die Qualität der Software zu gewährleisten.
+daher sollte bestehende Funktionalität nachträglich sowie neue Features durch Unit Tests abgedeckt werden, um die Qualität der Software zu gewährleisten.
 
 \subsubsection{Continuous Deployment}
 
 Der Build Prozess, welcher momentan Lokal auf dem Computer des Entwicklers stattfindet, könnte auf einen externen Continuous Integration (CI) Server ausgelagert werden.
 Denkbar wären Services wie \emph{TravisCI}, \emph{CircleCI} oder die Konfiguration eines eigenen Jenkins Server.
-Änderungen in Form von Commits auf der Master Branch könnten damit automatisch die Test- und Buildkette starten um Updates für die Desktop Anwendung sowie für die App zu generieren.
-Herausforderung dabei sind die Bedienung der verschiedenen Zielplattformen, da MacOS Desktop Anwendungen nur auf MacOS und
+Änderungen in Form von Commits auf der Master Branch könnten damit automatisch die Test- und Buildkette starten, um Updates für die Desktop-Anwendung sowie für die App zu generieren.
+Herausforderung dabei ist die Bedienung der verschiedenen Zielplattformen, da MacOS Desktop-Anwendungen nur auf MacOS und
 Windows Anwendungen ebenfalls nur auf Windows Plattformen generiert und signiert werden können.
 Genannte CI-Services erlauben zwar eine Emulierung verschiedener Betriebsysteme,
 allerdings bedeutet dies einen hohen Konfigurationsaufwand und erfordert ein gewisses Budget für die nötige Rechenleistung.
@@ -184,7 +180,7 @@ allerdings bedeutet dies einen hohen Konfigurationsaufwand und erfordert ein gew
 
 Im Rahmen dieser Arbeit entstand eine Cross Plattform Frontend Architektur für ein System,
 welches die API Endpunkte der SaaS-monitoring Infrastruktur von \emph{Timo Weiß} bedient und die dort aufbereiteten Daten visualisiert.
-Es wurden Chancen moderner Webtechnologien, wie Web Components und Typescript, erläutert
+Es wurden Chancen moderner Webtechnologien wie Web Components und Typescript erläutert
 sowie verschiedene Frameworks und Tools hinsichtlich zuvor definierter Systemanforderungen analysiert.
 Ziel war es, eine komponentenorienterte Architektur zunächst zu konzipieren und anschließend zu implementieren, um
 mit geringem Programmieraufwand Produkte für möglichst viele verschiedene Plattformen erhalten zu können.

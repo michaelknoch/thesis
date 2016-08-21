@@ -68,7 +68,7 @@ Die Komponentenklasse hat einen Klassennamen und einen impliziten oder explizite
 Sie wird mithilfe des ES6 Prefixes ``export'' öffentlich exportiert (Zeile 11).
 Die Sichtbarkeit von Variablen und Funktionen innerhalb der Klasse kann mithilfe der Prefixe private und public definiert werden.
 Dadurch ist es möglich, Funktionalität und Daten innerhalb einer Komponente, transparent für deren Verwender, zu kapseln.
-Die Implementierung der Angular Komponenten basiert dabei auf dem Standard der Web Components, welcher bereits in \ref{sec:webcomponents} Web Components beschrieben wurde.
+Die Implementierung der Angular Komponenten basiert dabei auf dem Standard der Web Components, welcher bereits in Sektion \ref{sec:webcomponents} beschrieben wurde.
 
 \newpage
 
@@ -93,7 +93,7 @@ Zur Verdeutlichung sind einige dieser in Listing \ref{lifecycle-example} impleme
 \emph{NgOnInit} und \emph{ngOnDestroy} werden beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
 Angular führt \emph{ngOnChanges} aus, wenn sich Variablen der Komponente verändert haben. Anhand von \emph{SimpleChanges}
 können Daten vor und nach dem Event miteinander verglichen werden.
-Wie Angular die Änderung von Variablen ermittelt, wird in Sektion \ref{sec:change-detection} Change Detection erläutert.
+Wie Angular die Änderung von Variablen ermittelt, wird in Sektion \ref{sec:change-detection} erläutert.
 
 \newpage
 
@@ -182,7 +182,7 @@ welche das Template in der Component Decoration referenziert \cite{Templ78:onlin
 
 Da eine Angular 2 Applikation ausschließlich aus Komponenten besteht, müssen diese zwangsweise miteinander
 kommunizieren können. Für den Austausch von Daten gibt es verschiedene Ansätze.
-Wie bereits in \ref{Services-als-Singletons} Services als Singletons erwähnt, werden Services im Normalfall als Singleton
+Wie bereits in Sektion \ref{Services-als-Singletons} erwähnt, werden Services im Normalfall als Singleton
 instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hier für den
 Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen hinaus,
 können Events in Komponenten oder Services definiert und ebenfalls abonniert werden,
@@ -400,7 +400,7 @@ Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrom
 
 Da Node.js nur im Hauptrozess von Electron genutzt werden kann, ist es erforderlich,
 dass die verschiedenen Kontexte miteinander interagieren beziehungsweise kommunizieren können.
-Dies kann, wie bereits in \ref{sec:functionsweise} Funktionsweise angesprochen,
+Dies kann, wie bereits in Sektion \ref{sec:functionsweise} angesprochen,
 mithilfe eines lokalen API Servers oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
 Dem Main- und Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,

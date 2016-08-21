@@ -133,7 +133,7 @@ Der UserService bedient die Login und Register Schnittstelle des \ac{API}-Server
 Nach erfolgreichem Login returniert der Server einen Statuscode von 200 (OK), welcher vom Service an das Login Element propagiert wird.
 Das Login Element antwortet der Login View mit einem Update Event, welche daraufhin zur Dashboard View weiterleitet.
 
-In der Implementierung des UserServices (\ref{UserService} UserService) werden innerhalb des Login- und Registriervorgangs
+In der Implementierung des UserServices, siehe \ref{UserService}, werden innerhalb des Login- und Registriervorgangs
 sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
 Dies geschieht sehr elegant mithilfe des Variablen Decorators \emph{angular2-localstorage} \cite{marcj95:online}.
 Die zu persistierenden Variablen werden mit \emph{@Localstorage} dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
@@ -256,7 +256,7 @@ Durch die Verwendung von ElementRef aus dem Core von Angular, kann eine globale 
 Abbildung \ref{touchidmock} zeigt die Touch ID Komponente, welche anhand des spezifischen Ansatzes für die mobile App implementiert wurde.
 Mithilfe des Touch ID Fingerabdrucksensors kann nicht nur das Telefon selbst entsperrt werden,
 der Fingerabdruck eines Anwenders kann auch innerhalb von mobilen Anwendungen als Authentifizierungsmittel genutzt werden.
-In \ref{Login-und-Authentifikation} Login und Authentifizierung wurde eine Authentifizierung mittels Mail und Passwort erläutert,
+In Sektion \ref{Login-und-Authentifikation} wurde eine Authentifizierung mittels Mail und Passwort erläutert,
 dieser Schritt ist nach wie vor erforderlich. Durch Touch ID wurde eine weitere Sicherheitsschicht unabhängig der Cookie basierten Authentifizierung über den API-Server implementiert.
 Sobald ein Nutzer durch seine Legitimationen eingeloggt wurde, ist für jeden weiteren Start der Anwendung kein erneuter Login erforderlich.
 Durch den Einsatz von Touch ID erscheint jedoch beim öffnen der App eine Aufforderung, die Identität durch den Fingerabdruck zu verifizieren, um wömöglich sensible Anwendungsdaten vor unautorisierten Zugriff zu schützen.
@@ -390,7 +390,7 @@ Transpilierungsdauer einer Ionic App von zwei auf zehn Sekunden erhöht.
 Das Ionic Team evaluiert derzeit Möglichkeiten für die Nutzung relativer Asset Pfade \cite{relat31:online}.
 
 \subsubsection{Angular2-Localstorage Inkompatibilität}
-In Kapitel \ref{Login-und-Authentifikation} Login und Authentifizierung wurde die lokale persistierung der Nutzerdaten im Localstorage
+In Abschnitt \ref{Login-und-Authentifikation} wurde die lokale persistierung der Nutzerdaten im Localstorage
 des Browser anhand des \emph{angular2-localstorage} Decorators erläutert.
 Der Decorator wird über den Bootstrap Prozess der Angular Applikation registriert,
 dadurch werden Schreibzugriffe auf Variablen erfasst und Daten gespeichert.
@@ -399,7 +399,7 @@ Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im 
 Da jedoch Funktionalität des \emph{UserServices} und des \emph{MetaPickers} auf dem Decorator aufbaut,
 gilt es dieses Problem zu lösen.
 
-Zuvor wurde in Kapitel emph{\ref{sec:services} Services, Providers und Dependency Injection erläutert, wie
+Zuvor wurde in Abschnitt \ref{sec:services} erläutert, wie
 Implementierungen von Services dynamisch ausgetauscht werden können.
 Die Services, welche den problematischen Decorator beinhalten, werden also für die Ionic Anwendung neu geschrieben
 und mithilfe eines Providers mit der ursprünglichen Implementierung ausgetauscht.

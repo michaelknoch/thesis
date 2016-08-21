@@ -50,13 +50,13 @@ Im Folgenden werden Ansätze der Komponentenentwicklung bezüglich der in
 \projectname{} erforderlichen Funktionalitäten entwickelt.
 
 
-\subsubsection{generischer Ansatz}
+\subsubsection{Generischer Ansatz}
 
 Bei der Entwicklung generischer Komponenten ist der Begriff der Wiederverwendbarkeit von zentraler Bedeutung.
 Komponenten werden gegenüber dem spezifischen Ansatz nicht für einen definierten Anwendungsfall konzipiert,
 sondern können
 für diverse, womöglich ähnliche Anwendungsbereiche genutzt werden.
-Typisch für generische Angular 2 Komponenten ist die Verwendung des @Input Kanals.
+Typisch für generische Angular 2 Komponenten ist die Verwendung des Input Kanals.
 Dabei werden zum einen Daten- sowie Konfigurationsobjekte von außen in die Komponente eingeschleust.
 Anhand der Konfigurationsobjekte können generische Komponenten individuell an verschiedene Bedürfnisse angepasst werden.
 Durch den Transfer von Datenobjekten werden Aggregationsvorgänge aus den Komponente abstrahiert und es werden eventuelle
@@ -71,7 +71,7 @@ entwickelt und Open Source auf Github veröffentlicht.
 Dadurch können diese von der Community genutzt und bei Bedarf verbessert und um Funktionalität erweitert werden.
 
 
-\subsubsection{spezifischer Ansatz}
+\subsubsection{Spezifischer Ansatz}
 
 Einige Komponenten lassen sich aufgrund ihrer spezifischen Funktionalität nicht generisch entwickeln.
 Da sie nur einen spezifischen Anwendungsfall abdecken, können sie nur schwer in anderen Projekten wiederverwendet werden.
@@ -84,11 +84,11 @@ Beispiele für spezifische Komponenten sind View- und Menükomponenten welche di
 Im Idealfall können Komponenten voneinander gekapselt entwickelt werden,
 sodass sie völlig eigenständig nutzbar sind und untereinander keine Abhängigkeiten aufweisen.
 Jede Komponente beinhaltet individuelle \ac{MVC} Schichten für die Implementierung der Funktionalität von der View bis zur Datenschicht.
-Modelklassen (Typisierung) und Services befinden sich innerhalb der Komponente und nicht innerhalb eines globalen Model Layers.
+Modelklassen und Services befinden sich innerhalb der Komponente und nicht innerhalb eines globalen Model Layers.
 Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübergreifende Abhängigkeiten.
 Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert
 so sollte diese nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht befinden.
-Es liegt nahe, dass Typescript Modelklassen (Typisierung) ebenfalls in mehreren Komponenten verwendet werden.
+Es liegt nahe, dass Typescript Modelklassen ebenfalls in mehreren Komponenten verwendet werden.
 Demnach sollten diese nicht redundant implementiert,
 sondern zentral zur Verfügung gestellt werden. Es stellt sich heraus,
 dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
@@ -136,15 +136,15 @@ Das Login Element antwortet der Login View mit einem Update Event, welche darauf
 In der Implementierung des UserServices (\ref{UserService} UserService) werden innerhalb des Login- und Registriervorgangs
 sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
 Dies geschieht sehr elegant mithilfe des Variablen Decorators \emph{angular2-localstorage} \cite{marcj95:online}.
-Die zu persistierenden Variablen werden mit @Localstorage dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
+Die zu persistierenden Variablen werden mit \emph{@Localstorage} dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
 Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage geladen.
 Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden um sie überhaupt im Localstorage speichern zu können.
 
-Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die getLocalMe() Funktion ausgelesen.
+Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die Funktion \emph{getLocalMe} ausgelesen.
 Dies ermöglicht es Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
-Zusätzlich ist ein globaler Http Interceptor implementiert, welcher bei jedem ausgehenden Request der Anwendung prüft, ob das zuvor gesetzte Cookie noch Gültigkeit besitzt.
+Zusätzlich ist ein globaler \emph{HTTP-Interceptor} implementiert, welcher bei jedem ausgehenden Request der Anwendung prüft, ob das zuvor gesetzte Cookie noch Gültigkeit besitzt.
 Sollte eine Route des \ac{API}-Servers, welche Authentifizierung erfordert, einen Statuscode 401 (Unauthorized) liefern,
-fängt der Http Interceptor den Fehler und leitet zur Login View zurück, um den Nutzer für eine erneute Authentifizierung aufzufordern.
+fängt der \emph{HTTP-Interceptor} den Fehler und leitet zur Login View zurück, um den Nutzer für eine erneute Authentifizierung aufzufordern.
 
 
 
@@ -152,15 +152,15 @@ fängt der Http Interceptor den Fehler und leitet zur Login View zurück, um den
 \subsubsection{Meta Picker}
 
 Mit der Meta Picker Komponente ist ein spezifisches, jedoch innerhalb der Anwendung wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
-Diese Komponente findet derzeit Verwendung in der Metrik, Graphen und Traces Sektion. Wird eine Applikation bzw. ein Zeinterval über den Picker definiert,
+Diese Komponente findet derzeit Verwendung in der Metrik, Graphen und Traces Sektion. Wird eine Applikation bzw. ein Zeitinterval über den Picker definiert,
 wird diese Auswahl im Localstorage des Browsers persistiert und bei nachfolgenden Instanziierungen der Komponente zunächst aus dem Storage geladen und erneut ausgewählt.
 Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage}
 welcher bereits in der Implementierung \ref{Login-und-Authentifikation} Login und Authentifikation Verwendung fand.
 Listing \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der Meta Picker Komponente.
 Die binäre Option hideApplikation versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
 da innerhalb dieser View das Zusammenspiel der einzelnen Services dargestellt wird und daher lediglich eine Filterung nach Zeit relevant ist.
-Über die Funktion \emph{metaUpdate()} werden Updates der Komponente aboniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
-so propagiert der Meta Picker ein Update an die äußere Eltern-Komponente. \emph{\$event} beinhaltet dabei die vom Nutzer neu gesetzten Parameter.
+Über die Funktion \emph{metaUpdate} werden Updates der Komponente abonniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
+so propagiert der Meta Picker ein Update an die äußere Eltern-Komponente. Die Variable \emph{\$event} beinhaltet dabei die vom Nutzer neu gesetzten Parameter.
 
 
 \lstinputlisting[language=HTML,label=meta-picker-example,caption=Verwendungsbeispiel Meta Picker]{kapitel4/metapicker-example.html}
@@ -213,7 +213,7 @@ als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
 \lstinputlisting[language=JavaScript,label=component-interface-2,caption=Chart.js mit Komponenten Interface]{kapitel4/chartjs-new.js}
 \vspace{0.3cm}
 In Listing \ref{component-interface-2} wird die Nutzung des Komponenten Interface \emph{ng2-charts} verdeutlicht.
-Daten- und Konfigurationsobjekte werden über den @Input Kanal der Komponente von außen eingespeist.
+Daten- und Konfigurationsobjekte werden über den \emph{@Input} Kanal der Komponente von außen eingespeist.
 Dadurch wird die Aggregation der Daten aus der Komponente heraus abstrahiert und es entsteht keine Ahängigkeit zu einem API-Service.
 Die Komponente wird von Valor Software entwickelt und steht quelloffen unter der MIT Lizenz zur Verfügung \cite{valor6:online}.
 
@@ -239,15 +239,15 @@ wurde eine eigene Interface-Komponente entwickelt und Open Source auf Github ver
 \noindent Listing \ref{ng2-cytoscape} beinhaltet die Implementierung von ng2-cytoscape.
 Um Übersicht gewährleisten zu können wird für die Implementierung irrelevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
 
-Bei der Instanziierung der Komponente werden erneut Daten und Konfigurationen über den @Input Kanal von außen
+Bei der Instanziierung der Komponente werden erneut Daten und Konfigurationen über den Input Kanal von außen
 in den Code der Komponente eingeschleust. Interessant hierbei ist,
 dass lediglich das Datenobjekt \emph{elements} für die Nutzung der Komponente erforderlich ist.
 Die Zuweisung der übrigen Variablen ist optional, da sie innerhalb des Konstruktors mit vorgegebenen Objekten initialisiert werden, sofern sie nicht bereits von außen definiert wurden.
 Dadurch kann die Komponente bereits ohne eine ausgiebige Studie der Dokumentation verwendet und dennoch, falls verlangt, individuell konfiguriert werden.
 
 Durch die Implementierung des \emph{onChanges} Interfaces und damit der Funktion \emph{ngOnChanges} wird sichergestellt,
-dass der Graph neu gezeichnet wird, sobald sich Daten welche mit @Input dekoriert wurden, ändern.
-Cytoscape.js erwartet für den Rendervorgang ein Jquery Element auf welches die Funktion cytoscape({..})
+dass der Graph neu gezeichnet wird, sobald sich Daten welche mit \emph{@Input} dekoriert wurden, ändern.
+Cytoscape.js erwartet für den Rendervorgang ein jQuery Element, auf welches die Funktion cytoscape({..})
 mit den zuvor eingeschleusten Daten- und Konfigurationsobjekten angewandt wird.
 Durch die Verwendung von ElementRef aus dem Core von Angular, kann eine globale \ac{DOM} Selektion anhand von IDs oder Klassen vermieden werden, da \emph{elementRef.nativeElement} eine Referenz auf das native \ac{DOM} Objekt beinhaltet.
 
@@ -300,15 +300,14 @@ Es wird eine Infrastruktur benötigt, um Komponenten projektübergreifend vertei
 Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
 sowie Ionic Projekt zu integrieren. Symlinks lassen sich allerdings nicht versionieren, daher würde
 für jeden neuen Entwickler ein komplexer initialer Konfigurationsaufwand entstehen.
-Des Weiteren sollen Komponenten womöglich nicht nur in der Ionic App,
+Des Weiteren sollen Komponenten nicht nur innerhalb der Ionic App,
 sondern in vielen weiteren auf Angular 2 basierenden Projekten wiederverwendet werden können.
 Eine Komponente oder ein Paket diverser Komponenten soll veröffentlicht, aktuell
 gehalten und von Anwendungsentwicklern genutzt werden können.
 
 Es liegt nahe dieses Problem mithilfe eines Paketmanagers zu lösen. Angular und Ionic verwenden für das Management
 ihrer Kern-Abhängigkeiten \ac{NPM}.
-Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden. Closed Source Pakete können
-bereits für einen Aufpreis von 7\$ pro Monat genutzt werden.
+Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden.
 Da \projectname{} Open Source entwickelt wird,
 reicht ein kostenfreier Basis Account für die Verteilung der Awendungs-Komponenten völlig aus.
 
@@ -391,24 +390,24 @@ Transpilierungsdauer einer Ionic App von zwei auf zehn Sekunden erhöht.
 Das Ionic Team evaluiert derzeit Möglichkeiten für die Nutzung relativer Asset Pfade \cite{relat31:online}.
 
 \subsubsection{Angular2-Localstorage Inkompatibilität}
-In \ref{Login-und-Authentifikation} wurde die Lokale persistierung der Nutzerdaten im Localstorage
+In Kapitel \ref{Login-und-Authentifikation} Login und Authentifizierung wurde die lokale persistierung der Nutzerdaten im Localstorage
 des Browser anhand des \emph{angular2-localstorage} Decorators erläutert.
 Der Decorator wird über den Bootstrap Prozess der Angular Applikation registriert,
 dadurch werden Schreibzugriffe auf Variablen erfasst und Daten gespeichert.
 Allerdings unterscheidet sich der Bootstrap einer Ionic Anwendung von dem einer Angular Applikation.
 Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im Ionic Projekt verwendet werden kann.
-Da jedoch Funktionalität des UserServices und des ApplicationMetaPickerServices auf den Decorator aufbaut,
+Da jedoch Funktionalität des \emph{UserServices} und des \emph{MetaPickers} auf dem Decorator aufbaut,
 gilt es dieses Problem zu lösen.
 
-Zuvor wurde in \ref{sec:services} Services, Providers und Dependency Injection erläutert, wie
+Zuvor wurde in Kapitel emph{\ref{sec:services} Services, Providers und Dependency Injection erläutert, wie
 Implementierungen von Services dynamisch ausgetauscht werden können.
 Die Services, welche den problematischen Decorator beinhalten, werden also für die Ionic Anwendung neu geschrieben
 und mithilfe eines Providers mit der ursprünglichen Implementierung ausgetauscht.
-Statt die Variablen mit dem Storage Decorator zu persistieren, ist im neuen Service eine \emph{persistUser()} Funktion implementiert, welche die erforderlichen Nutzerdaten nach
+Statt die Variablen mit dem Storage Decorator zu persistieren, ist im neuen Service eine \emph{persistUser} Funktion implementiert, welche die erforderlichen Nutzerdaten nach
 erfolgreichem Login- oder Registrierungsvorgang serialisiert und in den Localstorage speichert.
 Durch einen manuellen Lesezugriff auf den Localstorage werden die Variablen innerhalb des Konstruktors initialisiert.
 Um sicherzustellen, dass der Service die nötige Funktionalität vollständig abdeckt, implementieren beide Services ein Interface,
-welches die erforderlichen Schnittstellen vorgibt.
+welches die erforderlichen Schnittstellen vorgibt. Das Interface ist in Listing \ref{userservice-interface} implementiert.
 
 \vspace{0.3cm}
 
@@ -436,8 +435,7 @@ Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek RxJs, welche fü
 Zunächst werden externe \ac{HTML} und \ac{CSS} Assets von Komponenten in
 inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \emph{app.bundle.js} Datei zusammengefasst.
 Möglich wäre den Code aus der resultierenden app.bundle.js zu minifizieren,
-wodurch er zum einen unkenntlicher und damit schwerer zu kopieren wird,
-zusätzlich würde er weiter an Dateigröße verlieren. Da sich die Applikation \projectname{}
+wodurch er weiter an Dateigröße verlieren würde. Da sich die Applikation \projectname{}
 jedoch noch nicht in einem produktionsreifen Zustand befindet, wird Minifizierung zunächst ausgelassen.
 Die 624 Dateirequests konnten auf 16 reduziert werden wodurch die Applikation bereits nach 1,9
 Sekunden vollständig geladen werden kann.
@@ -464,14 +462,14 @@ Electron bietet mit \emph{autoUpdater} eine Implementierung
 von automatischen Updates im Hintergrund an.
 Electron autoUpdater ist dabei eine Schnittstelle welche das Squirrel Framework
 für Automatisierungen von Windows und MacOS Anwendungen bedient.
-Notwendig für die Hintergrundaktualisierung ist ein REST-Service, welcher beim Start der Anwendung mit der
+Notwendig für die Hintergrundaktualisierung ist ein HTTP-Service, welcher beim Start der Anwendung mit der
 aktuellen Version angefragt werden kann
 und daraufhin einen Downloadpfad für ein eventuell verfügbares Update liefert.
 Sollte kein Update zur Verfügung stehen wird ein Statuscode 204 (No Content) geliefert.
 Electron autoUpdater lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
 Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 
-Im Ramen des Projekts \projectname{} wurde ein REST-Service für die
+Im Ramen des Projekts \projectname{} wurde ein HTTP-Service für die
 Verwendung von Electron autoUpdater implementiert.
 \begin{itemize}
 \item github.com/michaelknoch/mia-electron-autoupdater-server
@@ -486,7 +484,7 @@ müssen dem Render Kontext genannte Information bereitgestellt werden.
 Daher wird Electrons IPC Schnittstelle für einen asynchronen Austausch von Daten implementiert.
 
 Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der Package.json der Desktop-Anwendung gelesen.
-Anhand dieser Versionsummer wird gegen den API-Service geprüft, ob ein Update vefügbar ist. Der Download des Updates beginnt bereits automatisch,
+Anhand dieser Versionsummer wird gegen den HTTP-Service geprüft, ob ein Update vefügbar ist. Der Download des Updates beginnt bereits automatisch,
 sobald der API-Endpoint einen Downloadpfad returniert.
 
 Zeitgleich findet der Bootstrap Prozess der Angular Applikation im Render Prozess statt.
@@ -497,7 +495,7 @@ Dieser antwortet daraufhin mit der zuvor ausgelesenen Version der Anwendung, wel
 War der Download des Updates efolgreich, löst der Update Prozess das Event ``update-downloaded'' im Node Kontext aus,
 welches durch IPC an den IPC Service der Angular Applikation weitergeleitet wird. Erneut erscheint eine für den Nutzer bestimmte Notification, siehe Abbildung \ref{kapitel4/update-push}, welche auf Klick einen Restart der Applikation auslöst.
 Dies ist mithilfe eines Klick Listeners realisiert, der dem Node Kontext das Event ``force-restart'' propagiert.
-Daraufhin wird ``quitAndInstall()'' über die \ac{API} des Updaters aufgerufen, wodurch die Applikation veranlasst wird sich selbst zu beenden und in der neuen Version zu erscheinen.
+Daraufhin wird ``quitAndInstall'' über die \ac{API} des Updaters aufgerufen, wodurch die Applikation veranlasst wird sich selbst zu beenden und in der neuen Version zu erscheinen.
 
 
 \begin{figure}[h]

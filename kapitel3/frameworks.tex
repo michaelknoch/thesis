@@ -52,27 +52,27 @@ sowie auch für komplexere Webanwendungen eine solide Basis bieten \cite[11-12]{
 
 Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation und ersetzen Direktiven aus Angular 1 nahezu vollständig.
 UI und deren Funktionalität wird innerhalb von Komponenten implementiert.
-Diese werden in Angular 2 als Typescript Klasse definiert und mit @Component dekoriert, siehe Listing \ref{ng2component}.
+Diese werden in Angular 2 als Typescript Klasse definiert und mit \emph{@Component} dekoriert, siehe Listing \ref{ng2component}.
 Der Component Decorator wird mithilfe des ES6 Imports importiert (Zeile 1) und wird verwendet um die Klasse mit erforderlichen Metadaten zu auszustatten.
-Der Selektor (Zeile 5) definiert den HTML Tag der Komponente, über welchen diese innerhalb der Anwendung eingefügt und damit instanziiert werden kann.
+Der Selektor (Zeile 5) definiert den HTML-Tag der Komponente, über welchen diese innerhalb der Anwendung eingefügt und damit instanziiert werden kann.
 
-Template beziehungsweise TemplateUrl in Zeile 7 enthält entweder einen String mit inline Markup in angulars Template Syntax
+\emph{Template} beziehungsweise \emph{TemplateUrl} in Zeile 7 enthält entweder einen String mit inline Markup in angulars Template Syntax
 oder eine Referenz zu einer zugehörigen HTML Datei, welche das Markup der Komponente enthält.
 Ebenso kann \ac{CSS} inline oder per Dateireferenz (Zeile 8) eingebunden werden.
-Über Directives (Zeile 6) können Komponenten referenziert werden, welche innerhalb dieser Komponente verwendet werden sollen.
-Ist eine Komponente als Directive referenziert,
+Über \emph{directives} (Zeile 6) können Komponenten referenziert werden, welche innerhalb dieser Komponente verwendet werden sollen.
+Ist eine Komponente als \emph{directive} referenziert,
 kann ihr Selector im Markup eingebunden,
 und dadurch ihre gesamte Funktionalität genutzt werden.
 
 Die Komponentenklasse hat einen Klassennamen und einen impliziten oder expliziten Konstruktor.
-Sie wird mithilfe des ES6 Prefixes öffentlich exportiert (Zeile 11).
+Sie wird mithilfe des ES6 Prefixes ``export'' öffentlich exportiert (Zeile 11).
 Die Sichtbarkeit von Variablen und Funktionen innerhalb der Klasse kann mithilfe der Prefixe private und public definiert werden.
 Dadurch ist es möglich, Funktionalität und Daten innerhalb einer Komponente, transparent für deren Verwender, zu kapseln.
 Die Implementierung der Angular Komponenten basiert dabei auf dem Standard der Web Components, welcher bereits in \ref{sec:webcomponents} Web Components beschrieben wurde.
 
 \newpage
 
-\lstinputlisting[language=Javascript,label=ng2component,caption=Basic Component]{kapitel3/basic-component.ts}
+\lstinputlisting[language=Javascript,label=ng2component,caption=Angular 2 Komponente]{kapitel3/basic-component.ts}
 
 
 \subsubsection{Vererbung}
@@ -83,17 +83,17 @@ abstrahieren. Angular 2 Komponenten bestehen aus Klassen, daher
 kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren,
 um redundanten Code zwischen den Komponenten
 zu vermeiden. Funktionalität wird dabei von der Komponente in eine dritte Klasse ausgelagert,
-welche mit dem Schlüsselwort extend als
+welche mit dem Schlüsselwort \emph{extend} als
 Abstraktionsebene eingebunden wird \cite{DanWa45:online}.
 
 \subsubsection{Lebenszyklus}
 Eine Angular Komponente besitzt einen Lebenszyklus (Component Lifecycle) mit diversen Einstiegspunkten,
 um wichtige Momente einer Angular Komponente für die Entwicklung offen zu legen \cite[837-839]{ng-Book-2}.
 Zur Verdeutlichung sind einige dieser in Listing \ref{lifecycle-example} implementiert.
-NgOnInit und ngOnDestroy werden beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
-Angular führt ngOnChanges aus, wenn sich Variablen der Komponente verändert haben. Anhand von SimpleChanges
+\emph{NgOnInit} und \emph{ngOnDestroy} werden beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
+Angular führt \emph{ngOnChanges} aus, wenn sich Variablen der Komponente verändert haben. Anhand von \emph{SimpleChanges}
 können Daten vor und nach dem Event miteinander verglichen werden.
-Wie Angular die Änderung von Variablen ermittelt, wird in \ref{sec:change-detection} Change Detection erläutert.
+Wie Angular die Änderung von Variablen ermittelt, wird in Kapitel \ref{sec:change-detection} Change Detection erläutert.
 
 \newpage
 
@@ -112,13 +112,13 @@ Speziell wenn mehrere Komponenten auf die selben Daten,
 die womöglich asynchron per HTTP geladen werden müssen, zugreifen.
 Services werden ebenfalls als Klassen implementiert, welche mithilfe von \ac{DI}
 als Singleton instanziiert und in die Komponenten injiziert werden können.
-\ac{DI} ist ein Design Pattern, welches bereits in der ersten Version des Frameworks implementiert war.
+\ac{DI} ist ein Design Pattern, welches bereits in der ersten Version des Frameworks implementiert ist.
 In Angular 2 wurde \ac{DI} neu entwickelt, um flexiblere Injizierung von Services in Komponenten zu ermöglichen.
 
 \ac{DI} bringt vielerlei Vorteile mit sich. In der Implementierung einer Angular 2 Komponente wird im
 Konstruktor deklariert, welche Abhängigkeiten (Dependencies) für die Komponentenfunktionalität benötigt werden.
 Das Framework ist dabei für die automatische Instanziierung der Objekte verantwortlich.
-Die Implementierung von Komponenten wird durch die Verwendung von \ac{DI} sehr dynamisch,
+Die Implementierung von Komponenten wird durch die Verwendung von \ac{DI} sehr flexibel,
 da Implementierungen von Services, wie in Abbildung \ref{service-injection} dargestellt, einfach ausgetauscht werden können.
 Soll beispielweise die Funktionalität einer Komponente, welche über einen Service dynamisch Daten lädt, getestet werden,
 so kann die Implementierung des Services einfach ausgetauscht werden, so dass dieser statische Testdaten liefert,
@@ -136,13 +136,13 @@ sollte der API-Server in der Testumgebung nicht erreichbar sein \cite[281]{Angul
 \vspace{0.3cm}
 
 \ac{DI} wird in Angular mithilfe von Providern konfiguriert.
-Dies geschieht auf Komponentenebene oder im Root der Applikation.
-Wird ein Service über einen Provider im Bootstrap Prozess im Root der Applikation referenziert,
+Dies geschieht entweder auf Komponenten- oder Applikationsebene.
+Wird ein Service über einen Provider im Bootstrap Prozess der Applikation referenziert,
 so ist diese Instanz des Services in jede Komponente der Applikation injizierbar.
 Wird der Provider erst in der Komponente definiert (Listing \ref{provider2}), so ist die Serviceinstanz nur in dieser Komponente sowie in
 allen Kindkomponenten verfügbar. Desweiteren lassen sich Provider kombinieren, da diese überschreibbar sind.
-Sollte also ein Serviceprovider im Root der Applikation definiert sein (Listing \ref{provider1}), können dennoch weitere Provider in den Komponenten definiert werden.
-Jedoch werden demnach auch mehrere Instanzen des Services erzeugt.
+Sollte also ein Serviceprovider auf Applikationsebene definiert sein (Listing \ref{provider1}), können dennoch weitere Provider innerhalb der Komponenten definiert werden.
+Jedoch werden demnach auch mehrere Instanzen der Services erzeugt.
 Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume zu erzeugen \cite[286]{Angular2}.
 
 \vspace{0.2cm}
@@ -185,18 +185,18 @@ kommunizieren können. Für den Austausch von Daten gibt es verschiedene Ansätz
 Wie bereits in \ref{Services-als-Singletons} Services als Singletons erwähnt, werden Services im Normalfall als Singleton
 instanziiert und in Komponenten mittels \ac{DI} injiziert. Öffentliche Servicefunktionen können hier für den
 Austausch von Daten genutzt werden. Über den synchronen Zugriff auf Variablen hinaus,
-können Events in Komponenten oder Services definiert und ebenfalls aboniert werden,
+können Events in Komponenten oder Services definiert und ebenfalls abonniert werden,
 um asynchrone Kommunikation applikationsintern zu ermöglichen. Die Auslagerung von Funktionalität in Services ergibt jedoch nur dann wirklich Sinn,
 wenn diese auch als Singleton existieren kann.
 
 Komponenten sind im Vergleich zu Services keine Singletons,
 da sie mit jeder Verwendung in der Applikation neu instanziiert werden.
-Variablen und Funktionen eingebundener Komponenten können durch die Annotationen @Input und @Output
+Variablen und Funktionen eingebundener Komponenten können durch die Annotationen \emph{@Input} und \emph{@Output}
 direkt über ihren HTML Component Tag angesprochen werden. Im Normalfall werden bei der Instanziierung von Kindkomponenten
-relevante Daten über den Input Tag übergeben und über den Output Kanal in Form von Event Emittern aboniert \cite{Angul94:online}.
+relevante Daten über den Input Tag übergeben und über den Output Kanal in Form von Event Emittern abonniert \cite{Angul94:online}.
 
 Handelt es sich bei dem Kommunikationsziel speziell um Kindkomponenten und nicht um Nachbarkomponenten,
-kann durch die Annotation @ViewChild auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
+kann durch die Annotation \emph{@ViewChild} auf den öffentlichen Kontext der Kindkomponente zugegriffen werden.
 Die Kommunikation geschieht in diesem Fall nicht über die View Layer der Komponenten,
 sondern direkt von der Elternkomponente zu ihrer Kindinstanz \cite{ViewC61:online}.
 
@@ -220,19 +220,19 @@ können Zones ebenfalls in JavaScript genutzt werden. Zone.js ist als Portierung
 Zones sind Ausführungskontexte (Scopes) für die Observation asynchroner Operationen.
 Asynchrone Funktionen werden mittels Monkey Patching überwacht und lösen innerhalb des entsprechenden Ausführungskontexts verschiedene Events aus.
 NgZone ist ein Fork von zone.js, welcher die Basisfunktionalität um zusätzliche Events erweitert.
-Für die Change Detection relevant ist dabei das event onTurnDone() \cite{changedetection-explained}.
+Für die Change Detection relevant ist dabei das event \emph{onTurnDone} \cite{changedetection-explained}.
 
 \vspace{0.3cm}
 \textbf{``onTurnDone() - Notifies subscribers immediately after Angular’s zone is done processing the current turn and any micro tasks scheduled from that turn.''}
 \cite{ZONESINANGULAR2}
 \vspace{0.3cm}
 
-Sobald das onTurnDone() Event ausgelöst wird, löst NgZone wiederum eine tick() Event aus, welches schlussendlich die Change Detection startet.
+Sobald das \emph{onTurnDone} Event ausgelöst wird, löst NgZone wiederum eine \emph{tick} aus, welcher schlussendlich die Change Detection startet.
 Jede Angular2 Komponente besitzt seinen eigenen Change Detector. Da eine Angular2 Applikation aus einem Komponentenbaum besteht,
 kann davon ausgegangen werden, dass sie ebenfalls aus einem Baum von Change Detektoren besteht.
 Change Detection wird innerhalb dieses Baumes als unidirektionaler Datenfluss von oben nach unten, beginnend mit dem Rootknoten, ausgeführt.
 
-Obwohl jede Komponente bei einem tick() nach Änderungen prüft, ist Angular2 sehr schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
+Obwohl jede Komponente bei einem \emph{tick} nach Änderungen prüft, ist Angular2 sehr schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
 da jede Komponenten ihren eigenen Change Detector besitzt und es nicht eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
 Dies wird erreicht, indem Angular zur Laufzeit individuelle Change Detector Klassen für jede Komponente, entsprechend dem Datenmodell der Komponente, erzeugt.
 Dieser Code kann von virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden \cite{changedetection-explained}.
@@ -358,7 +358,7 @@ Durch die stetige Entwicklung von Webbrowsern und Apps für Mobilgeräten haben 
 Dennoch bieten sie gegenüber Anwendungen, die nur in Browsern ausgeführt werden, einige Vorteile.
 Desktop Anwendungen befinden sich im Dock beziehungsweise im Startmenü des Betriebssystems oder sind womöglich im Autostart referenziert.
 Dadurch wirken sie präsenter, sind schneller zu erreichen und können selbst im minimierten Zustand noch Code ausführen.
-Sie sind nicht durch Browser limitiert und können APIs der Betriebssysteme nutzen \cite{Build58:online}.
+Sie werden nicht durch den Kontext des Browsers limitiert und können APIs der Betriebssysteme nutzen \cite{Build58:online}.
 
 Electron ist ein Framework zur Entwicklung nativer Desktop Anwendungen, ebenfalls basierend auf Webtechnologien.
 Atom, Visual Studio Code, Whatsapp und Slack sind erfolgreiche Beispiele für Anwendungen, die mithilfe von Electron
@@ -381,7 +381,7 @@ Electron Anwendung verschiedenen Prozesskontexte gestartet.
 Zunächst startet der Hauptprozess (main Process), in welchem grundlegende Konfigurationen vorgenommen werden können.
 Die Besonderheit dieses Kontextes ist die Verfügbarkeit von Node.js.
 Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebssystems um beispielsweise Dateien lesen oder schreiben zu können.
-Ferner wäre es im Hauptprozess möglich einen API oder Websocket Server zu starten.
+Ferner wäre es im Hauptprozess möglich einen HTTP oder Websocket Server zu starten.
 
 Der Hauptprozess instanziiert den Kontext der Webview, in Abbildung \ref{fig:electronprozess} wird dieser als render process bezeichnet.
 Dieser beinhaltet eine Browserumgebung, welcher die \ac{UI} der Anwendung in einem für den Nutzer sichtbaren Fenster darstellt.
@@ -401,7 +401,7 @@ Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrom
 Da Node.js nur im Hauptrozess von Electron genutzt werden kann, ist es erforderlich,
 dass die verschiedenen Kontexte miteinander interagieren beziehungsweise kommunizieren können.
 Dies kann, wie bereits in \ref{sec:functionsweise} Funktionsweise angesprochen,
-mithilfe eines zentralen API Servers oder Websockets stattfinden.
+mithilfe eines lokalen API Servers oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
 Dem Main- und Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.
@@ -415,8 +415,8 @@ Für die Verwaltung von Closed Source Paketen wird ein Preismodell ab 7\$ pro Mo
 Dependencies des Projekts \projectname{}, also Pakete wie Angular, Ionic und Electron können vollständig
 über \ac{NPM} geladen werden \cite{npm31:online}.
 
-Ein \ac{NPM} Modul beinhaltet neben dem Programmcode eine Package.json Datei, in welcher relevante Metainformationen über das Modul selbst und den Autor gespeichert werden.
-Zusätzlich können in der Package.json post-Installation Scripte referenziert werden um
+Ein \ac{NPM} Modul beinhaltet neben dem Programmcode eine Manifest Datei, in welcher relevante Metainformationen über das Modul selbst und den Autor gespeichert werden.
+Zusätzlich können in dem Manifest (Package.json) post-Installation Scripte referenziert werden um
 beispielsweise eine Transpilierung von TypeScript zu JavaScript vornzunehmen, nachdem das Modul als Abhängigkeit installiert wurde.
 Die Veröffentlichtung in der Registry und damit auf \emph{npmjs.com} sowie der Updatevorgang eines Moduls geschieht über die \ac{CLI} von \ac{NPM}.
 

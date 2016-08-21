@@ -25,7 +25,7 @@ Implementierungen werden austauschbar und damit Flexibel,
 sollte Funktionalität bestehender Komponenten erweitert oder überschrieben werden müssen.
 
 Angular 2 befindet sich zum aktuellen Zeitpunkt (13. August) im fünften Release Candidate und steht damit kurz
-vor dem offiziellen Release der Version 2.0. Zu beginn der Thesis befand sich das Framework im ersten Release Candidate.
+vor dem offiziellen Release der Version 2.0. Zu Beginn der Thesis befand sich das Framework im ersten Release Candidate.
 Erst mit dem letzten RC5 Update des Frameworks wurden einige APIs speziell für den Bootstrap Prozess der Anwendung verändert,
 zwischen den RC1 und RC4 Veröffentlichungen konnte Angular 2 ohne Änderungen am Projektcode problemlos
 aktualisiert werden. Alte Implementierungen funktionieren nach wie vor in RC5,
@@ -40,10 +40,10 @@ wie so manches zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichte
 mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden sollen.
 Es wurde allerdings zunächst ein Downgrade auf Beta 10 durchgeführt.
 
-Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant.
+Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant \cite{Annou88:online}.
 Die letzte geplante Beta Veröffentlichung soll eine Vielzahl von interessanten
 Änderungen beinhalten. Zum einen steht dem Ionic Build Prozess ein großes Update bevor.
-Dieser wurde bereits in \emph{\ref{Absolute-Asset-Pfade} Absolute Asset Pfade} kritisiert und eine
+Dieser wurde bereits in {\ref{Absolute-Asset-Pfade} Absolute Asset Pfade kritisiert und eine
 mögliche Verbesserung in Form eines Pull Requests vorgelegt.
 Das Problem der relativen und absoluten Pfade soll nun mit einem Technologiewechsel von \emph{Browserify} zu \emph{Webpack 2} gelöst werden.
 Zusätzlich bietet \emph{Webpack 2} eine Technik, welche ``tree shaking'' gennant wird.
@@ -65,7 +65,7 @@ Die 1.0.0 Version des \textbf{Electron Framework} wurde bereits am 9. Mai veröf
 Daher konnte schon zu Beginn des Projekts \projectname{} mit einer stabilen API für die Entwicklung
 der Desktop-Anwendung gerechnet werden, was sich in der Entwicklungsphase bestätigte.
 Als sehr Zeitaufwändig stellte sich die Implementierung des automatischen
-Update Mechanismus, beschrieben in \emph{\ref{client-updates} Client Aktualisierung}, heraus.
+Update Mechanismus, beschrieben in \ref{client-updates} Client Aktualisierung, heraus.
 Nicht weil diese Schnittstelle des Frameworks derart komplex zu bedienen ist, sondern weil der Aktualisierungsvorgang nur getestet werden kann,
 wenn die Anwendung zuvor für Produktion gebaut, signiert und für den Updateserver sichtbar ins Netz geladen wurde.
 Beim Start der Anwendung, insofern sie für Produktion gebaut wurde, ist es nur schwer möglich, Zugriff auf nötige Debug Informationen zu erhalten,
@@ -84,7 +84,7 @@ somit verzögerte sich die Testphase von Electron AutoUpdate erheblich.
 \end{figure}
 \vspace{0.3cm}
 
-\noindent Die in \emph{\ref{sec:anforderungsanalyse} Anforderungsanalyse} beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
+\noindent Die in {\ref{sec:anforderungsanalyse} Anforderungsanalyse beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
 Screenshots der Desktopanwendung sowie der mobilen App sind in \ref{screens} \emph{Screenshots Desktopanwendung und App} vorzufinden.
 Das Projekt \projectname{} ist als Website, Desktop-Anwendung für macOS und Windows sowie als mobile App für iOS und Android unter Vorbehalt verfügbar.
 Der Vorbehalt resultiert aus dem prototypischen Status des Projekts und dem derzeit verfügbaren Budget.
@@ -101,7 +101,7 @@ allerdings steht sowohl der Web- als auch der Desktop-Anwendung keine Funktional
 Instanzen heruntergefahren sind.
 
 Die komplette Cross Plattform Frontend Architektur besteht aus einem komplexen Zusammenspiel von insgesamt sechs verschiedenen Git Repositories,
-welche zum aktuellen Zeitpunkt Open Source verfügbar und daher vollständig einsehbar sind.
+welche zum aktuellen Zeitpunkt Open Source verfügbar sind.
 
 \begin{itemize}
   \item{\textbf{Web, Desktop, Komponentenentwicklung} github.com/michaelknoch/mia}
@@ -120,12 +120,13 @@ Native Anwendungen sprechen direkt mit dem Betriebssystem, während Web-Apps
 Hybride Web-Apps müssen also eine zusätzliche Kommunikationsschicht durchlaufen,
 wodurch speziell der Rendervorgang der Ansichten sowie die Ausführung von Animationen verlangsamt wird \cite{Webvs43:online}.
 Native Anwendungen weisen daher in den meisten Fällen eine höhere Performanz auf und wirken deutlich
-smoother. Dennoch gibt es Anwendungsbereiche für welchen hybride Cross-Plattform Apps eine geeignete Alternative bieten können.
-Die tatsächliche Funktionalität von \projectname{} besteht aus statischen Ansichten, ohne Effekte und
+smoother.
+
+Die tatsächliche Funktionalität von \projectname{} besteht hauptsächlich aus statischen Ansichten, ohne Effekte und
 rechenintensive Animationen. Lediglich die Willkommens-Ansicht der Desktop- und Webanwendung,
-sowie die Viewwechsel der mobilen App enthalten Animationen. Diese Animationen werden nicht auf der CPU,
+sowie die Viewwechsel der mobilen App enthalten Animationen, welche allerdings nicht auf der CPU,
 sondern mithilfe der Hardwarebeschleunigung auf der GPU des Geräts berechnet.
-Das sorgt dafür, dass die Bildrate der Animationen vergleichsweise hoch gehalten werden kann.
+Dadurch kann die Bildrate der Animationen vergleichsweise hoch gehalten werden.
 Die mobile App wurde auf einem Nexus 5x, Iphone 6, Iphone 4s und Nexus 5 getestet.
 Auf dem Nexus 5x und Iphone 6 scheint die App durchgehend eine stabile Bildrate zu haben,
 wird die App auf den beiden älteren Modellen ausgeführt,
@@ -133,16 +134,12 @@ so fallen bei intensiver Benutzung vergleichsweise niedrige
 Bildraten speziell bei der Animation der Viewwechsel auf.
 Die App wirkt dadurch etwas schwammiger, als bei den neueren Geräten.
 
-\vspace{0.3cm}
-``Technically, it’s simple. The web cannot emulate native perfectly, and it never will.'' \cite{Webvs43:online}
-\vspace{0.3cm}
-
-Die Frameraten der Web- und Desktop- Anwendungen wurden mithilfe der
-Chrome Developer Tools auf einem Macbook Pro mit einem Intel i7 Prozessor gemessen,
-siehe \emph{\ref{profiling} Bootstrap Timeline - Chrome Developer Tools}.
+Die Frameraten der Web- und Desktop-Anwendungen wurden mithilfe der
+Chrome Developer Tools auf einem Macbook Pro mit einem Intel i7 Prozessor und Intel HD 4000 Grafik gemessen,
+siehe \ref{profiling} Bootstrap Timeline - Chrome Developer Tools.
 Deutlich wurde, dass beide Anwendungen die Animation, welche nach dem Start der Anwendung ausgeführt wird,
-mit konstanten 60 FPS darstellen können. Dieser Test wurde ebenfalls auf einem Windows Desktop-Rechner mit einem Intel i5 Prozessor durchgeführt und
-erzielte ähnliche Ergebnisse. Des Weiteren ist in den Abbildungen \emph{\ref{bootstrap-web} Bootstrap Timeline Web} und \emph{\ref{bootstrap-desktop} Bootstrap Timeline Desktop} zu erkennen,
+mit konstanten 60 FPS darstellen können. Dieser Test wurde ebenfalls auf einem Windows Desktop-Rechner mit einem Intel i5 Prozessor und Nvidia 745GTX Grafik durchgeführt und
+erzielte vergleichbare Ergebnisse. Des Weiteren ist in den Abbildungen \emph{\ref{bootstrap-web} Bootstrap Timeline Web} und \emph{\ref{bootstrap-desktop} Bootstrap Timeline Desktop} zu erkennen,
 wie die Hardwarebeschleunigung die Berechnung der Animation von der CPU auf die GPU auslagert.
 Es ist davon auszugehen, dass Electron eine ähnliche Leistungsumgebung wie der Chrome Browser bieten kann und
 einfache Animationen, wie sie immer häufiger in modernen Webanwendungen auftreten, zumindest auf zeitgemäßen Systemen keine
@@ -151,23 +148,23 @@ sichtbaren Performance Einbrüche verursachen.
 Bei der Entwicklung von hybriden Applikation sollte bedacht werden,
 auf welchen Geräten beziehungsweise innerhalb welcher Gerätegeneration eine Anwendung performant benutzbar sein muss,
 da die tatsächliche Leistung von der Webview des ausführenden Systems abhängt.
-Darüber hinaus weisen die WebViews der verschiedenen Geräte unterschiede in ihren Implementierungen
+Darüber hinaus weisen die Webviews der verschiedenen Geräte unterschiede in den Implementierungen
 des JavaScript und \ac{CSS} Standards auf. Demnach muss für stabilen plattformübergreifenden Betrieb sorgfältig geprüft werden,
-ob Funktionalität innerhalb adressierter WebViews überhaupt für die Implementierung zur Verfügung steht.
-Während der iOS Gerätemarkt und damit die Vielfalt der WebViews von Iphones, Ipads und Ipods noch überschaubar ist,
-so lässt sich vergleichsweise schwerer festlegen, welche Android WebView tatsächlich erreicht werden muss,
+ob Funktionalität innerhalb adressierter Webviews überhaupt für die Implementierung zur Verfügung steht.
+Während der iOS Gerätemarkt und damit die Vielfalt der Webviews von Iphones, Ipads und Ipods noch überschaubar ist,
+so lässt sich vergleichsweise nur schwerw festlegen, welche Android Webview tatsächlich erreicht werden muss,
 da diese bei Android Geräten nicht nur mit der Version des Betriebssystems, sondern auch mit dem Hersteller des Geräts variieren kann.
 
 Abhilfe dafür schafft das \emph{Crosswalk Projekt}, welches das Problem des fragmentierten Android Marktes lösen will,
-indem eine Chrome WebView in die Binärdatei der App compiliert wird. Dadurch kann sichergestellt werden,
+indem eine Chromium Webview in die Binärdatei der App compiliert wird. Dadurch kann sichergestellt werden,
 dass neuste Browser APIs für die Implementierung der Anwendung genutzt werden könnnen \cite{Cross69:online}.
 Allerdings vergrößert sich dadurch die Größe der \ac{APK} sowie der auf dem Gerät benötigte Speicher erheblich.
 
-Cordova Apps laufen auf iOS Geräten in der UIWebView, einer nativen WebView von Apple. Safari basiert bereits
+Cordova Apps laufen auf iOS Geräten in der UIWebView, einer nativen Webview von Apple. Safari basiert bereits
 auf der neuen, stabileren und schnelleren WKWebView, wodurch erklärt wird, wieso Web-Apps in Safari
 mehr Leistung aufweisen und flüssiger wirken, als hybride Cordova Apps die noch im Kontext der alten UIWebView ausgeführt werden.
 Das Ionic Team beschäftigt sich derzeit damit die neue Webview für Ionic 1 sowie Ionic 2 als Ausführungskontext verwenden zu können.
-Erste Tests zeigten bereits deutlich reduzierte Ramauslastungen sowie verkürzte Startzeiten und mehr Performanz von Ionic Apps auf iOS Geräten \cite{Cordo84:online}.
+Erste Tests zeigten bereits deutlich reduzierte Ram-Auslastungen sowie kürzere Startzeiten und mehr Performanz von Ionic Apps auf iOS Geräten \cite{Cordo84:online}.
 
 
 \section{Ausblick}
@@ -224,14 +221,14 @@ allerdings bedeutet dies einen hohen Konfigurationsaufwand und erfordert ein gew
 
 \chapter{Fazit}
 
-Im Rahmen dieser Arbeit entstand eine Cross Plattform Frontend Architektur für ein System,
+Im Rahmen dieser Arbeit entstand eine Cross-Plattform Frontend Architektur für ein System,
 welches die API Endpunkte der SaaS-monitoring Infrastruktur von \emph{Timo Weiß} bedient und die dort aufbereiteten Daten visualisiert.
-Es wurden Chancen moderner Webtechnologien wie Web Components und Typescript erläutert
+Es wurden Chancen moderner Web-Technologien wie Web Components und Typescript erläutert
 sowie verschiedene Frameworks und Tools hinsichtlich zuvor definierter Systemanforderungen analysiert.
 Ziel war es, eine komponentenorienterte Architektur zunächst zu konzipieren und anschließend zu implementieren, um
 mit geringem Programmieraufwand Produkte für möglichst viele verschiedene Plattformen erhalten zu können.
 Das Frontend Projekt erhielt den Arbeitstitel \projectname{} und wurde entsprechend den beschriebenen Anforderungen
-als Desktop-, Web- und Mobilanwendung entwickelt. Dabei waren die Frameworks Angular 2 und Ionic 2 von zentraler Bedeutung.
+als Desktop-, Web- und Mobilanwendung entwickelt.
 
 Funktionalität wurde mithilfe von Angular Komponenten innerhalb wiederverwendbarer
 Elemente gekapselt und kann daher innerhalb und außerhalb der Anwendung wiederverwendet werden.
@@ -239,7 +236,14 @@ Neben der Implementierung der Komponenten wurden zudem Workflow Optimierungen un
 welche die Produktivität der Entwicklung drastisch gesteigert haben, wodurch es überhautp erst möglich wurde den Funktionsumfang
 innerhalb der kurzen Entwicklungszeit auf derart vielvältige Weise vertreiben zu können.
 
-In einem Ausblick wurden mögliche Chancen der Anwendung sowie erste Schritte beschrieben, die erforderlich sind um aus diesem ersten
+Innerhalb der Reflexion wurden mögliche Chancen der verwendeten Technologien und der Anwendung selbst beschrieben
+sowie mögliche erste Schritte genannt, die erforderlich sind um aus diesem ersten
 Prototypen ein konkurenzfähiges Produkt zu schaffen.
-Es bleibt abzusehen wieviel Energie und Kapazität für die Weiterentwicklung des Projekts beziehungsweise für eine definitiv im Projektplan anstehende Firmengründung zur Verfüfung steht.
+Abschließend lässt sich sagen, dass die umfangreiche Frontend Architektur nur anhand des webbasierten Cross-Plattform Ansatzes und der Synergien zwischen den verwendeten Technologien umgesetzt werden konnte.
+Ein nativer Ansatz hätte zwar deutliche Performanz Vorteile mit sich gebracht, jedoch wäre dann die Implementierung und Wartung der Anwendungen demnach um ein vielfaches zeitintensiver.
+Bei der Entwicklung webbasierter Cross-Plattform Apps muss stets bedacht werden, welche Funktionalität für welche Gerätegeneration entwickelt wird.
+Rechenintensive Animationen lassen sich, speziell auf älteren Systemen, nur schwer performant einsetzen und viele moderne Webstandards stehen älteren Webviews nicht zur Verfügung.
+Die Technologien der Webentwicklung sowie die Gerätetechnologien selbst werden sich in den kommenden Jahren stetig weiterentwickeln. Es gibt bereits eine Vielzahl von Ansätzen, die das Leistungsproblem von webbasierten Anwendungen reduzieren können,
+es bleibt also abzusehen, wie sich diese spannende Technologie in der Zukunft entwickeln wird.
+Ferner bleibt abzusehen wieviel Energie und Kapazität für die Weiterentwicklung des Projekts \projectname{} beziehungsweise für eine definitiv im Projektplan anstehende Firmengründung zur Verfüfung steht.
 Fest steht allerding, dass Softwareprojekte, die aus Eigenmotivation heraus konzipiert und entwickelt werden schnell zu einer Herzensangelegenheit werden.

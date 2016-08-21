@@ -8,9 +8,9 @@ Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts sowie zum 
 \section{Native Entwicklung}
 
 Bei der Entwicklung nativer Applikationen wird der Programmcode speziell für eine Zielplattform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
-Die App ist damit an die Plattform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen UIKit als Framework für die visuelle Darstellung.
+Die App ist damit an die Plattform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen \emph{UIKit} als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
-Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
+Nativ entwickelte Apps werden als Binärdatei compiliert, über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
 
 \vspace{0.3cm}
 \textbf{Desktop Nativ}
@@ -32,13 +32,13 @@ Nativ entwickelte Apps werden als Binärdatei über den jeweiligen Appstore vert
 
 Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse Cross-Plattform Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
 die auf diversen Plattformen ausgeführt werden kann \cite{Heitkoetter2013}.
-Hierbei muss zwischen Browserbasierten Web Apps (Cordova, Phonegap) und Cross kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
+Hierbei muss zwischen browserbasierten Web Apps (Cordova, Phonegap) und Cross-kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
 \cite{Xamar84:online}.
 
 \subsection{Cross-kompilierte Apps am Beispiel von Xamarin}
 
 Xamarin Entwickler können den in C\# geschriebenen Code für die Plattformen iOS, Windows Mobile und Android kompilieren.
-Der resultierende Code läuft dabei als nativer Code auf den Geräten.
+Der resultierende Code läuft dabei nativ auf den jeweiligen Geräten.
 Die Xamarin Entwickler versprechen, dass alles was in Swift, Objective-C und
 Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectxamarin}.
 
@@ -51,9 +51,9 @@ Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectx
 
 \noindent
 Xamarin stößt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework
-für jede Plattform indiviudell entwickelt werden. Dies funktioniert, wenn eine App entsprechend dem Plattform CI umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
+für jede Plattform indiviudell entwickelt werden. Dies funktioniert, wenn eine App entsprechend der \ac{CI} der Plattform umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
 dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind. Es ist jedoch fragwürdig ob sich das Framework als ``Cross Plattform Frontend Framework'' bezeichnen darf,
-wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem Appdesign, nach wie vor redundant vorgenommen werden muss \cite{7Reas20:online}.
+wenn ein Großteil der Implementierung, zumindest bei plattform-universellem Appdesign, nach wie vor redundant vorgenommen werden muss \cite{7Reas20:online}.
 
 \begin{figure}[ht]
  \centering
@@ -66,23 +66,24 @@ wenn ein Großteil der Implementierung, zumindest bei Plattform-universellem App
 
 \subsection{Web Apps (Cordova, Phonegap)}
 
-Cordova ist ein Framework von Adobe Systems um Mobile Cross Plattform Anwendungen mithilfe von Webtechnologien zu entwickeln.
+Cordova ist ein Framework von Adobe Systems um mobile Cross-Plattform Anwendungen mithilfe von Webtechnologien zu entwickeln.
 \ac{HTML}, \ac{CSS} und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
 sondern läuft in einer nativen Webview. Diese Anwendungen werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie basieren.
 
 Zugriff auf Systemschnittstellen erhalten Entwickler mithilfe von Cordova Plugins. Diese bieten
-Interfaces in JavaScript für den Zugriff auf native Systemkomponenten wie Kamera, GPS, Dateisystem et cetera.
+Interfaces in JavaScript für den Zugriff auf native Systemkomponenten wie zum Beispiel Kamera, GPS, Dateisystem et cetera.
 Plugins bestehen daher aus JavaScript und dem Plattform kompatiblen Code,
 also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 Listing \ref{cordova-camera-example} beinhaltet eine Implementierung der Kamera-Schnittstelle über das Plugin \emph{cordova-plugin-camera}.
+Das Kamera-Objekt steht global zur Verfügung um innerhalb der Funktion \emph{getPicture} Callbacks für den Erfolg beziehungsweise den Fehlerfall zu registrieren.
 
 \ac{UI} Entwicklung muss dabei im Vergleich zum Xamarin Framework nicht redundant vorgenommen werden, da Implementierungen der
 Ansichten für sämtliche unterstützten Plattformen identisch ausgeliefert werden können.
-Da \ac{UI} mithilfe von \ac{HTML} und \ac{CSS} realisiert wird,
+Da die \ac{UI} mithilfe von \ac{HTML} und \ac{CSS} realisiert wird,
 können spezielle Stilregeln dennoch auch plattformspezifisch angewandt werden, um beispielsweise eine App zu entwickeln,
-welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
+welche den jeweiligen Stilrichtlinien der Plattformen entsprechen soll.
 
 \vspace{0.3cm}
 \lstinputlisting[language=Javascript,label=cordova-camera-example,caption=Cordova Kamera Example]{kapitel2/cordova-plugin-example.js}
@@ -98,7 +99,7 @@ welche den jeweiligen Stil Richtlinien der Plattformen entsprechen soll.
 Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
 von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
 womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
-wird schnell klar, dass deren Domstruktur durch Inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt,
+wird schnell klar, dass deren Domstruktur durch inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt,
 da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitätsvielfalt einer modernen Webanwendung zu beschreiben.
 Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
@@ -133,7 +134,7 @@ by third parties.''
 \vspace{0.5cm}
 
 Szyperski definiert eine Komponente als eigenständiges, in sich geschlossenes Modul ohne Deployment
-Abhängigkeiten, d.h. Eine Komponente kann ausgeliefert werden, ohne dass andere Elemente der Applikation ebenfalls neu gebaut werden müssen.
+Abhängigkeiten, d.h. Eine Komponente kann ausgeliefert werden, ohne dass andere Elemente der Applikation neu compiliert werden müssen.
 Klar definierte Schnittstellen dienen der komponentenübergeifenden Kommunikation und repräsentieren
 dabei die Funktionalität der Komponente möglichst transparent.
 Komponenten sollen dabei angeboten, sei es komerziell oder gratis,
@@ -147,7 +148,7 @@ reusable blocks of UI presentation and behavior entirely with client side langua
 \cite[42]{Web-Component-Architecture}
 \vspace{0.3cm}
 
-Der W3C beschreibt diverse Wege, wie entkoppelte wiederverwendbare UI Elemente, sogenannte Web Components,
+Das \ac{W3C} beschreibt diverse Wege, wie entkoppelte wiederverwendbare UI Elemente, sogenannte \emph{Web Components},
 in Kombination von \ac{HTML}, JavaScript und \ac{CSS} geschaffen werden können.
 Der Begriff Web Components beinhaltet eine Sammlung von Standards,
 welche die bereits genannte Problematik der fehlenden HTML Semantik mit bestehenden Webtechnologien lösen kann.
@@ -156,10 +157,10 @@ Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar 
 Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
 in das Markup, soll bereits die komponenteninterne Funktionalität zur Verfügung stehen
 \cite[42]{Web-Component-Architecture}.
-Webcomponents bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
+\emph{Web Components} bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
 
 \subsubsection{HTML Imports}
-HTML kann per Referenz in HTML Dokumente importiert und damit verwendet werden (Listing \ref{htmlimport}).
+HTML kann per Referenz in HTML Dokumente importiert und damit verwendet werden, siehe Listing \ref{htmlimport}.
 Dabei können in dem referenziertem HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
 welche dementsprechend aufgelöst werden.
 Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen
@@ -179,7 +180,7 @@ zur Verfügung.
 
 \subsubsection{Custom HTML Elements}
 
-Durch Custom HTML Elements werden Webkomponenten in Applikationen eingebunden.
+Durch Custom HTML Elements werden \emph{Web Components} in Applikationen eingebunden.
 Eigene HTML Tags und Elemente können definiert werden und beinhalten in Javascript geschriebene Logik sowie CSS Styling.
 Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten, welche für die Entwicklung einer Anwendung genutzt werden können.:
 
@@ -192,7 +193,7 @@ Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten, welche
 
 
 \subsubsection{Shadow Dom}
-Shadow Dom ermöglicht Optik und Logik einer Komponente zu kapseln.
+Der Shadow Dom ermöglicht Optik und Logik einer Komponente zu kapseln.
 Seiteneffekte, bezüglich komponentenübergreifendem Style und Logik, werden verhindert.
 Beispielsweise kann das Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
 da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments oder anderer Elemente zugreifen kann.
@@ -206,10 +207,10 @@ Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 \end{figure}
 
 \noindent Wie in Abbildung \ref{fig:platform_support} zu erkennen ist, sind elementare Bestandteile, die für die Verwendung von Web Components erforderlich sind, noch nicht in
-allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese implementiert.
-Hier kommen Polyfills ins Spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu Vollständigen
-Support von Web Components in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
-welches die die Nutzung der JavaScript Standards ES5 und ES6, auch wenn der Browser diese nicht unterstützt, ermöglicht.
+allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese vollständig implementiert.
+Hier kommen Polyfills ins Spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu vollständigen
+Support von \emph{Web Components} in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
+welches die Nutzung der JavaScript Standards \ac{ES5} und \ac{ES6}, auch wenn der Browser diese nicht unterstützt, ermöglicht.
 
 
 
@@ -241,11 +242,11 @@ es wurde jedoch noch vor dem Release aufgrund eines rückschrittigen Featureset 
 Zur selben Zeit etstand Ajax und damit eine völlig neue Art von dynamsichen Webapplikationen,
 basierend auf JavaScript.
 
-2009 erschien ECMAScript5 und erhielt kurz darauf vollen Support in nahezu allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
+2009 erschien \ac{ES5} und erhielt kurz darauf vollen Support in nahezu allen verbreiteten Webbrowsern, abgesehen vom Internet Explorer.
 Es beinhaltet neue Features wie \ac{JSON} Support und klassische Array Funktionen wie map und forEach.
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 
-ECMAScript6 sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
+\ac{ES6} sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
 dann allerdings auf den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert
 \cite{js-vs-es}.
 
@@ -255,7 +256,7 @@ TypeScript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von ES6, das heißt sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features.
 TypeScript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
-Zusammen mit dem Featureset von EcmaScript5 erhalten Entwickler gegenüber ES5 folgende Features:
+Zusammen mit dem Featureset von \ac{ES6} erhalten Entwickler gegenüber ES5 folgende Features:
 
 \begin{figure}[ht]
  \centering
@@ -297,7 +298,7 @@ Mit public markierte Funktionen sind dann ebenfalls von außen nutzbar.
 
 \subsection{Decorator}
 
-TypeScript Decorator basieren auf das Dekorierer Entwurfsmuster (Decorator Design Pattern) um Klassen,
+TypeScript Decorator basieren auf dem Dekorierer Entwurfsmuster (Decorator Design Pattern) um Klassen,
 Funktionen, Variablen und Parameter deklarativ um Funktionalität zu erweitern.
 Das Konzept der Decorator ist vergleichbar mit dem der Annotations, welches beispielsweise Verwendung in Java, Scala und C\#
 finden.
@@ -316,13 +317,14 @@ TypeScript und ES6 bieten Entwicklern eine ganze Reihe von Neuerungen gegenüber
 Spannende Features bringen jedoch wenig, wenn sie im Standard zwar spezifiziert wurden,
 allerdings noch in sehr wenigen Browsern vollständig implementiert sind.
 Um TypeScript oder ES6 Code also überhaupt in Produktion nutzen zu können, sollte er auf den ES5 oder ES3
-Standard herunter transpiliert werden.
+Standard transpiliert werden.
 Ein Transpiler ist ein Compiler, welcher Sourcecode nicht in Maschinencode, sondern ebenfalls in Sourcecode,
 allerdings einer anderen Sprache oder Sprachversion wandelt \cite{Introduction-to-the-Typescript-Transpiler}.
-In der nachfolgenden Abbildung ist zu sehen, wie TypeScript-Code in funktionsfähigen ES5 Code transpiliert wird.
+In der Abbildung \ref{transpile} ist zu sehen, wie TypeScript-Code in funktionsfähigen ES5 Code transpiliert wird.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.8\linewidth]{kapitel2/Introduction-transpiler.png}
  \caption{Transpilierung \cite[27]{ng-Book-2}}
+ \label{transpile}
 \end{figure}

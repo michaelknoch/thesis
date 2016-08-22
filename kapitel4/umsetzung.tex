@@ -67,7 +67,7 @@ die anhand des generischen Ansatzes entwickelt werden,
 sollen nicht ausschließlich in der mobilen App,
 sondern projektübergreifend in der Open Source Community Verwendung finden.
 Daher wurde ein Teil der in \projectname{} entwickelten Komponenten anhand des generischen Ansatzes
-entwickelt und Open Source auf Github veröffentlicht.
+entwickelt und open source auf Github veröffentlicht.
 Dadurch können diese von der Community genutzt und bei Bedarf verbessert und um Funktionalität erweitert werden.
 
 
@@ -92,7 +92,7 @@ Es liegt nahe, dass Typescript Modelklassen ebenfalls in mehreren Komponenten ve
 Demnach sollten diese nicht redundant implementiert,
 sondern zentral zur Verfügung gestellt werden. Es stellt sich heraus,
 dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
-sondern es durchaus Sinn ergibt, Komponenten, Service und Modelklassen anhand ihrer Abhängigkeiten in Paketen zu verwalten und
+sondern es durchaus Sinn ergibt, Komponenten, Service- und Modelklassen anhand ihrer Abhängigkeiten in Paketen zu verwalten und
 gebündelt über die Infrastruktur zu verteilen.
 
 
@@ -102,7 +102,7 @@ Um den Entwicklungsprozess der Komponenten zu beschleunigen, wurde mithilfe von 
 Dieser ermöglicht es die Grundstruktur neuer Komponenten anhand diverser Optionen in kurzer Zeit auszuliefern.
 Dabei wird der Name sowie der Auslieferungsort der neuen Komponente während der Generierung im Terminal erfragt.
 Zusätzlich kann definiert werden, ob externe \ac{HTML} und \ac{CSS} Dateien angelegt, oder ob diese inline in der Komponente definiert werden sollen.
-Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentlicht.
+Der Generator wurde ebenfalls open source entwickelt und auf Github veröffentlicht.
 
 \begin{itemize}
 \item github.com/michaelknoch/generator-ng2-comp
@@ -111,7 +111,7 @@ Der Generator wurde ebenfalls Open Source entwickelt und auf Github veröffentli
 
 \subsection{Implementierung}
 
-Im folgenden werden für die Thesis relevante Implementierungen von Komponenten erläutert.
+Im Folgenden werden für die Thesis relevante Implementierungen von Komponenten erläutert.
 Der zugehörige Anwendungscode befindet sich dabei entweder direkt innerhalb der Beschreibung oder im Anhang dieser Arbeit.
 
 \subsubsection{Login und Authentifizierung}
@@ -120,47 +120,47 @@ Der zugehörige Anwendungscode befindet sich dabei entweder direkt innerhalb der
 \begin{figure}[hptb]
  \centering
  \includegraphics[width=\linewidth]{kapitel4/login.jpg}
- \caption{Login und Userservice}
+ \caption{Login und User Service}
  \label{kapitel4/login}
 \end{figure}
 \vspace{0.3cm}
 
 Anhand des spezifischen Ansatzes wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
-Der \ac{API}-Server gibt dabei einen Cookie-basierten Ansatz für die Authentifizierung vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
-Zunächst wird die Login View geladen, welche das Login Element als Kind-Komponente enthält.
-In dieser sind die nötigen Eingabefelder sowie die Anbindung an den UserService implementiert.
-Der UserService bedient die Login und Register Schnittstelle des \ac{API}-Servers.
-Nach erfolgreichem Login returniert der Server einen Statuscode von 200 (OK), welcher vom Service an das Login Element propagiert wird.
-Das Login Element antwortet der Login View mit einem Update Event, welche daraufhin zur Dashboard View weiterleitet.
+Der \ac{API}-Server gibt dabei einen cookie-basierten Ansatz für die Authentifizierung vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
+Zunächst wird die \emph{Login View} geladen, welche das \emph{Login Element} als Kind-Komponente enthält.
+In dieser sind die nötigen Eingabefelder sowie die Anbindung an den \emph{User Service} implementiert.
+Der \emph{User Service} bedient die Login und Register Schnittstelle des \ac{API}-Servers.
+Nach erfolgreichem Login returniert der Server einen Statuscode von 200 (OK), welcher vom Service an das \emph{Login Element} propagiert wird.
+Das \emph{Login Element} antwortet der \emph{Login View} mit einem Update Event, welche daraufhin zur \emph{Dashboard View} weiterleitet.
 
-In der Implementierung des UserServices, siehe \ref{UserService}, werden innerhalb des Login- und Registriervorgangs
+In der Implementierung des \emph{User Services}, siehe Anhang \ref{UserService}, werden innerhalb des Login- und Registriervorgangs
 sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
 Dies geschieht sehr elegant mithilfe des Variablen Decorators \emph{angular2-localstorage} \cite{marcj95:online}.
 Die zu persistierenden Variablen werden mit \emph{@Localstorage} dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
 Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage geladen.
 Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden um sie überhaupt im Localstorage speichern zu können.
 
-Zum Zeitpunkt der Login View Instanziierung wird der Localstorage im UserService über die Funktion \emph{getLocalMe} ausgelesen.
+Zum Zeitpunkt der \emph{Login View} Instanziierung wird der Localstorage im \emph{User Service} über die Funktion \emph{getLocalMe} ausgelesen.
 Dies ermöglicht es Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
 Zusätzlich ist ein globaler \emph{HTTP-Interceptor} implementiert, welcher bei jedem ausgehenden Request der Anwendung prüft, ob das zuvor gesetzte Cookie noch Gültigkeit besitzt.
 Sollte eine Route des \ac{API}-Servers, welche Authentifizierung erfordert, einen Statuscode 401 (Unauthorized) liefern,
-fängt der \emph{HTTP-Interceptor} den Fehler und leitet zur Login View zurück, um den Nutzer für eine erneute Authentifizierung aufzufordern.
+fängt der \emph{HTTP-Interceptor} den Fehler und leitet zur \emph{Login View} zurück, um den Nutzer für eine erneute Authentifizierung aufzufordern.
 
 
 
 
 \subsubsection{Meta Picker}
 
-Mit der Meta Picker Komponente ist ein spezifisches, jedoch innerhalb der Anwendung wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
-Diese Komponente findet derzeit Verwendung in der Metrik, Graphen und Traces Sektion. Wird eine Applikation bzw. ein Zeitinterval über den Picker definiert,
+Mit der \emph{Meta Picker Komponente} ist ein spezifisches, jedoch innerhalb der Anwendung wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
+Diese Komponente findet derzeit Verwendung in der Metrik, Graphen und Traces Sektion. Wird eine Applikation beziehungsweise ein Zeitinterval über den Picker definiert,
 wird diese Auswahl im Localstorage des Browsers persistiert und bei nachfolgenden Instanziierungen der Komponente zunächst aus dem Storage geladen und erneut ausgewählt.
 Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage}
 welcher bereits in der Implementierung \ref{Login-und-Authentifikation} Login und Authentifikation Verwendung fand.
-Listing \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der Meta Picker Komponente.
-Die binäre Option hideApplikation versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
+Listing \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der \emph{Meta Picker Komponente}.
+Die binäre Option \emph{hideApplikation} versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
 da innerhalb dieser View das Zusammenspiel der einzelnen Services dargestellt wird und daher lediglich eine Filterung nach Zeit relevant ist.
 Über die Funktion \emph{metaUpdate} werden Updates der Komponente abonniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
-so propagiert der Meta Picker ein Update an die äußere Eltern-Komponente. Die Variable \emph{\$event} beinhaltet dabei die vom Nutzer neu gesetzten Parameter.
+so propagiert der \emph{Meta Picker} ein Update an die äußere Eltern-Komponente. Die Variable \emph{\$event} beinhaltet dabei die vom Nutzer neu gesetzten Parameter.
 
 
 \lstinputlisting[language=HTML,label=meta-picker-example,caption=Verwendungsbeispiel Meta Picker]{kapitel4/metapicker-example.html}
@@ -184,7 +184,7 @@ Allerdings konnte keines der untersuchten Bibliotheken den Funktionsumfang bezü
 Konfigurationsaufwand, Größe der Bibliothek und die Möglichkeit das Diagramm auch auf mobilen Geräten nutzen zu können, waren für die Untersuchung ausschlaggebende Kriterien.
 Mit \emph{ng2-simplegantt} wurde daher eine eigene sehr vereinfachte Implementierung eines Gantt Diagramms, entsprechend dem generischen Ansatz, vorgenommen.
 
-Die Daten werden zunächst über den Anwendungsspezifischen Trace Service vom API-Server erfragt und anschließend innerhalb der ebenfalls spezifisch entwickelten Trace Komponente
+Die Daten werden zunächst über den Anwendungsspezifischen Trace Service vom API-Server erfragt und anschließend innerhalb der ebenfalls spezifisch entwickelten \emph{Trace Komponente}
 für die Darstellung in \emph{ng2-simplegantt} aufbereitet.
 Bei der Implementierung der generischen Komponente wurde auf die Verwendung von absoluten Pixelwerten weitestgehend verzichtet.
 Abstände und Positionen werden mithilfe von relativen Prozentwerten ausgedrückt. Dadurch ist die Komponente responsive und kann
@@ -228,7 +228,7 @@ ist eine Bibliothek zur Visualisierung und Analyse komplexer Netzwerke.
 Diese findet in \projectname{} Verwendung in der Implementierung der Graphen-Sektion,
 in welcher Interaktionen zwischen Services visualisiert werden.
 Um eine mit ng2-charts vergleichbar bequeme Nutzung der Graphen-Bibliothek zu ermöglichen,
-wurde eine eigene Interface-Komponente entwickelt und Open Source auf Github veröffentlicht.
+wurde eine eigene Interface-Komponente entwickelt und open source auf Github veröffentlicht.
 
 \begin{itemize}
   \item{github.com/michaelknoch/ng2-cytoscape}
@@ -249,7 +249,7 @@ Durch die Implementierung des \emph{onChanges} Interfaces und damit der Funktion
 dass der Graph neu gezeichnet wird, sobald sich Daten welche mit \emph{@Input} dekoriert wurden, ändern.
 Cytoscape.js erwartet für den Rendervorgang ein jQuery Element, auf welches die Funktion cytoscape({..})
 mit den zuvor eingeschleusten Daten- und Konfigurationsobjekten angewandt wird.
-Durch die Verwendung von ElementRef aus dem Core von Angular, kann eine globale \ac{DOM} Selektion anhand von IDs oder Klassen vermieden werden, da \emph{elementRef.nativeElement} eine Referenz auf das native \ac{DOM} Objekt beinhaltet.
+Durch die Verwendung von \emph{ElementRef} aus dem Core von Angular, kann eine globale \ac{DOM} Selektion anhand von IDs oder Klassen vermieden werden, da \emph{elementRef.nativeElement} eine Referenz auf das native \ac{DOM} Objekt beinhaltet.
 
 \subsubsection{Touch ID Komponente}
 
@@ -257,7 +257,7 @@ Abbildung \ref{touchidmock} zeigt die Touch ID Komponente, welche anhand des spe
 Mithilfe des Touch ID Fingerabdrucksensors kann nicht nur das Telefon selbst entsperrt werden,
 der Fingerabdruck eines Anwenders kann auch innerhalb von mobilen Anwendungen als Authentifizierungsmittel genutzt werden.
 In Sektion \ref{Login-und-Authentifikation} wurde eine Authentifizierung mittels Mail und Passwort erläutert,
-dieser Schritt ist nach wie vor erforderlich. Durch Touch ID wurde eine weitere Sicherheitsschicht unabhängig der Cookie basierten Authentifizierung über den API-Server implementiert.
+dieser Schritt ist nach wie vor erforderlich. Durch Touch ID wurde eine weitere Sicherheitsschicht unabhängig der cookie-basierten Authentifizierung über den API-Server implementiert.
 Sobald ein Nutzer durch seine Legitimationen eingeloggt wurde, ist für jeden weiteren Start der Anwendung kein erneuter Login erforderlich.
 Durch den Einsatz von Touch ID erscheint jedoch beim öffnen der App eine Aufforderung, die Identität durch den Fingerabdruck zu verifizieren, um wömöglich sensible Anwendungsdaten vor unautorisierten Zugriff zu schützen.
 Die Implementierung, welche in Listing \ref{touchid} zu sehen ist, basiert dabei auf dem Cordova Plugin \emph{cordova-plugin-touch-id} \cite{EddyV87:online}.
@@ -276,11 +276,11 @@ View sich ein Nutzer gerade befindet. Die Komponente beinhaltet eine boolesche V
 welche den Status des Overlays beinhaltet. Der Wert der Variable wird bei aktivierung der App durch das Event \emph{platform.resume}
 verändert (Zeile 18), insofern das mobile Gerät Touch ID unterstützt (Zeile 15) und der Nutzer eingeloggt ist (Zeile 17).
 Das in Abbildung \ref{touchidmock} dargestellte Szenario erscheint, die Anwendung ist durch das Overlay blockiert und der Nutzer wird aufgefordert sich über seinen Fingerabdruck auszuweisen.
-Bei Erfolg wird die lock Variable innerhalb des Events \emph{touchid.authenticate} (Zeile 19) erneut gesetzt (Zeile 22).
+Bei Erfolg wird die lock Variable innerhalb des Events \emph{touchid.authenticate} (Zeile 19) erneut gesetzt.
 Das Overlay verschwindet und die Anwendung ist damit entsperrt. Mit dem Zugriff auf \emph{ngZone.run} (Zeile 21) wird eine Angular Change Detection manuell ausgelöst, da der Change Detection Vorgang nicht automatisch durch \emph{touchid.authenticate} ausgelöst wird.
 
 Das Overlay selbst besteht aus einem \ac{HTML} Element (Zeile 8), welches in Abhängigkeit der Variable \emph{lock} die Klasse \emph{active} erhält.
-Zudem ist innerhalb von Listing \ref{touchid-style} die Visualisierung des Template Elements in Form von \ac{SASS} implementiert.
+Innerhalb von Listing \ref{touchid-style} ist die Visualisierung des Template Elements in Form von \ac{SASS} implementiert.
 Durch die Verwendung von \emph{position: fixed} wird gewährleistet, dass das Overlay unabhängig von relativen Containern und Scrollpositionen innerhalb der Anwendung zu jeder Situation den Inhalt komplett verdecken kann.
 
 
@@ -308,11 +308,11 @@ gehalten und von Anwendungsentwicklern genutzt werden können.
 Es liegt nahe dieses Problem mithilfe eines Paketmanagers zu lösen. Angular und Ionic verwenden für das Management
 ihrer Kern-Abhängigkeiten \ac{NPM}.
 Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert werden.
-Da \projectname{} Open Source entwickelt wird,
-reicht ein kostenfreier Basis Account für die Verteilung der Awendungs-Komponenten völlig aus.
+Da \projectname{} open source entwickelt wird,
+reicht ein kostenfreier Basis-Account für die Verteilung der Awendungs-Komponenten völlig aus.
 
 Es wäre denkbar jede Komponente über ein eigenes \ac{NPM} Paket zu veröffentlichen.
-Allerdings würde dies nicht nur den Veröffentlichungs- und Update Mechanismus erschweren,
+Allerdings würde dies nicht nur den Veröffentlichungs- und Update-Mechanismus erschweren,
 sondern würde auch eine aufwändige Definition von Modulabhängigkeiten bedeuten.
 Um die Komplexität der Infrastruktur nicht unnötig zu erhöhen,
 werden Komponenten, welche anhand des spezifischen Ansatzes entwickelt werden,
@@ -396,7 +396,7 @@ Der Decorator wird über den Bootstrap Prozess der Angular Applikation registrie
 dadurch werden Schreibzugriffe auf Variablen erfasst und Daten gespeichert.
 Allerdings unterscheidet sich der Bootstrap einer Ionic Anwendung von dem einer Angular Applikation.
 Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im Ionic Projekt verwendet werden kann.
-Da jedoch Funktionalität des \emph{UserServices} und des \emph{MetaPickers} auf dem Decorator aufbaut,
+Da jedoch Funktionalität des \emph{User Services} und des \emph{Meta Pickers} auf dem Decorator aufbaut,
 gilt es dieses Problem zu lösen.
 
 Zuvor wurde in Abschnitt \ref{sec:services} erläutert, wie
@@ -411,7 +411,7 @@ welches die erforderlichen Schnittstellen vorgibt. Das Interface ist in Listing 
 
 \vspace{0.3cm}
 
-\lstinputlisting[language=Javascript,label=userservice-interface,caption=UserService Interface]{kapitel4/userservice-interface.ts}
+\lstinputlisting[language=Javascript,label=userservice-interface,caption=User Service Interface]{kapitel4/userservice-interface.ts}
 
 
 
@@ -425,7 +425,7 @@ welche im folgenden erläutert werden.
 \subsection{Web}
 \label{deployment-web}
 
-Die Web Applikation wird über die \ac{AWS} Instanz ausgeliefert, auf welcher sich auch der \ac{API} Server befindet.
+Die Web-Applikation wird über die \ac{AWS} Instanz ausgeliefert, auf welcher sich auch der \ac{API}-Server befindet.
 Aufgrund großer Unzufriedenheit mit der anfänglichen Ladezeit der Anwendung von nahezu 10 Sekunden wurde ein Deployment
 Prozess konzipiert, welcher die Dauer des Ladevorgangs deutlich reduziert.
 Ohne Optimierungen werden beim Start der Anwendungen 624 verschiedene Dateien geladen,
@@ -444,10 +444,10 @@ Die Menge der geladenen Daten wird aufgrund fehlender Minifizierung nahezu kaum 
 \subsection{Desktop}
 
 \subsubsection{Auslieferung}
-Um die Ladezeit der Desktop App ebenfalls gering zu halten, baut der Auslieferungsprozess der Electron App
+Um die Ladezeit der Desktop-App ebenfalls gering zu halten, baut der Auslieferungsprozess der Electron-App
 auf den in \ref{deployment-web} beschrieben Prozess der Webapplikation auf. Daher werden Applikationscode und die
 Abhängigkeiten von Angular zunächst ebenfalls zu einer app.bundle.js Datei zusammengefasst.
-Das Node Modul \emph{electron-packager} ermöglicht die Generierung der Electron App für verschiedene Plattformen,
+Das Node Modul \emph{electron-packager} ermöglicht die Generierung der Electron-App für verschiedene Plattformen,
 welche eigenständig ausgeführt werden kann.
 Ein weiteres Node Modul \emph{electron-release} ermöglicht eine Veröffentlichung
 der Anwendung innerhalb der Releases auf dem Github Repository.
@@ -460,17 +460,17 @@ Desktop Apps können entweder manuell durch Initivative der Nutzer oder durch
 automatische Client Updates aktuell gehalten werden.
 Electron bietet mit \emph{autoUpdater} eine Implementierung
 von automatischen Updates im Hintergrund an.
-Electron autoUpdater ist dabei eine Schnittstelle welche das Squirrel Framework
+Electron \emph{autoUpdater} ist dabei eine Schnittstelle, welche das \emph{Squirrel Framework}
 für Automatisierungen von Windows und MacOS Anwendungen bedient.
 Notwendig für die Hintergrundaktualisierung ist ein HTTP-Service, welcher beim Start der Anwendung mit der
 aktuellen Version angefragt werden kann
 und daraufhin einen Downloadpfad für ein eventuell verfügbares Update liefert.
 Sollte kein Update zur Verfügung stehen wird ein Statuscode 204 (No Content) geliefert.
-Electron autoUpdater lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
+Electron \emph{autoUpdater} lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
 Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 
 Im Ramen des Projekts \projectname{} wurde ein HTTP-Service für die
-Verwendung von Electron autoUpdater implementiert.
+Verwendung von Electron \emph{autoUpdater} implementiert.
 \begin{itemize}
 \item github.com/michaelknoch/mia-electron-autoupdater-server
 \end{itemize}
@@ -481,19 +481,19 @@ Während der Updatevorgang einer Electron App im Main Kontext der
 Anwendung stattfindet, ist der Render Prozess beziehungsweise der Angular Kontext unwissend über die aktuelle
 Version der App sowie den Status des Updates. Um relevante Informationen für Nutzer innerhalb der Anwendung darstellen zu können,
 müssen dem Render Kontext genannte Information bereitgestellt werden.
-Daher wird Electrons IPC Schnittstelle für einen asynchronen Austausch von Daten implementiert.
+Daher wird Electrons \emph{IPC} Schnittstelle für einen asynchronen Austausch von Daten implementiert.
 
 Beim Start der Anwendung wird zunächst die aktuelle Anwendungsversion innerhalb des Node Kontextes aus der Package.json der Desktop-Anwendung gelesen.
 Anhand dieser Versionsummer wird gegen den HTTP-Service geprüft, ob ein Update vefügbar ist. Der Download des Updates beginnt bereits automatisch,
 sobald der API-Endpoint einen Downloadpfad returniert.
 
 Zeitgleich findet der Bootstrap Prozess der Angular Applikation im Render Prozess statt.
-Ist dieser abgeschlossen, startet der IPC Service, welcher bereits während seiner Instanziierung den
+Ist dieser abgeschlossen, startet der \emph{IPC Service}, welcher bereits während seiner Instanziierung den
 IPC Request ``version-request'' an den Node Kontext übermittelt.
 Dieser antwortet daraufhin mit der zuvor ausgelesenen Version der Anwendung, welche im Angular Kontext wiederum als HTML5 Push Notification, siehe Abbildung \ref{kapitel4/update-push}, ausgegeben wird.
 
 War der Download des Updates efolgreich, löst der Update Prozess das Event ``update-downloaded'' im Node Kontext aus,
-welches durch IPC an den IPC Service der Angular Applikation weitergeleitet wird. Erneut erscheint eine für den Nutzer bestimmte Notification, siehe Abbildung \ref{kapitel4/update-push}, welche auf Klick einen Restart der Applikation auslöst.
+welches durch IPC an den \emph{IPC Service} der Angular Applikation weitergeleitet wird. Erneut erscheint eine für den Nutzer bestimmte Notification, siehe Abbildung \ref{kapitel4/update-push}, welche auf Klick einen Restart der Applikation auslöst.
 Dies ist mithilfe eines Klick Listeners realisiert, der dem Node Kontext das Event ``force-restart'' propagiert.
 Daraufhin wird ``quitAndInstall'' über die \ac{API} des Updaters aufgerufen, wodurch die Applikation veranlasst wird sich selbst zu beenden und in der neuen Version zu erscheinen.
 
@@ -511,9 +511,9 @@ Daraufhin wird ``quitAndInstall'' über die \ac{API} des Updaters aufgerufen, wo
 \subsection{App}
 
 Die iOS und Android App wird mithilfe der Ionic \ac{CLI} gebaut und muss daraufhin für den
-jeweiligen Appstore veröffentlicht werden. Der Build Prozess,
+jeweiligen App Store veröffentlicht werden. Der Build Prozess,
 welcher durch den Befehl \emph{ionic build ios} und \emph{ionic build android} ausgeführt wird,
 erstellt dabei die Applikation für die jeweilige Zielplattform.
 Für die Veröffentlichung in den Stores ist zunächst die Freischaltung eines Entwickler Accounts erforderlich,
 welche durch eine einmalige Zahlung von 25\$ für den Google Play Store beziehungsweise einer jährlichen Gebühr von 99\$
-für den iOS AppStore so wie einer Prüfung der Person oder des Unternehmens erfolgt.
+für den iOS App Store so wie einer Prüfung der Person oder des Unternehmens erfolgt.

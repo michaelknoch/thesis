@@ -21,7 +21,7 @@ und sich die APIs der beiden Frameworks sehr ähneln.
 Ein zentraler Bestandteil der Implementierung ist Angulars Dependency Injection.
 Komponenten müssen sich dabei nicht um die Instanziierungen von Objekten kümmern,
 sondern können vom Anwendungskontext völlig entkoppelt globale Instanzen konsumieren.
-Implementierungen werden austauschbar und damit Flexibel,
+Implementierungen werden austauschbar und damit flexibel,
 sollte Funktionalität bestehender Komponenten erweitert oder überschrieben werden müssen.
 
 Angular 2 befindet sich zum aktuellen Zeitpunkt (13. August) im fünften Release Candidate und steht damit kurz
@@ -37,7 +37,7 @@ funktionieren.
 Zum jetzigen Zeitpunkt (13. August) ist Beta 11 erscheinen, allerdings läuft die mobile App von
 \projectname{} noch auf Betaversion 10, da das neuste Ionic Update,
 wie so manches zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichten der
-mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden sollen.
+mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden müssen.
 Es wurde allerdings zunächst ein Downgrade auf Beta 10 durchgeführt.
 
 Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant \cite{Annou88:online}.
@@ -49,8 +49,8 @@ Das Problem der relativen und absoluten Pfade soll nun mit einem Technologiewech
 Zusätzlich bietet \emph{Webpack 2} eine Technik, welche ``tree shaking'' gennant wird.
 Diese liefert dem Build Prozess Transparenz darüber, welcher \ac{CSS} und JavaScript Code tatsächlich verwendet wird.
 Dadurch soll der Output sowie die Dauer des Buildvorgangs drastisch reduziert werden \cite{Annou88:online}.
-Darüber hinaus will Ionic mithilfe des Ahead-of-time Compilers von Angular Templates zum Zeitpunkt des Buildvorgangs und nicht mehr zur Laufzeit kompilieren.
-Dadurch soll die App deutlich an Leistung gewinnen und speziell der Start einer App soll damit drastisch verkürzt werden.
+Darüber hinaus will Ionic mithilfe des \emph{Ahead-of-time Compilers} von Angular Templates zum Zeitpunkt des Buildvorgangs und nicht mehr zur Laufzeit kompilieren.
+Dadurch soll die App deutlich an Leistung gewinnen und speziell der Start einer App soll damit drastisch beschleunigt werden.
 
 \vspace{0.3cm}
 
@@ -68,8 +68,8 @@ Als sehr Zeitaufwändig stellte sich die Implementierung des automatischen
 Update Mechanismus, beschrieben in Sektion \ref{client-updates}, heraus.
 Nicht weil diese Schnittstelle des Frameworks derart komplex zu bedienen ist, sondern weil der Aktualisierungsvorgang nur getestet werden kann,
 wenn die Anwendung zuvor für Produktion gebaut, signiert und für den Updateserver sichtbar ins Netz geladen wurde.
-Beim Start der Anwendung, insofern sie für Produktion gebaut wurde, ist es nur schwer möglich, Zugriff auf nötige Debug Informationen zu erhalten,
-somit verzögerte sich die Testphase von Electron AutoUpdate erheblich.
+Beim Start der Anwendung ist es dann nur schwer möglich, Zugriff auf nötige Debug Informationen zu erhalten,
+somit verzögerte sich die Testphase von Electron \emph{AutoUpdate} erheblich.
 
 
 \newpage
@@ -85,23 +85,23 @@ somit verzögerte sich die Testphase von Electron AutoUpdate erheblich.
 \vspace{0.3cm}
 
 \noindent Die in der Anforderungsanalyse, siehe Abschnitt \ref{sec:anforderungsanalyse}, beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
-Screenshots der Desktopanwendung sowie der mobilen App sind im Anhang \ref{screens} vorzufinden.
-Das Projekt \projectname{} ist als Website, Desktop-Anwendung für macOS und Windows sowie als mobile App für iOS und Android unter Vorbehalt verfügbar.
+Screenshots der Desktopanwendung sowie der mobilen App sind in Anhang \ref{screens} vorzufinden.
+Das Projekt \projectname{} ist als Website, Desktopanwendung für macOS und Windows sowie als mobile App für iOS und Android unter Vorbehalt verfügbar.
 Der Vorbehalt resultiert aus dem prototypischen Status des Projekts und dem derzeit verfügbaren Budget.
 Die Infrastruktur des Backend-Systems, welches in der Bachelorarbeit von \emph{Timo Weiß} beschrieben wird,
 ist derzeit auf drei verschiedene \ac{AWS} Instanzen verteilt. Diese müssen für den Betrieb der Anwendung allesamt
 hochgefahren werden, wodurch Kosten entstehen, die einen Rund-um-die-Uhr-Betrieb derzeit äußerst kostspielig gestalten.
-Zudem liegt die derzeitige Implementierung als prototyp vor und sollte daher vor einem
+Zudem liegt die derzeitige Implementierung als Prototyp vor und sollte daher vor einem
 öffentlichen Release zunächst als geschlossene Beta-Anwendung getestet und evaluiert werden.
 
 Daher wurde die Entscheidung getroffen, die mobilen Anwendungen für iOS und Android zunächst noch nicht öffentlich über die jeweiligen App Stores zu vertreiben.
 Die Webanwendung ist während aktivierter \ac{AWS} Instanzen öffentlich erreichbar.
-Die Desktop Applikation kann jederzeit über die Github Releases heruntergeladen und gestartet werden,
-allerdings steht sowohl der Web- als auch der Desktop-Anwendung keine Funktionalität zur Verfügung, wenn besagte \ac{AWS}
+Die Desktop-Applikation kann jederzeit über die Github Releases heruntergeladen und gestartet werden,
+allerdings steht sowohl der Web- als auch der Desktopanwendung keine Funktionalität zur Verfügung, wenn besagte \ac{AWS}
 Instanzen heruntergefahren sind.
 
 Die komplette plattformübergreifende Frontend Architektur besteht aus einem komplexen Zusammenspiel von insgesamt sechs verschiedenen Git Repositories,
-welche zum aktuellen Zeitpunkt Open Source verfügbar sind.
+welche zum aktuellen Zeitpunkt open source verfügbar sind.
 
 \begin{itemize}
   \item{\textbf{Web, Desktop, Komponentenentwicklung} github.com/michaelknoch/mia}
@@ -131,12 +131,12 @@ Die mobile App wurde auf einem Nexus 5x, Iphone 6, Iphone 4s und Nexus 5 geteste
 Auf dem Nexus 5x und Iphone 6 scheint die App durchgehend eine stabile Bildrate zu haben,
 wird die App auf den beiden älteren Modellen ausgeführt,
 so fallen bei intensiver Benutzung vergleichsweise niedrige
-Bildraten speziell bei der Animation der Viewwechsel auf.
+Bildraten, speziell bei der Animation der Viewwechsel, auf.
 Die App wirkt dadurch etwas schwammiger, als bei den neueren Geräten.
 
-Die Frameraten der Web- und Desktop-Anwendungen wurden mithilfe der
-Chrome Developer Tools auf einem Macbook Pro mit einem Intel i7 Prozessor und Intel HD 4000 Grafik gemessen,
-siehe \ref{profiling} Bootstrap Timeline - Chrome Developer Tools.
+Die Frameraten der Web- und Desktopanwendungen wurden mithilfe der
+\emph{Chrome Developer Tools} auf einem Macbook Pro mit einem Intel i7 Prozessor und Intel HD 4000 Grafik gemessen,
+siehe Anhang \ref{profiling}.
 Deutlich wurde, dass beide Anwendungen die Animation, welche nach dem Start der Anwendung ausgeführt wird,
 mit konstanten 60 FPS darstellen können. Dieser Test wurde ebenfalls auf einem Windows Desktop-Rechner mit einem Intel i5 Prozessor und Nvidia 745GTX Grafik durchgeführt und
 erzielte vergleichbare Ergebnisse. Des Weiteren ist in den Abbildungen \emph{\ref{bootstrap-web} Bootstrap Timeline Web} und \emph{\ref{bootstrap-desktop} Bootstrap Timeline Desktop} zu erkennen,
@@ -160,9 +160,9 @@ indem eine Chromium Webview in die Binärdatei der App compiliert wird. Dadurch 
 dass neuste Browser APIs für die Implementierung der Anwendung genutzt werden könnnen \cite{Cross69:online}.
 Allerdings vergrößert sich dadurch die Größe der \ac{APK} sowie der auf dem Gerät benötigte Speicher erheblich.
 
-Cordova Apps laufen auf iOS Geräten in der UIWebView, einer nativen Webview von Apple. Safari basiert bereits
-auf der neuen, stabileren und schnelleren WKWebView, wodurch erklärt wird, wieso Web-Apps in Safari
-mehr Leistung aufweisen und flüssiger wirken, als hybride Cordova Apps die noch im Kontext der alten UIWebView ausgeführt werden.
+Cordova Apps werden auf iOS Geräten in der \emph{UIWebView} ausgeführt, einer nativen Webview von Apple. Safari basiert bereits
+auf der neuen, stabileren und schnelleren \emph{WKWebView}, wodurch erklärt wird, wieso Web-Apps in Safari
+mehr Leistung aufweisen und flüssiger wirken, als hybride Cordova Apps die noch im Kontext der alten \emph{UIWebView} ausgeführt werden.
 Das Ionic Team beschäftigt sich derzeit damit die neue Webview für Ionic 1 sowie Ionic 2 als Ausführungskontext verwenden zu können.
 Erste Tests zeigten bereits deutlich reduzierte Ram-Auslastungen sowie kürzere Startzeiten und mehr Performanz von Ionic Apps auf iOS Geräten \cite{Cordo84:online}.
 

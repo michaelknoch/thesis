@@ -355,16 +355,16 @@ Dies ermöglicht es Apps in Echtzeit zu deployen und Appstore Review Zyklen zu v
 \section{Electron}
 \subsection{Allgemein}
 
-Durch die stetige Entwicklung von Webbrowsern und Apps für Mobilgeräten haben Desktop Applikationen in den letzten Jahren immer mehr an Bedeutung verloren.
+Durch die stetige Entwicklung von Webbrowsern und Apps für Mobilgeräte haben Desktop-Applikationen in den letzten Jahren immer mehr an Bedeutung verloren.
 Dennoch bieten sie gegenüber Anwendungen, die nur in Browsern ausgeführt werden, einige Vorteile.
-Desktop Anwendungen befinden sich im Dock beziehungsweise im Startmenü des Betriebssystems oder sind womöglich im Autostart referenziert.
+Desktop-Anwendungen befinden sich im Dock beziehungsweise im Startmenü des Betriebssystems oder sind womöglich im Autostart referenziert.
 Dadurch wirken sie präsenter, sind schneller zu erreichen und können selbst im minimierten Zustand noch Code ausführen.
 Sie werden nicht durch den Kontext des Browsers limitiert und können APIs der Betriebssysteme nutzen \cite{Build58:online}.
 
-Electron ist ein Framework zur Entwicklung nativer Desktop Anwendungen, ebenfalls basierend auf Webtechnologien.
+Electron ist ein Framework zur Entwicklung nativer Desktop-Anwendungen, ebenfalls basierend auf Webtechnologien.
 Atom, Visual Studio Code, Whatsapp und Slack sind erfolgreiche Beispiele für Anwendungen, die mithilfe von Electron
 entwickelt wurden.
-Der Fokus soll bei der Entwicklung auf die eigentliche Geschäftslogik der Anwendung und nicht auf plattformspezifische
+Der Fokus soll bei der Entwicklung auf die eigentliche Geschäftslogik der Anwendung und nicht auf plattformspezifischen
 ``hard parts'' der nativen Desktop Entwicklung gerichtet werden \cite{Elect57:online}.
 
 \vspace{0.3cm}
@@ -379,7 +379,7 @@ your application.''
 
 Wie in Abbildung \ref{fig:electronprozess} dargestellt, werden beim Start einer
 Electron Anwendung verschiedenen Prozesskontexte gestartet.
-Zunächst startet der Hauptprozess (main Process), in welchem grundlegende Konfigurationen vorgenommen werden können.
+Zunächst startet der Hauptprozess (main process), in welchem grundlegende Konfigurationen vorgenommen werden können.
 Die Besonderheit dieses Kontextes ist die Verfügbarkeit von Node.js.
 Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebssystems um beispielsweise Dateien lesen oder schreiben zu können.
 Ferner wäre es im Hauptprozess möglich einen HTTP oder Websocket Server zu starten.
@@ -404,7 +404,7 @@ dass die verschiedenen Kontexte miteinander interagieren beziehungsweise kommuni
 Dies kann, wie bereits in Sektion \ref{sec:functionsweise} angesprochen,
 mithilfe eines lokalen API Servers oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
-Dem Main- und Render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
+Dem main- und render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.
 
 \section{\ac{NPM}}

@@ -362,9 +362,9 @@ Dadurch wirken sie präsenter, sind schneller zu erreichen und können selbst im
 Sie werden nicht durch den Kontext des Browsers limitiert und können APIs der Betriebssysteme nutzen \cite{Build58:online}.
 
 Electron ist ein Framework zur Entwicklung nativer Desktop-Anwendungen, ebenfalls basierend auf Webtechnologien.
-Atom, Visual Studio Code, Whatsapp und Slack sind erfolgreiche Beispiele für Anwendungen, die mithilfe von Electron
+Atom, Visual Studio Code, WhatsApp und Slack sind erfolgreiche Beispiele für Anwendungen, die mithilfe von Electron
 entwickelt wurden.
-Der Fokus soll bei der Entwicklung auf die eigentliche Geschäftslogik der Anwendung und nicht auf plattformspezifischen
+Der Fokus soll bei der Entwicklung auf die eigentliche Geschäftslogik der Anwendung und nicht auf plattformspezifische
 ``hard parts'' der nativen Desktop Entwicklung gerichtet werden \cite{Elect57:online}.
 
 \vspace{0.3cm}
@@ -378,15 +378,15 @@ your application.''
 
 
 Wie in Abbildung \ref{fig:electronprozess} dargestellt, werden beim Start einer
-Electron Anwendung verschiedenen Prozesskontexte gestartet.
+Electron Anwendung verschiedene Prozesskontexte gestartet.
 Zunächst startet der Hauptprozess (main process), in welchem grundlegende Konfigurationen vorgenommen werden können.
 Die Besonderheit dieses Kontextes ist die Verfügbarkeit von Node.js.
-Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebssystems um beispielsweise Dateien lesen oder schreiben zu können.
-Ferner wäre es im Hauptprozess möglich einen HTTP oder Websocket Server zu starten.
+Mit Node.js erhält man Zugriff auf Schnittstellen des Betriebssystems, um beispielsweise Dateien lesen oder schreiben zu können.
+Ferner wäre es im Hauptprozess möglich, einen HTTP oder Websocket Server zu starten.
 
 Der Hauptprozess instanziiert den Kontext der Webview, in Abbildung \ref{fig:electronprozess} wird dieser als render process bezeichnet.
 Dieser beinhaltet eine Browserumgebung, welcher die \ac{UI} der Anwendung in einem für den Nutzer sichtbaren Fenster darstellt.
-Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrome, gerendert \cite{Build58:online}.
+Die Webinhalte werden dabei mit Chromium, der quelloffenen Basis von Google Chrome, gerendert \cite{Build58:online}.
 
 \begin{figure}[htbp]
  \centering
@@ -402,7 +402,7 @@ Die Webinhalte werden dabei mit Chromium, der quellofenen Basis von Google Chrom
 Da Node.js nur im Hauptrozess von Electron genutzt werden kann, ist es erforderlich,
 dass die verschiedenen Kontexte miteinander interagieren beziehungsweise kommunizieren können.
 Dies kann, wie bereits in Sektion \ref{sec:functionsweise} angesprochen,
-mithilfe eines lokalen API Servers oder Websockets stattfinden.
+durch einen lokalen API-Server oder Websockets stattfinden.
 Die Electron API bietet eine weitere Möglichkeit für eine Interprozesskommunikation.
 Dem main- und render Prozess wird jeweils eine IPC Event Emitter Instanz zur Verfügung gestellt,
 über welche asynchrone Events gesendet und empfangen werden können.
@@ -410,14 +410,14 @@ Dem main- und render Prozess wird jeweils eine IPC Event Emitter Instanz zur Ver
 \section{\ac{NPM}}
 
 \ac{NPM} ist ein Package Manager für Node.js und JavaScript mit insgesamt mehr als 300.000 verschiedenen Paketen und
-4.939.882.172 Paket Installationen im Juni 2016.
+4.939.882.172 Paket Installationen (Stand Juni 2016).
 Open Source Pakete können kostenfrei veröffentlicht werden.
 Für die Verwaltung von Closed Source Paketen wird ein Preismodell ab 7\$ pro Monat angeboten.
 Dependencies des Projekts \projectname{}, also Pakete wie Angular, Ionic und Electron können vollständig
 über \ac{NPM} geladen werden \cite{npm31:online}.
 
-Ein \ac{NPM} Modul beinhaltet neben dem Programmcode eine Manifest Datei, in welcher relevante Metainformationen über das Modul selbst und den Autor gespeichert werden.
-Zusätzlich können in dem Manifest (Package.json) post-Installation Scripte referenziert werden um
+Ein \ac{NPM} Modul beinhaltet neben dem Programmcode eine Manifest-Datei, in welcher relevante Metainformationen über das Modul selbst und den Autor gespeichert werden.
+Zusätzlich können in dem Manifest (Package.json) post-Installation Scripte referenziert werden, um
 beispielsweise eine Transpilierung von TypeScript zu JavaScript vornzunehmen, nachdem das Modul als Abhängigkeit installiert wurde.
 Die Veröffentlichtung in der Registry und damit auf \emph{npmjs.com} sowie der Updatevorgang eines Moduls geschieht über die \ac{CLI} von \ac{NPM}.
 

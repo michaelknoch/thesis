@@ -160,19 +160,19 @@ Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume
 Wie bereits erwähnt, ermöglichen \ac{DI} Provider, Services als Singleton zu instanziieren.
 Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden,
 um Funktionalität aus Komponenten zu abstrahieren, um in weiteren Komponeten verwendet zu werden.
-Auf der anderen Seite können sie jedoch auch genutzt werden, um Daten multiplen Komponenten zur Verfügung zu stellen.
+Auf der anderen Seite können sie auch genutzt werden, um Daten multiplen Komponenten zur Verfügung zu stellen.
 Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird. Daher erhalten alle
-Komponenten, die den Service injizieren, die selbe Referenz, somit die selbe Instanz und daher die selbe globale Datenbasis.
+Komponenten, die den Service injizieren, dieselbe Referenz, somit dieselbe Instanz und daher dieselbe globale Datenbasis.
 In einem Userservice könnte beispielweise eine Boolean Variable definiert sein, welche Auskunft darüber gibt,
 ob ein User eingeloggt ist oder nicht \cite[308]{Angular2}.
 
 
 \subsection{Data Binding}
-Das in eine Komponente eingebundene Markup repräsentiert die Viewschicht einer Komponente.
+Das in einer Komponente eingebundene Markup repräsentiert die Viewschicht einer Komponente.
 Angular 2 besitzt zur Darstellung von Datenstrukturen eine komplexe, jedoch sehr ausdrucksstarke Template Syntax, siehe Listing \ref{ngtemplate}.
-Variablen und Funktionen einer Komponente, können mithilfe von doppelt geschweiften Klammern in die View eingebunden werden.
+Variablen und Funktionen einer Komponente, können mit doppelt geschweiften Klammern in die View eingebunden werden.
 Auf der Basis von HTML5 können zudem Schleifen und Fallunterscheidungen implementiert werden.
-Der Gültigkeitsbereich des Templates bezieht sich, bezüglich Variablen und Funktionen, dabei auf den Kontext der Komponente,
+Der Gültigkeitsbereich des Templates bezieht sich, bezüglich Variablen und Funktionen, auf den Kontext der Komponente,
 welche das Template in der Component Decoration referenziert \cite{Templ78:online}.
 
 \vspace{0.3cm}
@@ -209,31 +209,31 @@ Eine interne Datenstruktur wird dabei per Templating auf eine Viewstruktur, den 
 Formularen, Buttons, Bildern etc. visuell aufbereitet.
 Gibt es nun Änderungen in der Datenstruktur zur Laufzeit, muss die View dementsprechend aktualisiert werden.
 Zugriffe auf den DOM sind ressourcenintensiv, daher sollten DOM Manipulationen nicht inflationär stattfinden.
-Datenänderungen können entwerder durch User Events, XMLHttpRequests oder Timer (\emph{setTimeout}, \emph{setInterval} ausgelöst werden.
+Datenänderungen können entweder durch User Events, XMLHttpRequests oder Timer (\emph{setTimeout}, \emph{setInterval}) ausgelöst werden.
 Dies geschieht asynchron. Es ist also davon auszugehen, dass sobald eine asynchrone Aktivität innerhalb einer Komponente auftritt,
 sich Daten geändert haben können und die View aktualisiert werden muss \cite{changedetection-explained}.
 
 \subsection{NgZone}
 
 Zones sind ein internes Feature der Programmiersprache Dart. Da Dart zu JavaScript compiliert werden kann,
-können Zones ebenfalls in JavaScript genutzt werden. Zone.js ist als Portierung für JavScript entstanden, welche in Angular2 genutzt wird.
+können Zones ebenfalls in JavaScript genutzt werden. Zone.js ist als Portierung für JavaScript entstanden, welche in Angular2 genutzt wird.
 Zones sind Ausführungskontexte (Scopes) für die Observation asynchroner Operationen.
 Asynchrone Funktionen werden mittels \emph{Monkey Patching} überwacht und lösen innerhalb des entsprechenden Ausführungskontexts verschiedene Events aus.
 NgZone ist ein Fork von zone.js, welcher die Basisfunktionalität um zusätzliche Events erweitert.
-Für die Change Detection relevant ist dabei das event \emph{onTurnDone} \cite{changedetection-explained}.
+Relevant für die Change Detection ist dabei das event \emph{onTurnDone} \cite{changedetection-explained}.
 
 \vspace{0.3cm}
 ``onTurnDone() - Notifies subscribers immediately after Angular’s zone is done processing the current turn and any micro tasks scheduled from that turn.''
 \cite{ZONESINANGULAR2}
 \vspace{0.3cm}
 
-Sobald das \emph{onTurnDone} Event ausgelöst wird, löst NgZone wiederum eine \emph{tick} aus, welcher schlussendlich die Change Detection startet.
+Sobald das \emph{onTurnDone} Event ausgelöst wird, löst NgZone wiederum einen \emph{tick} aus, welcher schlussendlich die Change Detection startet.
 Jede Angular2 Komponente besitzt seinen eigenen Change Detector. Da eine Angular 2 Applikation aus einem Komponentenbaum besteht,
 kann davon ausgegangen werden, dass sie ebenfalls aus einem Baum von Change Detektoren besteht, siehe Abbildung \ref{cdflow}.
 Change Detection wird innerhalb dieses Baumes als unidirektionaler Datenfluss von oben nach unten, beginnend mit dem Rootknoten, ausgeführt.
 
 Obwohl jede Komponente bei einem \emph{tick} auf Änderungen prüft, ist Angular 2 sehr schnell. Es können mehrere 100.000 Checks in wenigen Millisekunden durchgeführt werden,
-da jede Komponenten ihren eigenen Change Detector besitzt und es nicht eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
+da jede Komponente ihren eigenen Change Detector besitzt und es nicht eine große Instanz gibt, die alle Komponenten zeitgleich observieren muss.
 Dies wird erreicht, indem Angular zur Laufzeit individuelle Change Detector Klassen für jede Komponente, entsprechend dem Datenmodell der Komponente, erzeugt.
 Dieser Code kann von virtuellen Maschinen optimiert und daher vergleichsweise schnell ausgeführt werden \cite{changedetection-explained}.
 

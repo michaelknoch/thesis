@@ -9,7 +9,7 @@ In diesem Kapitel wird die Grundlage der praktischen Arbeit, welche im Folgenden
 
 Monitoring Tools dienen der Übewachung und Kontrolle bestehender Softwareprodukte.
 Ein Software-System beinhaltet diverse Abläufe und Metriken, welche geprüft und ausgewertet werden können, um Entwicklern und Systemadministratoren
-aussagekräftige Einsicht in ihre Systeme zu gewähren. Speziell nach der Veröffentlichung eines Projektes oder neuer Patches
+aussagekräftige Einsichten in ihre Systeme zu gewähren. Speziell nach der Veröffentlichung eines Projektes oder neuer Patches
 ist es meist unabdingbar, das aktualisierte System hinsichtlich Stabilität und Performance kritisch zu beobachten. Ein weiterer Aspekt, den es zu überwachen gilt,
 ist die Skalierfähigkeit eines Produktes. Steigt die Aktivität einer Applikation, beispielsweise durch steigende Nutzerzahlen,
 muss sichergestellt werden, dass steigende Antwort- und Ausfallzeiten schnell erkannt und richtig interpretiert werden, damit Skalierungsprobleme schnellstmöglich behoben werden können.
@@ -18,7 +18,7 @@ Handelt es sich bei dem zu überwachenden System um ein komplexes Zusammenspiel 
 Serverlogs, deutlich schwieriger.
 
 Innerhalb einer Microservice Architektur ist es nicht notwendig, dass alle Services auf einem gemeinsamen Server operieren.
-Es ist möglich, dass Services auf einer Vielzahl von Servern möglicherweise an komplett unterschiedlichen geographischen Punkten miteinander agieren,
+Es ist möglich, dass Services auf einer Vielzahl von Servern und dabei an komplett unterschiedlichen geographischen Punkten miteinander agieren,
 oder im Problemfall nicht miteinander agieren können. Instanzen einzelner Services können zur Laufzeit starten, stoppen oder abstürzen
 und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind also deutlich komplexer zu überblicken, da durch die Verteilung von Funktionalität auch
 mögliche Fehlerquellen verteilt werden.
@@ -84,14 +84,14 @@ Nach erfolgreichem Login beziehungsweise nach erfolgreichem Registrierungsvorgan
 
 Nutzer können mithilfe von \projectname{} mehrere verschiedene Anwendungen überwachen.
 Daher wird eine Übersichtsseite (Abbildung \ref{fig:system-picker}) benötigt,
-um das aktive System zu definieren. Zusätzlich soll auf dieser Ansicht die Möglichkeit bestehen neue Systeme anzulegen.
+um das aktive System zu definieren. Zusätzlich soll diese Ansicht die Möglichkeit bieten, neue Systeme anzulegen.
 
 \vspace{0.3cm}
 
 \begin{figure}[h]
  \centering
  \includegraphics[width=0.6\linewidth]{kapitel1/mocks/system-picker.png}
- \caption{System wählen Mock}
+ \caption{System Mock}
  \label{fig:system-picker}
 \end{figure}
 
@@ -124,7 +124,7 @@ Zusätzlich soll das Dashboard als Einstiegspunkt für weitere Ansichten der Anw
 \subsubsection{Metriken}
 
 Die Metriken-Sektion soll eine Kollektion von Diagrammen beinhalten.
-Um Daten filtern zu können soll die Applikation und der Beobachtungszeitraum gewählt werden können.
+Um Daten filtern zu können, soll die Applikation und der Beobachtungszeitraum wählbar sein.
 
 \vspace{0.3cm}
 
@@ -186,7 +186,7 @@ aller an einer Aktion beteiligten Services. Dabei werden Service-Zugriffe in Rel
 \end{figure}
 
 \noindent
-Das Journal, visuell dargestellt in Abbildung \ref{fig:journalmock} beinhaltet zeitlich sortierte Einträge
+Das Journal, visuell dargestellt in Abbildung \ref{fig:journalmock}, beinhaltet zeitlich sortierte Einträge
 bezüglich Start und Stop von Applikationen innerhalb eines Systems.
 
 
@@ -194,8 +194,8 @@ bezüglich Start und Stop von Applikationen innerhalb eines Systems.
 
 \subsection{Plattformen}
 
-Applikationen können anhand von Diagrammen und Graphen im Detail analysiert werden,
-zudem möchte ein Nutzer der Anwendung proaktiv über kritische Vorgänge innerhalb seines Systems informiert werden,
+Applikationen können anhand von Diagrammen und Graphen im Detail analysiert werden.
+Außerdem möchte ein Nutzer der Anwendung proaktiv über kritische Vorgänge innerhalb seines Systems informiert werden,
 speziell wenn Latenzprobleme und Serviceausfälle reibungslose Abläufe seines Systems gefährden.
 Hierzu erhält der Nutzer Notifications über das Event System. Die Applikation soll daher als Webanwendung sowie als App für iOS und Android
 zur Verfügung stehen, um Anwendungsentwickler auch unterwegs über das System \projectname{} erreichen zu können.
@@ -203,4 +203,4 @@ zur Verfügung stehen, um Anwendungsentwickler auch unterwegs über das System \
 Zusätzlich zur Web- und Mobilanwendung soll eine Desktop-Applikation für macOS und Windows implementiert werden,
 um eine möglichst große Zielgruppe an Endnutzern erreichen zu können.
 In Anbetracht der Größe des Entwicklerteams stellt sich diese Anforderung in der doch knappen Entwicklungszeit als große Herausforderung dar.
-Daher liegt die Entscheidung nahe, einen Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.
+Daher liegt die Entscheidung nahe, einen Ansatz der hybriden App Entwicklung zu wählen, anstatt die Applikationen für die jeweilige Plattform nativ zu implementieren.

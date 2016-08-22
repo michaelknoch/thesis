@@ -8,7 +8,7 @@ Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts sowie zum 
 \section{Native Entwicklung}
 
 Bei der Entwicklung nativer Applikationen wird der Programmcode speziell für eine Zielplattform mit dem entsprechendem \ac{SDK} der Plattform entwickelt.
-Die App ist damit an die Plattform gebunden. Apps für Apples iOS werden in Swift oder Objective-C entwickelt und nutzen \emph{UIKit} als Framework für die visuelle Darstellung.
+Die App ist damit an die Plattform gebunden. Apps für Apple iOS werden in Swift oder Objective-C entwickelt und nutzen \emph{UIKit} als Framework für die visuelle Darstellung.
 Android Apps werden typischerweise in Java implementiert und nutzen das Android Framework als Systemschnittstelle und für die Entwicklung des \ac{UI}.
 Nativ entwickelte Apps werden als Binärdatei compiliert, über den jeweiligen Appstore verteilt und auf das Gerät installiert \cite{Heitkoetter2013}.
 
@@ -72,17 +72,17 @@ Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschi
 sondern wird in einer nativen Webview ausgeführt. Diese Anwendungen werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie basieren.
 
-Zugriff auf Systemschnittstellen erhalten Entwickler mithilfe von Cordova Plugins. Diese bieten
+Zugriff auf Systemschnittstellen erhalten Entwickler über Cordova Plugins. Diese bieten
 Interfaces in JavaScript für den Zugriff auf native Systemkomponenten wie zum Beispiel Kamera, GPS, Dateisystem et cetera.
 Plugins bestehen daher aus JavaScript und dem Plattform kompatiblen Code,
 also beispielsweise Swift/Objective-C für iOS oder Java für Android.
 Listing \ref{cordova-camera-example} beinhaltet eine Implementierung der Kamera-Schnittstelle über das Plugin \emph{cordova-plugin-camera}.
-Das Kamera-Objekt steht global zur Verfügung um innerhalb der Funktion \emph{getPicture} Callbacks für den Erfolg beziehungsweise den Fehlerfall zu registrieren.
+Das Kamera-Objekt steht global zur Verfügung, um innerhalb der Funktion \emph{getPicture} Callbacks für den Erfolg beziehungsweise den Fehlerfall zu registrieren.
 
 \ac{UI} Entwicklung muss dabei im Vergleich zum Xamarin Framework nicht redundant vorgenommen werden, da Implementierungen der
 Ansichten für sämtliche unterstützten Plattformen identisch ausgeliefert werden können.
-Da die \ac{UI} mithilfe von \ac{HTML} und \ac{CSS} realisiert wird,
-können spezielle Stilregeln dennoch auch plattformspezifisch angewandt werden, um beispielsweise eine App zu entwickeln,
+Da die \ac{UI} mit \ac{HTML} und \ac{CSS} realisiert wird,
+können spezielle Stilregeln auch plattformspezifisch angewandt werden, um beispielsweise eine App zu entwickeln,
 welche den jeweiligen Stilrichtlinien der Plattformen entsprechen soll.
 
 \vspace{0.3cm}
@@ -96,12 +96,14 @@ welche den jeweiligen Stilrichtlinien der Plattformen entsprechen soll.
 
 \subsection{Einführung}
 
-Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
-von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
+Moderne Webanwendungen bestechen heutzutage meist nicht nur durch ihr komplexes Design,
+sondern auch durch ein hohes Maß an Funktionalität.
+Entsprechend komplex gestaltet sich demnach der Entwicklungsprozess einer solchen Anwendung.
+Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
 womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
 wird schnell klar, dass deren Domstruktur durch inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt
-da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitätsvielfalt einer modernen Webanwendung zu beschreiben.
-Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
+da die Palette an HTML5 Semantic Tags nicht ausreicht, um die Funktionalitätsvielfalt einer modernen Webanwendung zu beschreiben.
+Anstatt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
 
 \subsection{Komponenten in der Softwarentwicklung}
@@ -122,7 +124,7 @@ software components.''
 \vspace{0.5cm}
 
 Bereits 1992 sprachen Nierstrasz, Gibbs und Tsichritzis vom Traum der komponentenorientierten Softwareentwicklung.
-Dabei soll Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit ein
+Dabei soll Software aus vielen Komponenten aufgebaut werden, im Idealfall habe man die Möglichkeit, ein
 ganzes Set an vorgefertigten Komponenten für die Konstruktion seiner Applikation zu verwenden.
 Hierbei soll der Aspekt der Abstraktion und Wiederverwendbarkeit durch Objektorientierung von zentraler Bedeutung sein.
 
@@ -157,13 +159,13 @@ Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar 
 Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
 in das Markup, soll bereits die komponenteninterne Funktionalität zur Verfügung stehen
 \cite[42]{Web-Component-Architecture}.
-Web Components bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
+Web Components bauen auf vier Kerntechnologien auf: HTML Imports, HTML Templates, Custom Elements und Shadow Dom.
 
 \subsubsection{HTML Imports}
 HTML kann per Referenz in HTML Dokumente importiert und damit verwendet werden, siehe Listing \ref{htmlimport}.
-Dabei können in dem referenziertem HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
+Dabei können in dem referenzierten HTML Abhängigkeiten in Form von CSS und JS eingebunden werden,
 welche dementsprechend aufgelöst werden.
-Sollten mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen
+Sollen mehrere Dokumente mit der selben Abhängigkeit eingebunden werden, wird diese dennoch nur einmalig geladen
 \cite{HTMLI44:online}.
 
 \vspace{0.3cm}
@@ -194,9 +196,9 @@ Ein Custom Element besitzt einen Lifecycle mit diversen Einstiegspunkten, welche
 
 \subsubsection{Shadow Dom}
 Der Shadow Dom ermöglicht Optik und Logik einer Komponente zu kapseln.
-Seiteneffekte, bezüglich komponentenübergreifendem Style und Logik, werden verhindert.
+Seiteneffekte bezüglich komponentenübergreifendem Style und Logik, werden verhindert.
 Beispielsweise kann das Styling eines Menüs nicht aufgrund gleicher CSS Prefixe den Style des Contents überschreiben,
-da dieser in die Navigations-Komponente gekapselt ist und nicht auf die globalen Styles des Dokuments oder anderer Elemente zugreifen kann.
+da dieser in der Navigations-Komponente gekapselt ist und deshalb nicht auf die globalen Styles des Dokuments oder anderer Elemente zugreifen kann.
 Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 \subsubsection{Polyfills}
 \begin{figure}[htp]
@@ -210,7 +212,7 @@ Webapplikationen lassen sich dadurch paketweise organisieren und strukturieren.
 allen gängigen Browsern nativ verfügbar. Lediglich in Chrome und Opera sind diese vollständig implementiert.
 Hier kommen Polyfills ins Spiel. Polyfills implementieren fehlende Browserfeatures und gewährleisten damit beispielsweise nahezu vollständigen
 Support von \emph{Web Components} in allen gängigen Browsern. Ein weiteres Beispiel für ein Polyfill ist core-js,
-welches die Nutzung der JavaScript Standards \ac{ES5} und \ac{ES6}, auch wenn der Browser diese nicht unterstützt, ermöglicht.
+welches die Nutzung der JavaScript Standards \ac{ES5} und \ac{ES6} ermöglicht, auch wenn der Browser diese nicht unterstützt.
 
 
 
@@ -220,7 +222,7 @@ welches die Nutzung der JavaScript Standards \ac{ES5} und \ac{ES6}, auch wenn de
 
 
 JavaScript wurde erstmals 1996 von Brendan Eich in einer Implementierung des Netscape Navigator Browsers eingeführt,
-worauf weitere Browser die Syntax und API ähnlich, jedoch nicht identisch nach implementierten.
+worauf weitere Browser die Syntax und API in ähnlicher Weise, jedoch nicht identisch nachimplementierten.
 Daraufhin veröffentlichte die ECMA International einen Standard, welcher die Spezifikationen der neuen Sprache
 definieren sollte. Dieser trägt den Namen ECMAScript und ist der offizielle und bekannteste Standard der
 Sprache. ActionScript von Macromedia und JScript von Microsoft sind weitere Implementierungen der Browsersprache,
@@ -233,7 +235,7 @@ die nicht dem ECMA Standard entsprechen, jedoch darauf aufbauen.
 \end{figure}
 
 1997 wurde die erste Version des nun standardisierten ECMAScript veröffentlicht. Ein Jahr später erschien bereits ECMAScript2,
-allerdings beinhaltete dieses Update nur kleine Änderungen um einem parallel entstandenen ISO Standard von JavaScript zu implementieren.
+allerdings beinhaltete dieses Update nur kleine Änderungen um einem parallel entstandenen ISO Standard von JavaScript zu entsprechen.
 Die nächste große Neuerung kam 1999 mit ECMAScript3, in welcher einige innovative Features implementiert wurden.
 ``[...]regular expressions, better string handling, new control statements, try/catch exception handling, tighter definition of errors, formatting for numeric output and other enhancements.''\cite{js-vs-es}.
 
@@ -247,7 +249,7 @@ Es beinhaltet neue Features wie \ac{JSON} Support und klassische Array Funktione
 Durch die Entfernung einiger Features wurde JavaScript in der neuen Version sauberer und stabiler.
 
 \ac{ES6} sollte bereits 2013 veröffentlicht werden, der offizielle Releasetermin wurde
-dann allerdings auf den Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert
+dann allerdings auf Juni 2015 verschoben und ist bis heute noch nicht ausreichend in allen Browsern implementiert
 \cite{js-vs-es}.
 
 \subsection{Allgemein}
@@ -256,7 +258,7 @@ TypeScript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von \ac{ES6}, das heißt sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features.
 TypeScript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
-Zusammen mit dem Featureset von \ac{ES6} erhalten Entwickler gegenüber \ac{ES5} die in Abbildung \ref{tsesgraph} dargestellten und im Folgenden beschriebenen Features.
+Zusammen mit dem Featureset von \ac{ES6} erhalten Entwickler im Vergleich zu \ac{ES5} die in Abbildung \ref{tsesgraph} dargestellten und im Folgenden beschriebenen Features.
 
 \begin{figure}[ht]
  \centering
@@ -266,12 +268,12 @@ Zusammen mit dem Featureset von \ac{ES6} erhalten Entwickler gegenüber \ac{ES5}
 \end{figure}
 
 
-\subsubsection{statische Typisierung}
+\subsubsection{Statische Typisierung}
 
 Die wohl größte Errungenschaft von TypeScript ist das statische Typsystem.
 Typenfehler können bereits zum Zeitpunkt
 der Kompilierung bzw. Transpilierung erkannt werden und treten nicht erst zur Laufzeit im Browser auf.
-Zudem wird Code in einer TypeScript unterstützenden IDE dank Autovervollständigung
+Zudem wird Code in einer TypeScript unterstützenden IDE aufgrund der Autovervollständigung
 leichter zu schreiben und aussagekräftiger zu lesen \cite[156]{ng-Book-2}.
 
 \subsubsection{Klassen}
@@ -292,7 +294,7 @@ da ES6 Module in verschiedene Dateien ausgelagert werden können. Variablen und 
 Wie in Listing \ref{jsmodule} dargestellt, lassen sich mittels Export also Schnittstellen für Module definieren, welche daraufhin importiert und verwendet werden können.
 In TypeScript lassen sich ganze Klassendefinitionen exportieren.
 Dabei ist es möglich, Instanzfunktionen und Instanzvariablen mit dem Keyword private vor dem äußeren Zugriff zu verstecken.
-Mit public markierte Funktionen sind dann ebenfalls von außen nutzbar.
+Mit public markierte Funktionen sind dann entsprechend von außen nutzbar.
 
 \vspace{0.3cm}
 \lstinputlisting[language=Javascript,label=jsmodule,caption=Export und Import von Modulen in ES6]{kapitel2/module.js}
@@ -301,10 +303,10 @@ Mit public markierte Funktionen sind dann ebenfalls von außen nutzbar.
 
 TypeScript Decorator basieren auf dem Dekorierer Entwurfsmuster (Decorator Design Pattern) um Klassen,
 Funktionen, Variablen und Parameter deklarativ um Funktionalität zu erweitern.
-Das Konzept der Decorator ist vergleichbar mit dem der Annotations, welches beispielsweise Verwendung in Java, Scala und C\#
+Das Konzept der Decorator ist vergleichbar mit dem der Annotations, welche beispielsweise Verwendung in Java, Scala und C\#
 finden.
 Mithilfe eines Decorators kann eine zentrale Implementierung
-mithilfe des @ Symbols und einer nachfolgenden Funktion an Elemente einer Anwendung angebracht werden.
+unter Verwendung des @ Symbols und einer nachfolgenden Funktion an Elemente einer Anwendung angebracht werden.
 Eine sehr vereinfachte Implementierung eines TypeScript Decorators ist in Listing \ref{decorator-example} dargestellt.
 
 \vspace{0.3cm}

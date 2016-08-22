@@ -9,7 +9,7 @@ ihren Funktionsumfang hinsichtlich der Projektanforderungen zu untersuchen.
 
 \section{AngularJS}
 
-Angular ist derzeit eines der populärste Frontend JavaScript Frameworks auf dem Markt.
+Angular ist derzeit eines der populärsten Frontend JavaScript Frameworks auf dem Markt.
 Böhm war einer der ersten Entwickler, der Angular 2012 in Deutschland bekannt machte.
 ``Zu dieser Zeit war jQuery noch die Basis des Webs. jQuery hatte aber nie den Anspruch, ein Framework für Web-Anwendungen zu sein. Der eigentliche Sinn war, die APIs der verschiedenen Browser zu vereinheitlichen.
 Man musste sich deshalb immer eine eigene Architektur überlegen. Allerdings fehlte die Erfahrung, wie man große Applikationen im Web schreibt. Das führte natürlich oft zu Chaos und unwartbaren Projekten.''\cite{Angu68:online}
@@ -35,12 +35,12 @@ Angular 2 ist die Nachfolgeversion des von Google entwickelten JavaScript Framew
 Die 2009 veröffentlichte erste Version fand großen Anklang in der Community
 und wurde als Basis für dynamische Single-page-Webanwendung verschiedenster Art und Größe genutzt.
 In den seit dem Release vergangenen Jahren hat sich die Community um das Framework immer weiter vergrößert,
-welche zur stetigen Weiterentwicklung und so zu dem Erfolg von Angular 1 beigetragen hat.
+welche zur stetigen Weiterentwicklung und so zum Erfolg von Angular 1 beigetragen hat.
 Das Github Repository der ersten Version hat derzeit 1.489 Contributors mit nahezu 7000 gestellten Pull Requests \cite{ng1-github}.
 
 Mit Angular 2 wurden einige Grundkonzepte überarbeitet, um in eine komplett neue Richtung gehen zu können.
 Ziel von Google ist es, ein komponentenbasiertes und leicht bedienbares Framework für moderne
-Webanwendungen zu schaffen, das Performanceverbesserungen und transparentere interne Strukturen als die Vorgängerversion aufweisen soll.
+Webanwendungen zu schaffen, welches Performanceverbesserungen und transparentere interne Strukturen als die Vorgängerversion aufweisen soll.
 Eine Angular 2 Anwendung besteht daher aus einer Vielzahl diverser Komponenten, wodurch es möglich wird,
 Funktionalität zu kapseln, zu abstrahieren und wieder zu verwenden. Der Fokus hierbei liegt nicht nur auf Wiederverwendbarkeit innerhalb einer Codebasis.
 Elemente der Anwendung sollen sowohl für den Browser als auch für mobile Geräte sowie für native Desktop Clients genutzt werden können.
@@ -53,7 +53,7 @@ sowie auch für komplexere Webanwendungen eine solide Basis bieten \cite[11-12]{
 Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation und ersetzen Direktiven aus Angular 1 nahezu vollständig.
 UI und deren Funktionalität wird innerhalb von Komponenten implementiert.
 Diese werden in Angular 2 als Typescript Klasse definiert und mit \emph{@Component} dekoriert, siehe Listing \ref{ng2component}.
-Der Component Decorator wird mithilfe des ES6 Imports importiert (Zeile 1) und wird verwendet um die Klasse mit erforderlichen Metadaten zu auszustatten.
+Der Component Decorator wird mithilfe des ES6 Imports importiert (Zeile 1) und wird verwendet, um die Klasse mit erforderlichen Metadaten zu auszustatten.
 Der Selektor (Zeile 5) definiert den HTML-Tag der Komponente, über welchen diese innerhalb der Anwendung eingefügt und damit instanziiert werden kann.
 
 \emph{Template} beziehungsweise \emph{TemplateUrl} in Zeile 7 enthält entweder einen String mit inline Markup in angulars Template Syntax
@@ -66,7 +66,7 @@ und dadurch ihre gesamte Funktionalität genutzt werden.
 
 Die Komponentenklasse hat einen Klassennamen und einen expliziten Konstruktor.
 Sie wird mithilfe des ES6 Prefixes ``export'' öffentlich exportiert (Zeile 11).
-Die Sichtbarkeit von Variablen und Funktionen innerhalb der Klasse kann mithilfe der Prefixe private und public definiert werden.
+Die Sichtbarkeit von Variablen und Funktionen innerhalb der Klasse kann über die Prefixe private und public definiert werden.
 Dadurch ist es möglich, Funktionalität und Daten innerhalb einer Komponente, transparent für deren Verwender, zu kapseln.
 Die Implementierung der Angular Komponenten basiert dabei auf dem Standard der Web Components, welcher bereits in Sektion \ref{sec:webcomponents} beschrieben wurde.
 
@@ -80,7 +80,7 @@ Die Implementierung der Angular Komponenten basiert dabei auf dem Standard der W
 Vererbung ist eines der Grundkonzepte von Objektorientientierung,
 welches eingesetzt wird, um Verhalten von Objekten bezüglich Wiederverwendbarkeit zu
 abstrahieren. Angular 2 Komponenten bestehen aus Klassen, daher
-kann Vererbung genutzt werden um Funktionalität von Komponenten zu abstrahieren,
+kann Vererbung genutzt werden, um Funktionalität von Komponenten zu abstrahieren,
 um redundanten Code zwischen den Komponenten
 zu vermeiden. Funktionalität wird dabei von der Komponente in eine dritte Klasse ausgelagert,
 welche mit dem Schlüsselwort \emph{extend} als
@@ -89,7 +89,7 @@ Abstraktionsebene eingebunden wird \cite{DanWa45:online}.
 \subsubsection{Lebenszyklus}
 Eine Angular Komponente besitzt einen Lebenszyklus (Component Lifecycle) mit diversen Einstiegspunkten,
 um wichtige Momente einer Angular Komponente für die Entwicklung offen zu legen \cite[837-839]{ng-Book-2}.
-Zur Verdeutlichung sind einige dieser in Listing \ref{lifecycle-example} implementiert.
+Zur Verdeutlichung sind einige dieser Einstiegspunkte in Listing \ref{lifecycle-example} implementiert.
 \emph{NgOnInit} und \emph{ngOnDestroy} werden beispielsweise zum Zeitpunkt der Instanziierung und Dekonstruktion der Komponente aufgerufen.
 Angular führt \emph{ngOnChanges} aus, wenn sich Variablen der Komponente verändert haben. Anhand von \emph{SimpleChanges}
 können Daten vor und nach dem Event miteinander verglichen werden.
@@ -108,7 +108,7 @@ Wie Angular die Änderung von Variablen ermittelt, wird in Sektion \ref{sec:chan
 \label{sec:services}
 
 Oftmals bietet es sich an, Funktionalität von Komponenten in Services auszulagern.
-Speziell wenn mehrere Komponenten auf die selben Daten zugreifen,
+Speziell wenn mehrere Komponenten auf dieselben Daten zugreifen,
 die womöglich zuvor asynchron per HTTP geladen werden müssen.
 Services werden ebenfalls als Klassen implementiert, welche mithilfe von \ac{DI}
 als Singleton instanziiert und in die Komponenten injiziert werden können.
@@ -121,7 +121,7 @@ Das Framework ist dabei für die automatische Instanziierung der Objekte verantw
 Die Implementierung von Komponenten wird durch die Verwendung von \ac{DI} sehr flexibel,
 da Implementierungen von Services, wie in Abbildung \ref{service-injection} dargestellt, einfach ausgetauscht werden können.
 Soll beispielweise die Funktionalität einer Komponente, welche über einen Service dynamisch Daten lädt, getestet werden,
-so kann die Implementierung des Services einfach ausgetauscht werden, so dass dieser statische Testdaten liefert,
+so kann die Implementierung des Service einfach ausgetauscht werden, so dass dieser statische Testdaten liefert,
 sollte der API-Server in der Testumgebung nicht erreichbar sein \cite[281]{Angular2}.
 
 
@@ -135,7 +135,7 @@ sollte der API-Server in der Testumgebung nicht erreichbar sein \cite[281]{Angul
 \end{figure}
 \vspace{0.3cm}
 
-\ac{DI} wird in Angular mithilfe von Providern konfiguriert.
+\ac{DI} wird in Angular über Provider konfiguriert.
 Dies geschieht entweder auf Komponenten- oder Applikationsebene.
 Wird ein Service über einen Provider im Bootstrap Prozess der Applikation referenziert,
 so ist diese Instanz des Services in jede Komponente der Applikation injizierbar.
@@ -157,9 +157,9 @@ Es wäre also möglich, individuelle Singletons für bestimmte Komponentenbäume
 \subsubsection{Services als Singletons}
 \label{Services-als-Singletons}
 
-Wie bereits erwähnt, ermöglichen \ac{DI} Provider Services als Singleton zu instanziieren.
+Wie bereits erwähnt, ermöglichen \ac{DI} Provider, Services als Singleton zu instanziieren.
 Dies bringt viele architektonische Vorteile mit sich. Services können auf der einen Seite genutzt werden,
-um Funktionalität aus Komponenten zu abstrahieren um in weiteren Komponeten verwendet zu werden.
+um Funktionalität aus Komponenten zu abstrahieren, um in weiteren Komponeten verwendet zu werden.
 Auf der anderen Seite können sie jedoch auch genutzt werden, um Daten multiplen Komponenten zur Verfügung zu stellen.
 Das Angular Framework sorgt dafür, dass ein Service nur einmalig instanziiert wird. Daher erhalten alle
 Komponenten, die den Service injizieren, die selbe Referenz, somit die selbe Instanz und daher die selbe globale Datenbasis.

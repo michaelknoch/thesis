@@ -2,7 +2,7 @@
 
 \chapter{Projekt \projectname{}}
 
-In diesem Kapitel wird die Grundlage der praktischen Arbeit, welche im folgenden \projectname{} genannt wird, erläutert.
+In diesem Kapitel wird die Grundlage der praktischen Arbeit, welche im Folgenden \projectname{} genannt wird, erläutert.
 
 \section{Motivation}
 \label{sec:motivation}
@@ -18,7 +18,7 @@ Handelt es sich bei dem zu überwachenden System um ein komplexes Zusammenspiel 
 Serverlogs, deutlich schwieriger.
 
 Innerhalb einer Microservice Architektur ist es nicht notwendig, dass alle Services auf einem gemeinsamen Server operieren.
-Es ist möglich dass Services auf einer Vielzahl von Servern möglicherweise an komplett unterschiedlichen geographischen Punkten miteinander agieren,
+Es ist möglich, dass Services auf einer Vielzahl von Servern möglicherweise an komplett unterschiedlichen geographischen Punkten miteinander agieren,
 oder im Problemfall nicht miteinander agieren können. Instanzen einzelner Services können zur Laufzeit starten, stoppen oder abstürzen
 und sollten dennoch den reibungslosen Ablauf der Applikation nicht behindern. Microservice Architekturen sind also deutlich komplexer zu überblicken, da durch die Verteilung von Funktionalität auch
 mögliche Fehlerquellen verteilt werden.
@@ -28,7 +28,7 @@ Daher ist ein Monitoring Tool, um Stabilität und Performance einer solchen Arch
 
 \section{Anforderungsanalyse}
 \label{sec:anforderungsanalyse}
-Im Folgenden werden Anforderungen an den Prototypen, welcher im Rahmen der Bachelorarbeit entwickelt wird, gestellt.
+Im Folgenden werden Anforderungen an den Prototypen gestellt, welcher im Rahmen der Bachelorarbeit entwickelt wird.
 Der Prototyp soll den in \ref{sec:motivation} Motivation beschriebenen Sachverhalt vereinfachen.
 Innerhalb dieser Arbeit wird das Frontend-System konzipiert und implementiert.
 Instrumentationen der zu prüfenden Systeme sowie die Implementierung des Backend-Systems wird in der Bachelorarbeit \emph{
@@ -83,7 +83,7 @@ Nach erfolgreichem Login beziehungsweise nach erfolgreichem Registrierungsvorgan
 \subsubsection{System wählen / erstellen}
 
 Nutzer können mithilfe von \projectname{} mehrere verschiedene Anwendungen überwachen.
-Daher wird eine Übersichtsseite (Abbildung \ref{fig:system-picker}) benötigt
+Daher wird eine Übersichtsseite (Abbildung \ref{fig:system-picker}) benötigt,
 um das aktive System zu definieren. Zusätzlich soll auf dieser Ansicht die Möglichkeit bestehen neue Systeme anzulegen.
 
 \vspace{0.3cm}
@@ -97,7 +97,7 @@ um das aktive System zu definieren. Zusätzlich soll auf dieser Ansicht die Mög
 
 \subsubsection{Applikationen}
 
-Ein System besteht aus einer vielzahl von Applikationen, die zunächst im System erstellt,
+Ein System besteht aus einer Vielzahl von Applikationen, die zunächst im System erstellt,
 konfiguriert und instrumentiert werden müssen, bevor ihre Daten im Monitoring System einsehbar sind.
 Die Neuerstellung sowie die Übersicht und Konfiguration bestehender Applikationen
 findet in dieser Ansicht statt. Die Instrumentierung der Applikationen
@@ -163,7 +163,7 @@ Zusätzlich soll erneut die Möglichkeit bestehen, den Beobachtungszeitraum als 
 
 \subsubsection{Traces}
 
-Die Traces Sektion besteht aus zwei verschiedenen Ansichten. Die Übersichtsliste der Request Einstiegspunkte,
+Die Traces Sektion besteht aus zwei verschiedenen Ansichten. Die Übersichtsliste der Request Einstiegspunkte
 leitet zur Trace Detailseite (Abbildung \ref{fig:trace}) über. Im Detail besteht ein Trace aus den Requests
 aller an einer Aktion beteiligten Services. Dabei werden Service-Zugriffe in Relation zur Zeit in einem Gantt Chart dargestellt.
 
@@ -196,11 +196,11 @@ bezüglich Start und Stop von Applikationen innerhalb eines Systems.
 
 Applikationen können anhand von Diagrammen und Graphen im Detail analysiert werden,
 zudem möchte ein Nutzer der Anwendung proaktiv über kritische Vorgänge innerhalb seines Systems informiert werden,
-speziell wenn Latenzprobleme und Service-Ausfälle reibungslose Abläufe seines Systems gefährden.
+speziell wenn Latenzprobleme und Serviceausfälle reibungslose Abläufe seines Systems gefährden.
 Hierzu erhält der Nutzer Notifications über das Event System. Die Applikation soll daher als Webanwendung sowie als App für iOS und Android
 zur Verfügung stehen, um Anwendungsentwickler auch unterwegs über das System \projectname{} erreichen zu können.
 
 Zusätzlich zur Web- und Mobilanwendung soll eine Desktop-Applikation für macOS und Windows implementiert werden,
-um eine möglichst große Zielgruppe and Endnutzern erreichen zu können.
-In Anbetracht der Größe des Entwicklerteams stellt sich diese Anforderung, in der doch knappen Entwicklungszeit, als große Herausforderung dar.
+um eine möglichst große Zielgruppe an Endnutzern erreichen zu können.
+In Anbetracht der Größe des Entwicklerteams stellt sich diese Anforderung in der doch knappen Entwicklungszeit als große Herausforderung dar.
 Daher liegt die Entscheidung nahe, einen Ansatz der hybriden App Entwicklung zu wählen, statt die Applikationen für die jeweilige Plattform nativ zu implementieren.

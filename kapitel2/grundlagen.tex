@@ -2,7 +2,7 @@
 
 \chapter{Grundlagen}
 
-Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts sowie zum Verständnis von Kapitel \ref{chap:frameworks} Frameworks und Tools erforderlich sind.
+Im Folgenden werden Grundlagen erläutert, die als Basis des Projekts sowie zum Verständnis der in Kapitel \ref{chap:frameworks} beschriebenen Technologieauswahl erforderlich sind.
 
 
 \section{Native Entwicklung}
@@ -28,11 +28,11 @@ Nativ entwickelte Apps werden als Binärdatei compiliert, über den jeweiligen A
 \end{itemize}
 \vspace{0.3cm}
 
-\section{Mobile Cross-Plattform Entwicklung}
+\section{Mobile cross-plattform Entwicklung}
 
 Im Vergleich zum Ansatz der nativen Entwicklung bieten diverse plattformunabhängige Entwicklungsansätze die Möglichkeit, eine Codebasis zu entwickeln,
 die auf diversen Plattformen ausgeführt werden kann \cite{Heitkoetter2013}.
-Hierbei muss zwischen browserbasierten Web-Apps (Cordova, Phonegap) und Cross-kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
+Hierbei muss zwischen browserbasierten Web-Apps (Cordova, Phonegap) und cross-kompilierten Applikationen (Xamarin, Titanium, FireMonkey) unterschieden werden
 \cite{Xamar84:online}.
 
 \subsection{Cross-kompilierte Apps am Beispiel von Xamarin}
@@ -51,7 +51,7 @@ Java möglich ist, auch mit C\# und Xamarin umgesetzt werden kann \cite{projectx
 
 \noindent
 Xamarin stößt bezüglich \ac{UI} schnell an seine Grenzen. Das \ac{UI} Layer muss aufgrund von Kompatibilitätsproblemen und fehlender Features des Xamarin Framework
-für jede Plattform indiviudell entwickelt werden. Dies funktioniert, wenn eine App entsprechend der \ac{CI} der Plattform umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
+für jede Plattform separat entwickelt werden. Dies funktioniert, wenn eine App entsprechend der \ac{CI} der Plattform umgesetzt werden soll und sich die \ac{UI} so weit unterscheidet,
 dass Abstraktionen und komponentenbasierte Entwicklung vernachlässibar sind. Es ist jedoch fragwürdig ob sich das Framework als ``cross-platform development software'' bezeichnen darf,
 wenn ein Großteil der Implementierung, zumindest bei plattform-universellem Appdesign, nach wie vor redundant vorgenommen werden muss \cite{7Reas20:online}.
 
@@ -64,12 +64,12 @@ wenn ein Großteil der Implementierung, zumindest bei plattform-universellem App
 \newpage
 
 
-\subsection{Web-Apps (Cordova, Phonegap)}
+\subsection{Web-Apps}
 
 Cordova ist ein Framework von Adobe Systems um mobile plattformunabhängige Anwendungen mithilfe von Webtechnologien zu entwickeln.
 \ac{HTML}, \ac{CSS} und JavaScript werden genutzt um Produkte für iOS, Android, Ubuntu, Blackberry OS, Firefox OS und Windows Phone zu generieren \cite{Cordo26:online}.
 Der Code wird, im Vergleich zu mit Xamarin entwickelten Apps, nicht für verschiedene Plattformen kompiliert,
-sondern läuft in einer nativen Webview. Diese Anwendungen werden auch als hybride Apps bezeichnet.
+sondern wird in einer nativen Webview ausgeführt. Diese Anwendungen werden auch als hybride Apps bezeichnet.
 Ionic und Phonegap sind Frameworks, die auf der Cordova Technologie basieren.
 
 Zugriff auf Systemschnittstellen erhalten Entwickler mithilfe von Cordova Plugins. Diese bieten
@@ -99,7 +99,7 @@ welche den jeweiligen Stilrichtlinien der Plattformen entsprechen soll.
 Moderne Webanwendungen bestechen heutzutage meist nicht nur mit ihrem komplexen Design, Komplexität lässt sich auch in der Entwicklung
 von Funktionalität nicht vermeiden. Dieses Problem wird noch brisanter, wenn eine Applikation über einen langen Zeitraum hinweg,
 womöglich von verschiedenen Entwicklerteams, entwickelt und betreut wird. Mit Blick auf das \ac{DOM} moderner und komplexer Webanwendungen wie Facebook, Ebay oder Amazon
-wird schnell klar, dass deren Domstruktur durch inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt,
+wird schnell klar, dass deren Domstruktur durch inflationäre Nutzung von DIV und SPAN Tags schnell zu Unübersichtlichkeit führt
 da die Palette an HTML5 Semantic Tags nicht ausreicht um die Funktionalitätsvielfalt einer modernen Webanwendung zu beschreiben.
 Statt aussagekräftige Tags zu verwenden, müssen Klassen und IDs zweckentfremdet werden, um HTML Elemente überhaupt voneinander unterscheiden zu können
 \cite{sitepoint-introduction-to-webcomponents}.
@@ -157,7 +157,7 @@ Dabei sollen sie im Browser implementiert und ohne externe Bibliotheken nutzbar 
 Bestehende Web Komponenten sollen ohne zusätzlichen Code funktionsfähig sein. Lediglich durch das Einfügen der Komponente
 in das Markup, soll bereits die komponenteninterne Funktionalität zur Verfügung stehen
 \cite[42]{Web-Component-Architecture}.
-\emph{Web Components} bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
+Web Components bauen auf vier Kerntechnologien auf: HTML Imports, HTML Teamplates, Custom Elements und Shadow Dom.
 
 \subsubsection{HTML Imports}
 HTML kann per Referenz in HTML Dokumente importiert und damit verwendet werden, siehe Listing \ref{htmlimport}.
@@ -256,12 +256,13 @@ TypeScript ist eine von Microsoft entwickelte Programmiersprache.
 Die Sprache ist ein Superset von \ac{ES6}, das heißt sie implementiert den JavaScript Standard und ergänzt diesen
 durch zusätzliche Features.
 TypeScript will ausgereifter, robuster und speziell in großen Projekten eine solidere Alternative gegenüber JavaScript sein \cite[28]{EssentialTS}.
-Zusammen mit dem Featureset von \ac{ES6} erhalten Entwickler gegenüber \ac{ES5} folgende Features:
+Zusammen mit dem Featureset von \ac{ES6} erhalten Entwickler gegenüber \ac{ES5} die in Abbildung \ref{tsesgraph} dargestellten und im Folgenden beschriebenen Features.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.4\linewidth]{kapitel2/typescript----es5-es6-typescript-circle-diagram.png}
- \caption{Typescript}\cite[152]{ng-Book-2}
+ \caption{Typescript \cite[152]{ng-Book-2}}
+ \label{tsesgraph}
 \end{figure}
 
 

@@ -253,7 +253,7 @@ Im nachfolgenden soll die Relevanz des Frameworks Ionic 2 bezüglich des Projekt
 
 \subsection{Einführung}
 
-Ionic 2 ist ein Open Source \ac{SDK} für die Entwicklung mobiler Applikationen mithilfe von Angular 2 und Cordova.
+Ionic 2 ist ein Open Source \ac{SDK} für die Entwicklung mobiler Applikationen auf Basis von Angular 2 und Cordova.
 Auf Basis von Webtechnologien wie HTML5, CSS3 und JavaScript können Apps für iOS, Android und Windowsphone
 entwickelt werden. Diese werden als hybride Apps bezeichnet,
 da sie eine Mischform zwischen Web-Apps und nativen Applikationen darstellen.
@@ -288,19 +288,19 @@ können plattformunabhängige, globale Stile definiert werden \cite{ionic73:onli
 Ionic Native ist ein Wrapper für Cordova Module in JavaScript und Typescript.
 In der Vorgängerversion des \ac{SDK} wurden Cordova Plugins installiert und als globale Singletons registriert.
 Beispielsweise war es möglich, aus jedem Kontext der Applikation heraus ``navigator.camera.getPicture(onSuccess, onFail)'' aufzurufen.
-Ionic Native hingegen erlaubt Entwicklern Module selektiv zu importieren, wodurch diverse Vorteile entstehen.
+Ionic Native hingegen erlaubt Entwicklern, Module selektiv zu importieren, wodurch diverse Vorteile entstehen.
 Globale Cordova Objekte werden vermieden, wodurch Code deutlich strukturierter und verständlicher wird.
 Zudem werden Callbacks der Cordova Plugins mit Ionic Native in Promises oder Observables verpackt.
 Dadurch entsteht ein einheitliches Interface im Stil von Angular 2 für die Nutzung dieser Module,
 wodurch deren asynchrone Events bequemer observiert werden können.
 
 Des Weiteren ist in Ionic Native eine Schicht für Fehlerbehandlung implementiert.
-Ist ein Cordova Modul nicht installiert, oder wird es falsch verwendet,
+Ist ein Cordova Modul nicht installiert oder wird es falsch verwendet,
 generiert Ionic Native Fehler und Warnungen, die für Entwickler unabdingbar sind.
 In der Vorgängerversion des Ionic \ac{SDK} konnten Fehler, die durch falsche Verwendung von
-Cordova Modulen aufgetreten sind, meist nur durch ausprobieren oder Debugging des nativen Codes identifiziert werden
+Cordova Modulen aufgetreten sind, meist nur durch Ausprobieren oder Debugging des nativen Codes identifiziert werden
 \cite{ionic55:online}.
-Listing \ref{ionicnative} zeigt eine beispielhafte Implementierung der Kamera und GPS Schnittstellen mithilfe von Ionic-Native.
+Listing \ref{ionicnative} zeigt eine beispielhafte Implementierung der Kamera und GPS Schnittstellen durch Ionic-Native.
 
 \vspace{0.3cm}
 \lstinputlisting[language=JavaScript,label=ionicnative,caption=Ionic Native Beispiel \cite{ionic55:online}]{kapitel3/ionic-native-example.ts}
@@ -336,7 +336,7 @@ Linux speziell in Teams deutlich vereinfacht werden \cite{Ionic75:online}.
 
 Ionic Platform ist eine Cloud, sowie eine Sammlung von Diensten für die Entwicklung,
 Veröffentlichung und Skalierung von mobilen Apps. Zum Beispiel bietet Ionic Platform einen zentralen Dienst für die Nutzerverwaltung innerhalb einer App.
-Nutzer können sich dabei klassisch per Mail oder per single sign on über
+Nutzer können sich dabei klassisch per Mail oder per Single Sign-on über
 Facebook, Google und Twitter registrieren und sind damit in der Applikation authentifiziert.
 Zudem können registrierte Nutzer zentral in einer Weboberfläche verwaltet und gegebenenfalls mit Push Nachrichten adressiert werden.
 Diese können dabei an alle Nutzer, oder ein definiertes Segment gerichtet werden.

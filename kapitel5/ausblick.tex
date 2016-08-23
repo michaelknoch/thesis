@@ -114,17 +114,18 @@ welche zum aktuellen Zeitpunkt open source verfügbar sind.
 \section{Performanz von Web-Apps}
 
 Hybride Web-Apps haben gegenüber nativ entwickelten Anwendungen einen großen Nachteil.
-Native Anwendungen sprechen direkt mit dem Betriebssystem, während Web-Apps
-über die Schnittstellen des Browsers mit dem System kommunizieren müssen.
-Hybride Web-Apps müssen also eine zusätzliche Kommunikationsschicht durchlaufen,
-wodurch speziell der Rendervorgang der Ansichten sowie die Ausführung von Animationen verlangsamt wird \cite{Webvs43:online}.
+Native Anwendungen sprechen direkt mit dem Betriebssystem und verwenden für visuelle Darstellungen native \ac{UI}-Elemente der Plattform.
+Hybride Web-Apps hingegen müssen über die Schnittstellen des Browsers mit dem System kommunizieren
+und durchlaufen damit eine zusätzliche Kommunikationsschicht.
+Darüber hinaus stehen native \ac{UI}-Elemente nicht zur Verfügung, sondern können lediglich durch \ac{CSS} visuell nachgeahmt werden.
+Das führt dazu, dass speziell der Rendervorgang der Ansichten sowie die Ausführung von Animationen verlangsamt wird \cite{Webvs43:online}.
 Native Anwendungen weisen daher in den meisten Fällen eine höhere Performanz auf und wirken deutlich
 smoother.
 
 Die tatsächliche Funktionalität von \projectname{} besteht hauptsächlich aus statischen Ansichten, ohne Effekte und
 rechenintensive Animationen. Lediglich die Willkommens-Ansicht der Desktop- und Webanwendung,
 sowie die Viewwechsel der mobilen App enthalten Animationen, welche allerdings nicht auf der CPU,
-sondern mithilfe der Hardwarebeschleunigung auf der GPU des Geräts berechnet.
+sondern mithilfe der Hardwarebeschleunigung auf der GPU des Geräts berechnet werden.
 Dadurch kann die Bildrate der Animationen vergleichsweise hoch gehalten werden.
 Die mobile App wurde auf einem Nexus 5x, Iphone 6, Iphone 4s und Nexus 5 getestet.
 Auf dem Nexus 5x und Iphone 6 scheint die App durchgehend eine stabile Bildrate zu haben,

@@ -6,10 +6,9 @@
 
 \section{Technologieauswahl}
 
-Mithilfe des \textbf{Angular 2 Frameworks} wurde Funktionalität von \projectname{} in Form von
+Unter Verwendung des \textbf{Angular 2 Frameworks} wurde die Funktionalität von \projectname{} in Form von
 Web Components implementiert.
-Dadurch konnte Funktionalität, statt sie redundant implementieren zu müssen, innerhalb der
-Anwendung beziehungsweise plattformübergreifend mehrfach wiederverwendet werden.
+Dadurch kann diese Funktionalität innerhalb der Anwendung beziehungsweise plattformübergreifend wiederverwendet werden, anstatt sie redundant implementieren zu müssen.
 Zusätzlich wurden Komponenten, die keine spezifischen Abhängigkeiten zum Projekt aufwiesen, als
 generische Komponenten für die Open Source Community entwickelt.
 
@@ -24,7 +23,7 @@ sondern können vom Anwendungskontext völlig entkoppelt globale Instanzen konsu
 Implementierungen werden austauschbar und damit flexibel,
 sollte Funktionalität bestehender Komponenten erweitert oder überschrieben werden müssen.
 
-Angular 2 befindet sich zum aktuellen Zeitpunkt (13. August) im fünften Release Candidate und steht damit kurz
+Angular 2 befindet sich zum aktuellen Zeitpunkt (Stand August 2016) im fünften Release Candidate und steht damit kurz
 vor dem offiziellen Release der Version 2.0. Zu Beginn der Thesis befand sich das Framework im ersten Release Candidate.
 Erst mit dem letzten RC5 Update des Frameworks wurden einige APIs speziell für den Bootstrap Prozess der Anwendung verändert,
 zwischen den RC1 und RC4 Veröffentlichungen konnte Angular 2 ohne Änderungen am Projektcode problemlos
@@ -33,15 +32,15 @@ wurden dennoch als veraltet markiert und werden vermutlich in der Version 2.0 ni
 funktionieren.
 
 
-\textbf{Ionic 2} erschien bereits zu Beginn des Projekts in der siebten Beta der neuen Version.
-Zum jetzigen Zeitpunkt (13. August) ist Beta 11 erscheinen, allerdings läuft die mobile App von
+\textbf{Ionic 2} erschien bereits zu Beginn des Projekts in der siebten Beta-Version.
+Zum jetzigen Zeitpunkt (Stand August 2016) ist Beta 11 erscheinen, allerdings läuft die mobile App von
 \projectname{} noch auf Betaversion 10, da das neuste Ionic Update,
-wie so manches zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichten der
+wie schon zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichten der
 mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden müssen.
 Es wurde allerdings zunächst ein Downgrade auf Beta 10 durchgeführt.
 
 Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant \cite{Annou88:online}.
-Die letzte geplante Beta Veröffentlichung soll eine Vielzahl von interessanten
+Die letzte geplante Beta Veröffentlichung soll eine Vielzahl an interessanten
 Änderungen beinhalten. Zum einen steht dem Ionic Build Prozess ein großes Update bevor.
 Dieser wurde bereits in Sektion \ref{Absolute-Asset-Pfade} kritisiert und eine
 mögliche Verbesserung in Form eines Pull Requests vorgelegt.
@@ -64,12 +63,12 @@ via GitHub issues and pull requests. It is an incredible privilege to work with 
 Die 1.0.0 Version des \textbf{Electron Framework} wurde bereits am 9. Mai veröffentlicht.
 Daher konnte schon zu Beginn des Projekts \projectname{} mit einer stabilen API für die Entwicklung
 der Desktop-Anwendung gerechnet werden, was sich in der Entwicklungsphase bestätigte.
-Als sehr Zeitaufwändig stellte sich die Implementierung des automatischen
+Als sehr zeitaufwändig stellte sich die Implementierung des automatischen
 Update Mechanismus, beschrieben in Sektion \ref{client-updates}, heraus.
 Nicht weil diese Schnittstelle des Frameworks derart komplex zu bedienen ist, sondern weil der Aktualisierungsvorgang nur getestet werden kann,
 wenn die Anwendung zuvor für Produktion gebaut, signiert und für den Updateserver sichtbar ins Netz geladen wurde.
 Beim Start der Anwendung ist es dann nur schwer möglich, Zugriff auf nötige Debug Informationen zu erhalten,
-somit verzögerte sich die Testphase von Electron \emph{AutoUpdate} erheblich.
+wodurch sich die Testphase von Electron \emph{AutoUpdate} erheblich verzögerte.
 
 
 \newpage
@@ -226,22 +225,22 @@ welches die API-Endpunkte der SaaS-monitoring Infrastruktur von \emph{Timo Weiß
 Es wurden Chancen moderner Web-Technologien wie Web Components und Typescript erläutert
 sowie verschiedene Frameworks und Tools hinsichtlich zuvor definierter Systemanforderungen analysiert.
 Ziel war es, eine komponentenorienterte Architektur zunächst zu konzipieren und anschließend zu implementieren, um
-mit geringem Programmieraufwand Produkte für möglichst viele verschiedene Plattformen erhalten zu können.
+mit geringem Programmieraufwand Produkte für möglichst viele verschiedene Plattformen zu erhalten.
 Das Frontend Projekt erhielt den Arbeitstitel \projectname{} und wurde entsprechend den beschriebenen Anforderungen
 als Desktop-, Web- und Mobilanwendung entwickelt.
 
 Funktionalität wurde mithilfe von Angular Komponenten innerhalb wiederverwendbarer
 Elemente gekapselt und kann daher innerhalb und außerhalb der Anwendung wiederverwendet werden.
-Neben der Implementierung der Komponenten wurden zudem Workflow Optimierungen und Deployment Prozesse entwickelt,
-welche die Produktivität der Entwicklung drastisch gesteigert haben, wodurch es überhaupt erst möglich wurde den Funktionsumfang
-innerhalb der kurzen Entwicklungszeit auf derart vielvältige Weise vertreiben zu können.
+Neben der Implementierung der Komponenten wurden zudem Workflow-Optimierungen und Deployment Prozesse entwickelt,
+welche die Produktivität der Entwicklung drastisch steigerten, wodurch es überhaupt erst möglich wurde den Funktionsumfang
+innerhalb der kurzen Entwicklungszeit auf so vielfältige Weise anbieten zu können.
 
-Innerhalb der Reflexion wurden mögliche Chancen der verwendeten Technologien und der Anwendung selbst beschrieben
-sowie mögliche erste Schritte genannt, die erforderlich sind um aus diesem ersten
+Innerhalb der Reflexion wurden mögliche Chancen der verwendeten Technologien und der Anwendung selbst
+sowie erste notwendige Schritte beschrieben, um aus diesem ersten
 Prototypen ein konkurenzfähiges Produkt zu schaffen.
 Abschließend lässt sich sagen, dass die umfangreiche Frontend Architektur nur anhand des webbasierten Ansatzes und der Synergien zwischen den verwendeten Technologien umgesetzt werden konnte.
 Ein nativer Ansatz hätte zwar deutliche Performanz Vorteile mit sich gebracht, jedoch wäre dann die Implementierung und Wartung der Anwendungen demnach um ein vielfaches zeitintensiver.
 Bei der Entwicklung webbasierter cross-platform Apps muss stets bedacht werden, welche Funktionalität für welche Gerätegeneration entwickelt wird.
 Rechenintensive Animationen lassen sich, speziell auf älteren Systemen, nur schwer performant einsetzen und viele moderne Webstandards stehen älteren Webviews nicht zur Verfügung.
 Die Technologien der Webentwicklung sowie die Gerätetechnologien selbst werden sich in den kommenden Jahren stetig weiterentwickeln. Es gibt bereits eine Vielzahl von Ansätzen, die das Leistungsproblem von webbasierten Anwendungen reduzieren können,
-es bleibt also abzusehen, wie sich diese spannende Technologie in der Zukunft entwickeln wird.
+es bleibt also abzuwarten, wie sich diese spannende Technologie in der Zukunft entwickeln wird.

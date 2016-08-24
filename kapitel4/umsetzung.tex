@@ -59,7 +59,7 @@ für diverse, womöglich ähnliche Anwendungsbereiche genutzt werden.
 Typisch für generische Angular 2 Komponenten ist die Verwendung des Input Kanals.
 Dabei werden zum einen Daten- sowie Konfigurationsobjekte von außen in die Komponente eingeschleust.
 Anhand der Konfigurationsobjekte können generische Komponenten individuell an verschiedene Bedürfnisse angepasst werden.
-Durch den Transfer von Datenobjekten werden Aggregationsvorgänge aus den Komponente abstrahiert und es werden eventuelle
+Durch den Transfer von Datenobjekten werden Aggregationsvorgänge aus den Komponenten abstrahiert und damit eventuelle
 Abhängigkeiten zu Services oder API-Servern vermieden.
 
 Komponenten,
@@ -86,7 +86,7 @@ sodass sie völlig eigenständig nutzbar sind und untereinander keine Abhängigk
 Jede Komponente beinhaltet individuelle \ac{MVC} Schichten für die Implementierung der Funktionalität von der View bis zur Datenschicht.
 Modelklassen und Services befinden sich innerhalb der Komponente und nicht innerhalb eines globalen Model Layers.
 Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübergreifende Abhängigkeiten.
-Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert
+Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert,
 so sollte diese nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht befinden.
 Es liegt nahe, dass Typescript Modelklassen ebenfalls in mehreren Komponenten verwendet werden.
 Demnach sollten diese nicht redundant implementiert,
@@ -125,7 +125,7 @@ Der zugehörige Anwendungscode befindet sich dabei entweder direkt innerhalb der
 \end{figure}
 \vspace{0.3cm}
 
-Anhand des spezifischen Ansatzes wurde eine Ansicht implementiert, in der sich Nutzer Einloggen, Registrieren und damit gegenüber der Applikation authentifizieren können.
+Anhand des spezifischen Ansatzes wurde eine Ansicht implementiert, in der sich Nutzer einloggen, registrieren und damit gegenüber der Applikation authentifizieren können.
 Der \ac{API}-Server gibt dabei einen cookie-basierten Ansatz für die Authentifizierung vor. Der Login Ablauf wird in Abbildung \ref{kapitel4/login} veranschaulicht.
 Zunächst wird die \emph{Login View} geladen, welche das \emph{Login Element} als Kind-Komponente enthält.
 In dieser sind die nötigen Eingabefelder sowie die Anbindung an den \emph{User Service} implementiert.
@@ -136,9 +136,9 @@ Das \emph{Login Element} antwortet der \emph{Login View} mit einem Update Event,
 In der Implementierung des \emph{User Services}, siehe Anhang \ref{UserService}, werden innerhalb des Login- und Registriervorgangs
 sowohl eine ID als auch der Name des Nutzers im Localstorage des Browsers persistiert.
 Dies geschieht sehr elegant mithilfe des Variablen Decorators \emph{angular2-localstorage} \cite{marcj95:online}.
-Die zu persistierenden Variablen werden mit \emph{@Localstorage} dekoriert wodurch schreibender Variablenzugriff eine Persistierung auslöst.
+Die zu persistierenden Variablen werden mit \emph{@Localstorage} dekoriert, wodurch schreibender Variablenzugriff eine Persistierung auslöst.
 Bei Lesezugriff auf die Variable werden zunächst Daten aus dem Localstorage geladen.
-Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden um sie überhaupt im Localstorage speichern zu können.
+Interesant hierbei ist, dass selbst komplexe Objektstrukturen durch den Decorator zunächst serialisiert werden, um sie überhaupt im Localstorage speichern zu können.
 
 Zum Zeitpunkt der \emph{Login View} Instanziierung wird der Localstorage im \emph{User Service} über die Funktion \emph{getLocalMe} ausgelesen.
 Dies ermöglicht es Nutzer direkt zum Dashboard zu leiten, sollten diese bereits eingeloggt sein.
@@ -154,7 +154,7 @@ fängt der \emph{HTTP-Interceptor} den Fehler und leitet zur \emph{Login View} z
 Mit der \emph{Meta Picker Komponente} ist ein spezifisches, jedoch innerhalb der Anwendung wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
 Diese Komponente findet derzeit Verwendung in der Metrik, Graphen und Traces Sektion. Wird eine Applikation beziehungsweise ein Zeitinterval über den Picker definiert,
 wird diese Auswahl im Localstorage des Browsers persistiert und bei nachfolgenden Instanziierungen der Komponente zunächst aus dem Storage geladen und erneut ausgewählt.
-Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage}
+Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage},
 welcher bereits in der Implementierung \ref{Login-und-Authentifikation} Login und Authentifikation Verwendung fand.
 Listing \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der \emph{Meta Picker Komponente}.
 Die binäre Option \emph{hideApplikation} versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
@@ -177,14 +177,14 @@ so propagiert der \emph{Meta Picker} ein Update an die äußere Eltern-Komponent
 
 \subsubsection{Traces}
 
-Mithilfe der Traces Sektion werden serviceübergreifende Requests in Releation zur Zeit in einem Gantt Chart dargestellt.
+Mithilfe der Traces Sektion werden serviceübergreifende Requests in Relation zur Zeit in einem Gantt Chart dargestellt.
 Anhand der Visualisierung soll es für Anwendungsentwickler möglich sein, Verzögerungen oder Fehler im Aufrufstapel (Call Stack) identifizieren zu können.
 Für die Umsetzung des Gantt Charts lag es zunächst nahe, eine bestehende Bibliothek zu verwenden.
 Allerdings konnte keines der untersuchten Bibliotheken den Funktionsumfang bezüglich der Anforderungsanalyse abdecken.
 Konfigurationsaufwand, Größe der Bibliothek und die Möglichkeit das Diagramm auch auf mobilen Geräten nutzen zu können, waren für die Untersuchung ausschlaggebende Kriterien.
 Mit \emph{ng2-simplegantt} wurde daher eine eigene sehr vereinfachte Implementierung eines Gantt Diagramms, entsprechend dem generischen Ansatz, vorgenommen.
 
-Die Daten werden zunächst über den Anwendungsspezifischen Trace Service vom API-Server erfragt und anschließend innerhalb der ebenfalls spezifisch entwickelten \emph{Trace Komponente}
+Die Daten werden zunächst über den anwendungsspezifischen Trace Service vom API-Server erfragt und anschließend innerhalb der ebenfalls spezifisch entwickelten \emph{Trace Komponente}
 für die Darstellung in \emph{ng2-simplegantt} aufbereitet.
 Bei der Implementierung der generischen Komponente wurde auf die Verwendung von absoluten Pixelwerten weitestgehend verzichtet.
 Abstände und Positionen werden mithilfe von relativen Prozentwerten ausgedrückt. Dadurch ist die Komponente responsive und kann
@@ -237,7 +237,7 @@ wurde eine eigene Interface-Komponente entwickelt und open source auf Github ver
 \lstinputlisting[language=JavaScript,label=ng2-cytoscape,caption=ng2-cytoscape Implementierung]{kapitel4/ng2-cytoscape.ts}
 
 \noindent Listing \ref{ng2-cytoscape} beinhaltet die Implementierung von ng2-cytoscape.
-Um Übersicht gewährleisten zu können wird für die Implementierung irrelevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
+Um Übersicht gewährleisten zu können, wird für die Implementierung irrelevanter Inhalt einiger Konfigurationsobjekte mit (...) abgekürzt.
 
 Bei der Instanziierung der Komponente werden erneut Daten und Konfigurationen über den Input Kanal von außen
 in den Code der Komponente eingeschleust. Interessant hierbei ist,
@@ -246,7 +246,7 @@ Die Zuweisung der übrigen Variablen ist optional, da sie innerhalb des Konstruk
 Dadurch kann die Komponente bereits ohne eine ausgiebige Studie der Dokumentation verwendet und dennoch, falls verlangt, individuell konfiguriert werden.
 
 Durch die Implementierung des \emph{onChanges} Interfaces und damit der Funktion \emph{ngOnChanges} wird sichergestellt,
-dass der Graph neu gezeichnet wird, sobald sich Daten welche mit \emph{@Input} dekoriert wurden, ändern.
+dass der Graph neu gezeichnet wird, sobald sich Daten, welche mit \emph{@Input} dekoriert wurden, ändern.
 Cytoscape.js erwartet für den Rendervorgang ein jQuery Element, auf welches die Funktion cytoscape({..})
 mit den zuvor eingeschleusten Daten- und Konfigurationsobjekten angewandt wird.
 Durch die Verwendung von \emph{ElementRef} aus dem Core von Angular, kann eine globale \ac{DOM} Selektion anhand von IDs oder Klassen vermieden werden, da \emph{elementRef.nativeElement} eine Referenz auf das native \ac{DOM} Objekt beinhaltet.
@@ -259,7 +259,7 @@ der Fingerabdruck eines Anwenders kann auch innerhalb von mobilen Anwendungen al
 In Sektion \ref{Login-und-Authentifikation} wurde eine Authentifizierung mittels Mail und Passwort erläutert,
 dieser Schritt ist nach wie vor erforderlich. Durch Touch ID wurde eine weitere Sicherheitsschicht unabhängig der cookie-basierten Authentifizierung über den API-Server implementiert.
 Sobald ein Nutzer durch seine Legitimationen eingeloggt wurde, ist für jeden weiteren Start der Anwendung kein erneuter Login erforderlich.
-Durch den Einsatz von Touch ID erscheint jedoch beim öffnen der App eine Aufforderung, die Identität durch den Fingerabdruck zu verifizieren, um wömöglich sensible Anwendungsdaten vor unautorisierten Zugriff zu schützen.
+Durch den Einsatz von Touch ID erscheint jedoch beim Öffnen der App eine Aufforderung, die Identität durch den Fingerabdruck zu verifizieren, um womöglich sensible Anwendungsdaten vor unautorisierten Zugriff zu schützen.
 Die Implementierung, welche in Listing \ref{touchid} zu sehen ist, basiert dabei auf dem Cordova Plugin \emph{cordova-plugin-touch-id} \cite{EddyV87:online}.
 
 \vspace{0.3cm}
@@ -271,12 +271,12 @@ Die Implementierung, welche in Listing \ref{touchid} zu sehen ist, basiert dabei
 \end{figure}
 
 Die Touch ID Komponente wird in die äußerste Komponente der mobilen Anwendung eingebunden,
-dies ermöglicht es ein sperrendes Overlay über die Anwendung legen zu können, unabhängig auf welcher
+dies ermöglicht, ein sperrendes Overlay über die Anwendung legen zu können, unabhängig auf welcher
 View sich ein Nutzer gerade befindet. Die Komponente beinhaltet eine boolesche Variable \emph{lock}
-welche den Status des Overlays beinhaltet. Der Wert der Variable wird bei aktivierung der App durch das Event \emph{platform.resume}
+welche den Status des Overlays definiert. Der Wert der Variable wird bei Aktivierung der App durch das Event \emph{platform.resume}
 verändert (Zeile 18), insofern das mobile Gerät Touch ID unterstützt (Zeile 15) und der Nutzer eingeloggt ist (Zeile 17).
 Das in Abbildung \ref{touchidmock} dargestellte Szenario erscheint, die Anwendung ist durch das Overlay blockiert und der Nutzer wird aufgefordert sich über seinen Fingerabdruck auszuweisen.
-Bei Erfolg wird die lock Variable innerhalb des Events \emph{touchid.authenticate} (Zeile 19) erneut gesetzt.
+Bei Erfolg wird die \emph{lock} innerhalb des Events \emph{touchid.authenticate} (Zeile 19) erneut gesetzt.
 Das Overlay verschwindet und die Anwendung ist damit entsperrt. Mit dem Zugriff auf \emph{ngZone.run} (Zeile 21) wird eine Angular Change Detection manuell ausgelöst, da der Change Detection Vorgang nicht automatisch durch \emph{touchid.authenticate} ausgelöst wird.
 
 Das Overlay selbst besteht aus einem \ac{HTML} Element (Zeile 8), welches in Abhängigkeit der Variable \emph{lock} die Klasse \emph{active} erhält.
@@ -297,7 +297,7 @@ Durch die Verwendung von \emph{position: fixed} wird gewährleistet, dass das Ov
 \subsection{Verteilungsinfrastruktur}
 
 Es wird eine Infrastruktur benötigt, um Komponenten projektübergreifend verteilen zu können.
-Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems um Komponenten in das Angular,
+Möglich wäre die Konfiguration von Symlinks des lokalen Dateisystems, um Komponenten in das Angular,
 sowie Ionic Projekt zu integrieren. Symlinks lassen sich allerdings nicht versionieren, daher würde
 für jeden neuen Entwickler ein komplexer initialer Konfigurationsaufwand entstehen.
 Des Weiteren sollen Komponenten nicht nur innerhalb der Ionic App,
@@ -311,13 +311,13 @@ Open Source Pakete können damit kostenfrei veröffentlicht und aktualisiert wer
 Da \projectname{} open source entwickelt wird,
 reicht ein kostenfreier Basis-Account für die Verteilung der Awendungs-Komponenten völlig aus.
 
-Es wäre denkbar jede Komponente über ein eigenes \ac{NPM} Paket zu veröffentlichen.
+Es wäre denkbar, jede Komponente über ein eigenes \ac{NPM} Paket zu veröffentlichen.
 Allerdings würde dies nicht nur den Veröffentlichungs- und Update-Mechanismus erschweren,
 sondern würde auch eine aufwändige Definition von Modulabhängigkeiten bedeuten.
 Um die Komplexität der Infrastruktur nicht unnötig zu erhöhen,
 werden Komponenten, welche anhand des spezifischen Ansatzes entwickelt werden,
 gemeinsam innerhalb eines \ac{NPM} Moduls \emph{(mia-distributed)} verteilt.
-So ist sichergestellt, dass alle spezifischen Abhängigkeiten innerhalb eines Pakets aufgelöst werden können.
+Dadurch können alle spezifischen Abhängigkeiten innerhalb eines Pakets aufgelöst werden.
 Generische Komponenten werden jeweils eigenständig veröffentlicht und als Abhängigkeiten von \emph {mia-distributed} deklariert.
 So wird sichergestellt, dass generisch entwickelte Abhängigkeiten beim installieren von \emph{mia-distributed}
 ebenfalls geladen und installiert werden und diese dennoch problemlos von dritten verwendet werden können.
@@ -340,19 +340,19 @@ für die JavaScript Implementierung und gewährleistet statische Typisierung
 und Autovervollständigung in unterstützenden IDEs.
 
 Im TypeScript Transpilierungsprozess können Declaration Files mithilfe der Option \emph{declaration} generiert werden.
-Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files, von der Community oder von dem ursprünglichen Autor, nachgeliefert.
+Für viele populäre JavaScript Bibliotheken wurden bereits Declaration Files von der Community oder von dem ursprünglichen Autor nachgeliefert.
 In \projectname{} werden Declaration Dateien im Transpilierungsprozess generiert und mit der Komponente verteilt,
 damit Typen und Schnittstellen der Komponenten im Ionic Projekt verwendet werden können \cite[471]{EssentialTS}.
 
 
 \subsubsection{SourceMap (.map)}
-Durch die Verwendung von *-to-JavaScript Transpilern und Minifizierungstools, ensteht ein Problem, welches SourceMaps zu lösen versuchen.
+Durch die Verwendung von *-to-JavaScript Transpilern und Minifizierungstools ensteht ein Problem, welches SourceMaps zu lösen versuchen.
 Der zur Entwicklungszeit geschriebene Code ist nicht der selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
 Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nur erschwert auf den Ursprungscode abgebildet werden.
 Der Typescript Transpiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
 welche dabei als Referenztabelle zwischen Quell- und Zielcode fungieren.
 Wird die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, geöffnet, kann der ursprünglichen Code inspiziert werden.
-SourceMaps werden in \projectname{} verwendet um transpilierten Code während der Ausführung der Angular so wie Ionic Anwendung debuggen zu können
+SourceMaps werden in \projectname{} verwendet, um transpilierten Code während der Ausführung der Angular so wie Ionic Anwendung debuggen zu können
  \cite{Using97:online}.
 
 
@@ -395,7 +395,7 @@ des Browser anhand des \emph{angular2-localstorage} Decorators erläutert.
 Der Decorator wird über den Bootstrap Prozess der Angular Applikation registriert,
 dadurch werden Schreibzugriffe auf Variablen erfasst und Daten gespeichert.
 Allerdings unterscheidet sich der Bootstrap einer Ionic Anwendung von dem einer Angular Applikation.
-Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne weiteres im Ionic Projekt verwendet werden kann.
+Es stellt sich heraus, dass \emph{angular2-localstorage} nicht ohne Weiteres im Ionic Projekt verwendet werden kann.
 Da jedoch Funktionalität des \emph{User Services} und des \emph{Meta Pickers} auf dem Decorator aufbaut,
 gilt es dieses Problem zu lösen.
 
@@ -418,9 +418,9 @@ welches die erforderlichen Schnittstellen vorgibt. Das Interface ist in Listing 
 \newpage
 \section{Auslieferung}
 
-Um die Auslieferung für die jeweiligen Plattformen zu ermöglichen
+Um die Auslieferung für die jeweiligen Plattformen zu ermöglichen,
 sind im Rahmen des Projekts \projectname{} diverse Deployment Prozesse entstanden,
-welche im folgenden erläutert werden.
+welche im Folgenden erläutert werden.
 
 \subsection{Web}
 \label{deployment-web}
@@ -430,14 +430,14 @@ Aufgrund großer Unzufriedenheit mit der anfänglichen Ladezeit der Anwendung vo
 Prozess konzipiert, welcher die Dauer des Ladevorgangs deutlich reduziert.
 Ohne Optimierungen werden beim Start der Anwendungen 624 verschiedene Dateien geladen,
 welche insgesamt eine Größe von 2,4MB aufweisen.
-Dabei stellen Komponenten und Services der eigentlichen Implementierung nur ein Bruchteil der Menge dar.
+Dabei stellen Komponenten und Services der eigentlichen Implementierung nur einen Bruchteil der Menge dar.
 Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek RxJs, welche für den Betrieb von Angular benötigt wird.
 Zunächst werden externe \ac{HTML} und \ac{CSS} Assets von Komponenten in
 inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \emph{app.bundle.js} Datei zusammengefasst.
-Möglich wäre den Code aus der resultierenden app.bundle.js zu minifizieren,
+Möglich wäre, den Code aus der resultierenden app.bundle.js zu minifizieren,
 wodurch er weiter an Dateigröße verlieren würde. Da sich die Applikation \projectname{}
 jedoch noch nicht in einem produktionsreifen Zustand befindet, wird Minifizierung zunächst ausgelassen.
-Die 624 Dateirequests konnten auf 16 reduziert werden wodurch die Applikation bereits nach 1,9
+Die 624 Dateirequests konnten auf 16 reduziert werden, wodurch die Applikation bereits nach 1,9
 Sekunden vollständig geladen werden kann.
 Die Menge der geladenen Daten wird aufgrund fehlender Minifizierung nahezu kaum reduziert.
 
@@ -465,7 +465,7 @@ für Automatisierungen von Windows und MacOS Anwendungen bedient.
 Notwendig für die Hintergrundaktualisierung ist ein HTTP-Service, welcher beim Start der Anwendung mit der
 aktuellen Version angefragt werden kann
 und daraufhin einen Downloadpfad für ein eventuell verfügbares Update liefert.
-Sollte kein Update zur Verfügung stehen wird ein Statuscode 204 (No Content) geliefert.
+Sollte kein Update zur Verfügung stehen, wird ein Statuscode 204 (No Content) geliefert.
 Electron \emph{autoUpdater} lädt die neue App herunter, entpackt diese und tauscht den Webinhalt der Anwendung zur Laufzeit aus.
 Wird die App nun neu gestartet, steht die neue Version zur Verfügung.
 
@@ -495,7 +495,7 @@ Dieser antwortet daraufhin mit der zuvor ausgelesenen Version der Anwendung, wel
 War der Download des Updates efolgreich, löst der Update Prozess das Event ``update-downloaded'' im Node Kontext aus,
 welches durch IPC an den \emph{IPC Service} der Angular Applikation weitergeleitet wird. Erneut erscheint eine für den Nutzer bestimmte Notification, siehe Abbildung \ref{kapitel4/update-push}, welche auf Klick einen Restart der Applikation auslöst.
 Dies ist mithilfe eines Klick Listeners realisiert, der dem Node Kontext das Event ``force-restart'' propagiert.
-Daraufhin wird ``quitAndInstall'' über die \ac{API} des Updaters aufgerufen, wodurch die Applikation veranlasst wird sich selbst zu beenden und in der neuen Version zu erscheinen.
+Daraufhin wird ``quitAndInstall'' über die \ac{API} des Updaters aufgerufen, wodurch die Applikation veranlasst wird, sich selbst zu beenden und in der neuen Version zu erscheinen.
 
 
 \begin{figure}[h]
@@ -516,4 +516,4 @@ welcher durch den Befehl \emph{ionic build ios} und \emph{ionic build android} a
 erstellt dabei die Applikation für die jeweilige Zielplattform.
 Für die Veröffentlichung in den Stores ist zunächst die Freischaltung eines Entwickler Accounts erforderlich,
 welche durch eine einmalige Zahlung von 25\$ für den Google Play Store beziehungsweise einer jährlichen Gebühr von 99\$
-für den iOS App Store so wie einer Prüfung der Person oder des Unternehmens erfolgt.
+für den iOS App Store sowie einer Prüfung der Person oder des Unternehmens erfolgt.

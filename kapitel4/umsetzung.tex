@@ -152,12 +152,12 @@ fängt der \emph{HTTP-Interceptor} den Fehler und leitet zur \emph{Login View} z
 \subsubsection{Meta Picker}
 
 Mit der \emph{Meta Picker Komponente} ist ein spezifisches, jedoch innerhalb der Anwendung wiederverwendbares Element implementiert, um Daten einer View hinsichtlich Applikationen und eines Zeitintervalls filtern zu können.
-Diese Komponente findet derzeit Verwendung in der Metrik, Graphen und Traces Sektion. Wird eine Applikation beziehungsweise ein Zeitinterval über den Picker definiert,
+Diese Komponente findet derzeit Verwendung in der Metrik-, Graphen- und Traces-Sektion. Wird eine Applikation beziehungsweise ein Zeitinterval über den Picker definiert,
 wird diese Auswahl im Localstorage des Browsers persistiert und bei nachfolgenden Instanziierungen der Komponente zunächst aus dem Storage geladen und erneut ausgewählt.
 Die Persistierung erfolgt hier ebenfalls über den Dekorator \emph{angular2-localstorage},
 welcher bereits in der Implementierung \ref{Login-und-Authentifikation} Login und Authentifikation Verwendung fand.
 Listing \ref{meta-picker-example} zeigt ein Verwendungsbeispiel der \emph{Meta Picker Komponente}.
-Die binäre Option \emph{hideApplikation} versteckt das Auswahlfeld der Applikationen. Dies wird für die Graph Sektion benötigt,
+Die binäre Option \emph{hideApplikation} versteckt das Auswahlfeld der Applikationen. Dies wird für die Graphen-Sektion benötigt,
 da innerhalb dieser View das Zusammenspiel der einzelnen Services dargestellt wird und daher lediglich eine Filterung nach Zeit relevant ist.
 Über die Funktion \emph{metaUpdate} werden Updates der Komponente abonniert. Wird eine Auswahl der Applikation oder des Zeitintervalls getätigt,
 so propagiert der \emph{Meta Picker} ein Update an die äußere Eltern-Komponente. Die Variable \emph{\$event} beinhaltet dabei die vom Nutzer neu gesetzten Parameter.
@@ -177,7 +177,7 @@ so propagiert der \emph{Meta Picker} ein Update an die äußere Eltern-Komponent
 
 \subsubsection{Traces}
 
-Mithilfe der Traces Sektion werden serviceübergreifende Requests in Relation zur Zeit in einem Gantt Chart dargestellt.
+Mithilfe der Traces-Sektion werden serviceübergreifende Requests in Relation zur Zeit in einem Gantt Chart dargestellt.
 Anhand der Visualisierung soll es für Anwendungsentwickler möglich sein, Verzögerungen oder Fehler im Aufrufstapel (Call Stack) identifizieren zu können.
 Für die Umsetzung des Gantt Charts lag es zunächst nahe, eine bestehende Bibliothek zu verwenden.
 Allerdings konnte keines der untersuchten Bibliotheken den Funktionsumfang bezüglich der Anforderungsanalyse abdecken.
@@ -203,7 +203,7 @@ sondern durch Angular Komponenten realisiert werden.
 
 
 \paragraph{Chart.js} ist eine Bibliothek für das Zeichnen komplexer Diagramme.
-Es wird in \projectname{} hauptsächlich für die Visualisierung der Daten für die Metrik Sektion verwendet.
+Es wird in \projectname{} hauptsächlich für die Visualisierung der Daten für die Metrik-Sektion verwendet.
 Chart.js ist responsive implementiert, das heißt die Charts können sowohl für den Desktop
 als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
 

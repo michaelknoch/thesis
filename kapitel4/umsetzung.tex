@@ -205,7 +205,7 @@ sondern durch Angular Komponenten realisiert werden.
 \paragraph{Chart.js} ist eine Bibliothek für das Zeichnen komplexer Diagramme.
 Es wird in \projectname{} hauptsächlich für die Visualisierung der Daten für die Metrik-Sektion verwendet.
 Chart.js ist responsive implementiert, das heißt die Charts können sowohl für den Desktop
-als auch für die Mobile Applikation verwendet werden \cite{Chart80:online}.
+als auch für die mobile Applikation verwendet werden \cite{Chart80:online}.
 
 \vspace{0.3cm}
 \lstinputlisting[language=JavaScript,label=component-interface-1,caption=Chart.js ohne Komponenten Interface]{kapitel4/chartjs-oldschool.js}
@@ -217,7 +217,7 @@ Daten- und Konfigurationsobjekte werden über den \emph{@Input} Kanal der Kompon
 Dadurch wird die Aggregation der Daten aus der Komponente heraus abstrahiert und es entsteht keine Ahängigkeit zu einem API-Service.
 Die Komponente wird von Valor Software entwickelt und steht quelloffen unter der MIT Lizenz zur Verfügung \cite{valor6:online}.
 
-Die Komponente erweist sich als sehr hilfreich, da das Chart bereits durch die simple Verwendung des Komponenten-Selektors (base-chart) instanziiert werden kann.
+Die Komponente erweist sich als sehr hilfreich, da das Chart bereits durch die simple Verwendung des Komponenten-Selektors (\emph{base-chart}) instanziiert werden kann.
 Des Weiteren werden die zu visualisierenden Daten sowie ein optionales Konfigurationsobjekt über den Selektor an die Komponenten übergeben.
 Ändert sich das Datenobjekt, wird das Chart automatisch aktualisiert.
 
@@ -350,8 +350,8 @@ Durch die Verwendung von *-to-JavaScript Transpilern und Minifizierungstools ens
 Der zur Entwicklungszeit geschriebene Code ist nicht der selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
 Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nur erschwert auf den Ursprungscode abgebildet werden.
 Der TypeScript Transpiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
-welche dabei als Referenztabelle zwischen Quell- und Zielcode fungieren.
-Wird die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, geöffnet, kann der ursprünglichen Code inspiziert werden.
+welche als Referenztabelle zwischen Quell- und Zielcode fungieren.
+Wird die Entwicklerkonsole in einem Browser, welcher SourceMaps unterstützt, geöffnet, kann der ursprüngliche Code inspiziert werden.
 SourceMaps werden in \projectname{} verwendet, um transpilierten Code während der Ausführung der Angular so wie Ionic Anwendung debuggen zu können
  \cite{Using97:online}.
 

@@ -88,7 +88,7 @@ Modelklassen und Services befinden sich innerhalb der Komponente und nicht inner
 Allerdings entstehen im Aufbau einer Angular Applikation schnell komponentenübergreifende Abhängigkeiten.
 Wird Funktionalität in Services, welche von mehreren Komponenten genutzt wird, implementiert,
 so sollte diese nicht in die Komponente gekapselt werden, sondern sich in einer sichtbaren Schicht befinden.
-Es liegt nahe, dass Typescript Modelklassen ebenfalls in mehreren Komponenten verwendet werden.
+Es liegt nahe, dass TypeScript Modelklassen ebenfalls in mehreren Komponenten verwendet werden.
 Demnach sollten diese nicht redundant implementiert,
 sondern zentral zur Verfügung gestellt werden. Es stellt sich heraus,
 dass nicht alle Komponenten der Applikation \projectname{} als eigenständige Module ausgeliefert werden können,
@@ -324,10 +324,10 @@ ebenfalls geladen und installiert werden und diese dennoch problemlos von dritte
 
 \subsection{Vorbereitung und Veröffentlichung}
 
-Die zu verteilenden Komponenten sind in Typescript geschrieben,
+Die zu verteilenden Komponenten sind in TypeScript geschrieben,
 daher müssen sie entweder im Zielprojekt in die Transpilierung mit einbezogen werden,
 oder bereits vor der Verteilung transpiliert und damit als JavaScript Paket veröffentlicht werden.
-Interessant hierbei sind die Optionen \emph{sourceMap} und \emph{declaration} des Typescript Transpilers.
+Interessant hierbei sind die Optionen \emph{sourceMap} und \emph{declaration} des TypeScript Transpilers.
 Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jeweils d.ts und .map Dateien abgelegt.
 
 \subsubsection{Declaration(d.ts)}
@@ -335,7 +335,7 @@ Sind diese aktiviert, werden neben den transpilierten .js Javascript Dateien jew
 Eine d.ts Datei wird als TypeScript Declaration File bezeichnet.
 Es beschreibt Implementierungen, welche in JavaScript geschrieben sind oder von TypeScript zu JavaScript transpiliert wurden.
 Das Declaration File ermöglicht die Verwendung von JavaScript Code, beispielsweise einer externen Bibliothek,
-innerhalb eines TypeScript Projekts. Das Declaration File fungiert dabei als Typescript Interface
+innerhalb eines TypeScript Projekts. Das Declaration File fungiert dabei als TypeScript Interface
 für die JavaScript Implementierung und gewährleistet statische Typisierung
 und Autovervollständigung in unterstützenden IDEs.
 
@@ -349,7 +349,7 @@ damit Typen und Schnittstellen der Komponenten im Ionic Projekt verwendet werden
 Durch die Verwendung von *-to-JavaScript Transpilern und Minifizierungstools ensteht ein Problem, welches SourceMaps zu lösen versuchen.
 Der zur Entwicklungszeit geschriebene Code ist nicht der selbe, welcher zur Laufzeit im Browser ausgeführt wird, da dieser transpiliert und womöglich minifiziert wurde.
 Wenn nun Fehler der Applikation zur Laufzeit identifiziert werden, können diese nur erschwert auf den Ursprungscode abgebildet werden.
-Der Typescript Transpiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
+Der TypeScript Transpiler beinhaltet einen SourceMaps Generator, welcher beim Transpilevorgang .map Dateien erzeugt,
 welche dabei als Referenztabelle zwischen Quell- und Zielcode fungieren.
 Wird die Entwicklerkonsole in einem Browser, welcher SourceMaps unerstützt, geöffnet, kann der ursprünglichen Code inspiziert werden.
 SourceMaps werden in \projectname{} verwendet, um transpilierten Code während der Ausführung der Angular so wie Ionic Anwendung debuggen zu können
@@ -385,7 +385,7 @@ werden \ac{HTML} und \ac{CSS} Referenzen mithilfe des Moduls \emph{gulp-inline-n
 Dadurch werden Konflikte bezüglich relativen und absoluten Referenz-Pfaden hinfällig.
 Zudem wurde ein Pull Request in \emph{ionic-gulp-tasks} gestellt, welcher \emph{gulp-inline-ng2-template}
 in den Ionic Build Prozess integriert und damit die Nutzung relativer Asset Pfade mit \emph{Browserify} ermöglicht.
-Bisher wurde der Pull Request allerdings nicht gemerged, vermutlich weil diese Build Prozess Modifzierung die
+Bisher wurde der Pull Request allerdings nicht gemerged (Stand August 2016), vermutlich weil diese Build Prozess Modifzierung die
 Transpilierungsdauer einer Ionic App von zwei auf zehn Sekunden erhöht.
 Das Ionic Team evaluiert derzeit Möglichkeiten für die Nutzung relativer Asset Pfade \cite{relat31:online}.
 

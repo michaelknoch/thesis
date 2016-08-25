@@ -52,7 +52,7 @@ sowie auch für komplexere Webanwendungen eine solide Basis bieten \cite[11-12]{
 
 Komponenten sind die Grundbausteine einer jeden Angular 2 Applikation und ersetzen Direktiven aus Angular 1 nahezu vollständig.
 UI und deren Funktionalität wird innerhalb von Komponenten implementiert.
-Diese werden in Angular 2 als Typescript Klasse definiert und mit \emph{@Component} dekoriert, siehe Listing \ref{ng2component}.
+Diese werden in Angular 2 als TypeScript Klasse definiert und mit \emph{@Component} dekoriert, siehe Listing \ref{ng2component}.
 Der Component Decorator wird mithilfe des ES6 Imports importiert (Zeile 1) und wird verwendet, um die Klasse mit erforderlichen Metadaten zu auszustatten.
 Der Selektor (Zeile 5) definiert den HTML-Tag der Komponente, über welchen diese innerhalb der Anwendung eingefügt und damit instanziiert werden kann.
 
@@ -285,7 +285,7 @@ können plattformunabhängige, globale Stile definiert werden \cite{ionic73:onli
 
 \subsection{Ionic Native}
 
-Ionic Native ist ein Wrapper für Cordova Module in JavaScript und Typescript.
+Ionic Native ist ein Wrapper für Cordova Module in JavaScript und TypeScript.
 In der Vorgängerversion des \ac{SDK} wurden Cordova Plugins installiert und als globale Singletons registriert.
 Beispielsweise war es möglich, aus jedem Kontext der Applikation heraus ``navigator.camera.getPicture(onSuccess, onFail)'' aufzurufen.
 Ionic Native hingegen erlaubt Entwicklern, Module selektiv zu importieren, wodurch diverse Vorteile entstehen.
@@ -316,7 +316,7 @@ Ionic the complete mobile dev package. It's the best way to build apps.'' \cite{
 Die Ionic \ac{CLI} vereinfacht den Umgang mit Ionic Projekten erheblich. Zunächst können individuelle
 Startertemplates anhand diverser Parameter generiert werden.
 Das Framework erzeugt dabei voll funktionstüchtige Applikationen, die den Einstieg in das Framework erleichtern sollen.
-\emph{Sidemenu} und \emph{Tabmenu} sind Beispiele für Templates, welche in Typescript oder JavaScript generiert werden können.
+\emph{Sidemenu} und \emph{Tabmenu} sind Beispiele für Templates, welche in TypeScript oder JavaScript generiert werden können.
 Darüber hinaus lassen sich Applikationen über die \ac{CLI} auf den Zielplattformen compilieren und auf angeschlossenen Geräten ausführen.
 
 \paragraph{Ionic Creator}
@@ -429,7 +429,7 @@ Automatisierungen werden mit Gulp in Form von Tasks implementiert,
 welche typischerweise Dateien lesen, diese innerhalb von Streams verarbeiten und das Ergebis wiederum auf die
 Festplatte schreiben \cite{gulpj46:online}.
 Tasks können dabei manuell, oder über Filewatcher durch Dateiänderungen ausgelöst werden.
-Anwendungsfälle für Gulp Tasks sind beispielweise Transpilierung von Typescript zu JavaScript Code oder
+Anwendungsfälle für Gulp Tasks sind beispielweise Transpilierung von TypeScript zu JavaScript Code oder
 Automatisierung von Deployment Prozessen. Die \ac{NPM} Registry beinhaltet bereits über 14.000 Open Source Plugins,
 mit denen die Grundfunktinalität von Gulp erweitert werden kann \cite{resul14:online}.
 Gulp selbst wurde im Juni 2016 2.304.745 mal per NPM installiert \cite{gulp17:online}.

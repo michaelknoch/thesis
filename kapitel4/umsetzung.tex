@@ -371,7 +371,7 @@ Angular Komponenten enthalten Template Markup und \ac{CSS} Styling, welches entw
 definiert oder innerhalb externer \ac{HTML} und \ac{CSS} Dateien implementiert und über Dateipfade in der Komponente referenziert wird.
 Abhängig von der Konfiguration der Komponente, des Modul Formats und des verwendeten Modul Loaders
 können relative oder absolute Pfade zur Referenzierung der Markup und Style Assets angegeben werden.
-In der Angular Applikation werden Module mithilfe von SystemJS geladen. Dies ermöglicht die Nutzung relativer Pfade.
+In der Angular Applikation werden Module mithilfe von \emph{SystemJS} geladen. Dies ermöglicht die Nutzung relativer Pfade.
 Ionic hingegen liefert einen Deployment Prozess mithilfe von \emph{Browserify}, welcher eine absolute Referenz voraussetzt.
 Die Verwendung von absoluten Pfaden ist keine Option, wenn Komponenten Codebase übergreifend Verwendung finden sollen,
 da die Strukturen der beiden Applikationen komplett identisch sein müssten.
@@ -431,7 +431,7 @@ Prozess konzipiert, welcher die Dauer des Ladevorgangs deutlich reduziert.
 Ohne Optimierungen werden beim Start der Anwendungen 624 verschiedene Dateien geladen,
 welche insgesamt eine Größe von 2,4MB aufweisen.
 Dabei stellen Komponenten und Services der eigentlichen Implementierung nur einen Bruchteil der Menge dar.
-Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek RxJs, welche für den Betrieb von Angular benötigt wird.
+Der Hauptteil besteht aus dem Angular 2 Kern und der Bibliothek \emph{RxJs}, welche für den Betrieb von Angular benötigt wird.
 Zunächst werden externe \ac{HTML} und \ac{CSS} Assets von Komponenten in
 inline Strings umgewandelt und anschließend wird die ganze Applikation in einer \emph{app.bundle.js} Datei zusammengefasst.
 Möglich wäre, den Code aus der resultierenden app.bundle.js zu minifizieren,
@@ -477,7 +477,7 @@ Verwendung von Electron \emph{autoUpdater} implementiert.
 
 \subsubsection{Update Notifications}
 
-Während der Updatevorgang einer Electron App im Main Kontext der
+Während der Updatevorgang einer Electron-App im Main Kontext der
 Anwendung stattfindet, ist der Render Prozess beziehungsweise der Angular Kontext unwissend über die aktuelle
 Version der App sowie den Status des Updates. Um relevante Informationen für Nutzer innerhalb der Anwendung darstellen zu können,
 müssen dem Render Kontext genannte Information bereitgestellt werden.

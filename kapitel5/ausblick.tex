@@ -36,7 +36,7 @@ funktionieren.
 Zum jetzigen Zeitpunkt (Stand August 2016) ist Beta 11 erscheinen, allerdings läuft die mobile App von
 \projectname{} noch auf Betaversion 10, da das neuste Ionic Update,
 wie schon zuvor, Breaking Changes mit sich brachte, wodurch einige Ansichten der
-mobilen Anwendungen nicht mehr ordnungsmemäß funktionierten und der neuen API hätten angepasst werden müssen.
+mobilen Anwendungen nicht mehr ordnungsgemäß funktionierten und der neuen API hätten angepasst werden müssen.
 Es wurde allerdings zunächst ein Downgrade auf Beta 10 durchgeführt.
 
 Laut offizieller Aussage von Ionic ist vor dem ersten Release Candidate noch ein weiteres Beta Update geplant \cite{Annou88:online}.
@@ -45,7 +45,7 @@ Die letzte geplante Beta Veröffentlichung soll eine Vielzahl an interessanten
 Dieser wurde bereits in Sektion \ref{Absolute-Asset-Pfade} kritisiert und eine
 mögliche Verbesserung in Form eines Pull Requests vorgelegt.
 Das Problem der relativen und absoluten Pfade soll nun mit einem Technologiewechsel von \emph{Browserify} zu \emph{Webpack 2} gelöst werden.
-Zusätzlich bietet \emph{Webpack 2} eine Technik, welche ``tree shaking'' gennant wird.
+Zusätzlich bietet \emph{Webpack 2} eine Technik, welche ``tree shaking'' genannt wird.
 Diese liefert dem Build Prozess Transparenz darüber, welcher \ac{CSS} und JavaScript Code tatsächlich verwendet wird.
 Dadurch soll der Output sowie die Dauer des Buildvorgangs drastisch reduziert werden \cite{Annou88:online}.
 Darüber hinaus will Ionic, mithilfe des \emph{Ahead-of-time Compilers} von Angular, Templates zum Zeitpunkt des Buildvorgangs und nicht mehr zur Laufzeit kompilieren.
@@ -64,7 +64,7 @@ Die 1.0.0 Version des \textbf{Electron Framework} wurde bereits am 9. Mai veröf
 Daher konnte schon zu Beginn des Projekts \projectname{} mit einer stabilen API für die Entwicklung
 der Desktop-Anwendung gerechnet werden, was sich in der Entwicklungsphase bestätigte.
 Als sehr zeitaufwändig stellte sich die Implementierung des automatischen
-Update Mechanismus, beschrieben in Sektion \ref{client-updates}, heraus.
+Update-Mechanismus, beschrieben in Sektion \ref{client-updates}, heraus.
 Nicht weil diese Schnittstelle des Frameworks derart komplex zu bedienen ist, sondern weil der Aktualisierungsvorgang nur getestet werden kann,
 wenn die Anwendung zuvor für Produktion gebaut, signiert und für den Updateserver sichtbar ins Netz geladen wurde.
 Beim Start der Anwendung ist es dann nur schwer möglich, Zugriff auf nötige Debug Informationen zu erhalten,
@@ -83,14 +83,14 @@ wodurch sich die Testphase von Electron \emph{AutoUpdate} erheblich verzögerte.
 \end{figure}
 \vspace{0.3cm}
 
-\noindent Die in der Anforderungsanalyse, siehe Abschnitt \ref{sec:anforderungsanalyse}, beschriebenen Ansichten können allesamt auf jeder geforderten Plattform verwendet werden.
+\noindent Die in der Anforderungsanalyse, siehe Abschnitt \ref{sec:anforderungsanalyse}, beschriebenen Ansichten können durchgängig auf jeder geforderten Plattform verwendet werden.
 Screenshots der Desktopanwendung sowie der mobilen App sind in Anhang \ref{screens} vorzufinden.
 Das Projekt \projectname{} ist als Website, Desktopanwendung für macOS und Windows sowie als mobile App für iOS und Android unter Vorbehalt verfügbar.
 Der Vorbehalt resultiert aus dem prototypischen Status des Projekts und dem derzeit verfügbaren Budget.
 Die Infrastruktur des Backend-Systems, welches in der Bachelorarbeit von \emph{Timo Weiß} beschrieben wird,
-ist derzeit auf drei verschiedene \ac{AWS} Instanzen verteilt. Diese müssen für den Betrieb der Anwendung allesamt
+ist aktuell auf drei verschiedene \ac{AWS} Instanzen verteilt. Diese müssen für den Betrieb der Anwendung allesamt
 hochgefahren werden, wodurch Kosten entstehen, die einen Rund-um-die-Uhr-Betrieb derzeit äußerst kostspielig gestalten.
-Zudem liegt die derzeitige Implementierung als Prototyp vor und sollte daher vor einem
+Zudem liegt der aktuelle Stand der Implementierung als Prototyp vor und sollte deshalb vor einem
 öffentlichen Release zunächst als geschlossene Beta-Anwendung getestet und evaluiert werden.
 
 Daher wurde die Entscheidung getroffen, die mobilen Anwendungen für iOS und Android zunächst noch nicht öffentlich über die jeweiligen App Stores zu vertreiben.
@@ -128,7 +128,7 @@ sowie die Viewwechsel der mobilen App enthalten Animationen, welche allerdings n
 sondern mithilfe der Hardwarebeschleunigung auf der GPU des Geräts berechnet werden.
 Dadurch kann die Bildrate der Animationen vergleichsweise hoch gehalten werden.
 Die mobile App wurde auf einem Nexus 5x, Iphone 6, Iphone 4s und Nexus 5 getestet.
-Auf dem Nexus 5x und Iphone 6 scheint die App durchgehend eine stabile Bildrate zu haben,
+Auf dem Nexus 5x und Iphone 6 hat die App durchgehend eine stabile Bildrate,
 wird die App auf den beiden älteren Modellen ausgeführt,
 so fallen bei intensiver Benutzung vergleichsweise niedrige
 Bildraten, speziell bei der Animation der Viewwechsel, auf.
@@ -143,16 +143,16 @@ erzielte vergleichbare Ergebnisse. Des Weiteren ist in den Abbildungen \emph{\re
 wie die Hardwarebeschleunigung die Berechnung der Animation von der CPU auf die GPU auslagert.
 Es ist davon auszugehen, dass Electron eine ähnliche Leistungsumgebung wie der Chrome Browser bieten kann und
 einfache Animationen, wie sie immer häufiger in modernen Webanwendungen auftreten, zumindest auf zeitgemäßen Systemen keine
-sichtbaren Performance Einbrüche verursachen.
+sichtbaren Performance Defizite verursachen.
 
-Bei der Entwicklung von hybriden Applikation sollte bedacht werden,
+Bei der Entwicklung von hybriden Applikationen sollte bedacht werden,
 auf welchen Geräten beziehungsweise innerhalb welcher Gerätegeneration eine Anwendung performant benutzbar sein muss,
 da die tatsächliche Leistung von der Webview des ausführenden Systems abhängt.
-Darüber hinaus weisen die Webviews der verschiedenen Geräte unterschiede in den Implementierungen
-des JavaScript und \ac{CSS} Standards auf. Demnach muss für stabilen plattformübergreifenden Betrieb sorgfältig geprüft werden,
+Darüber hinaus weisen die Webviews der verschiedenen Geräte Unterschiede in den Implementierungen
+des JavaScript und \ac{CSS} Standards auf. Dem zufolge muss für einen stabilen plattformübergreifenden Betrieb sorgfältig geprüft werden,
 ob Funktionalität innerhalb adressierter Webviews überhaupt für die Implementierung zur Verfügung steht.
 Während der iOS Gerätemarkt und damit die Vielfalt der Webviews von Iphones, Ipads und Ipods noch überschaubar ist,
-so lässt sich vergleichsweise nur schwerw festlegen, welche Android Webview tatsächlich erreicht werden muss,
+so lässt sich vergleichsweise schwer ermitteln, welche Android Webview tatsächlich erreicht werden muss,
 da diese bei Android Geräten nicht nur mit der Version des Betriebssystems, sondern auch mit dem Hersteller des Geräts variieren kann.
 
 Abhilfe dafür schafft das \emph{Crosswalk Projekt}, welches das Problem des fragmentierten Android Marktes lösen will,
@@ -162,7 +162,7 @@ Allerdings vergrößert sich dadurch die Größe der \ac{APK} sowie der auf dem 
 
 Cordova Apps werden auf iOS Geräten in der \emph{UIWebView} ausgeführt, einer nativen Webview von Apple. Safari basiert bereits
 auf der neuen, stabileren und schnelleren \emph{WKWebView}, wodurch erklärt wird, wieso Web-Apps in Safari
-mehr Leistung aufweisen und flüssiger wirken, als hybride Cordova Apps die noch im Kontext der alten \emph{UIWebView} ausgeführt werden.
+mehr Leistung aufweisen und flüssiger wirken, als hybride Cordova Apps, die noch im Kontext der alten \emph{UIWebView} ausgeführt werden.
 Das Ionic Team beschäftigt sich derzeit damit die neue Webview für Ionic 1 sowie Ionic 2 als Ausführungskontext verwenden zu können.
 Erste Tests zeigten bereits deutlich reduzierte Ram-Auslastungen sowie kürzere Startzeiten und mehr Performanz von Ionic Apps auf iOS Geräten \cite{Cordo84:online}.
 
@@ -183,12 +183,12 @@ Während der Implementierung des \emph{Meta Pickers} kam die Idee auf, Momente z
 Ein Use Case bestünde darin, dass ein Anwendungsentwickler und Nutzer der Applikation \projectname{}
 über die mobile App eine Push Notification auf sein Smartphone erhält, weil auf seinem System ein problematischer Sachverhalt
 entstanden ist. Mithilfe der App kann er sich zunächst Übersicht verschaffen und den Zeitpunkt des Problemauftritts speichern.
-Im Büro wird der gespeicherte Zeitraum dann mithilfe der Desktop-Anwendung vollständig analysiert,
-das Problem wird von besagtem Anwendungsentwickler im Sourcecode ausfindig gemacht, behoben und der gespeicherte Zeitpunkt wird mit ``gelöst'' markiert.
+Im Büro wird der gespeicherte Zeitraum dann durch die Desktop-Anwendung vollständig analysiert,
+das Problem wird vom Anwendungsentwickler im Sourcecode ausfindig gemacht, behoben und der gespeicherte Zeitpunkt wird mit ``gelöst'' markiert.
 
 \subsubsection{Community}
 
-Durch die Implementierung eines Community Features könnten System mithilfe von \projectname{} im Kollektiv überwacht werden.
+Durch die Implementierung eines Community Features könnten Systeme mithilfe von \projectname{} im Kollektiv überwacht werden.
 Systeme müssten dahingehend für weitere Nutzer freigegeben werden können.
 Zusätzlich könnten diverse Kommunikationsschnittstellen für einen
 Austausch zwischen den Entwicklern implementiert werden. Ein möglicher Use Case könnte auf das Feature
@@ -210,11 +210,11 @@ daher sollte bestehende Funktionalität nachträglich sowie neue Features durch 
 
 \subsubsection{Continuous Deployment}
 
-Der Build Prozess, welcher momentan Lokal auf dem Computer des Entwicklers stattfindet, könnte auf einen externen Continuous Integration (CI) Server ausgelagert werden.
+Der Build Prozess, welcher momentan lokal auf dem Computer des Entwicklers stattfindet, könnte auf einen externen Continuous Integration (CI) Server ausgelagert werden.
 Denkbar wären Services wie \emph{TravisCI}, \emph{CircleCI} oder die Konfiguration eines eigenen Jenkins Server.
 Änderungen in Form von Commits auf der Master Branch könnten damit automatisch die Test- und Buildkette starten, um Updates für die Desktop-Anwendung sowie für die App zu generieren.
 Herausforderung dabei ist die Bedienung der verschiedenen Zielplattformen, da MacOS Desktop-Anwendungen nur auf MacOS und
-Windows Anwendungen ebenfalls nur auf Windows Plattformen generiert und signiert werden können.
+Windows Anwendungen nur auf Windows Plattformen generiert und signiert werden können.
 Genannte CI-Services erlauben zwar eine Emulierung verschiedener Betriebsysteme,
 allerdings bedeutet dies einen hohen Konfigurationsaufwand und erfordert ein gewisses Budget für die nötige Rechenleistung.
 
@@ -230,21 +230,21 @@ mit geringem Programmieraufwand Produkte für möglichst viele verschiedene Plat
 Das Frontend Projekt erhielt den Arbeitstitel \projectname{} und wurde entsprechend den beschriebenen Anforderungen
 als Desktop-, Web- und Mobilanwendung entwickelt.
 
-Funktionalität wurde mithilfe von Angular Komponenten in wiederverwendbarer
+Funktionalität wurde mithilfe von Angular Komponenten in wiederverwendbare
 Elemente gekapselt und kann daher innerhalb und außerhalb der Anwendung wiederverwendet werden.
 Neben der Implementierung der Komponenten wurden zudem Workflow-Optimierungen und Deployment Prozesse entwickelt,
-welche die Produktivität der Entwicklung drastisch steigerten, wodurch es überhaupt erst möglich wurde den Funktionsumfang
+welche die Effizienz der Entwicklung drastisch steigerten, wodurch es überhaupt erst möglich wurde, den Funktionsumfang
 innerhalb der kurzen Entwicklungszeit auf so vielfältige Weise anbieten zu können.
 Innerhalb der Reflexion wurden mögliche Chancen der verwendeten Technologien und der Anwendung selbst
 sowie erste notwendige Schritte beschrieben, um aus diesem ersten
 Prototypen ein Produkt zu schaffen.
 
-Abschließend lässt sich sagen, dass die umfangreiche Frontend Architektur nur anhand des webbasierten Ansatzes und der Synergien zwischen den verwendeten Technologien umgesetzt werden konnte.
+Abschließend ist festzustellen, dass die umfangreiche Frontend Architektur nur anhand des webbasierten Ansatzes und der Synergien zwischen den verwendeten Technologien umgesetzt werden konnte.
 Ein nativer Ansatz hätte zwar deutliche Performanz Vorteile mit sich gebracht, jedoch wäre dann die Implementierung und Wartung der Anwendungen demnach um ein vielfaches zeitintensiver.
 Bei der Entwicklung webbasierter cross-platform Apps muss stets bedacht werden, welche Funktionalität für welche Gerätegeneration entwickelt wird.
 Rechenintensive Animationen lassen sich, speziell auf älteren Systemen, nur schwer performant einsetzen und viele moderne Webstandards stehen älteren Webviews nicht zur Verfügung.
-Es ist davon auszugehen, dass sich die Technologien der Webentwicklung sowie die Gerätetechnologien selbst in den kommenden Jahren stetig weiterentwickeln werden.
+Es ist davon auszugehen, dass sich die Technologien der Webentwicklung sowie die Gerätetechnologien in den kommenden Jahren stetig weiterentwickeln werden.
 Geräte werden leistungsstärker, Webviews mächtiger und vielleicht schwindet dadurch der Leis­tungs­un­ter­schied zwischen nativen und hybriden Anwendungen auf ein Minimum.
 Es bleibt abzuwarten, wie sich diese spannende Technologie in der Zukunft entwickeln wird.
-Im Augenblick sollte vor einem Projektstart ausgiebig evaluiert werden,
-ob ein Produkt anhand des hybriden Ansatzes entwickelt werden kann, seinen Anforderungen damit gerecht wird und so den Auftraggeber zufriedenstellt.
+Auf jeden Fall sollte vor einem Projektstart ausgiebig evaluiert werden,
+ob ein Produkt anhand des hybriden Ansatzes entwickelt werden kann und damit den Anforderungen eines Auftraggebers gerecht wird.
